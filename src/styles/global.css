@@ -1,0 +1,14 @@
+/* #TODO: config var */
+:root {
+  /* Primary color */
+  --blue-100: #f4f9ff;
+  --blue-300: #bddbff;
+  --blue-500: #0075ff;
+  --blue-600: #2e69ff;
+
+  /* Gray Color */
+  --gray-100: #f0f0f0;
+  --gray-200: #d9d9d9;
+  --gray-600: #636363;
+  --gray-900: #212121;
+}

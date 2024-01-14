@@ -1,0 +1,24 @@
+.screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: var(--gray-200);
+
+  /* For Navbar, Tapbar */
+  padding-top: 3.125rem;
+  padding-bottom: 4.375rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  max-width: 768px;
+
+  background-color: #fff;
+  /* TEST */
+  height: 1200vh;
+}

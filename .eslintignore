@@ -1,0 +1,9 @@
+#For building
+.vscode/*
+dist/*
+node_modules/*
+**/index.html
+**/assets/*.html
+public
+
+#For js file
