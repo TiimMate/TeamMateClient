@@ -6,7 +6,6 @@ import Navbar from './components/layouts/Navbar';
 import Tapbar from './components/layouts/Tapbar';
 import Footer from './components/layouts/Footer';
 
-import Test from './pages/Test';
 import Home from './pages/Home';
 
 function App() {
@@ -27,7 +26,6 @@ function ContentBox() {
     <div className={styles.container}>
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/test' element={<Test />} />
       </Routes>
       <Footer />
     </div>
