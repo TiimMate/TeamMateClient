@@ -12,6 +12,5 @@ assignees: ''
 > 추가하려는 기능에 대해 간략히 설명해주세요!
 
 ## ✏️ToDoList
-
-- [] TODO1
-- [] TODO2
+- [ ] ToDo1
+- [ ] ToDo2
