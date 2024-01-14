@@ -1,7 +1,7 @@
 ---
 name: Feature Template
 about: 기능 추가용 이슈 템플릿입니다.
-title: ''
+title: '[Feat]'
 labels: ''
 assignees: ''
 
@@ -13,5 +13,5 @@ assignees: ''
 
 ## ✏️ToDoList
 
-- [] TODO
-- [] TODO
+- [] TODO1
+- [] TODO2
