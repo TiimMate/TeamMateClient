@@ -7,6 +7,7 @@ import Tapbar from './components/layouts/Tapbar';
 import Footer from './components/layouts/Footer';
 
 import Home from './pages/Home';
+import TeamDetailPage from './pages/team/TeamDetailPage';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function ContentBox() {
     <div className={styles.container}>
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/team/detail' element={<TeamDetailPage />} />
       </Routes>
       <Footer />
     </div>
