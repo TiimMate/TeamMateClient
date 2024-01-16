@@ -8,6 +8,7 @@ import Footer from './components/layouts/Footer';
 
 import Home from './pages/Home';
 import TeamDetailPage from './pages/team/TeamDetailPage';
+import TeamSelectionPage from './pages/team/TeamSelectionPage';
 
 function App() {
   return (
@@ -27,6 +28,9 @@ function ContentBox() {
     <div className={styles.container}>
       <Routes>
         <Route path='/' element={<Home />} />
+
+        {/* Team Page */}
+        <Route path='/team' element={<TeamSelectionPage />} />
         <Route path='/team/detail' element={<TeamDetailPage />} />
       </Routes>
       <Footer />

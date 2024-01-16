@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const DEFAULT_URL = '#';
 
+// #TODO: 디자인 스타일링 상의해보기
 /**
  * image / text / btn
  *
@@ -117,14 +118,6 @@ const Title = styled.h3`
   font-weight: 500; // #TODO
   letter-spacing: -0.0375rem;
 `;
-const TitleWithoutDate = styled(Title)`
-  color: black;
-  font-size: 14px;
-  font-family: Pretendard;
-  font-weight: 600;
-  line-height: 20px;
-  word-wrap: break-word;
-`;
 const Date = styled.span`
   color: var(--Blue300, var(--kakao-logo, #0075ff));
   font-family: Pretendard;
@@ -142,6 +135,15 @@ const Description = styled.p`
   font-weight: 400;
   line-height: 0.75rem;
   letter-spacing: -0.025rem;
+`;
+// Without Date
+const TitleWithoutDate = styled(Title)`
+  color: black;
+  font-size: 14px;
+  font-family: Pretendard;
+  font-weight: 600;
+  line-height: 20px;
+  word-wrap: break-word;
 `;
 const DescriptionWithoutDate = styled(Description)`
   color: #636363;
