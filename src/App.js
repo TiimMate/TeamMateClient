@@ -7,6 +7,8 @@ import Tapbar from './components/layouts/Tapbar';
 import Footer from './components/layouts/Footer';
 
 import Home from './pages/Home';
+import Login from './pages/login/Login';
+import LoginLanding from './pages/login/LoginLanding';
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function ContentBox() {
     <div className={styles.container}>
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/welcome-user' element={<LoginLanding />} />
       </Routes>
       <Footer />
     </div>
