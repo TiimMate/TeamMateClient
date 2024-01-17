@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-
-const DEFAULT_URL = '#';
+import CircleLogo from '../atoms/CircleLogo';
 
 // #TODO: 디자인 스타일링 상의해보기
 /**
@@ -26,11 +25,7 @@ function UnitInfoRow({ unitInfo, btnText, onClickBtn }) {
   return (
     <Wrapper>
       <AvatarSection>
-        <Avatar>
-          {avatarUrl && (
-            <AvatarImage src={avatarUrl && DEFAULT_URL} alt='image' />
-          )}
-        </Avatar>
+        <Avatar $logoUrl={avatarUrl} />
       </AvatarSection>
 
       {date ? (
@@ -80,7 +75,6 @@ const Wrapper = styled.div`
   height: 4.375rem;
   box-sizing: border-box;
 
-  border-top: 1px solid var(--gray-100, #f0f0f0);
   background: #fff;
 `;
 
@@ -90,11 +84,10 @@ const AvatarSection = styled.div`
   align-items: center;
   justify-content: center;
 
-  padding: 0.76rem;
-  margin-left: 3%;
-  margin-right: 1rem; //비율
+  padding-left: 4.44%;
+  margin-right: 4.72%;
 `;
-const Avatar = styled.div`
+const Avatar = styled(CircleLogo)`
   width: 2.5rem;
   height: 2.5rem;
   flex-shrink: 0;
@@ -102,9 +95,7 @@ const Avatar = styled.div`
   border-radius: 50%;
 
   background-color: #d9d9d9;
-  fill: #d9d9d9;
 `;
-const AvatarImage = styled.img``;
 
 // Text Section
 const TextSection = styled.div``;
@@ -157,7 +148,7 @@ const DescriptionWithoutDate = styled(Description)`
 // Button Section
 const BtnSection = styled.div`
   position: absolute;
-  right: 5%;
+  right: 4.44%;
 `;
 const Button = styled.button`
   display: flex;

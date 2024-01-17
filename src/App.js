@@ -7,8 +7,10 @@ import Tapbar from './components/layouts/Tapbar';
 import Footer from './components/layouts/Footer';
 
 import Home from './pages/Home';
+
 import TeamDetailPage from './pages/team/TeamDetailPage';
 import TeamSelectionPage from './pages/team/TeamSelectionPage';
+import TeamCreatePage from './pages/team/TeamCreatePage';
 
 function App() {
   return (
@@ -32,6 +34,7 @@ function ContentBox() {
         {/* Team Page */}
         <Route path='/team' element={<TeamSelectionPage />} />
         <Route path='/team/detail' element={<TeamDetailPage />} />
+        <Route path='/team/create' element={<TeamCreatePage />} />
       </Routes>
       <Footer />
     </div>

@@ -8,6 +8,7 @@ import Modal, {
   ModalInput,
   ModalContentWrapper,
 } from '../../components/ui/Modal';
+import CircleLogo from '../../components/atoms/CircleLogo';
 
 // #TODO: fetch list...
 const SPORT_OPTIONS = [
@@ -29,7 +30,7 @@ const TEAMS_INFOS = [
   { id: 4, name: '시간', logoUrl: '#' },
   { id: 5, name: '성남 FC', logoUrl: '#' },
 ];
-const COLOR_LIST = ['#0075FF', '#86FF91'];
+const COLOR_LIST = ['#0075ff', '#86ff91'];
 
 function TeamSelectionPage() {
   const navigate = useNavigate();
@@ -52,6 +53,7 @@ function TeamSelectionPage() {
             backgroundColor={backgroundColor}
             onClick={onClick}
             teamInfo={info}
+            key={info.id}
           />
         );
       }
@@ -60,6 +62,7 @@ function TeamSelectionPage() {
           backgroundColor={backgroundColor}
           onClick={onClick}
           teamInfo={info}
+          key={info.id}
         />
       );
     });
@@ -111,7 +114,7 @@ function TeamSelectionPage() {
 function Team({ last, backgroundColor, onClick, teamInfo }) {
   const { name, logoUrl } = teamInfo;
   return (
-    <TeamDiv onClick={onClick} backgroundColor={backgroundColor}>
+    <TeamDiv onClick={onClick} $backgroundColor={backgroundColor}>
       <TeamName>{name}</TeamName>
       <TeamLogo logoUrl={logoUrl} />
       {last || <TeamImage src='assets/highfive.png' alt='img' />}
@@ -132,7 +135,6 @@ function TeamAdditionModal({ navigate }) {
   const [isInvited, setIsInvited] = useState(false);
   const [inviteCode, setInviteCode] = useState('');
   const fetchInviteCode = () => {
-    console.log(inviteCode);
     // #TODO: 초대코드 로직
   };
 
@@ -246,14 +248,15 @@ const TeamDiv = styled.div`
   background-size: cover; // 배경 이미지가 div를 꽉 채우도록
   background-position: center; // 배경 이미지 중앙 정렬
   background-color: ${props =>
-    props.backgroundColor || 'var(--Blue300, #0075ff)'};
+    props.$backgroundColor || 'var(--Blue300, #0075ff)'};
+  color: ${props =>
+    props.$backgroundColor === '#86ff91' ? '#0075ff' : '#FFF'};
 `;
 const TeamName = styled.h1`
   position: absolute;
   top: 10%;
   left: 11.3%;
 
-  color: #fff;
   font-family: Pretendard;
   font-size: 7.7vw;
   font-style: normal;
@@ -265,7 +268,7 @@ const TeamName = styled.h1`
     font-size: 59.136px; // 뷰포트 너비가 768px 이상일 때 적용될 글씨 크기
   }
 `;
-const TeamLogo = styled.div`
+const TeamLogo = styled(CircleLogo)`
   position: absolute;
   top: 43%;
   left: 56%;
@@ -284,6 +287,7 @@ const TeamImage = styled.img`
   height: 56%;
 `;
 const AddTeamDiv = styled(TeamDiv)`
+  background: var(--Gray200, #d9d9d9);
   padding-top: 70%;
 `;
 const PlusIcon = styled.img`

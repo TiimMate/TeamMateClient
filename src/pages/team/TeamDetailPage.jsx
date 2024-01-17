@@ -8,6 +8,7 @@ const dummy = [
       title: '타이틀 1',
       description: '이것은 더미 데이터입니다.',
       date: '1월 17일',
+      avatarUrl: '/assets/highfive.png',
     },
     btnText: '삭제하기',
     onClickBtn: null,
@@ -28,7 +29,7 @@ const dummy = [
       description: '스타일링 연습 중입니다.',
       date: '2월 1일',
     },
-    btnText: '삭제하기',
+    btnText: '작게',
     onClickBtn: null,
   },
   {
@@ -37,7 +38,6 @@ const dummy = [
       title: '타이틀 4',
       description: '더미 데이터 예제입니다.',
     },
-    btnText: '버튼 길이가 좀 긴 경우',
     onClickBtn: () => {},
   },
   {
@@ -47,8 +47,6 @@ const dummy = [
       description: '더미 데이터 예제입니다.',
       date: '3월 12일',
     },
-    btnText: '버튼 텍스트',
-    onClickBtn: null,
   },
   {
     id: 6,
@@ -117,7 +115,6 @@ function TeamDetailPage() {
 const Wrapper = styled.div`
   box-sizing: border-box;
   width: 100%;
-  padding: 0rem 5%;
 `;
 
 export default TeamDetailPage;
