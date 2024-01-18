@@ -12,6 +12,7 @@ import TeamApply from './pages/Matching.jsx/MatchApply/TeamApply';
 import GuestHost from './pages/Matching.jsx/MatchHost/GuestHost';
 import TeamHost from './pages/Matching.jsx/MatchHost/TeamHost';
 import MatchingHome from './pages/Matching.jsx/MatchingHome';
+import WeeklyCalendar from './components/layouts/WeeklyCalendar';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function ContentBox() {
         <Route path='/matching/teamapply' element={<TeamApply />} />
         <Route path='/matching/guesthost' element={<GuestHost />} />
         <Route path='/matching/teamhost' element={<TeamHost />} />
+        <Route path='/matching/weeklycalendar' element={<WeeklyCalendar />} />
       </Routes>
       <Footer />
     </div>
