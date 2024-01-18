@@ -1,19 +1,19 @@
 const date = new Date();
 
 const calendarYear = date.getFullYear();
-// ´Þ·Â ¿ù
+// ï¿½Þ·ï¿½ ï¿½ï¿½
 const calendarMonth = date.getMonth() + 1;
-// ´Þ·Â ÀÏ
+// ï¿½Þ·ï¿½ ï¿½ï¿½
 const calendarToday = date.getDate();
 
 // const monthLastDate = new Date(calendarYear, calendarMonth, 0);
-// ´Þ·Â ¿ùÀÇ ¸¶Áö¸· ÀÏ
+// ï¿½Þ·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 // const calendarMonthLastDate = monthLastDate.getDate();
 
-// // ´Þ·Â ÀÌÀü ¿ùÀÇ ¸¶Áö¸· ÀÏ
+// // ï¿½Þ·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 // const prevMonthLastDate = new Date(calendarYear, calendarMonth - 1, 0);
 
-// ´Þ·Â ÇöÀç ¿äÀÏ
+// ï¿½Þ·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 const calendarMonthTodayDay = date.getDay();
 
 const arWeek = [null, null, null, null, null, null, null];
