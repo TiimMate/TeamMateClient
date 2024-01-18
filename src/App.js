@@ -15,6 +15,10 @@ import MatchingHome from './pages/Matching.jsx/MatchingHome';
 import Login from './pages/login/Login';
 import LoginLanding from './pages/login/LoginLanding';
 
+import TeamDetailPage from './pages/team/TeamDetailPage';
+import TeamSelectionPage from './pages/team/TeamSelectionPage';
+import TeamCreatePage from './pages/team/TeamCreatePage';
+
 function App() {
   return (
     <div className={styles.screen}>
@@ -33,6 +37,11 @@ function ContentBox() {
     <div className={styles.container}>
       <Routes>
         <Route path='/' element={<Home />} />
+
+        {/* Team Page */}
+        <Route path='/team' element={<TeamSelectionPage />} />
+        <Route path='/team/detail' element={<TeamDetailPage />} />
+        <Route path='/team/create' element={<TeamCreatePage />} /> 
         <Route path='/login' element={<Login />} />
         <Route path='/welcome-user' element={<LoginLanding />} />
         <Route path='/matching' element={<MatchingHome />} />
