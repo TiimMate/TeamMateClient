@@ -12,6 +12,8 @@ import TeamApply from './pages/Matching.jsx/MatchApply/TeamApply';
 import GuestHost from './pages/Matching.jsx/MatchHost/GuestHost';
 import TeamHost from './pages/Matching.jsx/MatchHost/TeamHost';
 import MatchingHome from './pages/Matching.jsx/MatchingHome';
+import Login from './pages/login/Login';
+import LoginLanding from './pages/login/LoginLanding';
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function ContentBox() {
     <div className={styles.container}>
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/welcome-user' element={<LoginLanding />} />
         <Route path='/matching' element={<MatchingHome />} />
         <Route path='/matching/guestapply' element={<GuestApply />} />
         <Route path='/matching/teamapply' element={<TeamApply />} />
