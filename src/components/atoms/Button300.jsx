@@ -9,8 +9,11 @@ const Button300 = styled.button`
   gap: 10px;
   flex-shrink: 0;
   border-radius: 6px;
-  background: #0075ff;
+
+  background: var(--blue-500);
+  border-color: var(--blue-500);
   cursor: pointer;
+  color: white;
 
   &:disabled {
     background: var(--Gray200, #d9d9d9);
