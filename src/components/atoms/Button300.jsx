@@ -9,6 +9,7 @@ const Button300 = styled.button`
   gap: 10px;
   flex-shrink: 0;
   border-radius: 6px;
+
   background: var(--blue-500);
   border-color: var(--blue-500);
   cursor: pointer;

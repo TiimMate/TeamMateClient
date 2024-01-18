@@ -11,6 +11,8 @@ const Wrapper = styled.header`
 
   background-color: #fff;
   border-bottom: 1px solid var(--Gray200, #d9d9d9);
+
+  z-index: 99;
 `;
 
 function Navbar() {
