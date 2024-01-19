@@ -1,73 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Button300 from '../atoms/Button300';
-
-// Deafault styles
-// 모달 배경 스타일
-const ModalBackdrop = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); // 반투명 배경
-
-  z-index: 100;
-`;
-
-// 모달 컨테이너 스타일
-const ModalContainer = styled.div`
-  position: fixed;
-  top: 30%;
-  left: 50%;
-  transform: translateX(-50%);
-
-  background-color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  width: 288px; // 원하는 대로 조절
-`;
-
-// 모달 헤더 스타일
-const ModalHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px; // 컨텐츠와의 간격
-
-  color: var(--Blue300, #0075ff);
-  font-family: Pretendard;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 29px; /* 181.25% */
-  letter-spacing: -0.8px;
-`;
-
-// 닫기 버튼 스타일
-const CloseButton = styled.img`
-  cursor: pointer;
-`;
+import Button300 from '../../atoms/Button300';
+import * as S from './Modal.style';
 
 function Modal({ title, children, onClose }) {
   return (
-    <ModalBackdrop onClick={onClose}>
-      <ModalContainer
+    <S.ModalBackdrop onClick={onClose}>
+      <S.ModalContainer
         onClick={e => e.stopPropagation() /* 모달 밖 클릭 방지 */}
       >
-        <ModalHeader>
+        <S.ModalHeader>
           <h2>{title}</h2>
-          <CloseButton
+          <S.CloseButton
             src='assets/x-close.svg'
             alt='close-btn'
             onClick={onClose}
           />
-        </ModalHeader>
+        </S.ModalHeader>
         {children}
-      </ModalContainer>
-    </ModalBackdrop>
+      </S.ModalContainer>
+    </S.ModalBackdrop>
   );
 }
 
