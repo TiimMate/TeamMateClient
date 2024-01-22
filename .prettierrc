@@ -4,5 +4,6 @@
   "trailingComma": "all",
   "printWidth": 80,
   "jsxSingleQuote": true,
-  "arrowParens": "avoid"
+  "arrowParens": "always",
+  "tabWidth": 2
 }
