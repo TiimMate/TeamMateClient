@@ -1,17 +1,16 @@
 import React from 'react';
 import * as S from './HomePage.style';
-import '../../assets/img-ball';
 
-const images = [
-  'img-ball-basketball.png',
-  'img-ball-baseball.png',
-  'img-ball-tennis.png',
-  'img-ball-soccer.png',
-  'img-ball-futsal.png',
-  'img-ball-volleyball.png',
-  'img-ball-bowling.png',
-  'img-ball-badminton.png',
-  'img-ball-pingpong.png',
+const IMAGE_URL_LIST = [
+  '/assets/img-ball/img-ball-basketball.png',
+  '/assets/img-ball/img-ball-baseball.png',
+  '/assets/img-ball/img-ball-tennis.png',
+  '/assets/img-ball/img-ball-soccer.png',
+  '/assets/img-ball/img-ball-futsal.png',
+  '/assets/img-ball/img-ball-volleyball.png',
+  '/assets/img-ball/img-ball-bowling.png',
+  '/assets/img-ball/img-ball-badminton.png',
+  '/assets/img-ball/img-ball-pingpong.png',
 ];
 
 export default function HomePage() {
@@ -26,9 +25,9 @@ export default function HomePage() {
         <S.MainImage className='grid-container'>
           <S.BallContainer>
             <S.BallImage>
-              {images.map((image, index) => (
+              {IMAGE_URL_LIST.map((imageUrl, index) => (
                 <div key={index} className='grid-item'>
-                  <img src={image} alt={`Image ${index + 1}`} />
+                  <img src={imageUrl} alt={`Image ${index + 1}`} />
                 </div>
               ))}
             </S.BallImage>
