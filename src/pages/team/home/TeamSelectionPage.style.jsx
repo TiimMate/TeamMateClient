@@ -5,22 +5,23 @@ import CircleLogo from '../../../components/atoms/CircleLogo';
 export const Wrapper = styled.div`
   position: relative;
 
-  box-sizing: border-box;
   width: 100%;
+
+  box-sizing: border-box;
 `;
 
 // Sport Selection
 export const SportSelectionSection = styled.section`
   display: inline-flex;
-  padding: 1.4375rem 1.8125rem 1.375rem 1.9375rem;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 0.1875rem;
 
   width: 100%;
-
   padding: 5% 10%;
+  gap: 0.1875rem;
+
+  background: var(--white, #fff);
 
   color: var(--Blue300, #0075ff);
   /* 12md */
@@ -31,22 +32,30 @@ export const SportSelectionSection = styled.section`
   line-height: 1.375rem; /* 183.333% */
   letter-spacing: -0.0375rem;
 
-  background: var(--white, #fff);
-
   box-sizing: border-box;
 `;
 export const SportSelect = styled.select`
   display: flex;
-  height: 2.5rem;
-  padding: 0.5rem 0.625rem;
   justify-content: center;
   align-items: center;
-  gap: 14.5rem;
 
+  width: 100%;
+  height: 2.5rem;
+  padding: 0.5rem 0.625rem;
+  gap: 14.5rem;
+  border-radius: 0.375rem;
+  border: 2px solid var(--Blue300, #0075ff);
+
+  background: url('assets/chevron-down-5 1.svg') no-repeat 98% 50%/1.5rem auto;
+
+  color: var(--Blue300, #0075ff);
+  font-size: 16px;
+  font-weight: 500;
+
+  box-sizing: border-box;
   -webkit-appearance: none; /* for chrome */
   -moz-appearance: none; /*for firefox*/
   appearance: none;
-  box-sizing: border-box; //select 박스의 크기 방식 지정.
 
   select::-ms-expand {
     display: none; /*for IE10,11*/
@@ -60,27 +69,18 @@ export const SportSelect = styled.select`
   option {
     border: 2px solid var(--Blue300, #0075ff);
   }
-  border-radius: 0.375rem;
-  border: 2px solid var(--Blue300, #0075ff);
-  background: url('assets/chevron-down-5 1.svg') no-repeat 98% 50%/1.5rem auto;
-
-  width: 100%;
-
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--Blue300, #0075ff);
 `;
 
 // Team Selection
-// #TODO: 디자이너님께 요거 어케할지 (계속 하이파이브?)
 export const TeamSelectionSection = styled.section``;
 export const TeamDiv = styled.div`
   position: relative;
 
   width: 100%;
-  padding-top: 83%; // 너비에 대한 비율로 높이 설정
-  background-size: cover; // 배경 이미지가 div를 꽉 채우도록
-  background-position: center; // 배경 이미지 중앙 정렬
+  padding-top: 83%;
+
+  background-size: cover;
+  background-position: center;
   background-color: ${props =>
     props.$backgroundColor || 'var(--Blue300, #0075ff)'};
   color: ${props =>
@@ -110,6 +110,7 @@ export const TeamLogo = styled(CircleLogo)`
   width: 36%;
   padding-top: 36%;
   border-radius: 50%;
+
   background-color: var(--Blue100, #f4f9ff);
 `;
 export const TeamImage = styled.img`
@@ -121,13 +122,12 @@ export const TeamImage = styled.img`
   height: 56%;
 `;
 export const AddTeamDiv = styled(TeamDiv)`
-  background: var(--Gray200, #d9d9d9);
   padding-top: 70%;
+
+  background: var(--Gray200, #d9d9d9);
 `;
 export const PlusIcon = styled.img`
   position: absolute;
-
-  // 가운데 오게하기
   top: 25%;
   left: 50%;
   transform: translateX(-50%);

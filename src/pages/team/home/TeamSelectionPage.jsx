@@ -6,7 +6,7 @@ import Modal, {
   ModalButtonBlue,
   ModalInput,
   ModalContentWrapper,
-} from '../../../components/ui/modal/Modal';
+} from '../../../components/ui/Modal/Modal';
 import * as S from './TeamSelectionPage.style';
 
 // #TODO: fetch list...

@@ -4,7 +4,7 @@ import {
   formatMemberData,
   MEMBER_RAW_DATA_BASKETBALL,
 } from '../../../utils/formatData';
-import UnitInfoRow from '../../../components/ui/unit-info-row/UnitInfoRow';
+import UnitInfoRow from '../../../components/ui/UnitInfoRow/UnitInfoRow';
 import * as S from './TeamDetailPage.style';
 
 const TEAM_INFO = {

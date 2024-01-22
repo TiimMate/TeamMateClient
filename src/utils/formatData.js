@@ -77,6 +77,7 @@ export const TEAM_RAW_DATA = [];
 
 const formatBasketballMembers = (members, options = {}) => {
   const { formatUnitInfo, formatBtnText, formatOnClickBtn } = options;
+
   // description format해주는 함수
   const formatBasketballDescription = basketball => {
     const { height, weight, position } = basketball;
@@ -91,7 +92,6 @@ const formatBasketballMembers = (members, options = {}) => {
     return `${height}cm|${weight}kg|${formatPosition()}`;
   };
 
-  // 전체적인 formating
   const newData = members.map(member => {
     const { id, name, basketball, avatarUrl, isLeader } = member;
 
@@ -103,9 +103,11 @@ const formatBasketballMembers = (members, options = {}) => {
           description: formatBasketballDescription(basketball),
           avatarUrl,
         };
+
     const btnText = formatBtnText
       ? formatBtnText(member)
       : isLeader === 'true' && '팀장';
+
     const onClickBtn = formatOnClickBtn && formatOnClickBtn(member);
 
     return { id, unitInfo, btnText, onClickBtn };
