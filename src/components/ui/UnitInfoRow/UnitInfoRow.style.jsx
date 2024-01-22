@@ -41,9 +41,9 @@ export const Title = styled.h3`
 
   /* 12md */
   font-family: Pretendard;
-  font-size: 0.75rem; //#TODO
+  font-size: 0.75rem;
   font-style: normal;
-  font-weight: 500; // #TODO
+  font-weight: 500;
   letter-spacing: -0.0375rem;
 `;
 export const Date = styled.span`

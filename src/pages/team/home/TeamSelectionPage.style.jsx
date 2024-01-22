@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+
+import { ModalButtonBlue } from '../../../components/ui/Modal/Modal';
 import CircleLogo from '../../../components/atoms/CircleLogo';
 
 // Style Content
@@ -46,7 +48,7 @@ export const SportSelect = styled.select`
   border-radius: 0.375rem;
   border: 2px solid var(--Blue300, #0075ff);
 
-  background: url('assets/chevron-down-5 1.svg') no-repeat 98% 50%/1.5rem auto;
+  background: url('/assets/chevron-down-5 1.svg') no-repeat 98% 50%/1.5rem auto;
 
   color: var(--Blue300, #0075ff);
   font-size: 16px;
@@ -139,4 +141,9 @@ export const AddText = styled(TeamName)`
   top: 65%;
   left: 50%;
   transform: translateX(-50%);
+`;
+
+// for modal styling
+export const ConfirmBtn = styled(ModalButtonBlue)`
+  justify-content: center;
 `;

@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 
 import Modal, {
   ModalButton,
-  ModalButtonBlue,
   ModalInput,
   ModalContentWrapper,
 } from '../../../components/ui/Modal/Modal';
@@ -92,8 +91,6 @@ function TeamSelectionPage() {
         종목 선택
         <br />
         <S.SportSelect value={sport} onChange={e => setSport(e.target.value)}>
-          {' '}
-          {/* #TODO mobile view에서 select dropdown 튀어나오는 문제 해결 */}
           {SPORT_OPTIONS.map(option => (
             <option value={option.id} key={option.id}>
               {option.sport}
@@ -158,7 +155,7 @@ function TeamAdditionModal({ navigate }) {
           value={inviteCode}
           onChange={e => setInviteCode(e.target.value)}
         />
-        <ModalButtonBlue onClick={fetchInviteCode}>팀 추가하기</ModalButtonBlue>
+        <S.ConfirmBtn onClick={fetchInviteCode}>팀 추가하기</S.ConfirmBtn>
       </>
     );
   };

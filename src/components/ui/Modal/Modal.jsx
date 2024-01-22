@@ -34,6 +34,19 @@ export const ModalContentWrapper = styled.div`
 `;
 /** 무색 버튼 */
 export const ModalButton = styled(Button300)`
+  display: flex;
+  justify-content: start;
+  align-items: center;
+
+  width: 18.75rem;
+  margin-bottom: 0.63rem;
+  padding: 0 0.75rem;
+
+  border-radius: 0.375rem;
+  border: 1px solid var(--Gray200, #d9d9d9);
+
+  background: var(--Gray100, #f0f0f0);
+
   color: var(--Gray300, #636363);
   font-family: Pretendard Variable;
   font-size: 14px;
@@ -43,17 +56,7 @@ export const ModalButton = styled(Button300)`
   letter-spacing: -0.7px;
   white-space: nowrap;
 
-  display: flex;
-  justify-content: start;
-  padding: 0 0.75rem;
-  width: 18.75rem;
-  align-items: center;
-  border-radius: 0.375rem;
-  border: 1px solid var(--Gray200, #d9d9d9);
-  background: var(--Gray100, #f0f0f0);
   box-sizing: border-box;
-
-  margin-bottom: 0.63rem;
 `;
 /** 파란색 버튼 */
 export const ModalButtonBlue = styled(ModalButton)`
@@ -63,13 +66,15 @@ export const ModalButtonBlue = styled(ModalButton)`
 /** Input, 무색 */
 export const ModalInput = styled.input`
   display: flex;
-  width: 17.25rem; // 18.75rem - padding-left * 2
-  padding: 0.625rem 0.75rem;
   align-items: center;
+
+  width: 17.25rem; // 18.75rem - padding-left * 2
+  margin-bottom: 0.63rem;
+  padding: 0.625rem 0.75rem;
   border-radius: 0.375rem;
   border: 1px solid var(--Gray200, #d9d9d9);
+
   background: var(--Gray100, #f0f0f0);
-  margin-bottom: 0.63rem;
 `;
 
 export default Modal;
