@@ -132,7 +132,6 @@ function TeamCreatePage() {
   );
 }
 
-// #TODO: image uploader 조금 더 좋게 업그레이드 (되면?)
 function LogoUploader({ setLogoUrl }) {
   const handleFileChange = event => {
     const file = event.target.files[0];

@@ -1,6 +1,5 @@
 import * as S from './UnitInfoRow.style';
 
-// #TODO: 디자인 스타일링 상의해보기
 /**
  * image / text / btn
  *
