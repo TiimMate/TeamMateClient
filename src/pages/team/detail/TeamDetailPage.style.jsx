@@ -5,12 +5,14 @@ import CircleLogo from '../../../components/atoms/CircleLogo';
 import Button300 from '../../../components/atoms/Button300';
 
 export const Wrapper = styled.div`
-  box-sizing: border-box;
   width: 100%;
+
+  box-sizing: border-box;
 `;
 export const Gap = styled.div`
   width: 100%;
   height: 1.25rem;
+
   background-color: var(--Blue100, #f0f0f0);
 `;
 
@@ -36,6 +38,8 @@ export const TeamNameSection = styled.section`
   padding: 1.5rem 8.33%;
 `;
 export const TeamName = styled.h2`
+  margin-bottom: 0.94rem;
+
   color: var(--Blue300, #0075ff);
   font-family: Pretendard;
   font-size: 28px;
@@ -43,8 +47,6 @@ export const TeamName = styled.h2`
   font-weight: 700;
   line-height: 36px; /* 128.571% */
   letter-spacing: -1.4px;
-
-  margin-bottom: 0.94rem;
 `;
 
 export const statusDiv = styled.div`
@@ -61,6 +63,8 @@ export const levelDiv = styled.div`
   align-items: center;
 `;
 export const levelSpan = styled.span`
+  margin-right: 0.38rem;
+
   color: var(--kakao-logo, #000);
   font-family: 'Pretendard Variable';
   font-size: 12px;
@@ -68,16 +72,17 @@ export const levelSpan = styled.span`
   font-weight: 400;
   line-height: 20px; /* 166.667% */
   letter-spacing: -0.6px;
-
-  margin-right: 0.38rem;
 `;
 export const levelGauge = styled.p`
   display: inline-flex;
-  padding: 0 6px;
   justify-content: center;
   align-items: center;
+
+  margin-right: 1.19rem;
+  padding: 0 6px;
   gap: 10px;
   border-radius: 3px;
+
   background: var(--Blue200, #bddbff);
   color: var(--Blue300, #0075ff);
   font-family: 'Pretendard Variable';
@@ -86,21 +91,20 @@ export const levelGauge = styled.p`
   font-weight: 400;
   line-height: 20px; /* 222.222% */
   letter-spacing: -0.45px;
-
-  margin-right: 1.19rem;
 `;
 export const description = styled.p`
   display: flex;
+  justify-content: center;
+  align-items: center;
+
   width: 94.5%;
   height: 3.5rem;
-
   margin-left: auto;
   margin-right: auto;
   padding: 10px;
-  justify-content: center;
-  align-items: center;
   gap: 10px;
   border-radius: 6px;
+
   background: var(--Gray100, #f0f0f0);
 
   color: var(--Black, var(--kakao-logo, #000));
@@ -124,15 +128,16 @@ export const TeamMembersSection = styled.section`
 
 export const GapWithSaveButton = styled(Gap)`
   position: relative;
+
   height: 7.19rem;
 `;
 export const SaveButton = styled(Button300)`
   position: absolute;
-
-  width: 80%;
   top: 25%;
   left: 50%;
   transform: translateX(-50%);
+
+  width: 80%;
 
   color: #fff;
 

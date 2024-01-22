@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import UnitInfoRow from '../../../components/ui/unit-info-row/UnitInfoRow';
+import UnitInfoRow from '../../../components/ui/UnitInfoRow/UnitInfoRow';
 import {
   MEMBER_RAW_DATA_BASKETBALL,
   formatMemberData,
@@ -9,14 +9,16 @@ import * as S from './TeamCreatePage.style';
 
 function TeamCreatePage() {
   const [teamLogoUrl, setTeamLogoUrl] = useState('');
+
   const [selectedGender, setSelectedGender] = useState(
     new Array(3).fill(false),
   );
   const [selectedAge, setSelectedAge] = useState(new Array(5).fill(false));
+
   const toggleSpot = (index, setter) => {
     setter(spots => {
-      const newSpots = new Array(spots.length).fill(false); // 배열 복사
-      newSpots[index] = !spots[index]; // 특정 인덱스의 값을 토글
+      const newSpots = new Array(spots.length).fill(false);
+      newSpots[index] = !spots[index];
       return newSpots; // 업데이트된 배열로 상태 설정
     });
   };
@@ -120,6 +122,7 @@ function TeamCreatePage() {
       <S.GapWithTeamMemeberTitle>
         <S.TeamMemberTitle>팀원 목록</S.TeamMemberTitle>
       </S.GapWithTeamMemeberTitle>
+
       <S.TeamMembersSection>{renderMember()}</S.TeamMembersSection>
 
       <S.GapWithSaveButton>
@@ -163,7 +166,5 @@ function SelectButton({ $selected, onClick, children }) {
     </S.GridContentWrapper>
   );
 }
-
-// 기본적인 component
 
 export default TeamCreatePage;

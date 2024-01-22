@@ -5,8 +5,9 @@ const Banner = styled.div`
 
   width: 100%;
   padding-top: 56.25%; // 16:9
-  background-size: cover; // 배경 이미지가 div를 꽉 채우도록
-  background-position: center; // 배경 이미지 중앙 정렬
+
+  background-size: cover;
+  background-position: center;
   background-color: #0075ff;
 `;
 

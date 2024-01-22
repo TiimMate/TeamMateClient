@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import UnitInfoRow from '../../../components/ui/unit-info-row/UnitInfoRow';
+import UnitInfoRow from '../../../components/ui/UnitInfoRow/UnitInfoRow';
 import {
   MEMBER_RAW_DATA_BASKETBALL,
   formatMemberData,
