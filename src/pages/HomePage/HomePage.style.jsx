@@ -9,7 +9,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #2c8dff;
-  width: 360px;
+  width: 100%;
   height: 528px;
 `;
 
@@ -27,21 +27,40 @@ export const MainTitle = styled.h1`
 export const MainImage = styled.div`
   display: flex;
   flex-wrap: wrap;
-  align-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
   gap: 20px 30px;
   margin-top: 20px;
-  width: 270px;
-
-  /* 임시코드 */
-  border: 1px solid white;
+  width: 768px;
 `;
 
-export const BallContainer = styled.div``;
+export const BallContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
-export const BallImage = styled.img``;
+export const BallImageList = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px 30px;
 
-export const BallName = styled.p``;
+  img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+  }
+`;
+
+export const BallName = styled.p`
+  margin-top: 2px;
+  line-height: 16px; /* 160% */
+  letter-spacing: -0.5px;
+  color: var(--white, #fff);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 10px;
+  font-weight: 600;
+`;
 
 export const ImageInfo = styled.div`
   margin-top: 34px;

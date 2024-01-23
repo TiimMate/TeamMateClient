@@ -1,17 +1,17 @@
 import React from 'react';
 import * as S from './HomePage.style';
 
-const IMAGE_URL_LIST = [
-  '/assets/img-ball/img-ball-basketball.png',
-  '/assets/img-ball/img-ball-baseball.png',
-  '/assets/img-ball/img-ball-tennis.png',
-  '/assets/img-ball/img-ball-soccer.png',
-  '/assets/img-ball/img-ball-futsal.png',
-  '/assets/img-ball/img-ball-volleyball.png',
-  '/assets/img-ball/img-ball-bowling.png',
-  '/assets/img-ball/img-ball-badminton.png',
-  '/assets/img-ball/img-ball-pingpong.png',
-];
+const sportsData = {
+  '/assets/img-ball/img-ball-basketball.png': '농구',
+  '/assets/img-ball/img-ball-baseball.png': '야구',
+  '/assets/img-ball/img-ball-tennis.png': '테니스',
+  '/assets/img-ball/img-ball-soccer.png': '축구',
+  '/assets/img-ball/img-ball-futsal.png': '풋살',
+  '/assets/img-ball/img-ball-volleyball.png': '배구',
+  '/assets/img-ball/img-ball-bowling.png': '볼링',
+  '/assets/img-ball/img-ball-badminton.png': '배드민턴',
+  '/assets/img-ball/img-ball-pingpong.png': '탁구',
+};
 
 export default function HomePage() {
   return (
@@ -22,16 +22,16 @@ export default function HomePage() {
           <br />
           다양한 종목을 만나보세요
         </S.MainTitle>
-        <S.MainImage className='grid-container'>
+        <S.MainImage>
           <S.BallContainer>
-            <S.BallImage>
-              {IMAGE_URL_LIST.map((imageUrl, index) => (
-                <div key={index} className='grid-item'>
-                  <img src={imageUrl} alt={`Image ${index + 1}`} />
+            <S.BallImageList>
+              {Object.keys(sportsData).map((imageUrl, index) => (
+                <div key={index}>
+                  <img src={imageUrl} alt={`Image ${index + 1}`}></img>
+                  <S.BallName>{sportsData[imageUrl]}</S.BallName>
                 </div>
               ))}
-            </S.BallImage>
-            <S.BallName>농구</S.BallName>
+            </S.BallImageList>
           </S.BallContainer>
         </S.MainImage>
         <S.ImageInfo>클릭하면 각 종목 페이지로 이동합니다.</S.ImageInfo>
