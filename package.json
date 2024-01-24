@@ -26,7 +26,6 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "airbnb",
       "prettier"
     ]
   },
@@ -49,8 +48,8 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "eslint": "^8.56.0",
-    "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsx-a11y": "^6.8.0",

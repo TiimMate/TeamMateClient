@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 export default function MainFunctionNavbar() {
   return (
-    <div>
+    <Main>
       <Wrapper>
         <Button>
           <NavStyle to='/matching/guestapply'>게스트</NavStyle>
@@ -21,9 +21,13 @@ export default function MainFunctionNavbar() {
       </Wrapper>
 
       <Banner />
-    </div>
+    </Main>
   );
 }
+
+const Main = styled.div`
+  width: 100%;
+`;
 
 const Wrapper = styled.nav`
   overflow: hidden;

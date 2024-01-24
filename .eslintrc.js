@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['react-app', 'airbnb', 'prettier'],
+  extends: ['react-app', 'prettier'],
   overrides: [
     {
       env: {
@@ -27,5 +27,6 @@ module.exports = {
     ], // 변수명 'state'의 배열 의존성 무시
     'react/react-in-jsx-scope': 'off', // React를 import 하지 않아도 jsx 작성 가능
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }], // .js file 안에서도 jsx 작성 가능
+    'react/prop-types': 'off', // Type 선언을 하지 않아도 작성 가능
   },
 };
