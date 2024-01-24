@@ -1,20 +1,18 @@
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import DaySlices from '../../redux/Slices/DaySlices';
 
 const date = new Date();
 
 const calendarYear = date.getFullYear();
-// ´Þ·Â ¿ù
 const calendarMonth = date.getMonth() + 1;
-// ´Þ·Â ÀÏ
 const calendarToday = date.getDate();
 
-// ´Þ·Â ÇöÀç ¿äÀÏ
 const calendarMonthTodayDay = date.getDay();
 
-// ÁÖ Á¤º¸ ¹è¿­ »ý¼º
 const arWeek = [null, null, null, null, null, null, null];
 
-// ÇöÀç ¿äÀÏ ±âÁØ ¿ÞÂÊ¿¡ ³¯Â¥ °´Ã¼ Ãß°¡
 let addDay = 0;
 for (let index = calendarMonthTodayDay; index < 7; index += 1) {
   arWeek[index] = new Date(
@@ -25,7 +23,6 @@ for (let index = calendarMonthTodayDay; index < 7; index += 1) {
   addDay += 1;
 }
 
-// ÇöÀç ¿äÀÏ ±âÁØ ¿À¸¥ÂÊ¿¡ ³¯Â¥ °´Ã¼ Ãß°¡
 addDay = 0;
 for (let index = calendarMonthTodayDay - 1; index >= 0; index -= 1) {
   addDay -= 1;
@@ -36,7 +33,6 @@ for (let index = calendarMonthTodayDay - 1; index >= 0; index -= 1) {
   );
 }
 
-// ³¯Â¥ ¹è¿­À» °¢ ¿äÀÏº°·Î ³ª´®
 const Sunday = arWeek[0];
 const Monday = arWeek[1];
 const Tuesday = arWeek[2];
@@ -45,43 +41,230 @@ const Thursday = arWeek[4];
 const Friday = arWeek[5];
 const Saturday = arWeek[6];
 
-// ³¯Â¥ °´Ã¼ÀÇ 'ÀÏ'Á¤º¸¸¸ »©³¿
-const SundayDate = Sunday.getDate();
-const MondayDate = Monday.getDate();
-const TuesdayDate = Tuesday.getDate();
-const WednesdayDate = Wednesday.getDate();
-const ThursdayDate = Thursday.getDate();
-const FirdayDate = Friday.getDate();
-const SaturdayDate = Saturday.getDate();
+const SundayDate = `${Sunday.getDate()}\nì¼`;
+const MondayDate = `${Monday.getDate()}\nì¼`;
+const TuesdayDate = `${Tuesday.getDate()}\nì¼`;
+const WednesdayDate = `${Wednesday.getDate()}\nì¼`;
+const ThursdayDate = `${Thursday.getDate()}\nì¼`;
+const FirdayDate = `${Friday.getDate()}\nì¼`;
+const SaturdayDate = `${Saturday.getDate()}\nì¼`;
 
 export default function WeeklyCalendar() {
+  const dispatch = useDispatch();
+  const day = useSelector((state) => state.Day.value);
+  const [back0, setBack0] = useState('white');
+  const [back1, setBack1] = useState('white');
+  const [back2, setBack2] = useState('white');
+  const [back3, setBack3] = useState('white');
+  const [back4, setBack4] = useState('white');
+  const [back5, setBack5] = useState('white');
+  const [back6, setBack6] = useState('white');
+
+  const onClick0 = () => {
+    setBack0('var(--Gray100, #F0F0F0);');
+    setBack1('white');
+    setBack2('white');
+    setBack3('white');
+    setBack4('white');
+    setBack5('white');
+    setBack6('white');
+  };
+  const onClick1 = () => {
+    setBack0('white');
+    setBack1('var(--Gray100, #F0F0F0);');
+    setBack2('white');
+    setBack3('white');
+    setBack4('white');
+    setBack5('white');
+    setBack6('white');
+  };
+  const onClick2 = () => {
+    setBack0('white');
+    setBack1('white');
+    setBack2('var(--Gray100, #F0F0F0);');
+    setBack3('white');
+    setBack4('white');
+    setBack5('white');
+    setBack6('white');
+  };
+  const onClick3 = () => {
+    setBack0('white');
+    setBack1('white');
+    setBack2('white');
+    setBack3('var(--Gray100, #F0F0F0);');
+    setBack4('white');
+    setBack5('white');
+    setBack6('white');
+  };
+  const onClick4 = () => {
+    setBack0('white');
+    setBack1('white');
+    setBack2('white');
+    setBack3('white');
+    setBack4('var(--Gray100, #F0F0F0);');
+    setBack5('white');
+    setBack6('white');
+  };
+  const onClick5 = () => {
+    setBack0('white');
+    setBack1('white');
+    setBack2('white');
+    setBack3('white');
+    setBack4('white');
+    setBack5('var(--Gray100, #F0F0F0);');
+    setBack6('white');
+  };
+  const onClick6 = () => {
+    setBack0('white');
+    setBack1('white');
+    setBack2('white');
+    setBack3('white');
+    setBack4('white');
+    setBack5('white');
+    setBack6('var(--Gray100, #F0F0F0);');
+  };
+
+  useEffect(() => {
+    if (calendarMonthTodayDay === 0) {
+      onClick0();
+    } else if (calendarMonthTodayDay === 1) {
+      onClick1();
+    } else if (calendarMonthTodayDay === 2) {
+      onClick2();
+    } else if (calendarMonthTodayDay === 3) {
+      onClick3();
+    } else if (calendarMonthTodayDay === 4) {
+      onClick4();
+    } else if (calendarMonthTodayDay === 5) {
+      onClick5();
+    } else if (calendarMonthTodayDay === 6) {
+      onClick6();
+    }
+  }, []);
+
   return (
-    <div>
+    <Main>
       <Wrapper>
-        <Button>{SundayDate}</Button>
-        <Button>{MondayDate}</Button>
-        <Button>{TuesdayDate}</Button>
-        <Button>{WednesdayDate}</Button>
-        <Button>{ThursdayDate}</Button>
-        <Button>{FirdayDate}</Button>
-        <Button>{SaturdayDate}</Button>
+        <Button>
+          <P
+            color='red'
+            onClick={() => {
+              dispatch(DaySlices.actions.change(0));
+              onClick0();
+            }}
+            back={back0}
+          >
+            {SundayDate}
+          </P>
+        </Button>
+        <Button>
+          <P
+            onClick={() => {
+              dispatch(DaySlices.actions.change(1));
+              onClick1();
+            }}
+            back={back1}
+          >
+            {MondayDate}
+          </P>
+        </Button>
+        <Button>
+          <P
+            onClick={() => {
+              dispatch(DaySlices.actions.change(2));
+              onClick2();
+            }}
+            back={back2}
+          >
+            {TuesdayDate}
+          </P>
+        </Button>
+        <Button>
+          <P
+            onClick={() => {
+              dispatch(DaySlices.actions.change(3));
+              onClick3();
+            }}
+            back={back3}
+          >
+            {WednesdayDate}
+          </P>
+        </Button>
+        <Button>
+          <P
+            onClick={() => {
+              dispatch(DaySlices.actions.change(4));
+              onClick4();
+            }}
+            back={back4}
+          >
+            {ThursdayDate}
+          </P>
+        </Button>
+        <Button>
+          <P
+            onClick={() => {
+              dispatch(DaySlices.actions.change(5));
+              onClick5();
+            }}
+            back={back5}
+          >
+            {FirdayDate}
+          </P>
+        </Button>
+        <Button>
+          <P
+            color='blue'
+            onClick={() => {
+              dispatch(DaySlices.actions.change(6));
+              onClick6();
+            }}
+            back={back6}
+          >
+            {SaturdayDate}
+          </P>
+        </Button>
       </Wrapper>
-    </div>
+      {day}
+    </Main>
   );
 }
 
-// ³¯Â¥ ÄÁÅ×ÀÌ³Ê
-const Button = styled.div`
-  text-align: center;
-  float: left;
-  width: 14.2%;
-  height: 50px;
-  line-height: 50px;
-  color: red;
+const P = styled.p`
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 6px;
+  color: ${(props) => props.color || 'black'};
+  background: ${(props) => props.back};
+  width: fit-content;
+  white-space: pre-line;
+  font-family: 'Pretendard Variable';
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500; /* ê¸€ìžê°€ ë„ˆë¬´ ë‘êº¼ì›Œë³´ì—¬ì„œ 700 -> 500ìœ¼ë¡œ ìˆ˜ì •í–ˆì–´ìš”*/
+  line-height: 18px; /* 150% */
 `;
 
-// ÁÖ°£ ´Þ·Â ÄÁÅ×ÀÌ³Ê
+const Button = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  float: left;
+  width: 14.2%;
+  height: 70px;
+  color: ${(props) => props.color || 'black'};
+  background: ${(props) => props.back};
+`;
+
+const Main = styled.div`
+  width: 100%;
+`;
+
 const Wrapper = styled.nav`
+  height: 70px;
   overflow: hidden;
   background: var(--White, #fff);
 `;
