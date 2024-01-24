@@ -5,7 +5,6 @@ const DaySlices = createSlice({
   initialState: { value: 0 },
   reducers: {
     change: (state, action) => {
-      console.log(action);
       state.value = action.payload;
     },
   },
