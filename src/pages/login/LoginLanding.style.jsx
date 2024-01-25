@@ -10,7 +10,7 @@ export const welcomeContainer = styled.div`
 export const welcomeMsg = styled.div`
   width: 188px;
   height: 64px;
-  color: var(--blue-500);
+  color: var(--Blue300, #0075ff);
   font-family: 'Pretendard Variable';
   font-size: 24px;
   font-style: normal;
@@ -29,6 +29,5 @@ export const welcomeImg = styled.img`
   width: 215px;
   height: 237px;
   margin: 146px 0;
-  display: flex;
   justify-self: center;
 `;
