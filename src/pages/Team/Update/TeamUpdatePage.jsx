@@ -183,6 +183,4 @@ function SelectButton({ $selected, onClick, children }) {
   );
 }
 
-// 기본적인 component
-
 export default TeamUpdatePage;
