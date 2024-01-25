@@ -14,10 +14,10 @@ import MatchingHome from './pages/Matching.jsx/MatchingHome';
 import Login from './pages/login/Login';
 import LoginLanding from './pages/login/LoginLanding';
 
-import TeamDetailPage from './pages/team/detail/TeamDetailPage';
-import TeamSelectionPage from './pages/team/home/TeamSelectionPage';
-import TeamCreatePage from './pages/team/create/TeamCreatePage';
-import TeamUpdatePage from './pages/team/update/TeamUpdatePage';
+import TeamDetailPage from './pages/Team/Detail/TeamDetailPage';
+import TeamSelectionPage from './pages/Team/Home/TeamSelectionPage';
+import TeamCreatePage from './pages/Team/Create/TeamCreatePage';
+import TeamUpdatePage from './pages/Team/Update/TeamUpdatePage';
 
 function App() {
   return (
@@ -39,7 +39,7 @@ function ContentBox() {
         {/* Team Page */}
         <Route path='/team' element={<TeamSelectionPage />} />
         <Route path='/team/create' element={<TeamCreatePage />} />
-        <Route path='team/update' element={<TeamUpdatePage />} />
+        <Route path='team/:id/update' element={<TeamUpdatePage />} />
         <Route path='/team/:id' element={<TeamDetailPage />} />
 
         <Route path='/login' element={<Login />} />
