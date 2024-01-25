@@ -109,7 +109,7 @@ function TeamCreatePage() {
   );
   const [selectedAge, setSelectedAge] = useState(new Array(5).fill(false));
   const toggleSpot = (index, setter) => {
-    setter(spots => {
+    setter((spots) => {
       const newSpots = new Array(spots.length).fill(false); // 배열 복사
       newSpots[index] = !spots[index]; // 특정 인덱스의 값을 토글
       return newSpots; // 업데이트된 배열로 상태 설정
@@ -118,7 +118,7 @@ function TeamCreatePage() {
   // #TODO: API 나오면  그 이름대로 input logic 구현하기
 
   const renderMember = () =>
-    dummy.map(member => (
+    dummy.map((member) => (
       <UnitInfoRow
         key={member.id}
         unitInfo={member.unitInfo}
@@ -225,12 +225,12 @@ function TeamCreatePage() {
 // #TODO: image uploader 조금 더 좋게 업그레이드 (되면?)
 // #TODO: 이미지 초기화 버튼 넣을까요?
 function LogoUploader({ setLogoUrl }) {
-  const handleFileChange = event => {
+  const handleFileChange = (event) => {
     const file = event.target.files[0];
 
     if (file && file.type.match('image.*')) {
       const reader = new FileReader();
-      reader.onload = e => {
+      reader.onload = (e) => {
         setLogoUrl(e.target.result);
       };
       reader.readAsDataURL(file); // Image Upload
@@ -324,7 +324,7 @@ const Button = styled.button`
   line-height: 150%; /* 1.125rem */
   letter-spacing: -0.0375rem;
 
-  ${props =>
+  ${(props) =>
     props.$selected &&
     `
     color:  #0075ff;
