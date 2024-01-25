@@ -8,6 +8,9 @@ import Modal, {
 } from '../../../components/ui/Modal/Modal';
 import * as S from './TeamSelectionPage.style';
 
+import highfive from '../../../assets/highfive.png';
+import plus from '../../../assets/plus.svg';
+
 // #TODO: fetch list...
 const SPORT_OPTIONS = [
   { id: 1, sport: '축구' },
@@ -42,21 +45,9 @@ function TeamSelectionPage() {
       const onClick = () => {
         navigate(`/team/${info.id}`);
       };
-
-      if (index === teamInfos.length - 1) {
-        // If last
-        return (
-          <Team
-            last
-            backgroundColor={backgroundColor}
-            onClick={onClick}
-            teamInfo={info}
-            key={info.id}
-          />
-        );
-      }
       return (
         <Team
+          last={index === teamInfos.length - 1} // last이면 그림 X
           backgroundColor={backgroundColor}
           onClick={onClick}
           teamInfo={info}
@@ -73,6 +64,7 @@ function TeamSelectionPage() {
     setIsModalOpen(false);
   };
 
+  //
   useEffect(() => {
     if (sport === '2') {
       setTeamInfos(TEAMS_INFOS); // #TODO: Fetch Team infos
@@ -113,7 +105,7 @@ function Team({ last, backgroundColor, onClick, teamInfo }) {
     <S.TeamDiv onClick={onClick} $backgroundColor={backgroundColor}>
       <S.TeamName>{name}</S.TeamName>
       <S.TeamLogo logoUrl={logoUrl} />
-      {last || <S.TeamImage src='/assets/highfive.png' alt='img' />}
+      {last || <S.TeamImage src={highfive} alt='img' />}
     </S.TeamDiv>
   );
 }
@@ -121,7 +113,7 @@ function Team({ last, backgroundColor, onClick, teamInfo }) {
 function AddTeam({ onClick }) {
   return (
     <S.AddTeamDiv onClick={onClick} backgroundColor='var(--Gray200, #D9D9D9)'>
-      <S.PlusIcon src='assets/plus.svg' alt='plus' />
+      <S.PlusIcon src={plus} alt='plus' />
       <S.AddText>팀 추가하기</S.AddText>
     </S.AddTeamDiv>
   );

@@ -6,7 +6,6 @@ import Navbar from './components/layouts/Navbar';
 import Tapbar from './components/layouts/Tapbar';
 import Footer from './components/layouts/Footer';
 
-import Home from './pages/Home';
 import GuestApply from './pages/Matching.jsx/MatchApply/GuestApply';
 import TeamApply from './pages/Matching.jsx/MatchApply/TeamApply';
 import GuestHost from './pages/Matching.jsx/MatchHost/GuestHost';
@@ -37,8 +36,6 @@ function ContentBox() {
   return (
     <div className={styles.container}>
       <Routes>
-        <Route path='/' element={<Home />} />
-
         {/* Team Page */}
         <Route path='/team' element={<TeamSelectionPage />} />
         <Route path='/team/create' element={<TeamCreatePage />} />
