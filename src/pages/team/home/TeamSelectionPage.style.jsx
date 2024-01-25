@@ -101,7 +101,7 @@ export const TeamName = styled.h1`
   letter-spacing: -1.4px;
 
   @media (min-width: 768px) {
-    font-size: 59.136px; // 뷰포트 너비가 768px 이상일 때 적용될 글씨 크기
+    font-size: 59.136px;
   }
 `;
 export const TeamLogo = styled(CircleLogo)`

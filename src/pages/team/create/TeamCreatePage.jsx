@@ -7,6 +7,8 @@ import {
 } from '../../../utils/formatData';
 import * as S from './TeamCreatePage.style';
 
+import chevronDown4 from '../../../assets/chevron-down-4 1.svg';
+
 function TeamCreatePage() {
   const [teamLogoUrl, setTeamLogoUrl] = useState('');
 
@@ -109,13 +111,11 @@ function TeamCreatePage() {
         </S.Grid3X2>
         <S.Label>지역*</S.Label>
         <S.ButtonWithChevron>
-          지역을 선택해주세요{' '}
-          <img src='/assets/chevron-down-4 1.svg' alt='chevron' />
+          지역을 선택해주세요 <img src={chevronDown4} alt='chevron' />
         </S.ButtonWithChevron>
         <S.Label>체육관명*</S.Label>
         <S.ButtonWithChevron>
-          체육관을 검색해보세요{' '}
-          <img src='/assets/chevron-down-4 1.svg' alt='chevron' />
+          체육관을 검색해보세요 <img src={chevronDown4} alt='chevron' />
         </S.ButtonWithChevron>
       </S.TeamDetailSection>
 
