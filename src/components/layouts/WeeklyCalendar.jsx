@@ -233,7 +233,6 @@ export default function WeeklyCalendar() {
           </S.P>
         </S.Button>
       </S.Wrapper>
-      {day}
     </S.Main>
   );
 }
