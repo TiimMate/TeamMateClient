@@ -3,6 +3,11 @@ import styles from './styles/App.module.css';
 import Navbar from './components/layouts/Navbar';
 import Tapbar from './components/layouts/Tapbar';
 import Footer from './components/layouts/Footer';
+
+
+
+import WeeklyCalendar from './components/layouts/WeeklyCalendar';
+
 import HomePage from './pages/HomePage';
 import GuestApply from './pages/Matching.jsx/MatchApply/GuestApply';
 import TeamApply from './pages/Matching.jsx/MatchApply/TeamApply';
@@ -47,6 +52,7 @@ function ContentBox() {
         <Route path='/matching/teamapply' element={<TeamApply />} />
         <Route path='/matching/guesthost' element={<GuestHost />} />
         <Route path='/matching/teamhost' element={<TeamHost />} />
+        <Route path='/matching/weeklycalendar' element={<WeeklyCalendar />} />
         <Route path='/location' element={<LocationList />} />
         <Route path='/location/write' element={<LocationWrite />} />
       </Routes>

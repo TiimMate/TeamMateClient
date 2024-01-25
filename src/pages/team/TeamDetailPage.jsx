@@ -100,7 +100,7 @@ const dummy = [
 function TeamDetailPage() {
   return (
     <Wrapper>
-      {dummy.map(info => (
+      {dummy.map((info) => (
         <UnitInfoRow
           key={info.id}
           unitInfo={info.unitInfo}

@@ -92,10 +92,10 @@ function TeamSelectionPage() {
       <SportSelectionSection>
         종목 선택
         <br />
-        <SportSelect value={sport} onChange={e => setSport(e.target.value)}>
+        <SportSelect value={sport} onChange={(e) => setSport(e.target.value)}>
           {' '}
           {/* #TODO mobile view에서 select dropdown 튀어나오는 문제 해결 */}
-          {SPORT_OPTIONS.map(option => (
+          {SPORT_OPTIONS.map((option) => (
             <option value={option.id} key={option.id}>
               {option.sport}
             </option>
@@ -157,7 +157,7 @@ function TeamAdditionModal({ navigate }) {
           type='text'
           placeholder='초대코드 입력'
           value={inviteCode}
-          onChange={e => setInviteCode(e.target.value)}
+          onChange={(e) => setInviteCode(e.target.value)}
         />
         <ModalButtonBlue onClick={fetchInviteCode}>팀 추가하기</ModalButtonBlue>
       </>
@@ -247,9 +247,9 @@ const TeamDiv = styled.div`
   padding-top: 83%; // 너비에 대한 비율로 높이 설정
   background-size: cover; // 배경 이미지가 div를 꽉 채우도록
   background-position: center; // 배경 이미지 중앙 정렬
-  background-color: ${props =>
+  background-color: ${(props) =>
     props.$backgroundColor || 'var(--Blue300, #0075ff)'};
-  color: ${props =>
+  color: ${(props) =>
     props.$backgroundColor === '#86ff91' ? '#0075ff' : '#FFF'};
 `;
 const TeamName = styled.h1`
