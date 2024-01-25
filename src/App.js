@@ -18,6 +18,8 @@ import LoginLanding from './pages/login/LoginLanding';
 import TeamDetailPage from './pages/team/TeamDetailPage';
 import TeamSelectionPage from './pages/team/TeamSelectionPage';
 import TeamCreatePage from './pages/team/TeamCreatePage';
+import LocationList from './pages/location/LocationList';
+import LocationWrite from './pages/location/LocationWrite';
 
 function App() {
   return (
@@ -41,7 +43,7 @@ function ContentBox() {
         {/* Team Page */}
         <Route path='/team' element={<TeamSelectionPage />} />
         <Route path='/team/detail' element={<TeamDetailPage />} />
-        <Route path='/team/create' element={<TeamCreatePage />} /> 
+        <Route path='/team/create' element={<TeamCreatePage />} />
         <Route path='/login' element={<Login />} />
         <Route path='/welcome-user' element={<LoginLanding />} />
         <Route path='/matching' element={<MatchingHome />} />
@@ -49,6 +51,8 @@ function ContentBox() {
         <Route path='/matching/teamapply' element={<TeamApply />} />
         <Route path='/matching/guesthost' element={<GuestHost />} />
         <Route path='/matching/teamhost' element={<TeamHost />} />
+        <Route path='/location' element={<LocationList />} />
+        <Route path='/location/write' element={<LocationWrite />} />
       </Routes>
       <Footer />
     </div>
