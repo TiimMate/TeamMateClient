@@ -4,16 +4,14 @@ import Navbar from './components/layouts/Navbar';
 import Tapbar from './components/layouts/Tapbar';
 import Footer from './components/layouts/Footer';
 
-
-
 import WeeklyCalendar from './components/layouts/WeeklyCalendar';
 
 import HomePage from './pages/HomePage';
-import GuestApply from './pages/Matching.jsx/MatchApply/GuestApply';
-import TeamApply from './pages/Matching.jsx/MatchApply/TeamApply';
-import GuestHost from './pages/Matching.jsx/MatchHost/GuestHost';
-import TeamHost from './pages/Matching.jsx/MatchHost/TeamHost';
-import MatchingHome from './pages/Matching.jsx/MatchingHome';
+import GuestApply from './pages/Matching/MatchApply/GuestApply';
+import TeamApply from './pages/Matching/MatchApply/TeamApply';
+import GuestHost from './pages/Matching/MatchHost/GuestHost';
+import TeamHost from './pages/Matching/MatchHost/TeamHost';
+import MatchingHome from './pages/Matching/MatchingHome';
 import Login from './pages/login/Login';
 import LoginLanding from './pages/login/LoginLanding';
 import TeamDetailPage from './pages/team/TeamDetailPage';
