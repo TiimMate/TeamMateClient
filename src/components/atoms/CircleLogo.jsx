@@ -9,9 +9,6 @@ const CircleLogo = styled.div`
   background-position: center; // 이미지가 중앙에 위치하도록 설정
   border-radius: 50%;
   background-color: #d9d9d9;
-
-  width: 32px;
-  height: 32px;
 `;
 
 export default CircleLogo;
