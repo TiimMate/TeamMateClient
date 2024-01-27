@@ -14,9 +14,12 @@ import TeamHost from './pages/Matching/MatchHost/TeamHost';
 import MatchingHome from './pages/Matching/MatchingHome';
 import Login from './pages/login/Login';
 import LoginLanding from './pages/login/LoginLanding';
-import TeamDetailPage from './pages/team/TeamDetailPage';
-import TeamSelectionPage from './pages/team/TeamSelectionPage';
-import TeamCreatePage from './pages/team/TeamCreatePage';
+
+import TeamDetailPage from './pages/Team/Detail/TeamDetailPage';
+import TeamSelectionPage from './pages/Team/Home/TeamSelectionPage';
+import TeamCreatePage from './pages/Team/Create/TeamCreatePage';
+import TeamUpdatePage from './pages/Team/Update/TeamUpdatePage';
+
 import LocationList from './pages/location/LocationList';
 import LocationWrite from './pages/location/LocationWrite';
 
@@ -41,8 +44,10 @@ function ContentBox() {
 
         {/* Team Page */}
         <Route path='/team' element={<TeamSelectionPage />} />
-        <Route path='/team/detail' element={<TeamDetailPage />} />
         <Route path='/team/create' element={<TeamCreatePage />} />
+        <Route path='team/:id/update' element={<TeamUpdatePage />} />
+        <Route path='/team/:id' element={<TeamDetailPage />} />
+
         <Route path='/login' element={<Login />} />
         <Route path='/welcome-user' element={<LoginLanding />} />
         <Route path='/matching' element={<MatchingHome />} />
