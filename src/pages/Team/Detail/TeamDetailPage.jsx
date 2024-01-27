@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import {
   formatMemberData,
@@ -16,10 +16,11 @@ const TEAM_INFO = {
 };
 
 function TeamDetailPage() {
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const renderMember = () =>
-    formatMemberData(MEMBER_RAW_DATA_BASKETBALL).map(member => (
+    formatMemberData(MEMBER_RAW_DATA_BASKETBALL).map((member) => (
       <UnitInfoRow
         key={member.id}
         unitInfo={member.unitInfo}
@@ -55,7 +56,7 @@ function TeamDetailPage() {
       <S.GapWithSaveButton>
         <S.SaveButton
           onClick={() => {
-            navigate('/team/update');
+            navigate(`/team/${id}/update`);
           }}
         >
           수정하기

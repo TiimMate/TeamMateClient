@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import styles from './styles/App.module.css';
-import Navbar from './components/layouts/Navbar';
+import Navbar from './components/layouts/Navbar/Navbar';
 import Tapbar from './components/layouts/Tapbar';
 import Footer from './components/layouts/Footer';
 
@@ -15,6 +15,7 @@ import MatchingHome from './pages/Matching/MatchingHome';
 import Login from './pages/login/Login';
 import LoginLanding from './pages/login/LoginLanding';
 
+// Team Pages
 import TeamDetailPage from './pages/Team/Detail/TeamDetailPage';
 import TeamSelectionPage from './pages/Team/Home/TeamSelectionPage';
 import TeamCreatePage from './pages/Team/Create/TeamCreatePage';
