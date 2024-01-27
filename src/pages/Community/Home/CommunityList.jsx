@@ -30,7 +30,8 @@ const dummy = [
     id: 3,
     unitBoard: {
       category: 'bookmark',
-      title: '게시글333333333djdjd어어어어어어어어어엉',
+      title:
+        '제목이 긴 게시물을 가정해 보고 싶었습니다... 이렇게 저렇게 요렇게?',
       contents: '이것은 커뮤니티 더미 데이터입니다.',
       date: '1/26 21:11',
       imgUrl: '../../../assets/highfive.png',
@@ -41,7 +42,6 @@ const dummy = [
 export default function CommunityList() {
   const navigate = useNavigate();
   const handleNewPost = () => {
-    console.log('dsd');
     navigate('/community/write');
   };
   const renderPost = () =>
