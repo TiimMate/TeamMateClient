@@ -19,6 +19,7 @@ import TeamSelectionPage from './pages/team/TeamSelectionPage';
 import TeamCreatePage from './pages/team/TeamCreatePage';
 import LocationList from './pages/location/LocationList';
 import LocationWrite from './pages/location/LocationWrite';
+import ReviewsPage from './pages/ReviewsPage/ReviewsPage';
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function ContentBox() {
         <Route path='/matching/weeklycalendar' element={<WeeklyCalendar />} />
         <Route path='/location' element={<LocationList />} />
         <Route path='/location/write' element={<LocationWrite />} />
+        <Route path='/reviews' element={<ReviewsPage />} />
       </Routes>
       <Footer />
     </div>
