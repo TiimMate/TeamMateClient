@@ -4,23 +4,23 @@ import Navbar from './components/layouts/Navbar';
 import Tapbar from './components/layouts/Tapbar';
 import Footer from './components/layouts/Footer';
 
-
-
 import WeeklyCalendar from './components/layouts/WeeklyCalendar';
 
 import HomePage from './pages/HomePage';
-import GuestApply from './pages/Matching.jsx/MatchApply/GuestApply';
-import TeamApply from './pages/Matching.jsx/MatchApply/TeamApply';
-import GuestHost from './pages/Matching.jsx/MatchHost/GuestHost';
-import TeamHost from './pages/Matching.jsx/MatchHost/TeamHost';
-import MatchingHome from './pages/Matching.jsx/MatchingHome';
-import Login from './pages/login/Login';
-import LoginLanding from './pages/login/LoginLanding';
+import GuestApply from './pages/Matching/MatchApply/GuestApply';
+import TeamApply from './pages/Matching/MatchApply/TeamApply';
+import GuestHost from './pages/Matching/MatchHost/GuestHost';
+import TeamHost from './pages/Matching/MatchHost/TeamHost';
+import MatchingHome from './pages/Matching/MatchingHome';
+import Login from './pages/Login/Home/Login';
+import LoginLanding from './pages/Login/Landing/LoginLanding';
 import TeamDetailPage from './pages/team/TeamDetailPage';
 import TeamSelectionPage from './pages/team/TeamSelectionPage';
 import TeamCreatePage from './pages/team/TeamCreatePage';
-import LocationList from './pages/location/LocationList';
-import LocationWrite from './pages/location/LocationWrite';
+import LocationList from './pages/Location/LocationList';
+import LocationWrite from './pages/Location/LocationWrite';
+import CommunityList from './pages/Community/Home/CommunityList';
+import CommunityWrite from './pages/Community/Write/CommunityWrite';
 
 function App() {
   return (
@@ -46,7 +46,7 @@ function ContentBox() {
         <Route path='/team/detail' element={<TeamDetailPage />} />
         <Route path='/team/create' element={<TeamCreatePage />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/welcome-user' element={<LoginLanding />} />
+        <Route path='/login/landing' element={<LoginLanding />} />
         <Route path='/matching' element={<MatchingHome />} />
         <Route path='/matching/guestapply' element={<GuestApply />} />
         <Route path='/matching/teamapply' element={<TeamApply />} />
@@ -55,6 +55,8 @@ function ContentBox() {
         <Route path='/matching/weeklycalendar' element={<WeeklyCalendar />} />
         <Route path='/location' element={<LocationList />} />
         <Route path='/location/write' element={<LocationWrite />} />
+        <Route path='/community' element={<CommunityList />} />
+        <Route path='/community/write' element={<CommunityWrite />} />
       </Routes>
       <Footer />
     </div>

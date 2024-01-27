@@ -12,7 +12,7 @@ export default function MainFunctionNavbar() {
           <S.NavStyle to='/matching/teamapply'>연습경기</S.NavStyle>
         </S.Button>
         <S.Button>
-          <S.NavStyle to='/information'>대관정보</S.NavStyle>
+          <S.NavStyle to='/location'>대관정보</S.NavStyle>
         </S.Button>
         <S.Button>
           <S.NavStyle to='/community'>커뮤니티</S.NavStyle>
@@ -22,4 +22,3 @@ export default function MainFunctionNavbar() {
     </S.Main>
   );
 }
-
