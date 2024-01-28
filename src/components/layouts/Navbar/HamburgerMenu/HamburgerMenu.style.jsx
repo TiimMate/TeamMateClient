@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: start;
 
   position: fixed;
   top: 50px;
@@ -20,11 +20,7 @@ export const EventContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  width: 33%;
-
-  @media screen and (min-width: 768px) {
-    width: 253.44px;
-  }
+  width: 120px;
 
   height: auto;
   background: #fff;
@@ -44,17 +40,17 @@ export const Event = styled.div`
   font-style: normal;
   font-weight: 400;
   line-height: 2.5rem; /* 200% */
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const CategoryContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  width: 67%;
-
-  @media screen and (min-width: 768px) {
-    width: 514.56px;
-  }
+  width: 240px;
 
   background: var(--Misty-Blue, #bddbff);
 `;
@@ -74,6 +70,7 @@ export const Category = styled.div`
   line-height: 2.5rem; /* 200% */
 
   &:hover {
+    cursor: pointer;
     color: var(--Cyan-Blue, #0075ff);
   }
   &:focus {
