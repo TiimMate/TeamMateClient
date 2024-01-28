@@ -37,7 +37,7 @@ export const MenuIcon = styled.img`
 
   width: 1.5rem;
   height: 1.5rem;
-  margin-left: 0.5rem;
+  margin-left: 1rem;
 `;
 export const LogoIcon = styled.img`
   flex-shrink: 0;
@@ -50,5 +50,5 @@ export const SearchIcon = styled.img`
 
   width: 1.5rem;
   height: 1.5rem;
-  margin-right: 0.5rem;
+  margin-right: 1rem;
 `;
