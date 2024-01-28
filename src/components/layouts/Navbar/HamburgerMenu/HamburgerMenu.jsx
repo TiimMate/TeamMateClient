@@ -24,10 +24,11 @@ function HamburgerMenu({ setToggle }) {
   const [sportIdx, setSportIdx] = useState(0);
 
   const handleClickCategoryBtn = (e) => {
+    e.stopPropagation();
+
     const sportUrl = convertSportToUrl(SPORTS[sportIdx]);
     const categoryUrl = convertCategoryToUrl(e.target.textContent);
 
-    // 둘다 null이 아니면
     if (!!sportUrl && !!categoryUrl) {
       navigate(sportUrl + categoryUrl);
       setToggle(false);
@@ -36,13 +37,16 @@ function HamburgerMenu({ setToggle }) {
 
   // #TODO: api 나오면 key 바꾸기
   return (
-    <S.Wrapper>
+    <S.Wrapper onClick={() => setToggle(false)}>
       <S.EventContainer>
         {SPORTS.map((event, idx) => (
           <S.Event
             $isActivated={sportIdx === idx}
             key={idx}
-            onClick={() => setSportIdx(idx)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setSportIdx(idx);
+            }}
           >
             {event}
           </S.Event>
