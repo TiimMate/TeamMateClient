@@ -8,7 +8,7 @@ function Modal({ title, children, onClose }) {
   return (
     <S.ModalBackdrop onClick={onClose}>
       <S.ModalContainer
-        onClick={e => e.stopPropagation() /* 모달 밖 클릭 방지 */}
+        onClick={(e) => e.stopPropagation() /* 모달 밖 클릭 방지 */}
       >
         <S.ModalHeader>
           <h2>{title}</h2>

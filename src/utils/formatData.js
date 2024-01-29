@@ -79,7 +79,7 @@ const formatBasketballMembers = (members, options = {}) => {
   const { formatUnitInfo, formatBtnText, formatOnClickBtn } = options;
 
   // description format해주는 함수
-  const formatBasketballDescription = basketball => {
+  const formatBasketballDescription = (basketball) => {
     const { height, weight, position } = basketball;
     const formatPosition = () => {
       if (position === 'pg') return '포인트가드';
@@ -92,7 +92,7 @@ const formatBasketballMembers = (members, options = {}) => {
     return `${height}cm|${weight}kg|${formatPosition()}`;
   };
 
-  const newData = members.map(member => {
+  const newData = members.map((member) => {
     const { id, name, basketball, avatarUrl, isLeader } = member;
 
     // 각각 options 있으면 그걸로 적용, 없으면 default로 적용
