@@ -48,7 +48,7 @@ function ContentBox() {
         {/* Team Page */}
         <Route path='/team' element={<TeamSelectionPage />} />
         <Route path='/team/create' element={<TeamCreatePage />} />
-        <Route path='team/:id/update' element={<TeamUpdatePage />} />
+        <Route path='/team/:id/update' element={<TeamUpdatePage />} />
         <Route path='/team/:id' element={<TeamDetailPage />} />
 
         <Route path='/login' element={<Login />} />
