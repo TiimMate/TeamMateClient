@@ -12,6 +12,8 @@ import TeamApply from './pages/Matching/MatchApply/TeamApply';
 import GuestHost from './pages/Matching/MatchHost/GuestHost';
 import TeamHost from './pages/Matching/MatchHost/TeamHost';
 import MatchingHome from './pages/Matching/MatchingHome';
+import MatchHistoryForGuest from './pages/Matching/MatchHistoryForGuest';
+import MatchHistoryForHost from './pages/Matching/MatchHistoryForHost';
 import Login from './pages/login/Login';
 import LoginLanding from './pages/login/LoginLanding';
 
@@ -57,6 +59,11 @@ function ContentBox() {
         <Route path='/matching/guesthost' element={<GuestHost />} />
         <Route path='/matching/teamhost' element={<TeamHost />} />
         <Route path='/matching/weeklycalendar' element={<WeeklyCalendar />} />
+        <Route path='/matching/history/' element={<MatchHistoryForGuest />} />
+        <Route
+          path='/matching/history/host'
+          element={<MatchHistoryForHost />}
+        />
         <Route path='/location' element={<LocationList />} />
         <Route path='/location/write' element={<LocationWrite />} />
         <Route path='/reviews' element={<ReviewsPage />} />
