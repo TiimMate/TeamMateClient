@@ -1,0 +1,16 @@
+import styled from 'styled-components';
+
+function Gap({ children, height = '1.25rem' }) {
+  return <Wrapper height={height}>{children}</Wrapper>;
+}
+
+const Wrapper = styled.div`
+  position: relative;
+
+  width: 100%;
+  height: ${(props) => props.height};
+
+  background-color: var(--Blue100, #f0f0f0);
+`;
+
+export default Gap;
