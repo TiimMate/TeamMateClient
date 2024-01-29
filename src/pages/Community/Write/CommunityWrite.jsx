@@ -3,7 +3,7 @@ import Button300 from '../../../components/atoms/Button300';
 import camera from '../../../assets/btn_camera.svg';
 import * as S from './CommunityWrite.style';
 import { useEffect, useRef, useState } from 'react';
-
+import { useCallbackPrompt } from '../../../utils/hooks/useCallbackPrompt';
 import Modal, {
   ModalButton,
   ModalButtonBlue,
@@ -15,6 +15,11 @@ export default function CommunityWrite() {
   const fileInput = useRef();
   const [imageList, setImageList] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [shouldConfirm, setShouldConfirm] = useState(false); // 수정된 내역이 있다면
+  // const [isLeave, setIsLeave] = useState(false); // 모달창에서 이동 버튼 클릭시 true로 변경
+  // const [nextLocation, setNextLocation] = useState();
+  const [showPrompt, confirmNavigation, cancelNavigation] =
+    useCallbackPrompt(true);
 
   const addImageList = () => {
     return imageList.map((image) => {
@@ -25,6 +30,10 @@ export default function CommunityWrite() {
       );
     });
   };
+
+  // useEffect(() => {
+  //   console.log(shouldConfirm);
+  // }, [shouldConfirm]);
 
   const handleButtonClick = (e) => {
     fileInput.current.click();
@@ -44,17 +53,28 @@ export default function CommunityWrite() {
     setImageList(imageList.concat(tempImgList));
   };
 
-  const onCloseModal = () => {
-    setIsModalOpen(false);
-  };
+  // const handlePrompt = (location) => {
+  //   if (!isLeave && shouldConfirm) {
+  //     setNextLocation(location.pathname); // 사용자가 이동하려고했던 path 저장
+  //     return false; // 페이지 이동 막음
+  //   }
+  //   return true;
+  // };
+
+  // const onCloseModal = () => {
+  //   setIsModalOpen(false);
+  // };
 
   return (
     <S.Wrapper>
-      {isModalOpen && (
-        <Modal title='작성 중인 페이지를 벗어날까요?' onClose={onCloseModal}>
-          <ModalChildren></ModalChildren>
-        </Modal>
-      )}
+      <Modal
+        title='작성중인 페이지를 벗어날까요?'
+        isOpen={showPrompt}
+        onDoneClick={confirmNavigation}
+        onClose={cancelNavigation}
+      >
+        <ModalChildren></ModalChildren>
+      </Modal>
 
       <MainFunctionNavbar />
       <S.Header>글 작성하기</S.Header>
@@ -84,4 +104,20 @@ export default function CommunityWrite() {
   );
 }
 
-function ModalChildren() {}
+function ModalChildren() {
+  const renderPromptModalContent = () => {
+    return (
+      <>
+        <S.ModalDescription>
+          작성 중인 글은 저장되지 않습니다.
+        </S.ModalDescription>
+        <S.ModalDescription>그래도 이동할까요?</S.ModalDescription>
+        <S.ModalButtonWrapper>
+          <S.GoNavigateButton>저장하지 않고 이동</S.GoNavigateButton>
+          <S.GoWriteButton>돌아가서 저장하기</S.GoWriteButton>
+        </S.ModalButtonWrapper>
+      </>
+    );
+  };
+  return <>{renderPromptModalContent()}</>;
+}

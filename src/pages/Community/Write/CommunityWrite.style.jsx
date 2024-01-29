@@ -120,3 +120,47 @@ export const SaveButton = styled(Button300)`
   width: 100%;
   height: 2.8125rem;
 `;
+
+export const ModalDescription = styled.p`
+  margin-right: auto;
+  color: var(--Gray400, #212121);
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 25px; /* 178.571% */
+  letter-spacing: -0.7px;
+`;
+
+export const ModalButtonWrapper = styled.div`
+  margin-top: 14px;
+  display: flex;
+`;
+
+export const ModalButtonChild = styled.button`
+  display: block;
+  margin: 0 auto;
+
+  padding: 10px 14px;
+  width: 133px;
+  border-radius: 6px;
+  border: none;
+
+  color: var(--white, #fff);
+  font-family: 'Pretendard';
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 22.5px */
+  letter-spacing: -0.75px;
+`;
+
+export const GoNavigateButton = styled(ModalButtonChild)`
+  margin-right: auto;
+  background: var(--Gray200, #d9d9d9);
+`;
+
+export const GoWriteButton = styled(ModalButtonChild)`
+  margin-left: auto;
+  background: var(--Blue300, #0075ff);
+`;
