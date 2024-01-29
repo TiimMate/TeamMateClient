@@ -85,7 +85,8 @@ export const DescriptionWithoutDate = styled(Description)`
 // Button Section
 export const BtnSection = styled.div`
   position: absolute;
-  right: 4.44%;
+  right: 10.44%;
+  transform: translateX(50%);
 `;
 export const Button = styled.button`
   display: flex;
