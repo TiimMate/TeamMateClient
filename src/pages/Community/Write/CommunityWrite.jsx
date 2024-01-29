@@ -2,14 +2,9 @@ import MainFunctionNavbar from '../../../components/layouts/MainFunctionNavbar';
 import Button300 from '../../../components/atoms/Button300';
 import camera from '../../../assets/btn_camera.svg';
 import * as S from './CommunityWrite.style';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
-import Modal, {
-  ModalButton,
-  ModalButtonBlue,
-  ModalInput,
-  ModalContentWrapper,
-} from '../../../components/ui/Modal';
+import Modal from '../../../components/ui/Modal/Modal';
 
 export default function CommunityWrite() {
   const fileInput = useRef();
