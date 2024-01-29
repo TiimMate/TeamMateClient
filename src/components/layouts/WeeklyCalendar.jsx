@@ -59,7 +59,7 @@ export default function WeeklyCalendar() {
 
   //각 요일별 클릭 이벤트입니다. 클릭시 해당 요일의 배경만 색을 주고, 나머지는 다른 기본값으로 변경되게 설정했습니다
   const onClick0 = () => {
-    setBack0('var(--Gray100, #F0F0F0);');
+    setBack0('var(--gray-100, #F0F0F0);');
     setBack1('white');
     setBack2('white');
     setBack3('white');
@@ -69,7 +69,7 @@ export default function WeeklyCalendar() {
   };
   const onClick1 = () => {
     setBack0('white');
-    setBack1('var(--Gray100, #F0F0F0);');
+    setBack1('var(--gray-100, #F0F0F0);');
     setBack2('white');
     setBack3('white');
     setBack4('white');
@@ -79,7 +79,7 @@ export default function WeeklyCalendar() {
   const onClick2 = () => {
     setBack0('white');
     setBack1('white');
-    setBack2('var(--Gray100, #F0F0F0);');
+    setBack2('var(--gray-100, #F0F0F0);');
     setBack3('white');
     setBack4('white');
     setBack5('white');
@@ -89,7 +89,7 @@ export default function WeeklyCalendar() {
     setBack0('white');
     setBack1('white');
     setBack2('white');
-    setBack3('var(--Gray100, #F0F0F0);');
+    setBack3('var(--gray-100, #F0F0F0);');
     setBack4('white');
     setBack5('white');
     setBack6('white');
@@ -99,7 +99,7 @@ export default function WeeklyCalendar() {
     setBack1('white');
     setBack2('white');
     setBack3('white');
-    setBack4('var(--Gray100, #F0F0F0);');
+    setBack4('var(--gray-100, #F0F0F0);');
     setBack5('white');
     setBack6('white');
   };
@@ -109,7 +109,7 @@ export default function WeeklyCalendar() {
     setBack2('white');
     setBack3('white');
     setBack4('white');
-    setBack5('var(--Gray100, #F0F0F0);');
+    setBack5('var(--gray-100, #F0F0F0);');
     setBack6('white');
   };
   const onClick6 = () => {
@@ -119,7 +119,7 @@ export default function WeeklyCalendar() {
     setBack3('white');
     setBack4('white');
     setBack5('white');
-    setBack6('var(--Gray100, #F0F0F0);');
+    setBack6('var(--gray-100, #F0F0F0);');
   };
 
   //페이지에 처음 들어갔을때 현재 요일에 해당되는 요일의 배경값과 내용이 보이게 하기 위해 첫 랜더링시에만 실행되는 코드입니다.

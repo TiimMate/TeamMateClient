@@ -9,8 +9,8 @@ const Wrapper = styled.header`
   height: 3.125rem; /* 수정되면 App screen padding 수정해주기 */
   flex-shrink: 0;
 
-  background-color: #fff;
-  border-bottom: 1px solid var(--Gray200, #d9d9d9);
+  background-color: white;
+  border-bottom: 1px solid var(--gray-200, #d9d9d9);
 
   z-index: 99;
 `;

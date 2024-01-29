@@ -47,5 +47,5 @@ export const Wrapper = styled.nav`
 
   height: 70px;
 
-  background: var(--White, #fff);
+  background: white;
 `;
