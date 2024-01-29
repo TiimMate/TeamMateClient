@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const PageLayout = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
 export const Container = styled.div`
@@ -31,7 +32,6 @@ export const MainImage = styled.div`
   justify-content: center;
   gap: 20px 30px;
   margin-top: 20px;
-  width: 768px;
 `;
 
 export const BallContainer = styled.div`
