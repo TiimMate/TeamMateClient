@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import xClose from '../../assets/x-close.svg';
 import Button300 from '../atoms/Button300';
 
 // Deafault styles
@@ -27,7 +28,7 @@ const ModalContainer = styled.div`
   padding: 10px 20px;
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  width: 288px; // 원하는 대로 조절
+  width: 18rem; // 원하는 대로 조절
 `;
 
 // 모달 헤더 스타일
@@ -59,11 +60,7 @@ function Modal({ title, children, onClose }) {
       >
         <ModalHeader>
           <h2>{title}</h2>
-          <CloseButton
-            src='assets/x-close.svg'
-            alt='close-btn'
-            onClick={onClose}
-          />
+          <CloseButton src={xClose} alt='close-btn' onClick={onClose} />
         </ModalHeader>
         {children}
       </ModalContainer>

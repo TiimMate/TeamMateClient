@@ -19,7 +19,7 @@ const dummy = [
   {
     id: 2,
     unitBoard: {
-      category: '',
+      category: 'bookmark',
       title: '오늘 가스 공사 역대급 게임 했네요.',
       contents: '이것은 커뮤니티 더미 데이터입니다.',
       date: '1/27 21:00',
@@ -29,7 +29,7 @@ const dummy = [
   {
     id: 3,
     unitBoard: {
-      category: 'bookmark',
+      category: '',
       title:
         '제목이 긴 게시물을 가정해 보고 싶었습니다... 이렇게 저렇게 요렇게?',
       contents: '이것은 커뮤니티 더미 데이터입니다.',

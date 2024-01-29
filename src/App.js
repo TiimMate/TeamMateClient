@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import styles from './styles/App.module.css';
 import Navbar from './components/layouts/Navbar';
 import Tapbar from './components/layouts/Tapbar';
@@ -21,7 +21,6 @@ import LocationList from './pages/Location/LocationList';
 import LocationWrite from './pages/Location/LocationWrite';
 import CommunityList from './pages/Community/Home/CommunityList';
 import CommunityWrite from './pages/Community/Write/CommunityWrite';
-
 function App() {
   return (
     <div className={styles.screen}>
