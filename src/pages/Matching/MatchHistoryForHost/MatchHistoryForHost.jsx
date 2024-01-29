@@ -6,10 +6,12 @@ const NAV_ITEM_LIST = [
   {
     label: '게스팅 내역',
     url: '#',
+    isActive: false,
   },
   {
     label: '호스팅 내역',
     url: '#',
+    isActive: true,
   },
 ];
 
@@ -17,8 +19,8 @@ export default function MatchHistoryForHost() {
   return (
     <S.PageLayout>
       <S.Nav>
-        {NAV_ITEM_LIST.map(({ label, url }) => (
-          <S.NavItem key={label} href={url}>
+        {NAV_ITEM_LIST.map(({ label, url, isActive }) => (
+          <S.NavItem key={label} href={url} isActive={isActive}>
             {label}
           </S.NavItem>
         ))}
