@@ -19,7 +19,7 @@ function TeamDetailPage() {
   const navigate = useNavigate();
 
   const renderMember = () =>
-    formatMemberData(MEMBER_RAW_DATA_BASKETBALL).map(member => (
+    formatMemberData(MEMBER_RAW_DATA_BASKETBALL).map((member) => (
       <UnitInfoRow
         key={member.id}
         unitInfo={member.unitInfo}

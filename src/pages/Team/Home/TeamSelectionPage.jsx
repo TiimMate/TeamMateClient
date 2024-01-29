@@ -82,8 +82,8 @@ function TeamSelectionPage() {
       <S.SportSelectionSection>
         종목 선택
         <br />
-        <S.SportSelect value={sport} onChange={e => setSport(e.target.value)}>
-          {SPORT_OPTIONS.map(option => (
+        <S.SportSelect value={sport} onChange={(e) => setSport(e.target.value)}>
+          {SPORT_OPTIONS.map((option) => (
             <option value={option.id} key={option.id}>
               {option.sport}
             </option>
@@ -145,7 +145,7 @@ function TeamAdditionModal({ navigate }) {
           type='text'
           placeholder='초대코드 입력'
           value={inviteCode}
-          onChange={e => setInviteCode(e.target.value)}
+          onChange={(e) => setInviteCode(e.target.value)}
         />
         <S.ConfirmBtn onClick={fetchInviteCode}>팀 추가하기</S.ConfirmBtn>
       </>

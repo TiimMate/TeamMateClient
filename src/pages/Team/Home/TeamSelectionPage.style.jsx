@@ -83,9 +83,9 @@ export const TeamDiv = styled.div`
 
   background-size: cover;
   background-position: center;
-  background-color: ${props =>
+  background-color: ${(props) =>
     props.$backgroundColor || 'var(--Blue300, #0075ff)'};
-  color: ${props =>
+  color: ${(props) =>
     props.$backgroundColor === '#86ff91' ? '#0075ff' : '#FFF'};
 `;
 export const TeamName = styled.h1`
