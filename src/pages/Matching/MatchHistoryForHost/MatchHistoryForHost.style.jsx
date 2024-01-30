@@ -16,7 +16,8 @@ export const Nav = styled.nav`
 
 export const NavItem = styled.a`
   padding: 5px;
-  color: var(--blue-400, #0075ff);
+  color: ${(props) =>
+    props.isActive ? 'var(--Blue300, #0075ff)' : 'var(--Gray200, #D9D9D9)'};
   text-align: center;
   font-size: 12px;
   font-weight: 700;
@@ -24,6 +25,6 @@ export const NavItem = styled.a`
 `;
 
 export const Banner = styled.div`
-  background: var(--blue-600, #2e69ff);
+  background: var(--Blue400, #2e69ff);
   height: 160px;
 `;
