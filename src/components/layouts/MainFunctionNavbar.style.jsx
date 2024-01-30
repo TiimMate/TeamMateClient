@@ -32,9 +32,3 @@ export const NavStyle = styled(NavLink)`
     color: var(--Blue300, #0075ff);
   }
 `;
-
-export const Banner = styled.div`
-  height: 160px;
-
-  background: var(--Blue400, #2e69ff);
-`;

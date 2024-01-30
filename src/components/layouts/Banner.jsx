@@ -1,5 +1,5 @@
 import React from 'react';
-import * as S from './MainFunctionNavbar.style';
+import * as S from './Banner.style';
 
 export default function MainFunctionNavbar() {
   return (
@@ -18,6 +18,7 @@ export default function MainFunctionNavbar() {
           <S.NavStyle to='/community'>커뮤니티</S.NavStyle>
         </S.Button>
       </S.Wrapper>
+      <S.Banner />
     </S.Main>
   );
 }

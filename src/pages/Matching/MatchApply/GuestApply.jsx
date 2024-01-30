@@ -5,11 +5,13 @@ import WeeklyCalendar from '../../../components/layouts/WeeklyCalendar';
 import MatchList from '../../../components/layouts/Matching/MatchList';
 import MatchListFilter from '../../../components/layouts/Matching/MatchListFilter';
 import MatchWrite from '../../../components/layouts/Matching/MatchWrite';
+import { Banner } from '../../../components/layouts/Banner.style';
 
 export default function GuestApply() {
   return (
     <Main>
       <MainFunctionNavbar />
+      <Banner />
       <WeeklyCalendar />
       <Space />
       <MatchListFilter />

@@ -19,6 +19,7 @@ import TeamSelectionPage from './pages/team/TeamSelectionPage';
 import TeamCreatePage from './pages/team/TeamCreatePage';
 import LocationList from './pages/location/LocationList';
 import LocationWrite from './pages/location/LocationWrite';
+import GuestApplyDetail from './pages/Matching/MatchApply/GuestApplyDetail';
 
 function App() {
   return (
@@ -47,6 +48,10 @@ function ContentBox() {
         <Route path='/welcome-user' element={<LoginLanding />} />
         <Route path='/matching' element={<MatchingHome />} />
         <Route path='/matching/guestapply' element={<GuestApply />} />
+        <Route
+          path='/matching/guestapply/detail'
+          element={<GuestApplyDetail />}
+        />
         <Route path='/matching/teamapply' element={<TeamApply />} />
         <Route path='/matching/guesthost' element={<GuestHost />} />
         <Route path='/matching/teamhost' element={<TeamHost />} />
