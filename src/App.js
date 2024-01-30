@@ -24,7 +24,6 @@ import TeamUpdatePage from './pages/Team/Update/TeamUpdatePage';
 
 import LocationList from './pages/location/LocationList';
 import LocationWrite from './pages/location/LocationWrite';
-import ReviewsPage from './pages/ReviewsPage/ReviewsPage';
 
 function App() {
   return (
@@ -66,7 +65,6 @@ function ContentBox() {
         />
         <Route path='/location' element={<LocationList />} />
         <Route path='/location/write' element={<LocationWrite />} />
-        <Route path='/reviews' element={<ReviewsPage />} />
       </Routes>
       <Footer />
     </div>
