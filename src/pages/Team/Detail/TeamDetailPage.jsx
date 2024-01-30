@@ -1,12 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 
+import Gap from '../components/Gap';
+import Level from '../../../components/ui/Level/Level';
+
+import renderMembers from '../../../utils/renderMembers';
 import {
   formatMemberData,
   MEMBER_RAW_DATA_BASKETBALL,
 } from '../../../utils/formatData';
-import UnitInfoRow from '../../../components/ui/UnitInfoRow/UnitInfoRow';
-import Level from '../../../components/ui/Level/Level';
-import Gap from '../components/Gap';
 
 import * as S from './TeamDetailPage.style';
 
@@ -22,15 +23,8 @@ function TeamDetailPage() {
   const navigate = useNavigate();
 
   //#TODO
-  const renderMember = () =>
-    formatMemberData(MEMBER_RAW_DATA_BASKETBALL).map((member) => (
-      <UnitInfoRow
-        key={member.id}
-        unitInfo={member.unitInfo}
-        btnText={member.btnText}
-        onClickBtn={member.onClickBtn}
-      />
-    ));
+
+  const members = formatMemberData(MEMBER_RAW_DATA_BASKETBALL);
 
   return (
     <S.Wrapper>
@@ -45,7 +39,7 @@ function TeamDetailPage() {
       </S.TeamNameSection>
       <Gap />
 
-      <S.TeamMembersSection>{renderMember()}</S.TeamMembersSection>
+      <S.TeamMembersSection>{renderMembers(members)}</S.TeamMembersSection>
 
       <Gap height='7.19rem'>
         <S.SaveButton onClick={() => navigate('/team/update')}>

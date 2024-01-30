@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
 export const Gap = styled.div`
   width: 100%;
   height: 1.25rem;
-  background-color: var(--Blue100, #f0f0f0);
+  background-color: #f0f0f0;
 `;
 
 export const Label = styled.label`

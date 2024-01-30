@@ -1,18 +1,19 @@
 import { useState } from 'react';
 
-import UnitInfoRow from '../../../components/ui/UnitInfoRow/UnitInfoRow';
-import {
-  MEMBER_RAW_DATA_BASKETBALL,
-  formatMemberData,
-} from '../../../utils/formatData';
-import * as S from './TeamCreatePage.style';
-import LogoUploader from '../../../components/ui/LogoUploader/LogoUploader';
-import Gap from '../components/Gap';
-
 import TeamGenderSelector from '../../../components/layouts/Selector/Gender/TeamGenderSelector';
 import AgeSelector from '../../../components/layouts/Selector/Age/AgeSelector';
 import LocationSelector from '../../../components/layouts/Selector/Location/LocationSelector';
 import GymSelector from '../../../components/layouts/Selector/Gym/GymSelector';
+import LogoUploader from '../../../components/ui/LogoUploader/LogoUploader';
+import Gap from '../components/Gap';
+
+import renderMembers from '../../../utils/renderMembers';
+import {
+  MEMBER_RAW_DATA_BASKETBALL,
+  formatMemberData,
+} from '../../../utils/formatData';
+
+import * as S from './TeamCreatePage.style';
 
 function TeamCreatePage() {
   const [logoUrl, setLogoUrl] = useState('');
@@ -40,17 +41,6 @@ function TeamCreatePage() {
       },
     }),
   );
-
-  // #TODO: API 나오면  그 이름대로 input logic 구현하기
-  const renderMember = () =>
-    members.map((member) => (
-      <UnitInfoRow
-        key={member.id}
-        unitInfo={member.unitInfo}
-        btnText={member.btnText}
-        onClickBtn={member.onClickBtn}
-      />
-    ));
 
   return (
     <S.Wrapper>
@@ -82,7 +72,7 @@ function TeamCreatePage() {
       <Gap height='3.81rem'>
         <S.Title>팀원 목록</S.Title>
       </Gap>
-      <S.TeamMembersSection>{renderMember()}</S.TeamMembersSection>
+      <S.TeamMembersSection>{renderMembers(members)}</S.TeamMembersSection>
 
       <Gap height='7.19rem'>
         <S.SaveButton>저장하기</S.SaveButton>
