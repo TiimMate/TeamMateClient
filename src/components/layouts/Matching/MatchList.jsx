@@ -19,7 +19,7 @@ const dummy = [
       level: '5',
       gender: '남성',
     },
-    state: 1,
+    recruited: 15,
   },
   {
     id: 2,
@@ -34,10 +34,10 @@ const dummy = [
       level: '93',
       gender: '남성',
     },
-    state: 1,
+    recruited: 10,
   },
   {
-    id: 1,
+    id: 3,
     unitInfo: {
       title: '팀메이트 ',
       date: '24/01/04',
@@ -49,7 +49,22 @@ const dummy = [
       level: '999',
       gender: '혼성',
     },
-    state: 1,
+    recruited: 30,
+  },
+  {
+    id: 4,
+    unitInfo: {
+      title: '팀메이트 ',
+      date: '24/01/04',
+      time: '19:00',
+      GymName: '홍대',
+      Capacity: 55,
+      Region: '서울 마포구',
+      age: '20~30대',
+      level: '999',
+      gender: '혼성',
+    },
+    recruited: 55,
   },
 ];
 
@@ -57,8 +72,23 @@ export default function MatchList() {
   return (
     <S.Wrapper>
       {dummy.map((info) => (
-        <MatchInfo id={info.id} unitInfo={info.unitInfo} state={info.state} />
+        <MatchInfo
+          id={info.id}
+          unitInfo={info.unitInfo}
+          state={getDynamicState(info)}
+        />
       ))}
     </S.Wrapper>
   );
+}
+
+function getDynamicState(info) {
+  const { recruited, unitInfo } = info;
+  const remainingCapacity = unitInfo.Capacity - recruited;
+
+  if (remainingCapacity > 0) {
+    return `${remainingCapacity}명 모집`;
+  } else {
+    return '모집 마감';
+  }
 }
