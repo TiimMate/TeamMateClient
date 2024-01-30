@@ -27,6 +27,7 @@ import LocationList from './pages/Location/Home/LocationList';
 import LocationWrite from './pages/Location/Write/LocationWrite';
 import CommunityList from './pages/Community/Home/CommunityList';
 import CommunityWrite from './pages/Community/Write/CommunityWrite';
+import CommunityDetail from './pages/Community/Detail/CommunityDetail';
 
 function App() {
   return (
@@ -70,7 +71,7 @@ function ContentBox() {
         <Route path='/location/write' element={<LocationWrite />} />
         <Route path='/community' element={<CommunityList />} />
         <Route path='/community/write' element={<CommunityWrite />} />
-
+        <Route path='/community/detail/:id' element={<CommunityDetail />} />
       </Routes>
       <Footer />
     </div>

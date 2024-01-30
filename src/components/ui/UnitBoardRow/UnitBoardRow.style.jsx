@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Wrapper = styled.div`
   box-sizing: border-box;
@@ -16,7 +17,7 @@ export const Icon = styled.div`
   height: 16px;
 `;
 
-export const Title = styled.div`
+export const Title = styled(Link)`
   margin-left: 37px;
   width: 50%;
   color: var(--kakao-logo, #000);
