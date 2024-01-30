@@ -1,10 +1,9 @@
 import MainFunctionNavbar from '../../../components/layouts/MainFunctionNavbar';
-import Button300 from '../../../components/atoms/Button300';
+import PostHeader from '../../../components/layouts/PostHeader';
+import Modal from '../../../components/ui/Modal/Modal';
 import camera from '../../../assets/btn_camera.svg';
 import * as S from './CommunityWrite.style';
 import { useRef, useState } from 'react';
-
-import Modal from '../../../components/ui/Modal/Modal';
 
 export default function CommunityWrite() {
   const fileInput = useRef();
@@ -52,8 +51,8 @@ export default function CommunityWrite() {
       )}
 
       <MainFunctionNavbar />
-      <S.Header>글 작성하기</S.Header>
-      <S.PostContainer>
+      <PostHeader title={'글 작성하기'} />
+      <S.PostContents>
         <S.Label>글 제목</S.Label>
         <S.TitleInput placeholder='제목을 입력해 주세요.' />
         <S.Label>내용</S.Label>
@@ -74,7 +73,7 @@ export default function CommunityWrite() {
         />
         <S.NewImageList>{addImageList()}</S.NewImageList>
         <S.SaveButton>저장하기</S.SaveButton>
-      </S.PostContainer>
+      </S.PostContents>
     </S.Wrapper>
   );
 }

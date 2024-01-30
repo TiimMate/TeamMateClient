@@ -1,5 +1,5 @@
-import NewPost from '../../../components/layouts/NewPost';
-import UnitBoardRow from '../../../components/ui/UnitBoardRow';
+import NewPost from '../../../components/layouts/NewPostButton';
+import UnitBoardRow from '../../../components/ui/UnitBoardRow/UnitBoardRow';
 import * as S from './CommunityList.style';
 import MainFunctionNavbar from '../../../components/layouts/MainFunctionNavbar';
 
@@ -41,12 +41,14 @@ const dummy = [
 
 export default function CommunityList() {
   const navigate = useNavigate();
+
   const handleNewPost = () => {
     navigate('/community/write');
   };
+
   const renderPost = () =>
     dummy.map((post) => (
-      <UnitBoardRow key={post.id} unitBoard={post.unitBoard} />
+      <UnitBoardRow key={post.id} id={post.id} unitBoard={post.unitBoard} />
     ));
 
   return (

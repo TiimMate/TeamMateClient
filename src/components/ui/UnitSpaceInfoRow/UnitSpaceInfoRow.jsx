@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import * as S from './UnitSpaceInfoRow.style';
-import Button70 from '../atoms/Button70';
+import Button70 from '../../atoms/Button70';
 
 export default function UnitSpaceInfoRow() {
   const navigate = useNavigate();
