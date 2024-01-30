@@ -22,7 +22,11 @@ export const Button = styled.div`
 `;
 
 export const NavStyle = styled(NavLink)`
+  font-family: Pretendard;
   font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 18px; /* 150% */
 
   color: var(--Gray200, #d9d9d9);
 

@@ -3,41 +3,9 @@ import UnitBoardRow from '../../../components/ui/UnitBoardRow/UnitBoardRow';
 import * as S from './CommunityList.style';
 import MainFunctionNavbar from '../../../components/layouts/MainFunctionNavbar';
 
-import { useNavigate } from 'react-router-dom';
+import { contents } from '../../../utils/postData';
 
-const dummy = [
-  {
-    id: 1,
-    unitBoard: {
-      category: 'notice',
-      title: '커뮤니티 이용 규칙 안내드립니다.',
-      contents: '이것은 커뮤니티 더미 데이터입니다.',
-      date: '1/26 19:50',
-      imgUrl: '../../../assets/highfive.png',
-    },
-  },
-  {
-    id: 2,
-    unitBoard: {
-      category: '',
-      title: '오늘 가스 공사 역대급 게임 했네요.',
-      contents: '이것은 커뮤니티 더미 데이터입니다.',
-      date: '1/27 21:00',
-      imgUrl: '../../../assets/highfive.png',
-    },
-  },
-  {
-    id: 3,
-    unitBoard: {
-      category: 'bookmark',
-      title:
-        '제목이 긴 게시물을 가정해 보고 싶었습니다... 이렇게 저렇게 요렇게?',
-      contents: '이것은 커뮤니티 더미 데이터입니다.',
-      date: '1/26 21:11',
-      imgUrl: '../../../assets/highfive.png',
-    },
-  },
-];
+import { useNavigate } from 'react-router-dom';
 
 export default function CommunityList() {
   const navigate = useNavigate();
@@ -47,8 +15,12 @@ export default function CommunityList() {
   };
 
   const renderPost = () =>
-    dummy.map((post) => (
-      <UnitBoardRow key={post.id} id={post.id} unitBoard={post.unitBoard} />
+    contents.map((content) => (
+      <UnitBoardRow
+        key={content.id}
+        id={content.id}
+        unitBoard={content.unitBoard}
+      />
     ));
 
   return (

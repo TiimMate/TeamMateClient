@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-export const Input = styled.input.attrs({
-  placeholderTextColor: 'white',
-})`
+export const Input = styled.input`
   box-sizing: border-box;
   display: flex;
   padding: 0.625rem 0.5rem;
