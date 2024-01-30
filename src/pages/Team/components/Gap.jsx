@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   width: 100%;
   height: ${(props) => props.height};
 
-  background-color: var(--Blue100, #f0f0f0);
+  background-color: #f0f0f0;
 `;
 
 export default Gap;

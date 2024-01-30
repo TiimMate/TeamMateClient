@@ -3,14 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import useModal from '../../../hooks/useModal';
 
 import SportSelect from '../../../components/ui/SportSelect/SportSelect';
-
-import * as S from './TeamSelectionPage.style';
+import TeamAddModal from '../components/TeamAddModal/TeamAddModal';
 
 import highfive from '../../../assets/highfive.png';
 import plus from '../../../assets/plus.svg';
-import TeamAddModal from '../components/TeamAddModal/TeamAddModal';
 
-// #TODO: fetch list...
+import * as S from './TeamSelectionPage.style';
+
 const TEAM_INFOS = [
   { id: 1, name: '어쩌구 FC', logoUrl: '#' },
   { id: 2, name: '저쩌구 FC', logoUrl: '#' },
