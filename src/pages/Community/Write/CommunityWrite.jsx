@@ -1,5 +1,5 @@
 import MainFunctionNavbar from '../../../components/layouts/MainFunctionNavbar';
-import PostHeader from '../../../components/layouts/PostHeader';
+import ContentHeader from '../../../components/layouts/Content/ContentHeader';
 import Modal from '../../../components/ui/Modal/Modal';
 import camera from '../../../assets/btn_camera.svg';
 import * as S from './CommunityWrite.style';
@@ -87,8 +87,8 @@ export default function CommunityWrite() {
       )}
 
       <MainFunctionNavbar />
-      <PostHeader title={'글 작성하기'} />
-      <S.PostContents>
+      <ContentHeader title={'글 작성하기'} />
+      <S.ContentBody>
         <S.Label>글 제목</S.Label>
         <S.InputWrapper>
           <TextInput
@@ -101,7 +101,6 @@ export default function CommunityWrite() {
         <S.InputWrapper>
           <TextArea
             rows={6}
-            valid={valid}
             placeholder='내용을 입력해 주세요.'
             onChange={handleShouldConfirm}
           />
@@ -128,7 +127,7 @@ export default function CommunityWrite() {
         />
         <S.NewImageList>{addImageList()}</S.NewImageList>
         <S.SaveButton onClick={handleSubmit}>저장하기</S.SaveButton>
-      </S.PostContents>
+      </S.ContentBody>
     </S.Wrapper>
   );
 }

@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   width: 100%;
 `;
 
-export const PostContents = styled.section`
+export const ContentBody = styled.section`
   padding: 0.625rem 1.875rem;
 `;
 
@@ -58,7 +58,6 @@ export const NewImage = styled.img`
 
 export const SaveButton = styled(Button300)`
   width: 100%;
-  height: 2.8125rem;
 `;
 
 export const ModalDescription = styled.p`

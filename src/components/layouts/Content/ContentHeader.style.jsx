@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const PostHeader = styled.h3`
+export const ContentHeader = styled.h3`
   align-items: center;
   padding: 0.75rem 0.75rem 0.8125rem 1.875rem;
   border-bottom: 0.0625rem solid var(--Gray200, #d9d9d9);
