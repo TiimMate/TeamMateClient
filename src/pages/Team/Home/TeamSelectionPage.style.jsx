@@ -23,9 +23,9 @@ export const SportSelectionSection = styled.section`
   padding: 5% 10%;
   gap: 0.1875rem;
 
-  background: var(--white, #fff);
+  background: white;
 
-  color: var(--Blue300, #0075ff);
+  color: var(--blue-400, #0075ff);
   /* 12md */
   font-family: Pretendard;
   font-size: 0.75rem;
@@ -46,11 +46,11 @@ export const SportSelect = styled.select`
   padding: 0.5rem 0.625rem;
   gap: 14.5rem;
   border-radius: 0.375rem;
-  border: 2px solid var(--Blue300, #0075ff);
+  border: 2px solid var(--blue-400, #0075ff);
 
   background: url('/assets/chevron-down-5 1.svg') no-repeat 98% 50%/1.5rem auto;
 
-  color: var(--Blue300, #0075ff);
+  color: var(--blue-400, #0075ff);
   font-size: 16px;
   font-weight: 500;
 
@@ -65,11 +65,11 @@ export const SportSelect = styled.select`
 
   &:focus {
     //#TODO: 색깔 안변하는 문제
-    border: 2px solid var(--Blue300, #0075ff);
+    border: 2px solid var(--blue-400, #0075ff);
   }
 
   option {
-    border: 2px solid var(--Blue300, #0075ff);
+    border: 2px solid var(--blue-400, #0075ff);
   }
 `;
 
@@ -84,9 +84,9 @@ export const TeamDiv = styled.div`
   background-size: cover;
   background-position: center;
   background-color: ${(props) =>
-    props.$backgroundColor || 'var(--Blue300, #0075ff)'};
+    props.$backgroundColor || 'var(--blue-400, #0075ff)'};
   color: ${(props) =>
-    props.$backgroundColor === '#86ff91' ? '#0075ff' : '#FFF'};
+    props.$backgroundColor === '#86ff91' ? 'var(--blue-400, #0075ff)' : '#FFF'};
 `;
 export const TeamName = styled.h1`
   position: absolute;
@@ -113,7 +113,7 @@ export const TeamLogo = styled(CircleLogo)`
   padding-top: 36%;
   border-radius: 50%;
 
-  background-color: var(--Blue100, #f4f9ff);
+  background-color: var(--blue-100, #f4f9ff);
 `;
 export const TeamImage = styled.img`
   position: absolute;
@@ -126,7 +126,7 @@ export const TeamImage = styled.img`
 export const AddTeamDiv = styled(TeamDiv)`
   padding-top: 70%;
 
-  background: var(--Gray200, #d9d9d9);
+  background: var(--gray-200, #d9d9d9);
 `;
 export const PlusIcon = styled.img`
   position: absolute;

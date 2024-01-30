@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
 export const Header = styled.h3`
   align-items: center;
   padding: 0.75rem 0.75rem 0.8125rem 1.875rem;
-  border-bottom: 0.0625rem solid var(--Gray200, #d9d9d9);
+  border-bottom: 0.0625rem solid var(--gray-200, #d9d9d9);
   color: var(--kakao-logo, #000);
 
   /* 14 */
@@ -22,7 +22,7 @@ export const PostContainer = styled.section`
   padding: 0.625rem 1.875rem;
 `;
 export const Label = styled.label`
-  color: var(--Gray300, #636363);
+  color: var(--gray-300, #636363);
   margin-bottom: 0rem;
   font-family: Pretendard;
   font-size: 0.75rem;
@@ -42,8 +42,8 @@ export const Input = styled.input`
   gap: 0.625rem;
   flex-wrap: wrap;
   border-radius: 0.375rem;
-  border: 0.0625rem solid var(--Gray200, #d9d9d9);
-  background: #fff;
+  border: 0.0625rem solid var(--gray-200, #d9d9d9);
+  background: white;
 
   /* 12pt */
   font-family: Pretendard;
@@ -55,7 +55,7 @@ export const Input = styled.input`
 `;
 
 export const TitleInput = styled(Input)`
-  color: var(--Gray300, #636363);
+  color: var(--gray-300, #636363);
 `;
 export const ContentsTextarea = styled.textarea`
   box-sizing: border-box;
@@ -69,10 +69,10 @@ export const ContentsTextarea = styled.textarea`
   padding: 0.625rem 0.5rem;
   gap: 0.625rem;
   border-radius: 0.375rem;
-  border: 0.0625rem solid var(--Gray200, #d9d9d9);
-  background: #fff;
+  border: 0.0625rem solid var(--gray-200, #d9d9d9);
+  background: white;
 
-  color: var(--Gray300, #636363);
+  color: var(--gray-300, #636363);
 
   /* 12pt */
   font-family: Pretendard;
@@ -83,7 +83,7 @@ export const ContentsTextarea = styled.textarea`
   letter-spacing: -0.0375rem;
 `;
 export const LinkInput = styled(Input)`
-  color: var(--Gray200, #d9d9d9);
+  color: var(--gray-200, #d9d9d9);
 `;
 export const Image = styled.button`
   display: flex;
@@ -95,7 +95,7 @@ export const Image = styled.button`
   gap: 0.25rem;
   flex-shrink: 0;
   border-radius: 0.375rem;
-  border: 0.0625rem solid var(--Gray200, #d9d9d9);
+  border: 0.0625rem solid var(--gray-200, #d9d9d9);
 `;
 
 export const NewImageList = styled.div`
@@ -113,7 +113,7 @@ export const NewImage = styled.img`
   justify-content: center;
   align-items: center;
   border-radius: 0.375rem;
-  border: 0.0625rem solid var(--Gray200, #d9d9d9);
+  border: 0.0625rem solid var(--gray-200, #d9d9d9);
 `;
 
 export const SaveButton = styled(Button300)`

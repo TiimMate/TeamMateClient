@@ -14,7 +14,7 @@ export const Gap = styled.div`
 `;
 export const Label = styled.label`
   cursor: pointer;
-  color: var(--Gray300, #636363);
+  color: var(--gray-300, #636363);
   font-family: Pretendard Variable;
   font-size: 0.75rem;
   font-style: normal;
@@ -27,12 +27,12 @@ export const Label = styled.label`
 `;
 export const Input = styled.input`
   padding: 0.625rem 0.75rem;
-  border: 1px solid var(--Gray200, #d9d9d9);
-  background: var(--Gray100, #f0f0f0);
+  border: 1px solid var(--gray-200, #d9d9d9);
+  background: var(--gray-100, #f0f0f0);
 
   border-radius: 0.375rem;
-  border: 1px solid var(--Gray200, #d9d9d9);
-  background: var(--Gray100, #f0f0f0);
+  border: 1px solid var(--gray-200, #d9d9d9);
+  background: var(--gray-100, #f0f0f0);
 
   color: var(--Black, var(--kakao-logo, #000));
   font-family: Pretendard Variable;
@@ -53,11 +53,11 @@ export const Button = styled.button`
   height: 100%;
   padding: 0.25rem;
   border-radius: 0.375rem;
-  border: 1px solid var(--Gray200, #d9d9d9);
-  background: #fff;
+  border: 1px solid var(--gray-200, #d9d9d9);
+  background: white;
   cursor: pointer;
 
-  color: var(--Gray300, #636363);
+  color: var(--gray-300, #636363);
   font-family: Pretendard;
   font-size: 0.75rem;
   font-style: normal;
@@ -68,8 +68,8 @@ export const Button = styled.button`
   ${(props) =>
     props.$selected &&
     `
-  color:  #0075ff;
-  border: 1px solid #0075ff;
+  color: var(--blue-400, #0075ff);
+  border: 1px solid var(--blue-400, #0075ff);
 `}
 `;
 
@@ -123,9 +123,9 @@ export const TextArea = styled.textarea`
   padding: 0.625rem 0.75rem;
   gap: 0.625rem;
   border-radius: 0.375rem;
-  border: 1px solid var(--Gray200, #d9d9d9);
+  border: 1px solid var(--gray-200, #d9d9d9);
 
-  background: var(--Gray100, #f0f0f0);
+  background: var(--gray-100, #f0f0f0);
 
   color: var(--Black, var(--kakao-logo, #000));
   /* 12pt */
@@ -190,7 +190,7 @@ export const TeamMemberTitle = styled.h3`
   top: 1.25rem;
   left: 9.44%;
 
-  color: var(--Blue300, #0075ff);
+  color: var(--blue-400, #0075ff);
   /* b20 */
   font-family: Pretendard;
   font-size: 1.25rem;
@@ -212,7 +212,7 @@ export const SaveButton = styled(Button300)`
   left: 50%;
   transform: translateX(-50%);
 
-  color: #fff;
+  color: white;
 
   font-family: Apple SD Gothic Neo;
   font-size: 0.9375rem;

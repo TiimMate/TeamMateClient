@@ -10,7 +10,7 @@ export const welcomeContainer = styled.div`
 export const welcomeMsg = styled.div`
   width: 188px;
   height: 64px;
-  color: var(--Blue300, #0075ff);
+  color: var(--blue-400, #0075ff);
   font-family: 'Pretendard Variable';
   font-size: 24px;
   font-style: normal;

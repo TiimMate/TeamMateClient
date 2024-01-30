@@ -31,7 +31,7 @@ const TEAMS_INFOS = [
   { id: 4, name: '시간', logoUrl: '#' },
   { id: 5, name: '성남 FC', logoUrl: '#' },
 ];
-const COLOR_LIST = ['#0075ff', '#86ff91'];
+const COLOR_LIST = ['var(--blue-400, #0075ff)', '#86ff91'];
 
 function TeamSelectionPage() {
   const navigate = useNavigate();
@@ -112,7 +112,7 @@ function Team({ last, backgroundColor, onClick, teamInfo }) {
 
 function AddTeam({ onClick }) {
   return (
-    <S.AddTeamDiv onClick={onClick} backgroundColor='var(--Gray200, #D9D9D9)'>
+    <S.AddTeamDiv onClick={onClick} backgroundColor='var(--gray-200, #d9d9d9)'>
       <S.PlusIcon src={plus} alt='plus' />
       <S.AddText>팀 추가하기</S.AddText>
     </S.AddTeamDiv>
