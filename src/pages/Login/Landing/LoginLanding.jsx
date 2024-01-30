@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import highFive from '../../assets/highfive.png';
-import Button300 from '../../components/atoms/Button300';
+import highFive from '../../../assets/highfive.png';
+import Button300 from '../../../components/atoms/Button300';
 import * as S from './LoginLanding.style';
 
 export default function LoginLanding() {

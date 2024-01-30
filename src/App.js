@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import styles from './styles/App.module.css';
-import Navbar from './components/layouts/Navbar';
+import Navbar from './components/layouts/Navbar/Navbar';
 import Tapbar from './components/layouts/Tapbar';
 import Footer from './components/layouts/Footer';
 
@@ -12,17 +12,21 @@ import TeamApply from './pages/Matching/MatchApply/TeamApply';
 import GuestHost from './pages/Matching/MatchHost/GuestHost';
 import TeamHost from './pages/Matching/MatchHost/TeamHost';
 import MatchingHome from './pages/Matching/MatchingHome';
-import Login from './pages/login/Login';
-import LoginLanding from './pages/login/LoginLanding';
+import MatchHistoryForGuest from './pages/Matching/MatchHistoryForGuest';
+import MatchHistoryForHost from './pages/Matching/MatchHistoryForHost';
+
+import Login from './pages/Login/Home/Login';
+import LoginLanding from './pages/Login/Landing/LoginLanding';
 
 import TeamDetailPage from './pages/Team/Detail/TeamDetailPage';
+import TeamUpdatePage from './pages/Team/Update/TeamUpdatePage';
 import TeamSelectionPage from './pages/Team/Home/TeamSelectionPage';
 import TeamCreatePage from './pages/Team/Create/TeamCreatePage';
-import TeamUpdatePage from './pages/Team/Update/TeamUpdatePage';
 
-import LocationList from './pages/location/LocationList';
-import LocationWrite from './pages/location/LocationWrite';
-import ReviewsPage from './pages/ReviewsPage/ReviewsPage';
+import LocationList from './pages/Location/Home/LocationList';
+import LocationWrite from './pages/Location/Write/LocationWrite';
+import CommunityList from './pages/Community/Home/CommunityList';
+import CommunityWrite from './pages/Community/Write/CommunityWrite';
 
 function App() {
   return (
@@ -46,20 +50,27 @@ function ContentBox() {
         {/* Team Page */}
         <Route path='/team' element={<TeamSelectionPage />} />
         <Route path='/team/create' element={<TeamCreatePage />} />
-        <Route path='team/:id/update' element={<TeamUpdatePage />} />
+        <Route path='/team/:id/update' element={<TeamUpdatePage />} />
         <Route path='/team/:id' element={<TeamDetailPage />} />
 
         <Route path='/login' element={<Login />} />
-        <Route path='/welcome-user' element={<LoginLanding />} />
+        <Route path='/login/landing' element={<LoginLanding />} />
         <Route path='/matching' element={<MatchingHome />} />
         <Route path='/matching/guestapply' element={<GuestApply />} />
         <Route path='/matching/teamapply' element={<TeamApply />} />
         <Route path='/matching/guesthost' element={<GuestHost />} />
         <Route path='/matching/teamhost' element={<TeamHost />} />
         <Route path='/matching/weeklycalendar' element={<WeeklyCalendar />} />
+        <Route path='/matching/history/' element={<MatchHistoryForGuest />} />
+        <Route
+          path='/matching/history/host'
+          element={<MatchHistoryForHost />}
+        />
         <Route path='/location' element={<LocationList />} />
         <Route path='/location/write' element={<LocationWrite />} />
-        <Route path='/reviews' element={<ReviewsPage />} />
+        <Route path='/community' element={<CommunityList />} />
+        <Route path='/community/write' element={<CommunityWrite />} />
+
       </Routes>
       <Footer />
     </div>

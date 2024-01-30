@@ -11,7 +11,7 @@ const Button70 = styled.button`
   flex-shrink: 0;
 
   border-radius: 6px;
-  border-color: var(--Blue300);
+  border: none;
   background: var(--Blue300, #0075ff);
   cursor: pointer;
   color: var(--White, #fff);
