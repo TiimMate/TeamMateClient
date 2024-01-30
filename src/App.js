@@ -28,6 +28,8 @@ import LocationWrite from './pages/Location/Write/LocationWrite';
 import CommunityList from './pages/Community/Home/CommunityList';
 import CommunityWrite from './pages/Community/Write/CommunityWrite';
 
+import MyPage from './pages/MyPage/Home/MyPage';
+
 function App() {
   return (
     <div className={styles.screen}>
@@ -52,6 +54,9 @@ function ContentBox() {
         <Route path='/team/create' element={<TeamCreatePage />} />
         <Route path='/team/:id/update' element={<TeamUpdatePage />} />
         <Route path='/team/:id' element={<TeamDetailPage />} />
+
+        {/* My Page */}
+        <Route path='/my' element={<MyPage />} />
 
         <Route path='/login' element={<Login />} />
         <Route path='/login/landing' element={<LoginLanding />} />
