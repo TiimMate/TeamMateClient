@@ -65,7 +65,7 @@ export const Button = styled.button`
   line-height: 150%; /* 1.125rem */
   letter-spacing: -0.0375rem;
 
-  ${props =>
+  ${(props) =>
     props.$selected &&
     `
   color:  #0075ff;
