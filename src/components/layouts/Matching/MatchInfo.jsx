@@ -24,7 +24,7 @@ function MatchInfo({ id, unitInfo, state }) {
         </S.MatchDetail>
       </S.Content>
       <S.Space />
-      <S.Button onClick={openModal}>{state}명 남음</S.Button>
+      <S.Button onClick={openModal}>{state}</S.Button>
       <ReviewModal isOpen={isOpen} onClose={closeModal} />
     </S.Container>
   );
