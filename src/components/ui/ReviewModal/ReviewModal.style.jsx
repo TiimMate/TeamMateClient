@@ -4,7 +4,6 @@ export const ReviewLayout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 10px;
   width: 100%;
   gap: 20px;
 `;

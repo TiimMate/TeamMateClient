@@ -11,10 +11,12 @@ function Modal({ title, children, onClose }) {
         onClick={(e) => e.stopPropagation() /* 모달 밖 클릭 방지 */}
       >
         <S.ModalHeader>
-          <h2>{title}</h2>
-          <S.CloseButton src={xClose} alt='close-btn' onClick={onClose} />
+          <S.ModalTitle>
+            {title}
+            <S.CloseButton src={xClose} alt='close-btn' onClick={onClose} />
+          </S.ModalTitle>
         </S.ModalHeader>
-        {children}
+        <S.ModalContent>{children}</S.ModalContent>
       </S.ModalContainer>
     </S.ModalBackdrop>
   );
