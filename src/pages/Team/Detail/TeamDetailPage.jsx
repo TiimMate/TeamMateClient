@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import Gap from '../components/Gap';
 import Level from '../../../components/ui/Level/Level';
@@ -20,9 +20,8 @@ const TEAM_INFO = {
 };
 
 function TeamDetailPage() {
+  const { id } = useParams();
   const navigate = useNavigate();
-
-  //#TODO
 
   const members = formatMemberData(MEMBER_RAW_DATA_BASKETBALL);
 
@@ -40,6 +39,7 @@ function TeamDetailPage() {
       <Gap />
 
       <S.TeamMembersSection>{renderMembers(members)}</S.TeamMembersSection>
+
 
       <Gap height='7.19rem'>
         <S.SaveButton onClick={() => navigate('/team/update')}>

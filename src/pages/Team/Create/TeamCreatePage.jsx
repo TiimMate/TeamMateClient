@@ -69,6 +69,7 @@ function TeamCreatePage() {
         <GymSelector />
       </S.TeamDetailSection>
 
+
       <Gap height='3.81rem'>
         <S.Title>팀원 목록</S.Title>
       </Gap>

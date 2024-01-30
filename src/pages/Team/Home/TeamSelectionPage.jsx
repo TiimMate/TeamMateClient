@@ -60,10 +60,12 @@ function TeamSelectionPage() {
 
       <S.TeamSelectionSection>
         {renderTeam()}
+        
         <S.AddTeamDiv onClick={openModal}>
           <S.PlusIcon src={plus} alt='plus' />
           <S.AddText>팀 추가하기</S.AddText>
         </S.AddTeamDiv>
+
       </S.TeamSelectionSection>
     </S.Wrapper>
   );
