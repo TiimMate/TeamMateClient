@@ -18,7 +18,7 @@ import * as S from './UnitInfoRow.style';
  * */
 function UnitInfoRow({ unitInfo, btnText, onClickBtn }) {
   const { title, description, date, avatarUrl } = unitInfo;
-  const onClick = onClickBtn || (e => e.preventDefault());
+  const onClick = onClickBtn || ((e) => e.preventDefault());
 
   return (
     <S.Wrapper>

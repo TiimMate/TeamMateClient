@@ -18,7 +18,7 @@ function TeamCreatePage() {
   const [selectedAge, setSelectedAge] = useState(new Array(5).fill(false));
 
   const toggleSpot = (index, setter) => {
-    setter(spots => {
+    setter((spots) => {
       const newSpots = new Array(spots.length).fill(false);
       newSpots[index] = !spots[index];
       return newSpots; // 업데이트된 배열로 상태 설정
@@ -27,7 +27,7 @@ function TeamCreatePage() {
   // #TODO: API 나오면  그 이름대로 input logic 구현하기
 
   const renderMember = () =>
-    formatMemberData(MEMBER_RAW_DATA_BASKETBALL).map(member => (
+    formatMemberData(MEMBER_RAW_DATA_BASKETBALL).map((member) => (
       <UnitInfoRow
         key={member.id}
         unitInfo={member.unitInfo}
@@ -133,12 +133,12 @@ function TeamCreatePage() {
 }
 
 function LogoUploader({ setLogoUrl }) {
-  const handleFileChange = event => {
+  const handleFileChange = (event) => {
     const file = event.target.files[0];
 
     if (file && file.type.match('image.*')) {
       const reader = new FileReader();
-      reader.onload = e => {
+      reader.onload = (e) => {
         setLogoUrl(e.target.result);
       };
       reader.readAsDataURL(file); // Image Upload
