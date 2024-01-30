@@ -1,5 +1,6 @@
 import UnitInfoRow from '../components/ui/UnitInfoRow/UnitInfoRow';
 
+/** fetch data -> format -> rendermembers -> show */
 const renderMembers = (members) =>
   members.map((member) => (
     <UnitInfoRow
