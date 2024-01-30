@@ -1,5 +1,6 @@
 import React from 'react';
 import * as S from './MatchHistoryForHost.style';
+import WeeklyCalendar from '../../../components/layouts/WeeklyCalendar';
 import MatchList from '../../../components/layouts/Matching/MatchList';
 
 const NAV_ITEM_LIST = [
@@ -26,6 +27,7 @@ export default function MatchHistoryForHost() {
         ))}
       </S.Nav>
       <S.Banner></S.Banner>
+      <WeeklyCalendar />
       <MatchList />
     </S.PageLayout>
   );
