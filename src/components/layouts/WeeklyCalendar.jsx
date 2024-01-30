@@ -41,7 +41,7 @@ const MondayDate = `${arWeek[1].getDate()}\n월`;
 const TuesdayDate = `${arWeek[2].getDate()}\n화`;
 const WednesdayDate = `${arWeek[3].getDate()}\n수`;
 const ThursdayDate = `${arWeek[4].getDate()}\n목`;
-const FirdayDate = `${arWeek[5].getDate()}\n금`;
+const FridayDate = `${arWeek[5].getDate()}\n금`;
 const SaturdayDate = `${arWeek[6].getDate()}\n토`;
 
 export default function WeeklyCalendar() {
@@ -217,7 +217,7 @@ export default function WeeklyCalendar() {
             }}
             back={back5}
           >
-            {FirdayDate}
+            {FridayDate}
           </S.P>
         </S.Button>
         <S.Button>
