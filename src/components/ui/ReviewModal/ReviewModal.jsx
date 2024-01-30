@@ -4,6 +4,7 @@ import Portal from '../../layouts/Portal';
 import Modal from '../Modal/Modal';
 import Rating from '../Rating';
 import * as S from './ReviewModal.style';
+import Button130 from '../../atoms/Button130';
 
 const ReviewModal = ({ isOpen, onClose }) => {
   const [guestScore, setGuestScore] = useState(0);
@@ -42,6 +43,7 @@ const ReviewModal = ({ isOpen, onClose }) => {
               onChange={handleSportsmanshipRatingChange}
             />
           </S.RatingGroup>
+          <Button130>작성 완료</Button130>
         </S.ReviewLayout>
       </Modal>
     </Portal>
