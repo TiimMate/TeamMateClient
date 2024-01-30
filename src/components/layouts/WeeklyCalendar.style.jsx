@@ -8,7 +8,7 @@ export const Wrapper = styled.nav`
   overflow: hidden;
   border-bottom: 1px solid var(--gray-200, #d9d9d9);
   height: 70px;
-  background: var(--White, #fff);
+  background: white;
 `;
 
 export const Button = styled.div`

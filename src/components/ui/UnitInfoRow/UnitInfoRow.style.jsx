@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
   height: 4.375rem;
   box-sizing: border-box;
 
-  background: #fff;
+  background: white;
 `;
 
 // Avatar Section
@@ -31,7 +31,7 @@ export const Avatar = styled(CircleLogo)`
 
   border-radius: 50%;
 
-  background-color: #d9d9d9;
+  background-color: var(--gray-300, #636363);
 `;
 
 // Text Section
@@ -47,7 +47,7 @@ export const Title = styled.h3`
   letter-spacing: -0.0375rem;
 `;
 export const Date = styled.span`
-  color: var(--Blue300, var(--kakao-logo, #0075ff));
+  color: var(--blue-400, var(--kakao-logo, #0075ff));
   font-family: Pretendard;
   font-size: 0.5rem;
   font-style: normal;
@@ -74,7 +74,7 @@ export const TitleWithoutDate = styled(Title)`
   word-wrap: break-word;
 `;
 export const DescriptionWithoutDate = styled(Description)`
-  color: #636363;
+  color: var(--gray-300, #636363);
   font-size: 10px;
   font-family: Pretendard;
   font-weight: 400;
@@ -99,9 +99,9 @@ export const Button = styled.button`
   flex-shrink: 0;
 
   border-radius: 0.375rem;
-  background: var(--Blue300, #0075ff);
+  background: var(--blue-400, #0075ff);
 
-  color: var(--white, #fff);
+  color: white;
   font-size: 12px;
   font-family: Pretendard;
   font-weight: 500;
@@ -110,8 +110,8 @@ export const Button = styled.button`
   cursor: pointer;
 
   &:disabled {
-    color: var(--Blue300, #0075ff);
-    background: var(--Blue200, #bddbff);
+    color: var(--blue-400, #0075ff);
+    background: var(--blue-200, #bddbff);
     cursor: default;
   }
 `;

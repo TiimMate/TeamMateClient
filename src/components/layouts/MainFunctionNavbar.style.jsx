@@ -8,7 +8,7 @@ export const Main = styled.div`
 export const Wrapper = styled.nav`
   overflow: hidden;
 
-  background: var(--White, #fff);
+  background: white;
 `;
 
 export const Button = styled.div`
@@ -24,17 +24,17 @@ export const Button = styled.div`
 export const NavStyle = styled(NavLink)`
   font-size: 12px;
 
-  color: var(--Gray200, #d9d9d9);
+  color: var(--gray-200, #d9d9d9);
 
   text-decoration: none;
 
   &.active {
-    color: var(--Blue300, #0075ff);
+    color: var(--blue-500, #0075ff);
   }
 `;
 
 export const Banner = styled.div`
   height: 160px;
 
-  background: var(--Blue400, #2e69ff);
+  background: var(--blue-600, #2e69ff);
 `;

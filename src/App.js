@@ -70,7 +70,6 @@ function ContentBox() {
         <Route path='/location/write' element={<LocationWrite />} />
         <Route path='/community' element={<CommunityList />} />
         <Route path='/community/write' element={<CommunityWrite />} />
-
       </Routes>
       <Footer />
     </div>
