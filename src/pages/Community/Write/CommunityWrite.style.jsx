@@ -10,8 +10,9 @@ export const PostContents = styled.section`
 `;
 
 export const Label = styled.label`
+  display: flex;
   color: var(--Gray300, #636363);
-  margin-bottom: 0rem;
+  margin-bottom: 0.3125rem;
   font-family: Pretendard;
   font-size: 0.75rem;
   font-style: normal;
@@ -20,60 +21,10 @@ export const Label = styled.label`
   letter-spacing: -0.0375rem;
 `;
 
-export const Input = styled.input`
-  box-sizing: border-box;
-  display: flex;
-  padding: 0.625rem 0.5rem;
-  align-items: center;
-  align-content: center;
-  margin: 0.3125rem 0 1.25rem 0;
-  width: 100%;
-  gap: 0.625rem;
-  flex-wrap: wrap;
-  border-radius: 0.375rem;
-  border: 0.0625rem solid var(--Gray200, #d9d9d9);
-  background: #fff;
-
-  /* 12pt */
-  font-family: Pretendard;
-  font-size: 0.75rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.125rem; /* 150% */
-  letter-spacing: -0.0375rem;
+export const InputWrapper = styled.div`
+  margin-bottom: 1.25rem;
 `;
 
-export const TitleInput = styled(Input)`
-  color: var(--Gray300, #636363);
-`;
-export const ContentsTextarea = styled.textarea`
-  box-sizing: border-box;
-
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  align-content: flex-start;
-  margin: 0.3125rem 0 1.25rem 0;
-  width: 100%;
-  padding: 0.625rem 0.5rem;
-  gap: 0.625rem;
-  border-radius: 0.375rem;
-  border: 0.0625rem solid var(--Gray200, #d9d9d9);
-  background: #fff;
-
-  color: var(--Gray300, #636363);
-
-  /* 12pt */
-  font-family: Pretendard;
-  font-size: 0.75rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.125rem; /* 150% */
-  letter-spacing: -0.0375rem;
-`;
-export const LinkInput = styled(Input)`
-  color: var(--Gray200, #d9d9d9);
-`;
 export const Image = styled.button`
   display: flex;
   width: 4.0625rem;
@@ -108,4 +59,48 @@ export const NewImage = styled.img`
 export const SaveButton = styled(Button300)`
   width: 100%;
   height: 2.8125rem;
+`;
+
+export const ModalDescription = styled.p`
+  margin-right: auto;
+  color: var(--Gray400, #212121);
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 25px; /* 178.571% */
+  letter-spacing: -0.7px;
+`;
+
+export const ModalButtonWrapper = styled.div`
+  margin-top: 14px;
+  display: flex;
+`;
+
+export const ModalChildButton = styled.button`
+  display: block;
+  margin: 0 auto;
+
+  padding: 10px 14px;
+  width: 133px;
+  border-radius: 6px;
+  border: none;
+
+  color: var(--white, #fff);
+  font-family: 'Pretendard';
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 22.5px */
+  letter-spacing: -0.75px;
+`;
+
+export const GoNavigateButton = styled(ModalChildButton)`
+  margin-right: auto;
+  background: var(--Gray200, #d9d9d9);
+`;
+
+export const GoWriteButton = styled(ModalChildButton)`
+  margin-left: auto;
+  background: var(--Blue300, #0075ff);
 `;
