@@ -31,7 +31,8 @@ export const P = styled.p`
   padding-left: 5px;
   border-radius: 6px;
   background: ${(props) => props.back};
-  font-family: 'Pretendard Variable';
+  text-align: center;
+  font-family: 'Pretendard';
   font-size: 12px;
   font-style: normal;
   font-weight: 500; /* 글자가 너무 두꺼워보여서 700 -> 500으로 수정했어요*/

@@ -37,12 +37,12 @@ for (let index = calendarMonthTodayDay - 1; index >= 0; index -= 1) {
 
 //각 요일에 해당하는 '일'만을 빼내고 \n일을 추가하여 저장
 const SundayDate = `${arWeek[0].getDate()}\n일`;
-const MondayDate = `${arWeek[1].getDate()}\n일`;
-const TuesdayDate = `${arWeek[2].getDate()}\n일`;
-const WednesdayDate = `${arWeek[3].getDate()}\n일`;
-const ThursdayDate = `${arWeek[4].getDate()}\n일`;
-const FirdayDate = `${arWeek[5].getDate()}\n일`;
-const SaturdayDate = `${arWeek[6].getDate()}\n일`;
+const MondayDate = `${arWeek[1].getDate()}\n월`;
+const TuesdayDate = `${arWeek[2].getDate()}\n화`;
+const WednesdayDate = `${arWeek[3].getDate()}\n수`;
+const ThursdayDate = `${arWeek[4].getDate()}\n목`;
+const FirdayDate = `${arWeek[5].getDate()}\n금`;
+const SaturdayDate = `${arWeek[6].getDate()}\n토`;
 
 export default function WeeklyCalendar() {
   const dispatch = useDispatch();
