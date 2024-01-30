@@ -1,7 +1,7 @@
 import React from 'react';
-import NewPost from '../../components/layouts/NewPost';
-import MainFunctionNavbar from '../../components/layouts/MainFunctionNavbar';
-import UnitSpaceInfoRow from '../../components/ui/UnitSpaceInfoRow';
+import NewPost from '../../../components/layouts/NewPost';
+import MainFunctionNavbar from '../../../components/layouts/MainFunctionNavbar';
+import UnitSpaceInfoRow from '../../../components/ui/UnitSpaceInfoRow';
 import * as S from './LocationList.style';
 
 export default function LocationList() {

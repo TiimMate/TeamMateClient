@@ -17,8 +17,8 @@ import LoginLanding from './pages/Login/Landing/LoginLanding';
 import TeamDetailPage from './pages/team/TeamDetailPage';
 import TeamSelectionPage from './pages/team/TeamSelectionPage';
 import TeamCreatePage from './pages/team/TeamCreatePage';
-import LocationList from './pages/Location/LocationList';
-import LocationWrite from './pages/Location/LocationWrite';
+import LocationList from './pages/Location/Home/LocationList';
+import LocationWrite from './pages/Location/Write/LocationWrite';
 import CommunityList from './pages/Community/Home/CommunityList';
 import CommunityWrite from './pages/Community/Write/CommunityWrite';
 function App() {
