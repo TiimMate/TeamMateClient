@@ -7,8 +7,18 @@ import useModal from '../../../hooks/useModal';
 import ReviewModal from '../../ui/ReviewModal';
 
 function MatchInfo({ id, unitInfo, state }) {
-  const { title, date, time, Region, GymName, Capacity, age, level, gender } =
-    unitInfo;
+  const {
+    category,
+    title,
+    date,
+    time,
+    Region,
+    GymName,
+    Capacity,
+    age,
+    level,
+    gender,
+  } = unitInfo;
 
   const { isOpen, openModal, closeModal } = useModal();
 
@@ -25,7 +35,11 @@ function MatchInfo({ id, unitInfo, state }) {
       </S.Content>
       <S.Space />
       <S.Button onClick={openModal}>{state}명 남음</S.Button>
-      <ReviewModal isOpen={isOpen} onClose={closeModal} />
+      <ReviewModal
+        isOpen={isOpen}
+        target={category === 'GUEST' ? '게스트' : '팀'}
+        onClose={closeModal}
+      />
     </S.Container>
   );
 }

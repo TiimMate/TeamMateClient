@@ -6,7 +6,7 @@ import Rating from '../Rating';
 import * as S from './ReviewModal.style';
 import Button130 from '../../atoms/Button130';
 
-const ReviewModal = ({ isOpen, onClose }) => {
+const ReviewModal = ({ isOpen, target, onClose }) => {
   const [guestScore, setGuestScore] = useState(0);
   const [sportsmanshipScore, setSportsmanshipScore] = useState(0);
 
@@ -33,7 +33,7 @@ const ReviewModal = ({ isOpen, onClose }) => {
 
           <S.RatingGroup>
             <Rating
-              label='팀의 실력은 어떤가요?'
+              label={`${target}의 실력은 어떤가요?`}
               score={guestScore}
               onChange={handleGuestRatingChange}
             />
