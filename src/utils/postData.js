@@ -9,6 +9,8 @@ export const contents = [
       imgUrl: [
         { alt: 'baseball', url: '/assets/img-ball/img-ball-baseball.png' },
         { alt: 'bowling', url: '/assets/img-ball/img-ball-bowling.png' },
+        { alt: 'basketball', url: '/assets/img-ball/img-ball-basketball.png' },
+        { alt: 'soccer', url: '/assets/img-ball/img-ball-soccer.png' },
       ],
     },
   },
@@ -19,7 +21,10 @@ export const contents = [
       title: '오늘 가스 공사 역대급 게임 했네요.',
       contents: '이것은 커뮤니티 더미 데이터입니다.',
       date: '1/27 21:00',
-      imgUrl: '../../../assets/highfive.png',
+      imgUrl: [
+        { alt: 'baseball', url: '/assets/img-ball/img-ball-baseball.png' },
+        { alt: 'bowling', url: '/assets/img-ball/img-ball-bowling.png' },
+      ],
     },
   },
   {
