@@ -12,9 +12,9 @@ const Button70 = styled.button`
 
   border-radius: 6px;
   border: none;
-  background: var(--Blue300, #0075ff);
+  background: var(--blue-400, #0075ff);
   cursor: pointer;
-  color: var(--White, #fff);
+  color: white;
   text-align: center;
 
   /* 12md */
@@ -26,7 +26,7 @@ const Button70 = styled.button`
   letter-spacing: -0.6px;
 
   &:disabled {
-    background: var(--Gray200, #d9d9d9);
+    background: var(--gray-200, #d9d9d9);
     cursor: default;
   }
 `;

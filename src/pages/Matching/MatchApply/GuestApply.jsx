@@ -26,5 +26,5 @@ const Main = styled.div`
 const Space = styled.div`
   height: 30px;
 
-  background: var(--Gray100, #f0f0f0);
+  background: var(--gray-100, #f0f0f0);
 `;

@@ -34,7 +34,7 @@ export const ModalHeader = styled.div`
   align-items: center;
   margin-bottom: 20px;
 
-  color: var(--Blue300, #0075ff);
+  color: var(--blue-400, #0075ff);
   font-family: Pretendard;
   font-size: 16px;
   font-style: normal;
@@ -65,11 +65,11 @@ export const ModalButton = styled(Button300)`
   padding: 0 0.75rem;
 
   border-radius: 0.375rem;
-  border: 1px solid var(--Gray200, #d9d9d9);
+  border: 1px solid var(--gray-200, #d9d9d9);
 
-  background: var(--Gray100, #f0f0f0);
+  background: var(--gray-100, #f0f0f0);
 
-  color: var(--Gray300, #636363);
+  color: var(--gray-300, #636363);
   font-family: Pretendard Variable;
   font-size: 14px;
   font-style: normal;
@@ -81,7 +81,7 @@ export const ModalButton = styled(Button300)`
   box-sizing: border-box;
 `;
 export const ModalButtonBlue = styled(ModalButton)`
-  background: #0075ff;
+  background: var(--blue-400, #0075ff);
   color: white;
 `;
 
@@ -93,7 +93,7 @@ export const ModalInput = styled.input`
   margin-bottom: 0.63rem;
   padding: 0.625rem 0.75rem;
   border-radius: 0.375rem;
-  border: 1px solid var(--Gray200, #d9d9d9);
+  border: 1px solid var(--gray-200, #d9d9d9);
 
-  background: var(--Gray100, #f0f0f0);
+  background: var(--gray-100, #f0f0f0);
 `;

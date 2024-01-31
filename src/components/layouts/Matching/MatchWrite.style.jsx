@@ -7,6 +7,6 @@ export const Wrapper = styled.div`
   height: 70px;
   padding: 20px 117px 21px 20px;
   align-items: center;
-  border-top: 1px solid var(--Gray100, #f0f0f0);
-  background: var(--Blue100, #f4f9ff);
+  border-top: 1px solid var(--gray-100, #f0f0f0);
+  background: var(--blue-100, #f4f9ff);
 `;
