@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import SelectButton from '../SelectButton';
 
-function AgeSelector({ selected, setSelected }) {
+function TeamAgeSelector({ selected, setSelected }) {
   const toggleSpot = (index, setter) => {
     setter((spots) => {
-      const newSpots = new Array(spots.length).fill(false); // 배열 복사
+      const newSpots = [...spots]; // 배열 복사
       newSpots[index] = !spots[index]; // 특정 인덱스의 값을 토글
       return newSpots; // 업데이트된 배열로 상태 설정
     });
@@ -71,4 +71,4 @@ const Label = styled.label`
   border: none;
   margin-bottom: 0.31rem;
 `;
-export default AgeSelector;
+export default TeamAgeSelector;

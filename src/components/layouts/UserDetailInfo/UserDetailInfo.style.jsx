@@ -1,13 +1,5 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-
-  padding: 2.19rem 4.44%;
-`;
-
 export const InfoRow = styled.div`
   display: flex;
   justify-content: start;

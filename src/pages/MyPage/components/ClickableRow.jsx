@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 
   height: 50px;
 
-  border-bottom: 1px solid var(--Gray200, #d9d9d9);
+  border-top: 1px solid var(--Gray200, #d9d9d9);
   background: var(--White, #fff);
 `;
 

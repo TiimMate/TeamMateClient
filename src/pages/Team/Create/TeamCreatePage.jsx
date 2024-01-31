@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
 import TeamGenderSelector from '../../../components/layouts/Selector/Gender/TeamGenderSelector';
-import AgeSelector from '../../../components/layouts/Selector/Age/AgeSelector';
+import TeamAgeSelector from '../../../components/layouts/Selector/Age/TeamAgeSelector';
 import LocationSelector from '../../../components/layouts/Selector/Location/LocationSelector';
 import GymSelector from '../../../components/layouts/Selector/Gym/GymSelector';
 import LogoUploader from '../../../components/ui/LogoUploader/LogoUploader';
-import Gap from '../components/Gap';
+import Gap from '../../../components/atoms/Gap';
 
 import renderMembers from '../../../utils/renderMembers';
 import {
@@ -62,13 +62,12 @@ function TeamCreatePage() {
           setSelected={setSelectedGender}
         />
 
-        <AgeSelector selected={selectedAge} setSelected={setSelectedAge} />
+        <TeamAgeSelector selected={selectedAge} setSelected={setSelectedAge} />
 
         <LocationSelector />
 
         <GymSelector />
       </S.TeamDetailSection>
-
 
       <Gap height='3.81rem'>
         <S.Title>팀원 목록</S.Title>
