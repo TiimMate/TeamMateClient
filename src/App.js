@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import styles from './styles/App.module.css';
 import Navbar from './components/layouts/Navbar/Navbar';
 import Tapbar from './components/layouts/Tapbar';
@@ -28,6 +28,7 @@ import LocationWrite from './pages/Location/Write/LocationWrite';
 import LocationDetail from './pages/Location/Detail/LocationDetail';
 import CommunityList from './pages/Community/Home/CommunityList';
 import CommunityWrite from './pages/Community/Write/CommunityWrite';
+import CommunityDetail from './pages/Community/Detail/CommunityDetail';
 
 function App() {
   return (
@@ -72,6 +73,7 @@ function ContentBox() {
         <Route path='/location/detail/:id' element={<LocationDetail />} />
         <Route path='/community' element={<CommunityList />} />
         <Route path='/community/write' element={<CommunityWrite />} />
+        <Route path='/community/detail/:id' element={<CommunityDetail />} />
       </Routes>
       <Footer />
     </div>

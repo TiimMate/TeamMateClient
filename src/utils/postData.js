@@ -86,6 +86,7 @@ export const locationcontents = [
         { alt: 'baseball', url: '/assets/img-ball/img-ball-baseball.png' },
         { alt: 'bowling', url: '/assets/img-ball/img-ball-bowling.png' },
       ],
+      recruit: true,
     },
   },
   {
@@ -95,6 +96,7 @@ export const locationcontents = [
       contents: '최고의 운동장입니다. 얼른 겟하세요.',
       date: '1/27 21:00',
       imgUrl: '../../../assets/highfive.png',
+      recruit: true,
     },
   },
   {
@@ -104,6 +106,7 @@ export const locationcontents = [
       contents: '최고의 운동장입니다. 얼른 겟하세요.',
       date: '1/31 22:13',
       imgUrl: '../../../assets/highfive.png',
+      recruit: false,
     },
   },
 ];

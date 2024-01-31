@@ -1,7 +1,7 @@
 import React from 'react';
-import NewPost from '../../../components/layouts/NewPost';
+import NewPost from '../../../components/layouts/NewPostButton';
 import MainFunctionNavbar from '../../../components/layouts/MainFunctionNavbar';
-import UnitSpaceInfoRow from '../../../components/ui/UnitSpaceInfoRow';
+import UnitSpaceInfoRow from '../../../components/ui/UnitSpaceInfoRow/UnitSpaceInfoRow';
 import * as S from './LocationList.style';
 import { useNavigate } from 'react-router-dom';
 import { locationcontents } from '../../../utils/postData';
