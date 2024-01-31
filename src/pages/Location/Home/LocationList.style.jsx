@@ -10,6 +10,11 @@ export const HeaderContainer = styled.header`
   align-items: flex-start;
 `;
 
+export const Gap = styled.section`
+  height: 30px;
+  background: var(--Gray100, #f0f0f0);
+`;
+
 export const Title = styled.div`
   color: var(--kakao-logo, #000);
   font-family: 'Pretendard';

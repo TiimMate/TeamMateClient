@@ -25,6 +25,7 @@ import TeamCreatePage from './pages/Team/Create/TeamCreatePage';
 
 import LocationList from './pages/Location/Home/LocationList';
 import LocationWrite from './pages/Location/Write/LocationWrite';
+import LocationDetail from './pages/Location/Detail/LocationDetail';
 import CommunityList from './pages/Community/Home/CommunityList';
 import CommunityWrite from './pages/Community/Write/CommunityWrite';
 
@@ -68,6 +69,7 @@ function ContentBox() {
         />
         <Route path='/location' element={<LocationList />} />
         <Route path='/location/write' element={<LocationWrite />} />
+        <Route path='/location/detail/:id' element={<LocationDetail />} />
         <Route path='/community' element={<CommunityList />} />
         <Route path='/community/write' element={<CommunityWrite />} />
       </Routes>
