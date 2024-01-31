@@ -21,10 +21,11 @@ export default function ContentBody({ content }) {
     <S.Wrapper>
       <S.ContentBodyContainer>
         <Carousel
-          showArrows={false}
+          showArrows={true}
           autoPlay={false}
           infiniteLoop={true}
           showThumbs={false}
+          showDots={false}
           selectedItem={contentImages[currentIndex]}
           onChange={handleChange}
         >
