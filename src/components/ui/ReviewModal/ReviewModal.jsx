@@ -43,7 +43,9 @@ const ReviewModal = ({ isOpen, target, onClose }) => {
               onChange={handleSportsmanshipRatingChange}
             />
           </S.RatingGroup>
-          <Button130>작성 완료</Button130>
+          <Button130 disabled={guestScore === 0 || sportsmanshipScore === 0}>
+            작성 완료
+          </Button130>
         </S.ReviewLayout>
       </Modal>
     </Portal>
