@@ -29,6 +29,8 @@ import CommunityList from './pages/Community/Home/CommunityList';
 import CommunityWrite from './pages/Community/Write/CommunityWrite';
 
 import MyPage from './pages/MyPage/Home/MyPage';
+import SavedPost from './pages/MyPage/Community/Save/SavedPost';
+import WritedPost from './pages/MyPage/Community/Write/WritedPost';
 
 function App() {
   return (
@@ -57,6 +59,8 @@ function ContentBox() {
 
         {/* My Page */}
         <Route path='/my' element={<MyPage />} />
+        <Route path='/my/community/save' element={<SavedPost />} />
+        <Route path='/my/community/write' element={<WritedPost />} />
 
         <Route path='/login' element={<Login />} />
         <Route path='/login/landing' element={<LoginLanding />} />
