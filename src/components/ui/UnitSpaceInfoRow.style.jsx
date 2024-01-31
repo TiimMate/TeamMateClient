@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import Button70 from '../atoms/Button70';
 
 export const Wrapper = styled.div`
   box-sizing: border-box;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   border-top: 1px solid var(--gray-100, #f0f0f0);
   padding: 20px;
@@ -11,10 +12,11 @@ export const Wrapper = styled.div`
   height: 4.375rem;
 `;
 
-export const SpaceName = styled.div`
-  margin-right: auto;
+export const Title = styled.div`
+  margin-right: 0 auto;
+  width: 62%;
   color: var(--kakao-logo, #000);
-  text-align: center;
+  text-align: left;
 
   /* 12md */
   font-family: Pretendard;
@@ -25,6 +27,6 @@ export const SpaceName = styled.div`
   letter-spacing: -0.6px;
 `;
 
-export const ButtonContainer = styled.div`
+export const ApplyButton = styled(Button70)`
   margin-left: auto;
 `;

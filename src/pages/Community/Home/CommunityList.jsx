@@ -52,7 +52,7 @@ export default function CommunityList() {
   return (
     <S.Wrapper>
       <MainFunctionNavbar />
-      <NewPost onClick={handleNewPost}></NewPost>
+      <NewPost onClick={handleNewPost} />
 
       <S.HeaderContainer>
         <S.Category>구분</S.Category>
