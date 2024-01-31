@@ -16,8 +16,7 @@ export const Nav = styled.nav`
 
 export const NavItem = styled.a`
   padding: 5px;
-  color: ${(props) =>
-    props.isActive ? 'var(--blue-400), #0075ff)' : 'var(--gray-200, #D9D9D9)'};
+  color: ${(props) => (props.isActive ? 'var(--blue-400)' : 'var(--gray-200)')};
   text-align: center;
   font-size: 12px;
   font-weight: 700;
