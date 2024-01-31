@@ -4,17 +4,17 @@ import * as S from './Modal.style';
 
 import xClose from '../../../assets/x-close.svg';
 
-function Modal({ title, children, onClose }) {
+function Modal({ title, titleAlign = 'left', children, onClose }) {
   return (
     <S.ModalBackdrop onClick={onClose}>
       <S.ModalContainer
         onClick={(e) => e.stopPropagation() /* 모달 밖 클릭 방지 */}
       >
         <S.ModalHeader>
-          <S.ModalTitle>
-            {title}
-            <S.CloseButton src={xClose} alt='close-btn' onClick={onClose} />
-          </S.ModalTitle>
+          <S.ModalTitle titleAlign={titleAlign}>{title}</S.ModalTitle>
+          <S.CloseButton type='button' onClick={onClose}>
+            <img src={xClose} alt='닫기' />
+          </S.CloseButton>
         </S.ModalHeader>
         <S.ModalContent>{children}</S.ModalContent>
       </S.ModalContainer>
