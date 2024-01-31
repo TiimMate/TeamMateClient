@@ -24,7 +24,7 @@ const TEAMS_INFOS = [
   { id: 4, name: '시간', logoUrl: '#' },
   { id: 5, name: '성남 FC', logoUrl: '#' },
 ];
-const COLOR_LIST = ['#0075ff', '#86ff91'];
+const COLOR_LIST = ['var(--blue-400, #0075ff)', '#86ff91'];
 
 function TeamSelectionPage() {
   const navigate = useNavigate();

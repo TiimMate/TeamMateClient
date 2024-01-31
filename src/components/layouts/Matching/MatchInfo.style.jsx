@@ -40,7 +40,7 @@ export const TeamName = styled.p`
 `;
 
 export const MatchLocation = styled.p`
-  color: var(--Blue300, #0075ff);
+  color: var(--blue-400, #0075ff);
   font-family: Pretendard;
   font-size: 8px;
   font-style: normal;
@@ -57,7 +57,7 @@ export const MatchDetail = styled.p`
   font-weight: 400;
   line-height: 16px; /* 200% */
   letter-spacing: -0.4px;
-  color: var(--Black, var(--kakao-logo, #000));
+  color: var(--black, var(--kakao-logo, #000));
   font-family: Pretendard;
   font-size: 8px;
   font-style: normal;
@@ -79,7 +79,7 @@ export const Button = styled.div`
   justify-content: center;
   color: white;
   border-radius: 6px;
-  background: var(--Blue300, #0075ff);
+  background: var(--blue-400, #0075ff);
 
   font-family: Pretendard;
   font-size: 12px;

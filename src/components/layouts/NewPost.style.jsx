@@ -4,8 +4,8 @@ export const Wrapper = styled.button`
   display: flex;
   align-items: center;
   width: 100%;
-  border-top: 1px solid var(--Gray100, #f0f0f0);
-  background: var(--Blue100, #f4f9ff);
+  border-top: 1px solid var(--gray-100, #f0f0f0);
+  background: var(--blue-100, #f4f9ff);
   border: none;
 `;
 
@@ -25,7 +25,7 @@ export const Icon = styled.div`
 `;
 
 export const Message = styled.h3`
-  color: var(--Blue300, #0075ff);
+  color: var(--blue-400, #0075ff);
   font-family: Pretendard;
   font-size: 16px;
   font-style: normal;

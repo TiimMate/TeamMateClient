@@ -20,7 +20,7 @@ export const TeamLogo = styled(CircleLogo)`
   width: 100px;
   height: 100px;
 
-  background-color: var(--Blue200, #bddbff);
+  background-color: var(--blue-200, #bddbff);
 `;
 
 export const TeamNameSection = styled.section`
@@ -32,6 +32,7 @@ export const TeamNameSection = styled.section`
   padding: 1.5rem 8.33%;
 `;
 export const TeamName = styled.h2`
+
   color: var(--Blue300, #0075ff);
   font-family: Pretendard;
   font-size: 28px;
@@ -55,7 +56,7 @@ export const description = styled.p`
   gap: 10px;
   border-radius: 6px;
 
-  background: var(--Gray100, #f0f0f0);
+  background: var(--gray-100, #f0f0f0);
 
   color: var(--Black, var(--kakao-logo, #000));
   /* 12pt */
@@ -84,7 +85,7 @@ export const SaveButton = styled(Button300)`
 
   width: 80%;
 
-  color: #fff;
+  color: white;
 
   font-family: Apple SD Gothic Neo;
   font-size: 0.9375rem;

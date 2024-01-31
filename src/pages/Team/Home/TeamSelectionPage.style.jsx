@@ -22,9 +22,9 @@ export const TeamDiv = styled.div`
   background-size: cover;
   background-position: center;
   background-color: ${(props) =>
-    props.$backgroundColor || 'var(--Blue300, #0075ff)'};
+    props.$backgroundColor || 'var(--blue-400, #0075ff)'};
   color: ${(props) =>
-    props.$backgroundColor === '#86ff91' ? '#0075ff' : '#FFF'};
+    props.$backgroundColor === '#86ff91' ? 'var(--blue-400, #0075ff)' : '#FFF'};
 `;
 export const TeamName = styled.h1`
   position: absolute;
@@ -51,7 +51,7 @@ export const TeamLogo = styled(CircleLogo)`
   padding-top: 36%;
   border-radius: 50%;
 
-  background-color: var(--Blue100, #f4f9ff);
+  background-color: var(--blue-100, #f4f9ff);
 `;
 export const TeamImage = styled.img`
   position: absolute;
@@ -64,7 +64,7 @@ export const TeamImage = styled.img`
 export const AddTeamDiv = styled(TeamDiv)`
   padding-top: 70%;
 
-  background: var(--Gray200, #d9d9d9);
+  background: var(--gray-200, #d9d9d9);
 `;
 export const PlusIcon = styled.img`
   position: absolute;
