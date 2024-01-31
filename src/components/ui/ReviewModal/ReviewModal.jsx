@@ -24,7 +24,7 @@ const ReviewModal = ({ isOpen, onClose }) => {
 
   return (
     <Portal portalKey={PORTAL_KEYS.modalLayout}>
-      <Modal title='리뷰 작성' onClose={onClose}>
+      <Modal title='리뷰 작성' titleAlign='center' onClose={onClose}>
         <S.ReviewLayout>
           <S.ReviewDescription>
             매치는 즐거우셨나요?

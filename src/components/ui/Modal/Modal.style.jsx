@@ -27,27 +27,31 @@ export const ModalContainer = styled.div`
 `;
 
 export const ModalHeader = styled.div`
-  border-bottom: 1px solid var(--gray-100, #f0f0f0);
-`;
-
-export const ModalTitle = styled.h2`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0px 12px;
+  position: relative;
+  padding: 0px 11px;
+  border-bottom: 1px solid var(--gray-100, #f0f0f0);
+  height: 48px;
+`;
 
+export const ModalTitle = styled.h2`
+  width: 100%;
   color: var(--blue-400, #0075ff);
   font-family: Pretendard;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
-  height: 48px;
   line-height: 29px;
   letter-spacing: -0.8px;
+  text-align: ${({ titleAlign }) => titleAlign};
 `;
 
-export const CloseButton = styled.img`
-  cursor: pointer;
+export const CloseButton = styled.button`
+  display: flex;
+  position: absolute;
+  right: 11px;
 `;
 
 export const ModalContent = styled.div`
