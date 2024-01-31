@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 
-import Gap from '../components/Gap';
+import Gap from '../../../components/atoms/Gap';
 import Level from '../../../components/ui/Level/Level';
 
 import renderMembers from '../../../utils/renderMembers';
@@ -39,7 +39,6 @@ function TeamDetailPage() {
       <Gap />
 
       <S.TeamMembersSection>{renderMembers(members)}</S.TeamMembersSection>
-
 
       <Gap height='7.19rem'>
         <S.SaveButton onClick={() => navigate('/team/update')}>

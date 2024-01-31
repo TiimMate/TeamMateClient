@@ -6,7 +6,7 @@ import Info1 from '../../../assets/info1.svg';
 
 function UserDetailInfo({ userInfo: { gender, age, address, position } }) {
   return (
-    <S.Wrapper>
+    <>
       <S.InfoRow>
         <S.Icon src={User1} />
         <S.Span>
@@ -21,7 +21,7 @@ function UserDetailInfo({ userInfo: { gender, age, address, position } }) {
         <S.Icon src={Info1} />
         <S.Span>{position}</S.Span>
       </S.InfoRow>
-    </S.Wrapper>
+    </>
   );
 }
 
