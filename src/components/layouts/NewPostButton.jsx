@@ -1,4 +1,4 @@
-import * as S from './NewPost.style';
+import * as S from './NewPostButton.style';
 
 import pencil from '../../assets/icon_pencil.svg';
 
