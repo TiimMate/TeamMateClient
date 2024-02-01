@@ -10,7 +10,7 @@ import {
 function MatchMemberList({ name }) {
   const members = formatMemberData(MEMBER_RAW_DATA_BASKETBALL);
 
-  const { height, weight, position } = members[0].unitInfo;
+  const { title, description } = members[0].unitInfo;
 
   const { isOpen, openModal, closeModal } = useModal();
 
@@ -23,10 +23,8 @@ function MatchMemberList({ name }) {
 
       <S.Space />
       <S.Content>
-        <S.TeamName>{name}</S.TeamName>
-        <S.MatchDetail>
-          {`${height}cm | ${weight}kg | ${position}`}
-        </S.MatchDetail>
+        <S.TeamName>{`${title}`}</S.TeamName>
+        <S.MatchDetail>{`${description}`}</S.MatchDetail>
       </S.Content>
       <S.Space />
       <S.Button onClick={openModal}>리뷰 작성</S.Button>
