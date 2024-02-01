@@ -6,12 +6,15 @@ const SPORT_OPTIONS = [
   { id: 3, sport: '야구' },
 ];
 
-function SportSelect({ sport, setSport }) {
+function SportSelect({ sport, setSport, disabled = false }) {
   return (
     <S.Wrapper>
-      종목 선택
-      <br />
-      <S.SelectBar value={sport} onChange={(e) => setSport(e.target.value)}>
+      <S.Title $disabled={disabled}>종목 선택</S.Title>
+      <S.SelectBar
+        disabled={disabled}
+        value={sport}
+        onChange={(e) => setSport(e.target.value)}
+      >
         {SPORT_OPTIONS.map((option) => (
           <option value={option.id} key={option.id}>
             {option.sport}
