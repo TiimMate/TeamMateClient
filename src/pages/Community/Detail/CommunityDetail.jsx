@@ -7,13 +7,13 @@ import UnitCommentRow from '../../../components/ui/UnitCommentRow/UnitCommentRow
 import NewComment from '../../../components/layouts/Comment/NewComment';
 import { useParams } from 'react-router';
 
-import { contents, comments } from '../../../utils/postData';
+import { communitycontents, comments } from '../../../utils/postData';
 
 export default function CommunityDetail() {
   const { id } = useParams();
 
   // api로 해당 id 게시글 정보 받아오기
-  const content = contents[id - 1];
+  const content = communitycontents[id - 1];
   console.log(content);
 
   const renderComment = () =>
@@ -30,7 +30,7 @@ export default function CommunityDetail() {
       <MainFunctionNavbar />
       <ContentHeader title={content.unitBoard.title} />
       <ContentBody content={content.unitBoard} />
-      <CommentHeader postId={id}></CommentHeader>
+      <CommentHeader postInfo={content} postId={id} />
       {renderComment()}
       <NewComment />
     </S.Wrapper>

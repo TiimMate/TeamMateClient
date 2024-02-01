@@ -6,6 +6,7 @@ import * as S from './LocationList.style';
 import { useNavigate } from 'react-router-dom';
 import { locationcontents } from '../../../utils/postData';
 import WeeklyCalender from '../../../components/layouts/WeeklyCalendar';
+import Gap from '../../../components/layouts/Gap';
 
 export default function LocationList() {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ export default function LocationList() {
     <S.Wrapper>
       <MainFunctionNavbar />
       <WeeklyCalender />
-      <S.Gap />
+      <Gap height='1.875rem' />
       <NewPost onClick={handleNewPost} />
 
       <S.HeaderContainer>

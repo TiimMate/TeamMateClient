@@ -91,10 +91,18 @@ export const SearchGym = styled.button`
   line-height: 150%; /* 18px */
   letter-spacing: -0.6px;
 `;
-export const SaveButton = styled(Button300)`
-  width: 100%;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
+export const SaveButton = styled(Button300)`
+  width: 46%;
+`;
+export const CompleteButton = styled(Button300)`
+  width: 46%;
+`;
 export const ModalDescription = styled.p`
   margin-right: auto;
   color: var(--Gray400, #212121);
@@ -137,4 +145,36 @@ export const GoNavigateButton = styled(ModalChildButton)`
 export const GoWriteButton = styled(ModalChildButton)`
   margin-left: auto;
   background: var(--Blue300, #0075ff);
+`;
+export const ModalBackdrop = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+
+  background-color: rgba(0, 0, 0, 0.5);
+`;
+export const ModalCompleteWrapper = styled.div`
+  display: flex;
+  width: 320px;
+  height: 52px;
+  padding: 12px 145px 11px 11px;
+  align-items: center;
+  border-radius: 12px;
+  background: #fff;
+
+  /* Drop Shadow */
+  box-shadow: 2px 4px 12px 0px rgba(0, 0, 0, 0.25);
+`;
+
+export const ModalCompleteMsg = styled.h2`
+  color: var(--Blue300, #0075ff);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 29px; /* 181.25% */
+  letter-spacing: -0.8px;
 `;

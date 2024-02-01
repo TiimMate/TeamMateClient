@@ -33,7 +33,7 @@ export const CountNumber = styled.div`
   letter-spacing: -0.6px;
 `;
 
-export const BookMark = styled.div`
+export const IconButton = styled.button`
   display: flex;
   align-items: center;
   margin-left: auto;
@@ -41,7 +41,7 @@ export const BookMark = styled.div`
   gap: 4px;
 `;
 
-export const BookMarkGuide = styled.div`
+export const IconGuide = styled.div`
   width: 52px;
   color: var(--Gray300, #636363);
 

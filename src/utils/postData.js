@@ -1,6 +1,7 @@
 export const communitycontents = [
   {
     id: 1,
+    menu: 'community',
     unitBoard: {
       category: 'notice',
       title: '커뮤니티 이용 규칙 안내드립니다.',
@@ -12,10 +13,12 @@ export const communitycontents = [
         { alt: 'basketball', url: '/assets/img-ball/img-ball-basketball.png' },
         { alt: 'soccer', url: '/assets/img-ball/img-ball-soccer.png' },
       ],
+      bookmark: true,
     },
   },
   {
     id: 2,
+    menu: 'community',
     unitBoard: {
       category: '',
       title: '오늘 가스 공사 역대급 게임 했네요.',
@@ -25,10 +28,12 @@ export const communitycontents = [
         { alt: 'baseball', url: '/assets/img-ball/img-ball-baseball.png' },
         { alt: 'bowling', url: '/assets/img-ball/img-ball-bowling.png' },
       ],
+      bookmark: false,
     },
   },
   {
     id: 3,
+    menu: 'community',
     unitBoard: {
       category: 'bookmark',
       title:
@@ -36,6 +41,7 @@ export const communitycontents = [
       contents: '이것은 커뮤니티 더미 데이터입니다.',
       date: '1/26 21:11',
       imgUrl: '../../../assets/highfive.png',
+      bookmark: true,
     },
   },
 ];
@@ -78,6 +84,7 @@ export const comments = [
 export const locationcontents = [
   {
     id: 1,
+    menu: 'location',
     unitLocation: {
       title: '하남시 청소년 수련관',
       contents: '금요일 13:00 - 17:00 대관 가능합니다.',
@@ -91,6 +98,7 @@ export const locationcontents = [
   },
   {
     id: 2,
+    menu: 'location',
     unitLocation: {
       title: '서울 상문고등학교 운동장 토요일 1회 대관 비었습니다.',
       contents: '최고의 운동장입니다. 얼른 겟하세요.',
@@ -101,6 +109,7 @@ export const locationcontents = [
   },
   {
     id: 3,
+    menu: 'location',
     unitLocation: {
       title: '서울 상문고등학교 운동장 토요일 1회 대관 비었습니다.',
       contents: '최고의 운동장입니다. 얼른 겟하세요.',
