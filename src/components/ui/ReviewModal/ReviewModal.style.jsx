@@ -3,9 +3,9 @@ import styled from 'styled-components';
 export const ReviewLayout = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
+  align-items: center;
   width: 100%;
-  gap: 14px;
+  gap: 20px;
 `;
 
 export const ReviewDescription = styled.div`

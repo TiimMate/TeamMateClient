@@ -4,8 +4,9 @@ import Portal from '../../layouts/Portal';
 import Modal from '../Modal/Modal';
 import Rating from '../Rating';
 import * as S from './ReviewModal.style';
+import Button130 from '../../atoms/Button130';
 
-const ReviewModal = ({ isOpen, onClose }) => {
+const ReviewModal = ({ isOpen, target, onClose }) => {
   const [guestScore, setGuestScore] = useState(0);
   const [sportsmanshipScore, setSportsmanshipScore] = useState(0);
 
@@ -23,7 +24,7 @@ const ReviewModal = ({ isOpen, onClose }) => {
 
   return (
     <Portal portalKey={PORTAL_KEYS.modalLayout}>
-      <Modal title='리뷰 작성' onClose={onClose}>
+      <Modal title='리뷰 작성' titleAlign='center' onClose={onClose}>
         <S.ReviewLayout>
           <S.ReviewDescription>
             매치는 즐거우셨나요?
@@ -32,7 +33,7 @@ const ReviewModal = ({ isOpen, onClose }) => {
 
           <S.RatingGroup>
             <Rating
-              label='팀의 실력은 어떤가요?'
+              label={`${target}의 실력은 어떤가요?`}
               score={guestScore}
               onChange={handleGuestRatingChange}
             />
@@ -42,6 +43,9 @@ const ReviewModal = ({ isOpen, onClose }) => {
               onChange={handleSportsmanshipRatingChange}
             />
           </S.RatingGroup>
+          <Button130 disabled={guestScore === 0 || sportsmanshipScore === 0}>
+            작성 완료
+          </Button130>
         </S.ReviewLayout>
       </Modal>
     </Portal>
