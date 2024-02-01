@@ -1,8 +1,7 @@
 import React from 'react';
 import * as S from './MatchHistoryForHostMember.style';
 import WeeklyCalendar from '../../../components/layouts/WeeklyCalendar';
-// import MatchList from '../../../components/layouts/Matching/MatchMemberList';
-import MatchList from '../../../components/layouts/Matching/MatchList';
+import MatchMemberList from '../../../components/layouts/Matching/MatchMemberList';
 
 const NAV_ITEM_LIST = [
   {
@@ -29,7 +28,7 @@ export default function MatchHistoryForHostMember() {
       </S.Nav>
       <S.Banner></S.Banner>
       <WeeklyCalendar />
-      <MatchList />
+      <MatchMemberList />
     </S.PageLayout>
   );
 }
