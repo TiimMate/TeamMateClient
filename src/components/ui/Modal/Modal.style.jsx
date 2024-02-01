@@ -22,23 +22,27 @@ export const ModalContainer = styled.div`
   width: 300px;
   border-radius: 12px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-<<<<<<<<< Temporary merge branch 1:src/components/ui/Modal/Modal.style.jsx
-
   background-color: white;
-=========
-  width: 18rem; // 원하는 대로 조절
->>>>>>>>> Temporary merge branch 2:src/components/ui/Modal.jsx
 `;
 
 export const ModalHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
-  padding: 0px 11px;
-  border-bottom: 1px solid var(--gray-100, #f0f0f0);
-  height: 48px;
+  margin-bottom: '20px';
+
+  color: var(--blue-400, #0075ff);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+
+  line-height: 29px;
+  letter-spacing: -0.8px;
+  
+  border-bottom: 1px solid var(--Gray100, #f0f0f0);
 `;
+
 
 export const ModalTitle = styled.h2`
   width: 100%;

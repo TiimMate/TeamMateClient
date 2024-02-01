@@ -16,7 +16,7 @@ export default function UnitBoardRow({ id, unitBoard }) {
   return (
     <S.Wrapper>
       <S.Icon>{renderIcon(category)}</S.Icon>
-      <S.Title to={`/community/detail/${id}`}>{title}</S.Title>
+      <S.Title to={`/community/${id}/detail`}>{title}</S.Title>
       <S.Date>{date}</S.Date>
     </S.Wrapper>
   );

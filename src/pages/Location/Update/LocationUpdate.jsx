@@ -2,20 +2,25 @@ import MainFunctionNavbar from '../../../components/layouts/MainFunctionNavbar';
 import ContentHeader from '../../../components/layouts/Content/ContentHeader';
 import Modal from '../../../components/ui/Modal/Modal';
 import camera from '../../../assets/btn_camera.svg';
-import * as S from './LocationWrite.style';
+import * as S from './LocationUpdate.style';
 import { useRef, useState } from 'react';
 import { useCallbackPrompt } from '../../../hooks/useCallbackPrompt';
+import useModal from '../../../hooks/useModal';
 import { useNavigate } from 'react-router';
 import TextInput from '../../../components/layouts/TextInput';
 import TextArea from '../../../components/layouts/TextArea';
 import Gap from '../../../components/layouts/Gap';
 import WeeklyCalendar from '../../../components/layouts/WeeklyCalendar';
 import arrowDown from '../../../assets/chevron-down-4 1.svg';
+import Toast from '../../../components/ui/Toast/Toast';
 
-export default function LocationWrite() {
+export default function LocationUpdate() {
   const fileInput = useRef();
   const [imageList, setImageList] = useState([]);
   const [shouldConfirm, setShouldConfirm] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const { isOpen, openModal, closeModal } = useModal();
+
   const [valid, setValid] = useState(true);
   const navigate = useNavigate();
 
@@ -89,6 +94,13 @@ export default function LocationWrite() {
         </Modal>
       )}
 
+      {showToast && (
+        <Toast
+          message='대관정보를 마감하였습니다!'
+          setToastState={setShowToast}
+        ></Toast>
+      )}
+
       <MainFunctionNavbar />
       <ContentHeader title={'글 작성하기'} />
       <S.ContentBody>
@@ -144,7 +156,12 @@ export default function LocationWrite() {
           <img src={arrowDown} alt='arrow-down' />
         </S.SearchGym>
 
-        <S.SaveButton onClick={handleSubmit}>저장하기</S.SaveButton>
+        <S.ButtonWrapper>
+          <S.CompleteButton onClick={() => setShowToast(true)}>
+            마감하기
+          </S.CompleteButton>
+          <S.SaveButton onClick={handleSubmit}>저장하기</S.SaveButton>
+        </S.ButtonWrapper>
       </S.GymContentBody>
     </S.Wrapper>
   );
