@@ -52,7 +52,8 @@ export default function CommunityWrite() {
   };
 
   const handleSubmit = () => {
-    // 서버에 저장
+    // 필수 항목 입력 완료시 서버에 저장
+    // 현재는 라우팅(pathname변경)으로 인한 prompt-modal이슈
     navigate('/community');
   };
 
