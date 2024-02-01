@@ -1,4 +1,4 @@
-import UnitBoardRow from '../../../../components/ui/UnitBoardRow';
+import UnitBoardRow from '../../../../components/ui/UnitBoardRow/UnitBoardRow';
 import Banner from '../../../../components/ui/Banner';
 
 import * as S from './SavedPost.style';

@@ -1,7 +1,9 @@
 import * as S from './ContentBody.style';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
-import { useState } from 'react';
+import { useState, Component } from 'react';
+import leftArrow from '../../../assets/icon_left.svg';
+import rightArrow from '../../../assets/icon_right.svg';
 
 export default function ContentBody({ content }) {
   const [currentIndex, setCurrentIndex] = useState();
