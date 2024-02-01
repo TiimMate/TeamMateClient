@@ -32,7 +32,7 @@ export const ModalHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: ${(props) => (props.parent === 'false' ? '0px' : '20px')};
 
   color: var(--blue-400, #0075ff);
   font-family: Pretendard;

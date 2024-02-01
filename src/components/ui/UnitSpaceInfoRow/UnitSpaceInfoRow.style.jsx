@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-import Button70 from '../atoms/Button70';
+import Button70 from '../../atoms/Button70';
+import { Link } from 'react-router-dom';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled(Link)`
   box-sizing: border-box;
   display: flex;
   justify-content: flex-start;

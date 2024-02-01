@@ -1,6 +1,6 @@
 import * as S from './NewPostButton.style';
 
-import pencil from '../../assets/icon_pencil.svg';
+import pencil from '../../assets/icon_pencil_blue.svg';
 
 export default function NewPost({ onClick }) {
   return (
