@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
 export const HeaderContainer = styled.header`
   display: flex;
   align-items: flex-start;
-  border-top: 1px solid var(--Gray100, #f0f0f0);
+  border-top: 1px solid var(--gray-100, #f0f0f0);
   padding: 9px 26px 9px 16px;
 `;
 

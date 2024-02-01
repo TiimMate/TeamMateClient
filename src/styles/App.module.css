@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
 
-  background-color: var(--gray-200);
+  background-color: var(--gray-200, #d9d9d9);
 
   /* For Navbar, Tapbar */
   padding-top: 3.125rem;
@@ -18,5 +18,17 @@
   width: 100%;
   max-width: 768px;
 
-  background-color: #fff;
+  background-color: white;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
 }

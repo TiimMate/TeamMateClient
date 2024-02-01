@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
 export const Header = styled.h3`
   align-items: center;
   padding: 0.75rem 0.75rem 0.8125rem 1.875rem;
-  border-bottom: 0.0625rem solid var(--Gray200, #d9d9d9);
+  border-bottom: 0.0625rem solid var(--gray-200, #d9d9d9);
   color: var(--kakao-logo, #000);
 
   /* 14 */
@@ -50,7 +50,7 @@ export const Image = styled.button`
   gap: 0.25rem;
   flex-shrink: 0;
   border-radius: 0.375rem;
-  border: 0.0625rem solid var(--Gray200, #d9d9d9);
+  border: 0.0625rem solid var(--gray-200, #d9d9d9);
 `;
 
 export const NewImageList = styled.div`
@@ -68,7 +68,7 @@ export const NewImage = styled.img`
   justify-content: center;
   align-items: center;
   border-radius: 0.375rem;
-  border: 0.0625rem solid var(--Gray200, #d9d9d9);
+  border: 0.0625rem solid var(--gray-200, #d9d9d9);
 `;
 
 export const SaveButton = styled(Button300)`
