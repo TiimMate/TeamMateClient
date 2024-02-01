@@ -1,10 +1,14 @@
 import { useNavigate, useParams } from 'react-router-dom';
 
+import Gap from '../../../components/atoms/Gap';
+import Level from '../../../components/ui/Level/Level';
+
+import renderMembers from '../../../utils/renderMembers';
 import {
   formatMemberData,
   MEMBER_RAW_DATA_BASKETBALL,
 } from '../../../utils/formatData';
-import UnitInfoRow from '../../../components/ui/UnitInfoRow/UnitInfoRow';
+
 import * as S from './TeamDetailPage.style';
 
 const TEAM_INFO = {
@@ -19,49 +23,28 @@ function TeamDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const renderMember = () =>
-    formatMemberData(MEMBER_RAW_DATA_BASKETBALL).map((member) => (
-      <UnitInfoRow
-        key={member.id}
-        unitInfo={member.unitInfo}
-        btnText={member.btnText}
-        onClickBtn={member.onClickBtn}
-      />
-    ));
+  const members = formatMemberData(MEMBER_RAW_DATA_BASKETBALL);
 
   return (
     <S.Wrapper>
       <S.TeamBanner>
         <S.TeamLogo />
       </S.TeamBanner>
+
       <S.TeamNameSection>
         <S.TeamName>{TEAM_INFO.name}</S.TeamName>
-
-        <S.statusDiv>
-          <S.levelDiv>
-            <S.levelSpan>팀의 실력레벨</S.levelSpan>
-            <S.levelGauge>실력레벨</S.levelGauge>
-          </S.levelDiv>
-          <S.levelDiv>
-            <S.levelSpan>팀의 메너레벨</S.levelSpan>
-            <S.levelGauge>메너레벨</S.levelGauge>
-          </S.levelDiv>
-        </S.statusDiv>
-
+        <Level />
         <S.description>{TEAM_INFO.description}</S.description>
       </S.TeamNameSection>
-      <S.Gap />
+      <Gap />
 
-      <S.TeamMembersSection>{renderMember()}</S.TeamMembersSection>
-      <S.GapWithSaveButton>
-        <S.SaveButton
-          onClick={() => {
-            navigate(`/team/${id}/update`);
-          }}
-        >
+      <S.TeamMembersSection>{renderMembers(members)}</S.TeamMembersSection>
+
+      <Gap height='7.19rem'>
+        <S.SaveButton onClick={() => navigate('/team/update')}>
           수정하기
         </S.SaveButton>
-      </S.GapWithSaveButton>
+      </Gap>
     </S.Wrapper>
   );
 }

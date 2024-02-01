@@ -8,6 +8,7 @@ import { useCallbackPrompt } from '../../../hooks/useCallbackPrompt';
 import { useNavigate } from 'react-router';
 import TextInput from '../../../components/layouts/TextInput';
 import TextArea from '../../../components/layouts/TextArea';
+import { Link } from 'react-router-dom';
 
 export default function CommunityWrite() {
   const fileInput = useRef();

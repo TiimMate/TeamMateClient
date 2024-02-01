@@ -18,7 +18,7 @@ const Button300 = styled.button`
   cursor: pointer;
   color: white;
 
-  color: #fff;
+  color: white;
   font-family: Pretendard;
   font-size: 15px;
   font-style: normal;
@@ -26,7 +26,7 @@ const Button300 = styled.button`
   line-height: 150%; /* 22.5px */
 
   &:disabled {
-    background: var(--Gray200, #d9d9d9);
+    background: var(--gray-200, #d9d9d9);
     cursor: default;
   }
 `;

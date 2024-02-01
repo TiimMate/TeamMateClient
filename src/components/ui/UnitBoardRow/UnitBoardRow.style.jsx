@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top: 1px solid var(--Gray100, #f0f0f0);
+  border-top: 1px solid var(--gray-100, #f0f0f0);
   padding: 26px 16px;
   width: 100%;
   height: 4.375rem;
@@ -32,7 +32,7 @@ export const Title = styled(Link)`
 
 export const Date = styled.p`
   margin-left: auto;
-  color: var(--Gray300, #636363);
+  color: var(--gray-300, #636363);
   font-family: 'Pretendard';
   font-size: 9px;
   font-style: normal;

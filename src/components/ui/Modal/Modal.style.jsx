@@ -19,33 +19,47 @@ export const ModalContainer = styled.div`
   left: 50%;
   transform: translateX(-50%);
 
-  width: 288px;
-
-  padding: 10px 20px;
+  width: 300px;
   border-radius: 12px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+<<<<<<<<< Temporary merge branch 1:src/components/ui/Modal/Modal.style.jsx
 
   background-color: white;
+=========
+  width: 18rem; // 원하는 대로 조절
+>>>>>>>>> Temporary merge branch 2:src/components/ui/Modal.jsx
 `;
 
 export const ModalHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  position: relative;
+  padding: 0px 11px;
+  border-bottom: 1px solid var(--gray-100, #f0f0f0);
+  height: 48px;
+`;
 
-  color: var(--Blue300, #0075ff);
+export const ModalTitle = styled.h2`
+  width: 100%;
+  color: var(--blue-400, #0075ff);
   font-family: Pretendard;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
-
   line-height: 29px;
   letter-spacing: -0.8px;
+  text-align: ${({ titleAlign }) => titleAlign};
 `;
 
-export const CloseButton = styled.img`
-  cursor: pointer;
+export const CloseButton = styled.button`
+  display: flex;
+  position: absolute;
+  right: 11px;
+`;
+
+export const ModalContent = styled.div`
+  padding: 10px 10px 20px 10px;
 `;
 
 export const ModalContentWrapper = styled.div`
@@ -65,12 +79,12 @@ export const ModalButton = styled(Button300)`
   padding: 0 0.75rem;
 
   border-radius: 0.375rem;
-  border: 1px solid var(--Gray200, #d9d9d9);
+  border: 1px solid var(--gray-200, #d9d9d9);
 
-  background: var(--Gray100, #f0f0f0);
+  background: var(--gray-100, #f0f0f0);
 
-  color: var(--Gray300, #636363);
-  font-family: Pretendard Variable;
+  color: var(--gray-300, #636363);
+  font-family: Pretendard;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -81,7 +95,7 @@ export const ModalButton = styled(Button300)`
   box-sizing: border-box;
 `;
 export const ModalButtonBlue = styled(ModalButton)`
-  background: #0075ff;
+  background: var(--blue-400, #0075ff);
   color: white;
 `;
 
@@ -93,7 +107,7 @@ export const ModalInput = styled.input`
   margin-bottom: 0.63rem;
   padding: 0.625rem 0.75rem;
   border-radius: 0.375rem;
-  border: 1px solid var(--Gray200, #d9d9d9);
+  border: 1px solid var(--gray-200, #d9d9d9);
 
-  background: var(--Gray100, #f0f0f0);
+  background: var(--gray-100, #f0f0f0);
 `;
