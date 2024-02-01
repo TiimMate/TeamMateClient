@@ -2,15 +2,17 @@ import React from 'react';
 import WeeklyCalendar from '../../../components/layouts/WeeklyCalendar';
 import * as S from './GuestHost.style';
 import { useNavigate } from 'react-router-dom';
-
+import TimePicker from '../../../components/layouts/TimePicker';
 export default function GuestHost() {
   const navigate = useNavigate();
 
   return (
     <S.Main>
       <S.Gap>모임 시간</S.Gap>
+      <WeeklyCalendar />
+
       <S.MatchTimeSection>
-        <WeeklyCalendar />
+        <TimePicker />
       </S.MatchTimeSection>
       <S.Gap>게스트 모집</S.Gap>
       <S.GuestHostSection>
