@@ -2,10 +2,6 @@ import React from 'react';
 import * as S from './MatchMemberList.style';
 import useModal from '../../../hooks/useModal';
 import ReviewModal from '../../ui/ReviewModal';
-import {
-  MEMBER_RAW_DATA_BASKETBALL,
-  formatMemberData,
-} from '../../../utils/formatData';
 
 function MatchMemberList({ member }) {
   const { title, description, avatarUrl } = member;
