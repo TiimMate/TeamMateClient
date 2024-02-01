@@ -2,18 +2,25 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   box-sizing: border-box;
-  display: grid;
-  place-items: center;
-
-  grid-template-columns: 33px 40px 106px 1fr 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   height: 70px;
-  padding: 8px 21px 8px 20px;
+  padding: 8px 20px;
+`;
+
+export const MemberInfo = styled.div`
+  display: flex;
+  gap: 20px;
+  align-items: center;
 `;
 
 export const ProfileImg = styled.img`
   width: 40px;
   height: 40px;
+  border: 1px solid black; // 이미지가 없는 관계로 임시 코드 생성
+  border-radius: 50%;
 `;
 
 export const Content = styled.div`
@@ -22,53 +29,25 @@ export const Content = styled.div`
 `;
 
 export const TeamName = styled.p`
-  color: var(--kakao-logo, #000);
-
-  /* 12md */
+  color: black;
   font-family: Pretendard;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 22px; /* 183.333% */
-  letter-spacing: -0.6px;
-`;
-
-export const MatchLocation = styled.p`
-  color: var(--blue-400, #0075ff);
-  font-family: Pretendard;
-  font-size: 8px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px; /* 200% */
-  letter-spacing: -0.4px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
 `;
 
 export const MatchDetail = styled.p`
-  color: var(--kakao-logo, #000);
+  color: var(--gray-300);
   font-family: Pretendard;
-  font-size: 8px;
-  font-style: normal;
+  font-size: 10px;
   font-weight: 400;
-  line-height: 16px; /* 200% */
-  letter-spacing: -0.4px;
-  color: var(--black, var(--kakao-logo, #000));
-  font-family: Pretendard;
-  font-size: 8px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px;
-  letter-spacing: 0px;
-`;
-export const Space = styled.div`
-  width: 100%;
-  display: flex;
+  line-height: 20px;
 `;
 
 export const Button = styled.div`
   display: flex;
   width: 70px;
   height: 30px;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   color: white;
@@ -77,8 +56,6 @@ export const Button = styled.div`
 
   font-family: Pretendard;
   font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 22px; /* 183.333% */
+  line-height: 22px;
   letter-spacing: -0.6px;
 `;

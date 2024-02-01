@@ -13,14 +13,13 @@ function MatchMemberList({ member }) {
 
   return (
     <S.Container>
-      <S.ProfileImg src={avatarUrl} alt={title} />
-
-      <S.Space />
-      <S.Content>
-        <S.TeamName>{`${title}`}</S.TeamName>
-        <S.MatchDetail>{`${description}`}</S.MatchDetail>
-      </S.Content>
-      <S.Space />
+      <S.MemberInfo>
+        <S.ProfileImg src={avatarUrl} alt={title} />
+        <S.Content>
+          <S.TeamName>{`${title}`}</S.TeamName>
+          <S.MatchDetail>{`${description}`}</S.MatchDetail>
+        </S.Content>
+      </S.MemberInfo>
       <S.Button onClick={() => openModal(member)}>리뷰 작성</S.Button>
       <ReviewModal isOpen={isOpen} onClose={closeModal} member={member} />
     </S.Container>
