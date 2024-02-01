@@ -14,6 +14,7 @@ import TeamHost from './pages/Matching/MatchHost/TeamHost';
 import MatchingHome from './pages/Matching/MatchingHome';
 import MatchHistoryForGuest from './pages/Matching/MatchHistoryForGuest';
 import MatchHistoryForHost from './pages/Matching/MatchHistoryForHost';
+import MatchHistoryForHostMember from './pages/Matching/MatchHistoryForHostMember';
 
 import Login from './pages/Login/Home/Login';
 import LoginLanding from './pages/Login/Landing/LoginLanding';
@@ -76,6 +77,10 @@ function ContentBox() {
         <Route
           path='/matching/history/host'
           element={<MatchHistoryForHost />}
+        />
+        <Route
+          path='/matching/history/host/member'
+          element={<MatchHistoryForHostMember />}
         />
         <Route path='/location' element={<LocationList />} />
         <Route path='/location/write' element={<LocationWrite />} />
