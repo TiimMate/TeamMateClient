@@ -25,20 +25,6 @@ export const TextArea = styled.textarea`
 
   &:focus {
     outline: none;
-    border: 1px solid
-      ${(props) =>
-        props.valid ? 'var(--Blue300, #0075FF)' : 'var(--Error-Red, #F00)'};
+    border: 1px solid var(--Blue300, #0075ff);
   }
-`;
-
-export const ErrorMessage = styled.div`
-  color: var(--Error-Red, #f00);
-
-  /* 10pt */
-  font-family: Pretendard;
-  font-size: 10px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 18px; /* 180% */
-  letter-spacing: -0.5px;
 `;
