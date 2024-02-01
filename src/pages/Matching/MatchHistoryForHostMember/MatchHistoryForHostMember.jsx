@@ -2,6 +2,10 @@ import React from 'react';
 import * as S from './MatchHistoryForHostMember.style';
 import WeeklyCalendar from '../../../components/layouts/WeeklyCalendar';
 import MatchMemberList from '../../../components/layouts/Matching/MatchMemberList';
+import {
+  formatMemberData,
+  MEMBER_RAW_DATA_BASKETBALL,
+} from '../../../utils/formatData';
 
 const NAV_ITEM_LIST = [
   {
@@ -16,6 +20,8 @@ const NAV_ITEM_LIST = [
   },
 ];
 
+const HOST_MEMBERS_DATA = formatMemberData(MEMBER_RAW_DATA_BASKETBALL);
+
 export default function MatchHistoryForHostMember() {
   return (
     <S.PageLayout>
@@ -28,7 +34,10 @@ export default function MatchHistoryForHostMember() {
       </S.Nav>
       <S.Banner></S.Banner>
       <WeeklyCalendar />
-      <MatchMemberList />
+
+      {HOST_MEMBERS_DATA.map((hostMember, index) => (
+        <MatchMemberList key={index} member={hostMember.unitInfo} />
+      ))}
     </S.PageLayout>
   );
 }
