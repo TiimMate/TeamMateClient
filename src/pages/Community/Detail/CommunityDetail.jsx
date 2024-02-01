@@ -14,6 +14,7 @@ export default function CommunityDetail() {
 
   // api로 해당 id 게시글 정보 받아오기
   const content = communitycontents[id - 1];
+
   console.log(content);
 
   const renderComment = () =>

@@ -42,6 +42,7 @@ export const IconButton = styled.button`
 `;
 
 export const IconGuide = styled.div`
+
   width: 52px;
   color: var(--Gray300, #636363);
 

@@ -2,9 +2,7 @@ import NewPost from '../../../components/layouts/NewPostButton';
 import UnitBoardRow from '../../../components/ui/UnitBoardRow/UnitBoardRow';
 import * as S from './CommunityList.style';
 import MainFunctionNavbar from '../../../components/layouts/MainFunctionNavbar';
-
 import { communitycontents } from '../../../utils/postData';
-
 import { useNavigate } from 'react-router-dom';
 
 export default function CommunityList() {

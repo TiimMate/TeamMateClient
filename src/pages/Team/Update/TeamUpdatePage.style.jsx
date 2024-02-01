@@ -44,7 +44,6 @@ export const Input = styled.input`
   letter-spacing: -0.04375rem;
 `;
 
-
 export const TeamLogoSection = styled.section``;
 
 export const TeamNameSection = styled.section`

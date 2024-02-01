@@ -2,10 +2,10 @@ import { useState } from 'react';
 
 import LogoUploader from '../../../components/ui/LogoUploader/LogoUploader';
 import TeamGenderSelector from '../../../components/layouts/Selector/Gender/TeamGenderSelector';
-import AgeSelector from '../../../components/layouts/Selector/Age/AgeSelector';
+import TeamAgeSelector from '../../../components/layouts/Selector/Age/TeamAgeSelector';
 import LocationSelector from '../../../components/layouts/Selector/Location/LocationSelector';
 import GymSelector from '../../../components/layouts/Selector/Gym/GymSelector';
-import Gap from '../components/Gap';
+import Gap from '../../../components/atoms/Gap';
 
 import renderMembers from '../../../utils/renderMembers';
 import {
@@ -62,7 +62,7 @@ function TeamUpdatePage() {
           setSelected={setSelectedGender}
         />
 
-        <AgeSelector selected={selectedAge} setSelected={setSelectedAge} />
+        <TeamAgeSelector selected={selectedAge} setSelected={setSelectedAge} />
 
         <LocationSelector />
 

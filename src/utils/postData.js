@@ -81,6 +81,7 @@ export const comments = [
     },
   },
 ];
+
 export const locationcontents = [
   {
     id: 1,
