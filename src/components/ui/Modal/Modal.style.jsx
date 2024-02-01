@@ -19,12 +19,9 @@ export const ModalContainer = styled.div`
   left: 50%;
   transform: translateX(-50%);
 
-  width: 288px;
-
-  padding: 10px 20px;
+  width: 300px;
   border-radius: 12px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-
   background-color: white;
 `;
 
@@ -42,10 +39,31 @@ export const ModalHeader = styled.div`
 
   line-height: 29px;
   letter-spacing: -0.8px;
+  
+  border-bottom: 1px solid var(--Gray100, #f0f0f0);
 `;
 
-export const CloseButton = styled.img`
-  cursor: pointer;
+
+export const ModalTitle = styled.h2`
+  width: 100%;
+  color: var(--blue-400, #0075ff);
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 29px;
+  letter-spacing: -0.8px;
+  text-align: ${({ titleAlign }) => titleAlign};
+`;
+
+export const CloseButton = styled.button`
+  display: flex;
+  position: absolute;
+  right: 11px;
+`;
+
+export const ModalContent = styled.div`
+  padding: 10px 10px 20px 10px;
 `;
 
 export const ModalContentWrapper = styled.div`
@@ -70,7 +88,7 @@ export const ModalButton = styled(Button300)`
   background: var(--gray-100, #f0f0f0);
 
   color: var(--gray-300, #636363);
-  font-family: Pretendard Variable;
+  font-family: Pretendard;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;

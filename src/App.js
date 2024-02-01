@@ -1,7 +1,7 @@
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import styles from './styles/App.module.css';
 import Navbar from './components/layouts/Navbar/Navbar';
-import Tapbar from './components/layouts/Tapbar';
+import Tapbar from './components/layouts/Tapbar/Tapbar';
 import Footer from './components/layouts/Footer';
 
 import WeeklyCalendar from './components/layouts/WeeklyCalendar';
@@ -14,6 +14,7 @@ import TeamHost from './pages/Matching/MatchHost/TeamHost';
 import MatchingHome from './pages/Matching/MatchingHome';
 import MatchHistoryForGuest from './pages/Matching/MatchHistoryForGuest';
 import MatchHistoryForHost from './pages/Matching/MatchHistoryForHost';
+import MatchHistoryForHostMember from './pages/Matching/MatchHistoryForHostMember';
 
 import Login from './pages/Login/Home/Login';
 import LoginLanding from './pages/Login/Landing/LoginLanding';
@@ -30,6 +31,13 @@ import LocationUpdate from './pages/Location/Update/LocationUpdate';
 
 import CommunityList from './pages/Community/Home/CommunityList';
 import CommunityWrite from './pages/Community/Write/CommunityWrite';
+import CommunityDetail from './pages/Community/Detail/CommunityDetail';
+
+import MyPage from './pages/MyPage/Home/MyPage';
+import MyUpdate from './pages/MyPage/Update/MyUpdatePage';
+import SavedPost from './pages/MyPage/Community/Save/SavedPost';
+import WritedPost from './pages/MyPage/Community/Write/WritedPost';
+
 import CommunityDetail from './pages/Community/Detail/CommunityDetail';
 
 function App() {
@@ -57,6 +65,12 @@ function ContentBox() {
         <Route path='/team/:id/update' element={<TeamUpdatePage />} />
         <Route path='/team/:id' element={<TeamDetailPage />} />
 
+        {/* My Page */}
+        <Route path='/my' element={<MyPage />} />
+        <Route path='/my/community/save' element={<SavedPost />} />
+        <Route path='/my/community/write' element={<WritedPost />} />
+        <Route path='my/update' element={<MyUpdate />} />
+
         <Route path='/login' element={<Login />} />
         <Route path='/login/landing' element={<LoginLanding />} />
         <Route path='/matching' element={<MatchingHome />} />
@@ -69,6 +83,10 @@ function ContentBox() {
         <Route
           path='/matching/history/host'
           element={<MatchHistoryForHost />}
+        />
+        <Route
+          path='/matching/history/host/member'
+          element={<MatchHistoryForHostMember />}
         />
         <Route path='/location' element={<LocationList />} />
         <Route path='/location/write' element={<LocationWrite />} />

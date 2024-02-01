@@ -56,6 +56,7 @@ export default function CommentHeader({ postInfo, postId }) {
         <S.IconButton onClick={() => handleIconButton()}>
           {renderIconButton(postCategory, bookmark)}
         </S.IconButton>
+
       </S.HeaderContainer>
     </S.Wrapper>
   );

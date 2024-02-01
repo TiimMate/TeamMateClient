@@ -32,7 +32,6 @@ export const TeamNameSection = styled.section`
   padding: 1.5rem 8.33%;
 `;
 export const TeamName = styled.h2`
-
   color: var(--Blue300, #0075ff);
   font-family: Pretendard;
   font-size: 28px;

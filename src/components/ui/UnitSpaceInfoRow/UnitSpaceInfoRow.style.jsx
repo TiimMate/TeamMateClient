@@ -6,6 +6,7 @@ export const Wrapper = styled(Link)`
   box-sizing: border-box;
   display: flex;
   justify-content: flex-start;
+
   align-items: center;
   border-top: 1px solid var(--gray-100, #f0f0f0);
   padding: 20px;
