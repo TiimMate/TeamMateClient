@@ -6,8 +6,11 @@ import MatchList from '../../../components/layouts/Matching/MatchList';
 import MatchListFilter from '../../../components/layouts/Matching/MatchListFilter';
 import MatchWrite from '../../../components/layouts/Matching/MatchWrite';
 import { Banner } from '../../../components/layouts/Banner.style';
+import { useNavigate } from 'react-router-dom';
 
 export default function GuestApply() {
+  const navigate = useNavigate();
+
   return (
     <Main>
       <MainFunctionNavbar />
@@ -15,7 +18,11 @@ export default function GuestApply() {
       <WeeklyCalendar />
       <Space />
       <MatchListFilter />
-      <MatchWrite />
+      <MatchWrite
+        onClick={() => {
+          navigate('/matching/guesthost');
+        }}
+      />
       <MatchList />
     </Main>
   );

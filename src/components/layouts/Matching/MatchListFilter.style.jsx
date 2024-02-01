@@ -4,17 +4,22 @@ export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+
   width: 100%;
   height: 42px;
 `;
 
 export const Menu = styled.div`
-  background: white;
   position: absolute;
   left: 50%;
+
   width: 74px;
-  text-align: center;
   border-radius: 3px;
+
+  background: white;
+
+  text-align: center;
+
   opacity: 0;
   visibility: hidden;
   transform: translate(-50%, -20px);
@@ -41,15 +46,17 @@ export const DropdownContainer = styled.div`
 
 export const DropdownButton = styled.div`
   display: flex;
-  width: 53px;
-  height: 24px;
-  padding: 0px 10px;
   justify-content: center;
   align-items: center;
+
+  width: 53px;
+  height: 24px;
+  margin: 0px 5px;
+  padding: 0px 10px;
+
+  background: #fff;
   border-radius: 6px;
   border: 1px solid #d9d9d9;
-  background: #fff;
-  margin: 0px 5px;
 
   color: #636363;
   text-align: center;
@@ -64,6 +71,14 @@ export const DropdownButton = styled.div`
 `;
 
 export const Ul = styled.ul`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0;
+  margin: 0;
+
   & > li {
     margin-bottom: 10px;
   }
@@ -73,12 +88,6 @@ export const Ul = styled.ul`
   }
 
   list-style-type: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
 `;
 
 export const Li = styled.li`

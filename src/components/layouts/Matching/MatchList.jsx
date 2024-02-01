@@ -54,7 +54,12 @@ export default function MatchList() {
   return (
     <S.Wrapper>
       {dummy.map((info) => (
-        <MatchInfo id={info.id} unitInfo={info.unitInfo} state={info.state} />
+        <MatchInfo
+          id={info.id}
+          unitInfo={info.unitInfo}
+          state={info.state}
+          page={'apply'}
+        />
       ))}
     </S.Wrapper>
   );

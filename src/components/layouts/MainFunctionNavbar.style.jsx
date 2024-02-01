@@ -2,23 +2,26 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Main = styled.div`
+  box-sizing: border-box;
   width: 100%;
+  height: 50px;
+  border-bottom: 1px solid var(--Gray200, #d9d9d9);
 `;
 
 export const Wrapper = styled.nav`
+  box-sizing: border-box;
   overflow: hidden;
-
-  background: var(--White, #fff);
+  display: flex;
+  width: 100%;
+  height: 50px;
+  align-items: center;
 `;
 
 export const Button = styled.div`
   text-align: center;
   float: left;
-
   width: 18%;
-  height: 50px;
-
-  line-height: 50px;
+  height: 20px;
 `;
 
 export const NavStyle = styled(NavLink)`
