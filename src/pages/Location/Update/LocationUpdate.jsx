@@ -12,12 +12,13 @@ import TextArea from '../../../components/layouts/TextArea';
 import Gap from '../../../components/layouts/Gap';
 import WeeklyCalendar from '../../../components/layouts/WeeklyCalendar';
 import arrowDown from '../../../assets/chevron-down-4 1.svg';
+import Toast from '../../../components/ui/Toast/Toast';
 
 export default function LocationUpdate() {
   const fileInput = useRef();
   const [imageList, setImageList] = useState([]);
   const [shouldConfirm, setShouldConfirm] = useState(false);
-
+  const [showToast, setShowToast] = useState(false);
   const { isOpen, openModal, closeModal } = useModal();
 
   const [valid, setValid] = useState(true);
@@ -63,10 +64,6 @@ export default function LocationUpdate() {
     navigate('/location');
   };
 
-  const handleCompleteModal = () => {
-    setTimeout(() => closeModal(), 3000);
-  };
-
   function ModalChildren() {
     const renderPromptModalContent = () => {
       return (
@@ -97,12 +94,11 @@ export default function LocationUpdate() {
         </Modal>
       )}
 
-      {isOpen && (
-        <Modal
-          title='대관정보를 마감하였습니다!'
-          parent='false'
-          onClose={closeModal}
-        ></Modal>
+      {showToast && (
+        <Toast
+          message='대관정보를 마감하였습니다!'
+          setToastState={setShowToast}
+        ></Toast>
       )}
 
       <MainFunctionNavbar />
@@ -161,7 +157,9 @@ export default function LocationUpdate() {
         </S.SearchGym>
 
         <S.ButtonWrapper>
-          <S.CompleteButton onClick={openModal}>마감하기</S.CompleteButton>
+          <S.CompleteButton onClick={() => setShowToast(true)}>
+            마감하기
+          </S.CompleteButton>
           <S.SaveButton onClick={handleSubmit}>저장하기</S.SaveButton>
         </S.ButtonWrapper>
       </S.GymContentBody>
