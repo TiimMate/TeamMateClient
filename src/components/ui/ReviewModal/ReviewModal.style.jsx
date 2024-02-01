@@ -3,9 +3,9 @@ import styled from 'styled-components';
 export const ReviewLayout = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
+  align-items: center;
   width: 100%;
-  gap: 14px;
+  gap: 20px;
 `;
 
 export const ReviewDescription = styled.div`
@@ -13,7 +13,7 @@ export const ReviewDescription = styled.div`
   letter-spacing: -0.6px;
   font-size: 12px;
   text-align: center;
-  color: var(--Gray300, #636363);
+  color: var(--gray-300, #636363);
 `;
 
 export const RatingGroup = styled.div`

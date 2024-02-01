@@ -17,8 +17,8 @@ export const Label = styled.span`
 export const Box = styled.div`
   display: flex;
   justify-content: space-between;
-  gap: 12px;
-  padding: 10px 30px;
+  gap: 8px;
+  padding: 10px 20px;
   border-radius: 6px;
   background-color: var(--blue-100);
 `;
