@@ -34,6 +34,8 @@ import MyUpdate from './pages/MyPage/Update/MyUpdatePage';
 import SavedPost from './pages/MyPage/Community/Save/SavedPost';
 import WritedPost from './pages/MyPage/Community/Write/WritedPost';
 
+import CommunityDetail from './pages/Community/Detail/CommunityDetail';
+
 function App() {
   return (
     <div className={styles.screen}>
@@ -86,6 +88,7 @@ function ContentBox() {
         <Route path='/location/write' element={<LocationWrite />} />
         <Route path='/community' element={<CommunityList />} />
         <Route path='/community/write' element={<CommunityWrite />} />
+        <Route path='/community/detail/:id' element={<CommunityDetail />} />
       </Routes>
       <Footer />
     </div>

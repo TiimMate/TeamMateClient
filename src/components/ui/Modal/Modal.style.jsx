@@ -22,8 +22,12 @@ export const ModalContainer = styled.div`
   width: 300px;
   border-radius: 12px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+<<<<<<<<< Temporary merge branch 1:src/components/ui/Modal/Modal.style.jsx
 
   background-color: white;
+=========
+  width: 18rem; // 원하는 대로 조절
+>>>>>>>>> Temporary merge branch 2:src/components/ui/Modal.jsx
 `;
 
 export const ModalHeader = styled.div`
