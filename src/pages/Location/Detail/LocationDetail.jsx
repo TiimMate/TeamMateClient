@@ -1,4 +1,4 @@
-import * as S from './CommunityDetail.style';
+import * as S from './LocationDetail.style';
 import MainFunctionNavbar from '../../../components/layouts/MainFunctionNavbar';
 import ContentHeader from '../../../components/layouts/Content/ContentHeader';
 import ContentBody from '../../../components/layouts/Content/ContentBody';
@@ -7,15 +7,13 @@ import UnitCommentRow from '../../../components/ui/UnitCommentRow/UnitCommentRow
 import NewComment from '../../../components/layouts/Comment/NewComment';
 import { useParams } from 'react-router';
 
-import { communitycontents, comments } from '../../../utils/postData';
+import { locationcontents, comments } from '../../../utils/postData';
 
-export default function CommunityDetail() {
+export default function LocationDetail() {
   const { id } = useParams();
 
   // api로 해당 id 게시글 정보 받아오기
-  const content = communitycontents[id - 1];
-
-  console.log(content);
+  const content = locationcontents[id - 1];
 
   const renderComment = () =>
     comments.map((comment) => (
@@ -29,9 +27,9 @@ export default function CommunityDetail() {
   return (
     <S.Wrapper>
       <MainFunctionNavbar />
-      <ContentHeader title={content.unitBoard.title} />
-      <ContentBody content={content.unitBoard} />
-      <CommentHeader postInfo={content} postId={id} />
+      <ContentHeader title={content.unitLocation.title} />
+      <ContentBody content={content.unitLocation} />
+      <CommentHeader postInfo={content} postId={id}></CommentHeader>
       {renderComment()}
       <NewComment />
     </S.Wrapper>

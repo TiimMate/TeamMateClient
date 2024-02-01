@@ -2,9 +2,7 @@ import NewPost from '../../../components/layouts/NewPostButton';
 import UnitBoardRow from '../../../components/ui/UnitBoardRow/UnitBoardRow';
 import * as S from './CommunityList.style';
 import MainFunctionNavbar from '../../../components/layouts/MainFunctionNavbar';
-
-import { contents } from '../../../utils/postData';
-
+import { communitycontents } from '../../../utils/postData';
 import { useNavigate } from 'react-router-dom';
 
 export default function CommunityList() {
@@ -15,7 +13,7 @@ export default function CommunityList() {
   };
 
   const renderPost = () =>
-    contents.map((content) => (
+    communitycontents.map((content) => (
       <UnitBoardRow
         key={content.id}
         id={content.id}
@@ -26,7 +24,7 @@ export default function CommunityList() {
   return (
     <S.Wrapper>
       <MainFunctionNavbar />
-      <NewPost onClick={handleNewPost}></NewPost>
+      <NewPost onClick={handleNewPost} />
 
       <S.HeaderContainer>
         <S.Category>구분</S.Category>
