@@ -3,12 +3,13 @@ import styled from 'styled-components';
 export const PageLayout = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #2c8dff;
+  background-color: var(--blue-300, #2c8dff);
   width: 100%;
   height: 528px;
 `;
@@ -18,7 +19,7 @@ export const MainTitle = styled.h1`
   text-align: center;
   line-height: 36px;
   letter-spacing: -1.2px;
-  color: var(--white, #fff);
+  color: white;
   font-family: Pretendard;
   font-size: 24px;
   font-weight: 700;
@@ -31,7 +32,6 @@ export const MainImage = styled.div`
   justify-content: center;
   gap: 20px 30px;
   margin-top: 20px;
-  width: 768px;
 `;
 
 export const BallContainer = styled.div`
@@ -55,7 +55,7 @@ export const BallName = styled.p`
   margin-top: 2px;
   line-height: 16px; /* 160% */
   letter-spacing: -0.5px;
-  color: var(--white, #fff);
+  color: white;
   text-align: center;
   font-family: Pretendard;
   font-size: 10px;
@@ -67,7 +67,7 @@ export const ImageInfo = styled.div`
   text-align: center;
   line-height: 24px;
   letter-spacing: -0.8px;
-  color: var(--Blue200, #bddbff);
+  color: var(--blue-200, #bddbff);
   font-family: Pretendard;
   font-size: 16px;
 `;
@@ -79,7 +79,7 @@ export const ServiceInfo = styled.div`
 
   /* 임시코드 */
   padding-top: 34px;
-  color: #2c8dff;
+  color: var(--blue-300, #2c8dff);
   text-align: center;
   border: 1px solid black;
 `;
