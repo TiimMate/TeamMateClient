@@ -74,7 +74,7 @@ export const SearchGym = styled.button`
   align-items: center;
   justify-content: center;
   margin-bottom: 25px;
-  padding: 11px 89px 11px 100px;
+  padding: 11px;
   width: 100%;
   height: 40px;
   gap: 4px;

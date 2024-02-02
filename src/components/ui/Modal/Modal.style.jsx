@@ -29,6 +29,10 @@ export const ModalHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+  padding: 0px 11px;
+  border-bottom: 1px solid var(--gray-100, #f0f0f0);
+  height: 48px;
   margin-bottom: '20px';
 
   color: var(--blue-400, #0075ff);
@@ -39,10 +43,7 @@ export const ModalHeader = styled.div`
 
   line-height: 29px;
   letter-spacing: -0.8px;
-  
-  border-bottom: 1px solid var(--Gray100, #f0f0f0);
 `;
-
 
 export const ModalTitle = styled.h2`
   width: 100%;
