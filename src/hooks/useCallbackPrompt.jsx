@@ -25,7 +25,7 @@ export const useCallbackPrompt = (when) => {
   const confirmNavigation = useCallback(() => {
     if (blockedLocation) {
       blockedLocation.retry();
-      cancelNavigation(); // 클린업
+      cancelNavigation();
     }
   }, [blockedLocation, cancelNavigation]);
 
