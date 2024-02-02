@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-/** deprecated: ui => atoms */
 const Banner = styled.div`
   position: relative;
 

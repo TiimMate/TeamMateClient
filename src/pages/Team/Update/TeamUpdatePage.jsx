@@ -7,13 +7,13 @@ import LocationSelector from '../../../components/layouts/Selector/Location/Loca
 import GymSelector from '../../../components/layouts/Selector/Gym/GymSelector';
 import Gap from '../../../components/atoms/Gap';
 
-import renderMembers from '../../../utils/renderMembers';
 import {
   MEMBER_RAW_DATA_BASKETBALL,
   formatMemberData,
 } from '../../../utils/formatData';
 
 import * as S from './TeamUpdatePage.style';
+import MemberRows from '../../../components/ui/MemberRows/MemberRows';
 
 function TeamUpdatePage() {
   const [logoUrl, setLogoUrl] = useState('');
@@ -72,7 +72,9 @@ function TeamUpdatePage() {
       <Gap height='3.81rem'>
         <S.Title>팀원 목록</S.Title>
       </Gap>
-      <S.TeamMembersSection>{renderMembers(members)}</S.TeamMembersSection>
+      <S.TeamMembersSection>
+        <MemberRows members={members} />
+      </S.TeamMembersSection>
 
       <Gap height='7.19rem'>
         <S.SaveButton>저장하기</S.SaveButton>
