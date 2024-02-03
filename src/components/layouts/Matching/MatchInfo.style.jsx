@@ -2,18 +2,21 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   box-sizing: border-box;
+
   display: grid;
   place-items: center;
 
   grid-template-columns: 33px 40px 106px 1fr 70px;
   width: 100%;
   height: 70px;
+
   padding: 8px 21px 8px 20px;
 `;
 
 export const Time = styled.div`
   display: flex;
   align-items: center;
+
   color: var(--kakao-logo, #000);
   font-family: Pretendard;
   font-size: 12px;
@@ -40,7 +43,8 @@ export const TeamName = styled.p`
 `;
 
 export const MatchLocation = styled.p`
-  color: var(--blue-400, #0075ff);
+  color: var(--Blue300, #0075ff);
+
   font-family: Pretendard;
   font-size: 8px;
   font-style: normal;
@@ -57,7 +61,7 @@ export const MatchDetail = styled.p`
   font-weight: 400;
   line-height: 16px; /* 200% */
   letter-spacing: -0.4px;
-  color: var(--black, var(--kakao-logo, #000));
+  color: var(--Black, var(--kakao-logo, #000));
   font-family: Pretendard;
   font-size: 8px;
   font-style: normal;
@@ -72,15 +76,17 @@ export const Space = styled.div`
 
 export const Button = styled.div`
   display: flex;
-  width: 70px;
-  height: 30px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: white;
-  border-radius: 6px;
-  background: var(--blue-400, #0075ff);
 
+  width: 70px;
+  height: 30px;
+  border-radius: 6px;
+
+  background: var(--Blue300, #0075ff);
+
+  color: white;
   font-family: Pretendard;
   font-size: 12px;
   font-style: normal;

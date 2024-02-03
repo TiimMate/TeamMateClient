@@ -2,43 +2,36 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Main = styled.div`
+  box-sizing: border-box;
   width: 100%;
+  height: 50px;
+  border-bottom: 1px solid var(--Gray200, #d9d9d9);
 `;
 
 export const Wrapper = styled.nav`
+  box-sizing: border-box;
   overflow: hidden;
-
-  background: white;
+  display: flex;
+  width: 100%;
+  height: 50px;
+  align-items: center;
 `;
 
 export const Button = styled.div`
   text-align: center;
   float: left;
-
   width: 18%;
-  height: 50px;
-
-  line-height: 50px;
+  height: 20px;
 `;
 
 export const NavStyle = styled(NavLink)`
-  font-family: Pretendard;
   font-size: 12px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 18px; /* 150% */
 
-  color: var(--gray-200, #d9d9d9);
+  color: var(--Gray200, #d9d9d9);
 
   text-decoration: none;
 
   &.active {
-    color: var(--blue-500, #0075ff);
+    color: var(--Blue300, #0075ff);
   }
-`;
-
-export const Banner = styled.div`
-  height: 160px;
-
-  background: var(--blue-600, #2e69ff);
 `;

@@ -18,7 +18,6 @@ export default function MainFunctionNavbar() {
           <S.NavStyle to='/community'>커뮤니티</S.NavStyle>
         </S.Button>
       </S.Wrapper>
-      <S.Banner />
     </S.Main>
   );
 }
