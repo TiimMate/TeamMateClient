@@ -56,41 +56,8 @@ export const NewImage = styled.img`
   border: 0.0625rem solid var(--gray-200, #d9d9d9);
 `;
 
-export const GymContentBody = styled(ContentBody)`
-  padding-top: 18px;
-`;
-export const GymName = styled.div`
-  margin-bottom: 5px;
-  color: var(--Gray300, #636363);
-  font-family: Pretendard;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 20px; /* 166.667% */
-  letter-spacing: -0.6px;
-`;
-export const SearchGym = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 25px;
-  padding: 11px 89px 11px 100px;
-  width: 100%;
-  height: 40px;
-  gap: 4px;
+export const ButtonWrapper = styled(ContentBody)``;
 
-  border-radius: 6px;
-  border: 1px solid var(--Gray200, #d9d9d9);
-  background: #fff;
-
-  color: var(--Gray300, #636363);
-  font-family: Pretendard;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 150%; /* 18px */
-  letter-spacing: -0.6px;
-`;
 export const SaveButton = styled(Button300)`
   width: 100%;
 `;

@@ -27,9 +27,14 @@ export default function LocationDetail() {
   return (
     <S.Wrapper>
       <MainFunctionNavbar />
-      <ContentHeader title={content.unitLocation.title} />
-      <ContentBody content={content.unitLocation} />
-      <CommentHeader postInfo={content} postId={id}></CommentHeader>
+      <ContentHeader
+        needButton={true}
+        postCategory='location'
+        postId={id}
+        title={content.unitLocation.title}
+      />
+      <ContentBody menu='location' content={content.unitLocation} />
+      <CommentHeader postId={id}></CommentHeader>
       {renderComment()}
       <NewComment />
     </S.Wrapper>

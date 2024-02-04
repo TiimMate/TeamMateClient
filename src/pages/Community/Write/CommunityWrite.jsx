@@ -88,7 +88,7 @@ export default function CommunityWrite() {
       )}
 
       <MainFunctionNavbar />
-      <ContentHeader title={'글 작성하기'} />
+      <ContentHeader needButton={false} title={'글 작성하기'} />
       <S.ContentBody>
         <S.Label>글 제목</S.Label>
         <S.InputWrapper>

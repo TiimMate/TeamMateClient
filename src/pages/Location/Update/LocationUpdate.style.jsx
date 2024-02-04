@@ -92,7 +92,7 @@ export const SearchGym = styled.button`
   letter-spacing: -0.6px;
 `;
 
-export const ButtonWrapper = styled.div`
+export const ButtonWrapper = styled(ContentBody)`
   display: flex;
   justify-content: space-between;
 `;
@@ -101,6 +101,7 @@ export const SaveButton = styled(Button300)`
   width: 46%;
 `;
 export const CompleteButton = styled(Button300)`
+  background: var(--Gray300, #636363);
   width: 46%;
 `;
 export const ModalDescription = styled.p`
