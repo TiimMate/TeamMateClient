@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import Modal from '../../../../components/ui/Modal/Modal';
 
 import * as S from './TeamAddModal.style';
-import TextInput from '../../../../components/layouts/TextInput';
 
 function TeamAddModal({ onClose }) {
   const navigate = useNavigate();
@@ -31,7 +30,7 @@ function TeamAddModal({ onClose }) {
     } else {
       return (
         <>
-          <TextInput
+          <S.ModalInput
             type='text'
             placeholder='초대코드 입력'
             value={inviteCode}

@@ -1,70 +1,71 @@
-import { useState } from 'react';
+import useTeamInfo from '../../../hooks/useTeamInfo';
 
-import TeamGenderSelector from '../../../components/layouts/Selector/Gender/TeamGenderSelector';
-import TeamAgeSelector from '../../../components/layouts/Selector/Age/TeamAgeSelector';
-import LocationSelector from '../../../components/layouts/Selector/Location/LocationSelector';
-import GymSelector from '../../../components/layouts/Selector/Gym/GymSelector';
 import LogoUploader from '../../../components/ui/LogoUploader/LogoUploader';
+import TeamGenderSelector from '../../../components/ui/Selector/Gender/TeamGenderSelector';
+import TeamAgeSelector from '../../../components/ui/Selector/Age/TeamAgeSelector';
+import LocationSelector from '../../../components/ui/Selector/Location/LocationSelector';
+import GymSelector from '../../../components/ui/Selector/Gym/GymSelector';
+import MemberRows from '../../../components/ui/MemberRows/MemberRows';
 import Gap from '../../../components/atoms/Gap';
 
-import {
-  MEMBER_RAW_DATA_BASKETBALL,
-  formatMemberData,
-} from '../../../utils/formatData';
+import { formatMemberData } from '../../../utils/formatData';
 
 import * as S from './TeamCreatePage.style';
-import MemberRows from '../../../components/ui/MemberRows/MemberRows';
 
-function TeamCreatePage() {
-  const [logoUrl, setLogoUrl] = useState('');
-  const [selectedGender, setSelectedGender] = useState(
-    new Array(3).fill(false),
-  );
-  const [selectedAge, setSelectedAge] = useState(new Array(5).fill(false));
+function TeamUpdatePage() {
+  const [teamInfo, dispatch] = useTeamInfo();
+  const { logoUrl, name, description, gender, age, location, members } =
+    teamInfo;
 
-  const [members, setMembers] = useState(
-    formatMemberData(MEMBER_RAW_DATA_BASKETBALL, {
-      // options
-      formatBtnText: ({ isLeader }) =>
-        isLeader === 'true' ? '팀장' : '삭제하기',
+  const formattedMembers = formatMemberData(members, {
+    formatBtnText: ({ isLeader }) =>
+      isLeader === 'false' ? '삭제하기' : '팀장',
 
-      // 리더가 아니라면 id에 따라 버튼을 눌렀을 때 삭제하는 함수를 return
-      formatOnClickBtn: ({ id, isLeader }) => {
-        const onClickBtn =
-          isLeader === 'false'
-            ? () =>
-                setMembers((currentMembers) =>
-                  currentMembers.filter((member) => member.id !== id),
-                )
-            : null;
-        return onClickBtn;
-      },
-    }),
-  );
+    formatOnClickBtn: ({ isLeader, id }) =>
+      isLeader === 'false' && (() => dispatch({ type: 'MEMBERS', value: id })),
+  });
 
   return (
     <S.Wrapper>
-      <LogoUploader url={logoUrl} setUrl={setLogoUrl} />
+      <LogoUploader
+        url={logoUrl}
+        setUrl={(url) => dispatch({ type: 'LOGO', value: url })}
+      />
       <Gap />
 
       <S.TeamNameSection>
         <S.Label>팀 이름*</S.Label>
-        <S.NameInput />
+        <S.NameInput
+          vlaue={name}
+          onChange={(e) => dispatch({ type: 'NAME', value: e.target.value })}
+        />
 
         <S.Label>소개</S.Label>
-        <S.TextArea spellCheck='false' />
+        <S.TextArea
+          vlaue={description}
+          onChange={(e) =>
+            dispatch({ type: 'DESCRIPTION', value: e.target.value })
+          }
+          spellCheck='false'
+        />
       </S.TeamNameSection>
       <Gap />
 
       <S.TeamDetailSection>
         <TeamGenderSelector
-          selected={selectedGender}
-          setSelected={setSelectedGender}
+          selected={gender}
+          setSelected={(sel) => dispatch({ type: 'GENDER', value: sel })}
         />
 
-        <TeamAgeSelector selected={selectedAge} setSelected={setSelectedAge} />
+        <TeamAgeSelector
+          selected={age}
+          setSelected={(sel) => dispatch({ type: 'AGE', value: sel })}
+        />
 
-        <LocationSelector />
+        <LocationSelector
+          location={location}
+          setLocation={(sel) => dispatch({ type: 'LOCATION', value: sel })}
+        />
 
         <GymSelector />
       </S.TeamDetailSection>
@@ -73,14 +74,16 @@ function TeamCreatePage() {
         <S.Title>팀원 목록</S.Title>
       </Gap>
       <S.TeamMembersSection>
-        <MemberRows members={members} />
+        <MemberRows members={formattedMembers} />
       </S.TeamMembersSection>
 
       <Gap height='7.19rem'>
-        <S.SaveButton>저장하기</S.SaveButton>
+        <S.SaveButton onClick={() => console.log(teamInfo)}>
+          저장하기
+        </S.SaveButton>
       </Gap>
     </S.Wrapper>
   );
 }
 
-export default TeamCreatePage;
+export default TeamUpdatePage;

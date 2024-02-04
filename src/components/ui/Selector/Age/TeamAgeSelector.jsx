@@ -2,46 +2,29 @@ import styled from 'styled-components';
 import SelectButton from '../SelectButton';
 
 function TeamAgeSelector({ selected, setSelected }) {
-  const toggleSpot = (index, setter) => {
-    setter((spots) => {
-      const newSpots = [...spots]; // 배열 복사
-      newSpots[index] = !spots[index]; // 특정 인덱스의 값을 토글
-      return newSpots; // 업데이트된 배열로 상태 설정
-    });
+  const toggleSpot = (index) => {
+    const newSpots = [...selected];
+    newSpots[index] = !selected[index];
+    setSelected(newSpots);
   };
 
   return (
     <>
       <Label>연령대*</Label>
       <Grid3X2>
-        <SelectButton
-          $selected={selected[0]}
-          onClick={() => toggleSpot(0, setSelected)}
-        >
+        <SelectButton $selected={selected[0]} onClick={() => toggleSpot(0)}>
           10대
         </SelectButton>
-        <SelectButton
-          $selected={selected[1]}
-          onClick={() => toggleSpot(1, setSelected)}
-        >
+        <SelectButton $selected={selected[1]} onClick={() => toggleSpot(1)}>
           20대
         </SelectButton>
-        <SelectButton
-          $selected={selected[2]}
-          onClick={() => toggleSpot(2, setSelected)}
-        >
+        <SelectButton $selected={selected[2]} onClick={() => toggleSpot(2)}>
           30대
         </SelectButton>
-        <SelectButton
-          $selected={selected[3]}
-          onClick={() => toggleSpot(3, setSelected)}
-        >
+        <SelectButton $selected={selected[3]} onClick={() => toggleSpot(3)}>
           40대
         </SelectButton>
-        <SelectButton
-          $selected={selected[4]}
-          onClick={() => toggleSpot(4, setSelected)}
-        >
+        <SelectButton $selected={selected[4]} onClick={() => toggleSpot(4)}>
           50대 이상
         </SelectButton>
       </Grid3X2>

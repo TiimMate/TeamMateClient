@@ -23,6 +23,8 @@ function TeamDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  const isLeader = true;
+
   const members = formatMemberData(MEMBER_RAW_DATA_BASKETBALL);
 
   return (
@@ -42,11 +44,13 @@ function TeamDetailPage() {
         <MemberRows members={members} />
       </S.TeamMembersSection>
 
-      <Gap height='7.19rem'>
-        <S.SaveButton onClick={() => navigate(`/team/${id}/update`)}>
-          수정하기
-        </S.SaveButton>
-      </Gap>
+      {isLeader && (
+        <Gap height='7.19rem'>
+          <S.SaveButton onClick={() => navigate(`/team/${id}/update`)}>
+            수정하기
+          </S.SaveButton>
+        </Gap>
+      )}
     </S.Wrapper>
   );
 }
