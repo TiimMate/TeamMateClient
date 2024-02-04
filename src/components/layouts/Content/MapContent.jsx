@@ -5,14 +5,11 @@ import mapIcon from '../../../assets/icon_map.svg';
 const { kakao } = window;
 
 export default function MapContent({ workFor }) {
-  //const map = '';
   const mapRef = useRef(null);
   const [map, setMap] = useState(null);
   const [marker, setMarker] = useState(null);
   const [searchResult, setSearchResult] = useState('체육관을 검색해보세요');
-  //   const sendDataToParent = (map) => {
-  //     onDataChange(map);
-  //   };
+
   useEffect(() => {
     window.kakao.maps.load(() => {
       const container = mapRef.current;
@@ -22,7 +19,6 @@ export default function MapContent({ workFor }) {
       };
       setMap(new window.kakao.maps.Map(container, options));
       setMarker(new window.kakao.maps.Marker());
-      //sendDataToParent();
     });
   }, []);
 
