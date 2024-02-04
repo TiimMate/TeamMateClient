@@ -18,6 +18,7 @@ import MatchHistoryForHostMember from './pages/Matching/MatchHistoryForHostMembe
 
 import Login from './pages/Login/Home/Login';
 import LoginLanding from './pages/Login/Landing/LoginLanding';
+import LoginHandler from './pages/Login/LoginHandler';
 
 import TeamDetailPage from './pages/Team/Detail/TeamDetailPage';
 import TeamUpdatePage from './pages/Team/Update/TeamUpdatePage';
@@ -72,6 +73,7 @@ function ContentBox() {
 
         <Route path='/login' element={<Login />} />
         <Route path='/login/landing' element={<LoginLanding />} />
+        <Route path='/auth/kakao/callback' element={<LoginHandler />} />
         <Route path='/matching' element={<MatchingHome />} />
         <Route path='/matching/guestapply' element={<GuestApply />} />
         <Route
