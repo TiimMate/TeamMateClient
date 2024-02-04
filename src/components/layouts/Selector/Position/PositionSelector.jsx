@@ -6,7 +6,7 @@ function PositionSelector() {
     <>
       <Label>포지션*</Label>
       <ButtonWithChevron>
-        지역을 선택해주세요 <img src={chevronDown4} alt='chevron' />
+        포지션을 선택해주세요 <img src={chevronDown4} alt='chevron' />
       </ButtonWithChevron>
     </>
   );
