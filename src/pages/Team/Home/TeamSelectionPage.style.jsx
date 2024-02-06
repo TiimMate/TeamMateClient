@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import CircleLogo from '../../../components/atoms/CircleLogo';
 
@@ -13,7 +14,9 @@ export const Wrapper = styled.div`
 
 // Team Selection
 export const TeamSelectionSection = styled.section``;
-export const TeamDiv = styled.div`
+export const TeamLink = styled(Link)`
+  display: block;
+
   position: relative;
 
   width: 100%;
@@ -61,10 +64,14 @@ export const TeamImage = styled.img`
   width: 43%;
   height: 56%;
 `;
-export const AddTeamDiv = styled(TeamDiv)`
+
+export const AddTeamDiv = styled.div`
+  position: relative;
+
+  width: 100%;
   padding-top: 70%;
 
-  background: var(--gray-200, #d9d9d9);
+  background: white;
 `;
 export const PlusIcon = styled.img`
   position: absolute;
@@ -79,4 +86,6 @@ export const AddText = styled(TeamName)`
   top: 65%;
   left: 50%;
   transform: translateX(-50%);
+
+  color: #d9d9d9;
 `;

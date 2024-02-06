@@ -7,9 +7,7 @@ import xClose from '../../../assets/x-close.svg';
 function Modal({ title, titleAlign = 'left', children, onClose }) {
   return (
     <S.ModalBackdrop onClick={onClose}>
-      <S.ModalContainer
-        onClick={(e) => e.stopPropagation() /* 모달 밖 클릭 방지 */}
-      >
+      <S.ModalContainer onClick={(e) => e.stopPropagation()}>
         <S.ModalHeader>
           <S.ModalTitle titleAlign={titleAlign}>{title}</S.ModalTitle>
           <S.CloseButton type='button' onClick={onClose}>
@@ -22,7 +20,7 @@ function Modal({ title, titleAlign = 'left', children, onClose }) {
   );
 }
 
-// 모달 사용을 위한 exported components
+/** deprecated */
 export const { ModalContentWrapper, ModalButton, ModalButtonBlue, ModalInput } =
   S;
 

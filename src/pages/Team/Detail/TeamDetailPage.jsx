@@ -3,13 +3,13 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Gap from '../../../components/atoms/Gap';
 import Level from '../../../components/ui/Level/Level';
 
-import renderMembers from '../../../utils/renderMembers';
 import {
   formatMemberData,
   MEMBER_RAW_DATA_BASKETBALL,
 } from '../../../utils/formatData';
 
 import * as S from './TeamDetailPage.style';
+import MemberRows from '../../../components/ui/MemberRows/MemberRows';
 
 const TEAM_INFO = {
   name: '어쩌구FC',
@@ -22,6 +22,8 @@ const TEAM_INFO = {
 function TeamDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
+
+  const isLeader = true;
 
   const members = formatMemberData(MEMBER_RAW_DATA_BASKETBALL);
 
@@ -38,13 +40,17 @@ function TeamDetailPage() {
       </S.TeamNameSection>
       <Gap />
 
-      <S.TeamMembersSection>{renderMembers(members)}</S.TeamMembersSection>
+      <S.TeamMembersSection>
+        <MemberRows members={members} />
+      </S.TeamMembersSection>
 
-      <Gap height='7.19rem'>
-        <S.SaveButton onClick={() => navigate('/team/update')}>
-          수정하기
-        </S.SaveButton>
-      </Gap>
+      {isLeader && (
+        <Gap height='7.19rem'>
+          <S.SaveButton onClick={() => navigate(`/team/${id}/update`)}>
+            수정하기
+          </S.SaveButton>
+        </Gap>
+      )}
     </S.Wrapper>
   );
 }

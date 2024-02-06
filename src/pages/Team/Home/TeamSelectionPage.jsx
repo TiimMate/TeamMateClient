@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+
 import useModal from '../../../hooks/useModal';
 
-import SportSelect from '../../../components/ui/SportSelect/SportSelect';
+import SportSelector from '../../../components/ui/Selector/Sport/SportSelector';
 import TeamAddModal from '../components/TeamAddModal/TeamAddModal';
 
 import highfive from '../../../assets/highfive.png';
@@ -27,7 +27,6 @@ const TEAMS_INFOS = [
 const COLOR_LIST = ['var(--blue-400, #0075ff)', '#86ff91'];
 
 function TeamSelectionPage() {
-  const navigate = useNavigate();
   const [sport, setSport] = useState('2');
   const { isOpen, openModal, closeModal } = useModal();
 
@@ -37,18 +36,17 @@ function TeamSelectionPage() {
     teamInfo.map(({ id, name, logoUrl }, index) => {
       const backgroundColor = COLOR_LIST[index % COLOR_LIST.length]; // 번갈아 가면서 color 선택
       const isLast = index === teamInfo.length - 1;
-      const onClick = () => navigate(`/team/${id}`);
 
       return (
-        <S.TeamDiv
+        <S.TeamLink
           key={id}
-          onClick={onClick}
+          to={`/team/${id}`}
           $backgroundColor={backgroundColor}
         >
           <S.TeamName>{name}</S.TeamName>
           <S.TeamLogo logoUrl={logoUrl} />
           {isLast || <S.TeamImage src={highfive} alt='img' />}
-        </S.TeamDiv>
+        </S.TeamLink>
       );
     });
 
@@ -56,7 +54,7 @@ function TeamSelectionPage() {
     <S.Wrapper>
       {isOpen && <TeamAddModal onClose={closeModal} />}
 
-      <SportSelect sport={sport} setSport={setSport} />
+      <SportSelector sport={sport} setSport={setSport} />
 
       <S.TeamSelectionSection>
         {renderTeam()}

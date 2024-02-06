@@ -1,4 +1,4 @@
-import * as S from './SportSelect.style';
+import * as S from './SportSelector.style';
 
 const SPORT_OPTIONS = [
   { id: 1, sport: '축구' },
@@ -6,8 +6,7 @@ const SPORT_OPTIONS = [
   { id: 3, sport: '야구' },
 ];
 
-/** deprecated: ui/Selector/Sport로 옮겨짐 */
-function SportSelect({ sport, setSport, disabled = false }) {
+function SportSelector({ sport, setSport, disabled = false }) {
   return (
     <S.Wrapper>
       <S.Title $disabled={disabled}>종목 선택</S.Title>
@@ -26,4 +25,4 @@ function SportSelect({ sport, setSport, disabled = false }) {
   );
 }
 
-export default SportSelect;
+export default SportSelector;

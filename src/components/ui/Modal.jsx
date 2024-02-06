@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import xClose from '../../assets/x-close.svg';
 import Button300 from '../atoms/Button300';
+/** deprecated: Use New Modal */
 
 // Deafault styles
 // 모달 배경 스타일
