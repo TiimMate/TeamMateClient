@@ -74,6 +74,7 @@ function ContentBox() {
         <Route path='/login' element={<Login />} />
         <Route path='/login/landing' element={<LoginLanding />} />
         <Route path='/auth/kakao/callback' element={<LoginHandler />} />
+
         <Route path='/matching' element={<MatchingHome />} />
         <Route path='/matching/guestapply' element={<GuestApply />} />
         <Route
