@@ -8,14 +8,16 @@ import logo24Icon from '../../../assets/Logo24_.png';
 import searchIcon from '../../../assets/search.png';
 import HamburgerMenu from './HamburgerMenu/HamburgerMenu';
 import useOnLocationChange from '../../../hooks/useOnLocationChange';
+import SearchBar from './SearchBar/SearchBar';
 
 function Navbar() {
   const navigate = useNavigate();
   const [menuToggle, setMenuToggle] = useState(false);
+  const [searchToggle, setSearchToggle] = useState(false);
 
-  // url이 바뀌면 navbar 초기화
   useOnLocationChange(() => {
     setMenuToggle(false);
+    setSearchToggle(false);
   });
 
   return (
@@ -32,12 +34,12 @@ function Navbar() {
         <S.SearchIcon
           src={searchIcon}
           alt='search'
-          onClick={() => navigate('/search')}
+          onClick={() => setSearchToggle(true)}
         />
       </S.Container>
 
-      {/* Menu Toggle */}
       {menuToggle && <HamburgerMenu setToggle={setMenuToggle} />}
+      {searchToggle && <SearchBar setToggle={setSearchToggle} />}
     </S.Wrapper>
   );
 }
