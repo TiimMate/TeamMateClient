@@ -1,55 +1,59 @@
-import styled from 'styled-components';
-import chevronDown4 from '../../../../assets/chevron-down-4 1.svg';
+import { useState, useEffect } from 'react';
+import * as S from './HeightSelector.style';
 
-function HeightSelector() {
+function HeightSelector({ height, setHeight }) {
+  const defaultValue = ['1', '7', '0']; // 초기 표시값
+  const [isFocused, setIsFocused] = useState(false);
+
+  useEffect(() => {
+    if (height.length === 3) {
+      setIsFocused(false); // 모든 숫자 입력 후 포커스 해제
+    }
+  }, [height]);
+
+  const handleClickContainer = () => {
+    setHeight('');
+    setIsFocused(true);
+  };
+
+  const handleChange = (e) => {
+    const { value } = e.target;
+    const formattedValue = value.replace(/[^\d]/g, '').slice(0, 3); // 숫자만 입력, 최대 3자리
+    setHeight(formattedValue);
+  };
+
+  const renderNumbersOrPlaceholders = () => {
+    let displayValues = [...defaultValue];
+    for (let i = 0; i < height.length; i++) {
+      displayValues[i] = height[i]; // 사용자 입력으로 대체
+    }
+
+    return displayValues.map((char, index) => (
+      <S.NumberOrPlaceholder key={index} isEntered={index < height.length}>
+        {char}
+      </S.NumberOrPlaceholder>
+    ));
+  };
+
   return (
     <>
-      <Label>신장*</Label>
-      <ButtonWithChevron>
-        지역을 선택해주세요 <img src={chevronDown4} alt='chevron' />
-      </ButtonWithChevron>
+      <S.Label>신장</S.Label>
+      <S.Container $isFocused={isFocused} onClick={handleClickContainer}>
+        {renderNumbersOrPlaceholders()}
+        <S.UnitText>cm</S.UnitText>
+        {isFocused && (
+          <S.HiddenInput
+            autoFocus
+            type='text'
+            value={height}
+            onChange={handleChange}
+            onBlur={() => setIsFocused(false)}
+            maxLength='3'
+          />
+        )}
+      </S.Container>
     </>
   );
 }
-
-const Label = styled.label`
-  cursor: pointer;
-  color: var(--Gray300, #636363);
-  font-family: Pretendard Variable;
-  font-size: 0.75rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.25rem; /* 166.667% */
-  letter-spacing: -0.0375rem;
-  background-color: transparent;
-  border: none;
-  margin-bottom: 0.31rem;
-`;
-
-export const ButtonWithChevron = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.625rem;
-  flex-shrink: 0;
-
-  width: 98%;
-  height: 100%;
-  margin-left: 1%;
-  margin-bottom: 1.25rem;
-  padding: 0.625rem;
-  border-radius: 0.375rem;
-  border: 1px solid var(--Gray200, #d9d9d9);
-  background: #fff;
-  cursor: pointer;
-
-  color: var(--Gray300, #636363);
-  font-family: Pretendard;
-  font-size: 0.75rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 150%; /* 1.125rem */
-  letter-spacing: -0.0375rem;
-`;
 
 export default HeightSelector;

@@ -47,9 +47,12 @@ export const Introduction = styled.h4`
 
 export const IntroBox = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
+
   width: 100%;
   padding: 0.625rem;
-  align-items: center;
+
   gap: 0.625rem;
 
   border-radius: 0.375rem;
@@ -57,6 +60,14 @@ export const IntroBox = styled.div`
   background: #fff;
 
   box-sizing: border-box;
+
+  color: var(--Black, var(--kakao-logo, #000));
+  font-family: Pretendard;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.375rem; /* 157.143% */
+  letter-spacing: -0.04375rem;
 `;
 
 export const SaveButton = styled(Button300)``;

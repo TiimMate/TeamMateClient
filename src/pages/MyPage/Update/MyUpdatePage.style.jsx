@@ -37,16 +37,6 @@ export const Input = styled.input`
   letter-spacing: -0.04375rem;
 `;
 
-export const Star = styled.span`
-  color: var(--Blue300, #0075ff);
-  font-family: 'Pretendard Variable';
-  font-size: 0.75rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.25rem;
-  letter-spacing: -0.0375rem;
-`;
-
 export const NameSection = styled.section`
   display: flex;
   flex-direction: column;
@@ -56,14 +46,23 @@ export const NameSection = styled.section`
   align-items: start;
 
   padding: 1.5rem 5%;
+
+  label {
+    padding-left: 1.5%;
+  }
 `;
 
 export const NameInput = styled(Input)`
-  width: calc(100% - 1.5rem);
+  width: 97%;
+  margin-left: 1.5%;
   margin-bottom: 1.25rem;
+
+  box-sizing: border-box;
 `;
 export const TextArea = styled.textarea`
-  width: calc(100% - 1.5rem);
+  width: 97%;
+  margin-left: 1.5%;
+  box-sizing: border-box;
   padding: 0.625rem 0.75rem;
   gap: 0.625rem;
   border-radius: 0.375rem;
@@ -81,8 +80,4 @@ export const TextArea = styled.textarea`
   letter-spacing: -0.0375rem;
 `;
 
-export const DetailSection = styled(NameSection)`
-  ${Label} {
-    padding-left: 1.5%;
-  }
-`;
+export const DetailSection = styled(NameSection)``;

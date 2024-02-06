@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import useModal from '../../../hooks/useModal';
 
-import SportSelector from '../../../components/ui/Selector/Sport/SportSelector';
+import SportSelect from '../../../components/ui/Selector/Sport/SportSelector';
 import TeamAddModal from '../components/TeamAddModal/TeamAddModal';
 
 import highfive from '../../../assets/highfive.png';
@@ -27,10 +27,10 @@ const TEAMS_INFOS = [
 const COLOR_LIST = ['var(--blue-400, #0075ff)', '#86ff91'];
 
 function TeamSelectionPage() {
-  const [sport, setSport] = useState('2');
+  const [sport, setSport] = useState('basketball');
   const { isOpen, openModal, closeModal } = useModal();
 
-  const teamInfo = sport === '2' ? TEAM_INFOS : TEAMS_INFOS;
+  const teamInfo = sport === 'basketball' ? TEAM_INFOS : TEAMS_INFOS;
 
   const renderTeam = () =>
     teamInfo.map(({ id, name, logoUrl }, index) => {
@@ -54,7 +54,7 @@ function TeamSelectionPage() {
     <S.Wrapper>
       {isOpen && <TeamAddModal onClose={closeModal} />}
 
-      <SportSelector sport={sport} setSport={setSport} />
+      <SportSelect sport={sport} setSport={setSport} />
 
       <S.TeamSelectionSection>
         {renderTeam()}
