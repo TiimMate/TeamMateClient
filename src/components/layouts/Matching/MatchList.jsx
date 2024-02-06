@@ -2,14 +2,10 @@ import React from 'react';
 import * as S from './MatchList.style';
 import MatchInfo from './MatchInfo';
 
-// import TeamDetailPage from '../../../pages/team/TeamDetailPage';
-// import UnitInfoRow from '../../ui/UnitInfoRow';
-
 const dummy = [
   {
     id: 1,
     unitInfo: {
-      category: 'GUEST', // 추가
       title: '퀵 ',
       date: '24/01/04',
       time: '15:00',
@@ -19,14 +15,12 @@ const dummy = [
       age: '20~30대',
       level: '5',
       gender: '남성',
-      iscompletedReview: true, // 추가
     },
     state: 1,
   },
   {
     id: 2,
     unitInfo: {
-      category: 'GUEST',
       title: '코티스트 ',
       date: '24/01/04',
       time: '17:00',
@@ -36,14 +30,12 @@ const dummy = [
       age: '20~30대',
       level: '93',
       gender: '남성',
-      iscompletedReview: false, // 추가
     },
     state: 1,
   },
   {
     id: 1,
     unitInfo: {
-      category: 'HOST',
       title: '팀메이트 ',
       date: '24/01/04',
       time: '19:00',
@@ -53,24 +45,6 @@ const dummy = [
       age: '20~30대',
       level: '999',
       gender: '혼성',
-      iscompletedReview: true, // 추가
-    },
-    state: 1,
-  },
-  {
-    id: 1,
-    unitInfo: {
-      category: 'HOST',
-      title: '팀메이트 ',
-      date: '24/01/04',
-      time: '19:00',
-      GymName: '홍대',
-      Capacity: 55,
-      Region: '서울 마포구',
-      age: '20~30대',
-      level: '999',
-      gender: '혼성',
-      iscompletedReview: false, // 추가
     },
     state: 1,
   },
@@ -80,7 +54,12 @@ export default function MatchList() {
   return (
     <S.Wrapper>
       {dummy.map((info) => (
-        <MatchInfo id={info.id} unitInfo={info.unitInfo} state={info.state} />
+        <MatchInfo
+          id={info.id}
+          unitInfo={info.unitInfo}
+          state={info.state}
+          page={'apply'}
+        />
       ))}
     </S.Wrapper>
   );

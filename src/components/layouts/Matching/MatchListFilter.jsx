@@ -1,56 +1,48 @@
 import React, { useState } from 'react';
 import * as S from './MatchListFilter.style';
+import UseDetectClose from '../../../hooks/UseDetectClose';
+import DownArrow from '../../../assets/dropdown_down_arrow.png';
 
 export default function MatchListFilter() {
-  const [dropDownRegion, setDropDownRegion] = useState(false);
+  const [regionIsOpen, regionRef, regionHandler] = UseDetectClose(false);
+  const [levelIsOpen, levelRef, levelHandler] = UseDetectClose(false);
+  const [GenderIsOpen, GenderRef, GenderHandler] = UseDetectClose(false);
+
+  const [dropDownRegion, setDropDownRegion] = useState('지역');
   const [dropDownLevel, setDropDownLevel] = useState(false);
   const [dropDownGender, setDropDownGender] = useState(false);
 
   return (
     <S.Wrapper>
-      <S.DropDown
-        onClick={() => {
-          setDropDownRegion(!dropDownRegion);
-        }}
-      >
-        내지역{dropDownRegion ? '⌃' : '⌄'}
-        {dropDownRegion && (
-          <>
-            <S.DropdownList>수도권</S.DropdownList>
-            <S.DropdownList>그 외</S.DropdownList>
-          </>
-        )}
-      </S.DropDown>
-
-      <S.DropDown
-        onClick={() => {
-          setDropDownLevel(!dropDownLevel);
-        }}
-      >
-        레벨{dropDownLevel ? '⌃' : '⌄'}
-        {dropDownLevel && (
-          <>
-            <S.DropdownList>1~10</S.DropdownList>
-            <S.DropdownList>11~20</S.DropdownList>
-            <S.DropdownList>21~30</S.DropdownList>
-          </>
-        )}
-      </S.DropDown>
-
-      <S.DropDown
-        onClick={() => {
-          setDropDownGender(!dropDownGender);
-        }}
-      >
-        성별{dropDownGender ? '⌃' : '⌄'}
-        {dropDownGender && (
-          <>
-            <S.DropdownList>남성</S.DropdownList>
-            <S.DropdownList>여성</S.DropdownList>
-            <S.DropdownList>혼성</S.DropdownList>
-          </>
-        )}
-      </S.DropDown>
+      <S.DropdownContainer>
+        <S.DropdownButton onClick={regionHandler} ref={regionRef}>
+          {dropDownRegion} <img src={DownArrow} alt='아래화살표' />
+        </S.DropdownButton>
+        <S.Menu isDropped={regionIsOpen}>
+          <S.Ul>
+            <S.Li>
+              <S.P href='#1-1' onClick={() => setDropDownRegion('지역')}>
+                전체
+              </S.P>
+            </S.Li>
+            <S.Li>
+              <S.P href='#1-1' onClick={() => setDropDownRegion('서울')}>
+                서울
+              </S.P>
+            </S.Li>
+            <S.Li>
+              <S.P href='#1-1' onClick={() => setDropDownRegion('부산')}>
+                부산
+              </S.P>
+            </S.Li>
+            <S.Li>
+              <S.P href='#1-1' onClick={() => setDropDownRegion('제주도')}>
+                제주도
+              </S.P>
+            </S.Li>
+          </S.Ul>
+        </S.Menu>
+      </S.DropdownContainer>
     </S.Wrapper>
   );
 }

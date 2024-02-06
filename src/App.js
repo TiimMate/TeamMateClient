@@ -37,6 +37,7 @@ import MyPage from './pages/MyPage/Home/MyPage';
 import MyUpdate from './pages/MyPage/Update/MyUpdatePage';
 import SavedPost from './pages/MyPage/Community/Save/SavedPost';
 import WritedPost from './pages/MyPage/Community/Write/WritedPost';
+import GuestApplyDetail from './pages/Matching/MatchApply/GuestApplyDetail';
 
 function App() {
   return (
@@ -73,6 +74,10 @@ function ContentBox() {
         <Route path='/login/landing' element={<LoginLanding />} />
         <Route path='/matching' element={<MatchingHome />} />
         <Route path='/matching/guestapply' element={<GuestApply />} />
+        <Route
+          path='/matching/guestapply/detail'
+          element={<GuestApplyDetail />}
+        />
         <Route path='/matching/teamapply' element={<TeamApply />} />
         <Route path='/matching/guesthost' element={<GuestHost />} />
         <Route path='/matching/teamhost' element={<TeamHost />} />
