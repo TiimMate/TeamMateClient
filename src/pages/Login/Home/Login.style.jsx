@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 
-export const socialLoginImgContainer = styled.div`
+export const SocialLoginImgContainer = styled.div`
   width: 220px;
   height: 220px;
 `;
 
-export const socialLoginBtnsContainer = styled.div`
+export const SocialLoginBtnsContainer = styled.div`
   display: grid;
   grid-gap: 10px;
 `;
 
-export const socialLoginBtn = styled.div`
+export const SocialLoginBtn = styled.div`
   margin: 0;
 `;
