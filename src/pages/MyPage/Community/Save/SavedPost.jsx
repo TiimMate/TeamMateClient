@@ -1,5 +1,6 @@
 import UnitBoardRow from '../../../../components/ui/UnitBoardRow/UnitBoardRow';
 import Banner from '../../../../components/ui/Banner';
+import NotPost from '../../components/NotPost';
 
 import * as S from './SavedPost.style';
 
@@ -39,10 +40,9 @@ const dummy = [
 
 function SavedPost() {
   const renderPost = () =>
-    dummy.map((post) => {
-      console.log('hello', post);
-      return <UnitBoardRow key={post.id} unitBoard={post.unitBoard} />;
-    });
+    dummy.map((post) => (
+      <UnitBoardRow id={post.id} key={post.id} unitBoard={post.unitBoard} />
+    ));
 
   return (
     <S.Wrapper>
@@ -55,7 +55,8 @@ function SavedPost() {
         <S.Date>작성일시</S.Date>
       </S.HeaderContainer>
 
-      {renderPost()}
+      {/* {renderPost()} */}
+      <NotPost title='작성한 글이' />
     </S.Wrapper>
   );
 }
