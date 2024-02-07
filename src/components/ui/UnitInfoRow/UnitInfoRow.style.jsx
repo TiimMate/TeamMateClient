@@ -75,7 +75,7 @@ export const TitleWithoutDate = styled(Title)`
 `;
 export const DescriptionWithoutDate = styled(Description)`
   color: var(--gray-300, #636363);
-  font-size: 10px;
+  font-size: 11px;
   font-family: Pretendard;
   font-weight: 400;
   line-height: 20px;

@@ -59,8 +59,7 @@ export const SelectBar = styled.select`
   }
 
   &:focus {
-    //#TODO: 색깔 안변하는 문제
-    border: 2px solid var(--Blue300, #0075ff);
+    outline: none;
   }
 
   option {

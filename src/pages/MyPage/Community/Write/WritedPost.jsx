@@ -40,7 +40,7 @@ const dummy = [
 function WritedPost() {
   const renderPost = () =>
     dummy.map((post) => (
-      <UnitBoardRow key={post.id} unitBoard={post.unitBoard} />
+      <UnitBoardRow id={post.id} key={post.id} unitBoard={post.unitBoard} />
     ));
 
   return (

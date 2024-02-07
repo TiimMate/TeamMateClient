@@ -4,7 +4,7 @@ import Button300 from '../../../components/atoms/Button300';
 function ButtonDiv({ children, onClick }) {
   return (
     <Wrapper>
-      <Button300 onClick={onClick}>{children}</Button300>
+      <Button onClick={onClick}>{children}</Button>
     </Wrapper>
   );
 }
@@ -17,6 +17,11 @@ const Wrapper = styled.div`
   width: 100%;
 
   padding-bottom: 2.5rem;
+`;
+const Button = styled(Button300)`
+  width: 80%;
+
+  box-sizing: border-box;
 `;
 
 export default ButtonDiv;

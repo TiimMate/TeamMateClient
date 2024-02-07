@@ -1,9 +1,9 @@
 import * as S from './SportSelector.style';
 
 const SPORT_OPTIONS = [
-  { id: 1, sport: '축구' },
-  { id: 2, sport: '농구' },
-  { id: 3, sport: '야구' },
+  { id: 'soccer', sport: '축구' },
+  { id: 'basketball', sport: '농구' },
+  { id: 'baseball', sport: '야구' },
 ];
 
 function SportSelector({ sport, setSport, disabled = false }) {

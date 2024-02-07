@@ -7,12 +7,6 @@ export const Wrapper = styled.div`
   padding: 0rem;
 `;
 
-export const Gap = styled.div`
-  width: 100%;
-  height: 1.25rem;
-  background-color: #f0f0f0;
-`;
-
 export const Label = styled.label`
   cursor: pointer;
   color: var(--gray-300, #636363);
@@ -55,14 +49,23 @@ export const TeamNameSection = styled.section`
   align-items: start;
 
   padding: 1.5rem 5%;
+
+  label {
+    padding-left: 1.5%;
+  }
 `;
 
 export const NameInput = styled(Input)`
-  width: calc(100% - 1.5rem);
+  width: 97%;
+  margin-left: 1.5%;
   margin-bottom: 1.25rem;
+
+  box-sizing: border-box;
 `;
 export const TextArea = styled.textarea`
-  width: calc(100% - 1.5rem);
+  width: 97%;
+  margin-left: 1.5%;
+  box-sizing: border-box;
   padding: 0.625rem 0.75rem;
   gap: 0.625rem;
   border-radius: 0.375rem;
@@ -80,11 +83,7 @@ export const TextArea = styled.textarea`
   letter-spacing: -0.0375rem;
 `;
 
-export const TeamDetailSection = styled(TeamNameSection)`
-  ${Label} {
-    padding-left: 1.5%;
-  }
-`;
+export const TeamDetailSection = styled(TeamNameSection)``;
 
 export const TeamMembersSection = styled(TeamLogoSection)`
   ${Wrapper} {
