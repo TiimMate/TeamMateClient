@@ -39,9 +39,10 @@ const dummy = [
 
 function SavedPost() {
   const renderPost = () =>
-    dummy.map((post) => (
-      <UnitBoardRow key={post.id} unitBoard={post.unitBoard} />
-    ));
+    dummy.map((post) => {
+      console.log('hello', post);
+      return <UnitBoardRow key={post.id} unitBoard={post.unitBoard} />;
+    });
 
   return (
     <S.Wrapper>

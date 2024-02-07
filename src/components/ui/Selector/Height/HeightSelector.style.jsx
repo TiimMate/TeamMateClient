@@ -49,7 +49,7 @@ export const NumberOrPlaceholder = styled.span`
   display: inline-block;
   text-align: center;
   color: ${(props) =>
-    props.isEntered
+    props.$isInput
       ? 'color: var(--Gray300, #636363)'
       : '#ccc'}; /* 입력된 숫자는 검정색, 그렇지 않은 경우 회색 */
 `;

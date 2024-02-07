@@ -24,7 +24,7 @@ function PositionSelector({ position, setPosition }) {
     let displayValues = position ? position.split('') : [...defaultValue];
 
     return displayValues.map((char, index) => (
-      <S.NumberOrPlaceholder key={index} isEntered={index < position.length}>
+      <S.NumberOrPlaceholder key={index} $isInput={index < position.length}>
         {char}
       </S.NumberOrPlaceholder>
     ));

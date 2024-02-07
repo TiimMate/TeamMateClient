@@ -44,7 +44,7 @@ function TeamSelectionPage() {
           $backgroundColor={backgroundColor}
         >
           <S.TeamName>{name}</S.TeamName>
-          <S.TeamLogo logoUrl={logoUrl} />
+          <S.TeamLogo $logoUrl={logoUrl} />
           {isLast || <S.TeamImage src={highfive} alt='img' />}
         </S.TeamLink>
       );

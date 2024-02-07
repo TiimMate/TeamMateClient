@@ -29,7 +29,7 @@ function HeightSelector({ height, setHeight }) {
     }
 
     return displayValues.map((char, index) => (
-      <S.NumberOrPlaceholder key={index} isEntered={index < height.length}>
+      <S.NumberOrPlaceholder key={index} $isInput={index < height.length}>
         {char}
       </S.NumberOrPlaceholder>
     ));

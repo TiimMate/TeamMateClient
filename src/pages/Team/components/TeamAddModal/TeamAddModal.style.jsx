@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-import TextInput from '../../../../components/layouts/TextInput';
 import Button300 from '../../../../components/atoms/Button300';
 
 export const Container = styled.div`
@@ -8,7 +7,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
 
-  height: 7rem;
+  height: 8rem;
   margin: -10px 0;
 `;
 
@@ -34,10 +33,6 @@ export const PlainButton = styled(ConfirmBtn)`
   white-space: nowrap;
 `;
 
-export const ModalInput = styled(TextInput)`
-  font-size: 14px;
-`;
-
 export const Input = styled.input`
   display: flex;
   align-items: center;
@@ -45,7 +40,7 @@ export const Input = styled.input`
   flex-wrap: wrap;
 
   width: 100%;
-  margin-top: 0.625rem;
+  margin-top: 0.875rem;
   padding: 0.625rem;
 
   border-radius: 0.375rem;
