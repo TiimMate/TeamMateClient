@@ -1,4 +1,6 @@
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import useOnLocationChange from './hooks/useOnLocationChange';
+
 import styles from './styles/App.module.css';
 import Navbar from './components/layouts/Navbar/Navbar';
 import Tapbar from './components/layouts/Tapbar/Tapbar';
@@ -53,6 +55,7 @@ function App() {
 
 // contents in here
 function ContentBox() {
+  useOnLocationChange(() => window.scrollTo(0, 0));
   return (
     <div className={styles.container}>
       <Routes>
