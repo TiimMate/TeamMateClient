@@ -11,8 +11,8 @@ import TextInput from '../../../components/layouts/TextInput';
 import TextArea from '../../../components/layouts/TextArea';
 import Gap from '../../../components/layouts/Gap';
 import WeeklyCalendar from '../../../components/layouts/WeeklyCalendar';
-import arrowDown from '../../../assets/chevron-down-4 1.svg';
 import Toast from '../../../components/ui/Toast/Toast';
+import MapContent from '../../../components/layouts/Content/MapContent';
 
 export default function LocationUpdate() {
   const fileInput = useRef();
@@ -102,7 +102,7 @@ export default function LocationUpdate() {
       )}
 
       <MainFunctionNavbar />
-      <ContentHeader title={'글 작성하기'} />
+      <ContentHeader title={'글 수정하기'} />
       <S.ContentBody>
         <S.Label>글 제목</S.Label>
         <S.InputWrapper>
@@ -149,20 +149,18 @@ export default function LocationUpdate() {
 
       <Gap />
       <ContentHeader title={'대관 장소 입력하기'}></ContentHeader>
-      <S.GymContentBody>
-        <S.GymName>체육관명*</S.GymName>
-        <S.SearchGym>
-          체육관을 검색해보세요
-          <img src={arrowDown} alt='arrow-down' />
-        </S.SearchGym>
+      <S.ContentBody>
+        <S.InputWrapper>
+          <MapContent workFor={'write'} />
+        </S.InputWrapper>
+      </S.ContentBody>
 
-        <S.ButtonWrapper>
-          <S.CompleteButton onClick={() => setShowToast(true)}>
-            마감하기
-          </S.CompleteButton>
-          <S.SaveButton onClick={handleSubmit}>저장하기</S.SaveButton>
-        </S.ButtonWrapper>
-      </S.GymContentBody>
+      <S.ButtonWrapper>
+        <S.CompleteButton onClick={() => setShowToast(true)}>
+          마감하기
+        </S.CompleteButton>
+        <S.SaveButton onClick={handleSubmit}>저장하기</S.SaveButton>
+      </S.ButtonWrapper>
     </S.Wrapper>
   );
 }

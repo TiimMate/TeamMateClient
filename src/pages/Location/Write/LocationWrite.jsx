@@ -10,15 +10,19 @@ import TextInput from '../../../components/layouts/TextInput';
 import TextArea from '../../../components/layouts/TextArea';
 import Gap from '../../../components/layouts/Gap';
 import WeeklyCalendar from '../../../components/layouts/WeeklyCalendar';
-import arrowDown from '../../../assets/chevron-down-4 1.svg';
+import MapContent from '../../../components/layouts/Content/MapContent';
 
 export default function LocationWrite() {
   const fileInput = useRef();
   const [imageList, setImageList] = useState([]);
   const [shouldConfirm, setShouldConfirm] = useState(false);
   const [valid, setValid] = useState(true);
+
   const navigate = useNavigate();
 
+  // const handleDataChange = (newData) => {
+  //   setMap(newData);
+  // };
   const [showPrompt, confirmNavigation, cancelNavigation] =
     useCallbackPrompt(shouldConfirm);
 
@@ -90,7 +94,7 @@ export default function LocationWrite() {
       )}
 
       <MainFunctionNavbar />
-      <ContentHeader title={'글 작성하기'} />
+      <ContentHeader needButton={false} title={'글 작성하기'} />
       <S.ContentBody>
         <S.Label>글 제목</S.Label>
         <S.InputWrapper>
@@ -132,20 +136,26 @@ export default function LocationWrite() {
       </S.ContentBody>
 
       <Gap />
-      <ContentHeader title={'대관 일자 설정하기'}></ContentHeader>
+      <ContentHeader
+        needButton={false}
+        title={'대관 일자 설정하기'}
+      ></ContentHeader>
       <WeeklyCalendar />
 
       <Gap />
-      <ContentHeader title={'대관 장소 입력하기'}></ContentHeader>
-      <S.GymContentBody>
-        <S.GymName>체육관명*</S.GymName>
-        <S.SearchGym>
-          체육관을 검색해보세요
-          <img src={arrowDown} alt='arrow-down' />
-        </S.SearchGym>
+      <ContentHeader
+        needButton={false}
+        title={'대관 장소 입력하기'}
+      ></ContentHeader>
+      <S.ContentBody>
+        <S.InputWrapper>
+          <MapContent workFor={'write'} />
+        </S.InputWrapper>
+      </S.ContentBody>
 
+      <S.ButtonWrapper>
         <S.SaveButton onClick={handleSubmit}>저장하기</S.SaveButton>
-      </S.GymContentBody>
+      </S.ButtonWrapper>
     </S.Wrapper>
   );
 }

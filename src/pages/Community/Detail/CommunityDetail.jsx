@@ -23,13 +23,18 @@ export default function CommunityDetail() {
         unitComment={comment.unitComment}
       />
     ));
-
   return (
     <S.Wrapper>
       <MainFunctionNavbar />
-      <ContentHeader title={content.unitBoard.title} />
-      <ContentBody content={content.unitBoard} />
-      <CommentHeader postInfo={content} postId={id} />
+      <ContentHeader
+        needButton={true}
+        postCategory='community'
+        postId={id}
+        title={content.unitBoard.title}
+        bookmark={content.unitBoard.bookmark}
+      />
+      <ContentBody menu='community' content={content.unitBoard} />
+      <CommentHeader postId={id} />
       {renderComment()}
       <NewComment />
     </S.Wrapper>

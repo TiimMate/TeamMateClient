@@ -104,8 +104,13 @@ export const locationcontents = [
       title: '서울 상문고등학교 운동장 토요일 1회 대관 비었습니다.',
       contents: '최고의 운동장입니다. 얼른 겟하세요.',
       date: '1/27 21:00',
-      imgUrl: '../../../assets/highfive.png',
+      imgUrl: [
+        { alt: 'tennis', url: '/assets/img-ball/img-ball-tennis.png' },
+        { alt: 'bowling', url: '/assets/img-ball/img-ball-bowling.png' },
+      ],
       recruit: true,
+      address: '서울 송파구 올림픽로 25',
+      currentPos: { la: '127.075940589715', ma: '37.5161987797456' },
     },
   },
   {
@@ -115,7 +120,10 @@ export const locationcontents = [
       title: '서울 상문고등학교 운동장 토요일 1회 대관 비었습니다.',
       contents: '최고의 운동장입니다. 얼른 겟하세요.',
       date: '1/31 22:13',
-      imgUrl: '../../../assets/highfive.png',
+      imgUrl: [
+        { alt: 'baseball', url: '/assets/img-ball/img-ball-baseball.png' },
+        { alt: 'bowling', url: '/assets/img-ball/img-ball-bowling.png' },
+      ],
       recruit: false,
     },
   },
