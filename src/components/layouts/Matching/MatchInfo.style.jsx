@@ -33,7 +33,7 @@ export const Content = styled.div`
 
 export const TeamName = styled.p`
   color: black;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   letter-spacing: -0.6px;
   line-height: 22px;
@@ -41,14 +41,14 @@ export const TeamName = styled.p`
 
 export const MatchLocation = styled.p`
   color: var(--blue-400, #0075ff);
-  font-size: 8px;
+  font-size: 11px;
   letter-spacing: -0.4px;
   line-height: 16px;
 `;
 
 export const MatchDetail = styled.p`
   color: black;
-  font-size: 8px;
+  font-size: 11px;
   letter-spacing: -0.4px;
   line-height: 16px;
 `;
