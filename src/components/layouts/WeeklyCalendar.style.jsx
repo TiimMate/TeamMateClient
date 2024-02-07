@@ -5,10 +5,17 @@ export const Main = styled.div`
 `;
 
 export const Wrapper = styled.nav`
+  display: flex;
+  flex-direction: row;
   overflow: hidden;
+  align-items: center;
   border-bottom: 1px solid var(--gray-200, #d9d9d9);
   height: 70px;
   background: white;
+`;
+
+export const IMG = styled.img`
+  margin: -8px;
 `;
 
 export const Button = styled.div`

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import MainFunctionNavbar from '../../../components/layouts/MainFunctionNavbar';
 import WeeklyCalendar from '../../../components/layouts/WeeklyCalendar';
@@ -10,6 +10,9 @@ import Banner from '../../../components/layouts/Banner';
 
 export default function GuestApply() {
   const navigate = useNavigate();
+  const [regionFilter, setRegionFilter] = useState('지역');
+  const [levelFilter, setLevelFilter] = useState('레벨');
+  const [genderFilter, setGenderFilter] = useState('성별');
 
   return (
     <Main>
@@ -17,13 +20,21 @@ export default function GuestApply() {
       <Banner />
       <WeeklyCalendar />
       <Space />
-      <MatchListFilter />
+      <MatchListFilter
+        setRegionFilter={setRegionFilter}
+        setLevelFilter={setLevelFilter}
+        setGenderFilter={setGenderFilter}
+      />
       <MatchWrite
         onClick={() => {
           navigate('/matching/guesthost');
         }}
+        text='게스트 '
       />
       <MatchList />
+      {regionFilter}
+      {levelFilter}
+      {genderFilter}
     </Main>
   );
 }
