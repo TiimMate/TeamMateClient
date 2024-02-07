@@ -1,28 +1,29 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  align-items: center;
   box-sizing: border-box;
-
-  display: grid;
-  place-items: center;
-
-  grid-template-columns: 33px 40px 106px 1fr 70px;
-  width: 100%;
+  display: flex;
+  font-family: Pretendard;
   height: 70px;
+  justify-content: space-between;
+  padding: 8px 20px;
+  width: 100%;
+`;
 
-  padding: 8px 21px 8px 20px;
+export const MatchInfo = styled.div`
+  align-items: center;
+  display: flex;
+  gap: 20px;
 `;
 
 export const Time = styled.div`
-  display: flex;
   align-items: center;
-
-  color: var(--kakao-logo, #000);
-  font-family: Pretendard;
+  color: black;
+  display: flex;
   font-size: 12px;
-  font-style: normal;
   font-weight: 500;
-  line-height: 22px; /* 183.333% */
+  line-height: 22px;
 `;
 
 export const Content = styled.div`
@@ -31,66 +32,37 @@ export const Content = styled.div`
 `;
 
 export const TeamName = styled.p`
-  color: var(--kakao-logo, #000);
-
-  /* 12md */
-  font-family: Pretendard;
+  color: black;
   font-size: 12px;
-  font-style: normal;
   font-weight: 500;
-  line-height: 22px; /* 183.333% */
   letter-spacing: -0.6px;
+  line-height: 22px;
 `;
 
 export const MatchLocation = styled.p`
-  color: var(--Blue300, #0075ff);
-
-  font-family: Pretendard;
+  color: var(--blue-400, #0075ff);
   font-size: 8px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px; /* 200% */
   letter-spacing: -0.4px;
+  line-height: 16px;
 `;
 
 export const MatchDetail = styled.p`
-  color: var(--kakao-logo, #000);
-  font-family: Pretendard;
+  color: black;
   font-size: 8px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px; /* 200% */
   letter-spacing: -0.4px;
-  color: var(--Black, var(--kakao-logo, #000));
-  font-family: Pretendard;
-  font-size: 8px;
-  font-style: normal;
-  font-weight: 400;
   line-height: 16px;
-  letter-spacing: 0px;
-`;
-export const Space = styled.div`
-  width: 100%;
-  display: flex;
 `;
 
 export const Button = styled.div`
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-
-  width: 70px;
-  height: 30px;
+  background: var(--blue-400, #0075ff);
   border-radius: 6px;
-
-  background: var(--Blue300, #0075ff);
-
   color: white;
-  font-family: Pretendard;
+  display: flex;
   font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 22px; /* 183.333% */
+  height: 30px;
+  justify-content: center;
   letter-spacing: -0.6px;
+  line-height: 22px;
+  width: 70px;
 `;
