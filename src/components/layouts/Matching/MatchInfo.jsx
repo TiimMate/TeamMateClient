@@ -7,6 +7,7 @@ import useModal from '../../../hooks/useModal';
 import ReviewModal from '../../ui/ReviewModal';
 import MatchingModal from '../../ui/MatchingModal/MatchingModal';
 import { useNavigate } from 'react-router-dom';
+import mapIcon from '../../../assets/icon-map-pin.svg';
 
 function MatchInfo({ id, unitInfo, state, page }) {
   const { title, date, time, Region, GymName, Capacity, age, level, gender } =
@@ -25,8 +26,15 @@ function MatchInfo({ id, unitInfo, state, page }) {
             navigate('/matching/guestapply/detail');
           }}
         >
-          <S.TeamName>{title}</S.TeamName>
-          <S.MatchLocation>{Region}</S.MatchLocation>
+          <S.ContentTitle>
+            <S.TeamName>{title}</S.TeamName>
+            <S.LocationInfo>
+              <S.LocationIcon>
+                <img src={mapIcon} alt='맵 아이콘' />
+              </S.LocationIcon>
+              <S.LocationName>{Region}</S.LocationName>
+            </S.LocationInfo>
+          </S.ContentTitle>
           <S.MatchDetail>
             {gender} | {Capacity}명 | {age} | 레벨{level}
           </S.MatchDetail>
