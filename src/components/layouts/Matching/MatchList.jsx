@@ -6,7 +6,7 @@ const dummy = [
   {
     id: 1,
     unitInfo: {
-      title: '퀵 ',
+      title: '우리팀이름은어쩌구 ',
       date: '24/01/04',
       time: '15:00',
       GymName: '강북청소년수련관',
@@ -26,7 +26,7 @@ const dummy = [
       time: '17:00',
       GymName: '신당초등학교',
       Capacity: 15,
-      Region: '서울 강북구',
+      Region: '서울 중구',
       age: '20~30대',
       level: '93',
       gender: '남성',

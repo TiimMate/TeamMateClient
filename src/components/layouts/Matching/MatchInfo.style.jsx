@@ -7,6 +7,7 @@ export const Container = styled.div`
   font-family: Pretendard;
   height: 70px;
   justify-content: space-between;
+  border-top: 1px solid var(--gray-100);
   padding: 8px 20px;
   width: 100%;
 `;
@@ -14,7 +15,7 @@ export const Container = styled.div`
 export const MatchInfo = styled.div`
   align-items: center;
   display: flex;
-  gap: 20px;
+  gap: 26px;
 `;
 
 export const Time = styled.div`
@@ -29,22 +30,39 @@ export const Time = styled.div`
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 3px;
 `;
 
-export const TeamName = styled.p`
+export const ContentTitle = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+`;
+
+export const TeamName = styled.h3`
   color: black;
   font-size: 14px;
   font-weight: 500;
-  letter-spacing: -0.6px;
-  line-height: 22px;
+  letter-spacing: -0.7px;
+  line-height: 25px;
 `;
 
-export const MatchLocation = styled.p`
+export const LocationInfo = styled.div`
+  display: flex;
   color: var(--blue-400, #0075ff);
   font-size: 11px;
   letter-spacing: -0.4px;
   line-height: 16px;
+  letter-spacing: -0.55px;
+  gap: 2px;
 `;
+
+export const LocationIcon = styled.div`
+  width: 8px;
+  height: 8px;
+`;
+
+export const LocationName = styled.p``;
 
 export const MatchDetail = styled.p`
   color: black;
