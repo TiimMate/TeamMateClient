@@ -75,11 +75,4 @@ export const ImageInfo = styled.div`
 export const ServiceInfo = styled.div`
   display: flex;
   flex-direction: column;
-  height: 424px;
-
-  /* 임시코드 */
-  padding-top: 34px;
-  color: var(--blue-300, #2c8dff);
-  text-align: center;
-  border: 1px solid black;
 `;

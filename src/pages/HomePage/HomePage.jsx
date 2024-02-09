@@ -1,5 +1,6 @@
 import React from 'react';
 import * as S from './HomePage.style';
+import ServiceIntroduction from '../../assets/png-service-introduction.png';
 
 const sportsData = {
   '/assets/img-ball/img-ball-basketball.png': '농구',
@@ -37,9 +38,7 @@ export default function HomePage() {
         <S.ImageInfo>클릭하면 각 종목 페이지로 이동합니다.</S.ImageInfo>
       </S.Container>
       <S.ServiceInfo>
-        팀메이트는 이런 서비스예요
-        <br />
-        (업데이트 예정)
+        <img src={ServiceIntroduction} alt='서비스 소개' />
       </S.ServiceInfo>
     </S.PageLayout>
   );
