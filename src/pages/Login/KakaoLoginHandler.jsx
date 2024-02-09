@@ -3,9 +3,12 @@ import { useEffect } from 'react';
 import { defaultInstance } from '../../utils/axios';
 import { setCookie } from '../../utils/cookie';
 import renderLoginButtons from './Home/Login';
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../../redux/Slices/AuthSlices';
 
 export default function KakaoLoginHandler() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const code = new URL(window.location.href).searchParams.get('code');
 
   useEffect(() => {
@@ -24,6 +27,16 @@ export default function KakaoLoginHandler() {
         let payload = KAKAO_ACCESS_TOKEN.substring(
           KAKAO_ACCESS_TOKEN.indexOf('.') + 1,
           KAKAO_ACCESS_TOKEN.lastIndexOf('.'),
+        );
+        let decodedPayload = JSON.parse(
+          decodeURIComponent(escape(atob(payload))),
+        );
+
+        dispatch(
+          loginUser({
+            id: decodedPayload.id,
+            nickname: decodedPayload.nickname,
+          }),
         );
 
         navigate('/login/landing');
