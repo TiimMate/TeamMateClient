@@ -1,4 +1,8 @@
 import styled from 'styled-components';
+import backgroundImg1 from '../../assets/background-1.png';
+import backgroundImg2 from '../../assets/background-2.png';
+import backgroundImg3 from '../../assets/background-3.png';
+import backgroundImg4 from '../../assets/background-4.png';
 
 export const PageLayout = styled.div`
   display: flex;
@@ -72,7 +76,133 @@ export const ImageInfo = styled.div`
   font-size: 16px;
 `;
 
-export const ServiceInfo = styled.div`
+// 서비스 소개 페이지
+export const ServiceContainer = styled.div`
   display: flex;
   flex-direction: column;
+  height: 100%;
+`;
+
+export const ServiceIntroContainer = styled.div`
+  background-image: url(${backgroundImg1});
+  height: 435px;
+  padding: 90px 0px;
+`;
+
+export const ServiceIntro = styled.div`
+  display: flex;
+  flex-direction: column;
+  color: var(--blue-400);
+  font-family: Pretendard;
+  text-align: center;
+  gap: 28px;
+`;
+
+export const ServiceIntroTitle = styled.h2`
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 36px;
+  letter-spacing: -1.4px;
+`;
+
+export const ServiceIntroDescription = styled.p`
+  font-family: Pretendard;
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: -0.9px;
+
+  span {
+    padding: 1px 4px;
+    color: white;
+    font-family: Pretendard;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: -0.9px;
+    background: var(--blue-400);
+  }
+`;
+
+export const RegisteringTeamContainer = styled.div`
+  background-image: url(${backgroundImg2});
+  height: 355px;
+  padding: 12px 30px;
+`;
+
+export const RegisteringTeam = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: var(--blue-400);
+  font-family: Pretendard;
+`;
+
+export const RegisteringTeamSub = styled.p`
+  font-size: 11px;
+  line-height: 20px;
+  letter-spacing: -0.55px;
+  text-align: right;
+`;
+
+export const ServiceInfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;
+
+export const ServiceInfoNum = styled.p`
+  justify-content: center;
+  display: flex;
+  width: 18px;
+  height: 18px;
+  align-items: center;
+  border-radius: 50%;
+  color: white;
+  background: var(--blue-300);
+  font-family: Pretendard;
+
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: -0.6px;
+
+  ${({ alignRight }) =>
+    alignRight &&
+    `
+  text-right: right;
+  margin-left:auto`}
+`;
+
+export const ServiceInfoTitle = styled.h2`
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 36px;
+  letter-spacing: -1.4px;
+  color: var(--blue-400);
+  font-family: Pretendard;
+`;
+
+export const ServiceInfoDescription = styled.p`
+  font-family: Pretendard;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.8px;
+  color: var(--blue-400);
+`;
+
+export const Matching = styled.div`
+  background-image: url(${backgroundImg3});
+  background-size: cover;
+  padding: 66px 30px;
+  height: 355px;
+  text-align: right;
+`;
+
+export const Review = styled.div`
+  background-image: url(${backgroundImg4});
+  padding: 44px 30px;
+  display: flex;
+  flex-direction: column;
+  padding-right: 30px;
+  height: 563px;
+  gap: 12px;
 `;
