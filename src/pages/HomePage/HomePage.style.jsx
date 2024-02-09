@@ -80,22 +80,24 @@ export const ImageInfo = styled.div`
 export const ServiceContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
 `;
 
 export const ServiceIntroContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-image: url(${backgroundImg1});
+  background-size: cover;
   height: 435px;
-  padding: 90px 0px;
 `;
 
 export const ServiceIntro = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 28px;
+  text-align: center;
   color: var(--blue-400);
   font-family: Pretendard;
-  text-align: center;
-  gap: 28px;
 `;
 
 export const ServiceIntroTitle = styled.h2`
@@ -122,34 +124,35 @@ export const ServiceIntroDescription = styled.p`
   }
 `;
 
-export const RegisteringTeamContainer = styled.div`
-  background-image: url(${backgroundImg2});
-  height: 355px;
-  padding: 12px 30px;
-`;
-
 export const RegisteringTeam = styled.div`
   display: flex;
   flex-direction: column;
+  background-image: url(${backgroundImg2});
+  background-size: cover;
+  align-items: flex-start;
+  height: 331px;
+  padding: 12px 30px;
   gap: 12px;
   color: var(--blue-400);
   font-family: Pretendard;
 `;
 
-export const RegisteringTeamSub = styled.p`
+export const Guide = styled.p`
+  display: flex;
   font-size: 11px;
   line-height: 20px;
   letter-spacing: -0.55px;
   text-align: right;
+  margin-left: auto;
 `;
 
-export const ServiceInfoContainer = styled.div`
+export const GuideContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
 `;
 
-export const ServiceInfoNum = styled.p`
+export const GuideNum = styled.p`
   justify-content: center;
   display: flex;
   width: 18px;
@@ -159,7 +162,6 @@ export const ServiceInfoNum = styled.p`
   color: white;
   background: var(--blue-300);
   font-family: Pretendard;
-
   font-size: 12px;
   font-weight: 500;
   line-height: 28px;
@@ -172,7 +174,7 @@ export const ServiceInfoNum = styled.p`
   margin-left:auto`}
 `;
 
-export const ServiceInfoTitle = styled.h2`
+export const GuideTitle = styled.h2`
   font-size: 28px;
   font-weight: 600;
   line-height: 36px;
@@ -181,7 +183,7 @@ export const ServiceInfoTitle = styled.h2`
   font-family: Pretendard;
 `;
 
-export const ServiceInfoDescription = styled.p`
+export const GuideDescription = styled.p`
   font-family: Pretendard;
   font-size: 16px;
   line-height: 24px;
@@ -190,19 +192,23 @@ export const ServiceInfoDescription = styled.p`
 `;
 
 export const Matching = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  text-align: right;
   background-image: url(${backgroundImg3});
   background-size: cover;
   padding: 66px 30px;
-  height: 355px;
-  text-align: right;
+  height: 223px;
 `;
 
 export const Review = styled.div`
-  background-image: url(${backgroundImg4});
-  padding: 44px 30px;
   display: flex;
   flex-direction: column;
-  padding-right: 30px;
+  align-items: flex-start;
+  background-image: url(${backgroundImg4});
+  background-size: cover;
+  padding: 44px 30px;
   height: 563px;
   gap: 12px;
 `;

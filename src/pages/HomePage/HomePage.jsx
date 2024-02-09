@@ -57,47 +57,45 @@ export default function HomePage() {
           </S.ServiceIntro>
         </S.ServiceIntroContainer>
 
-        <S.RegisteringTeamContainer>
-          <S.RegisteringTeam>
-            <S.RegisteringTeamSub>팀메이트 사용 가이드</S.RegisteringTeamSub>
-            <S.ServiceInfoContainer>
-              <S.ServiceInfoNum>1</S.ServiceInfoNum>
-              <S.ServiceInfoTitle>선수 / 팀 등록하기</S.ServiceInfoTitle>
-              <S.ServiceInfoDescription>
-                게스트로 경기에 참여하고 싶다면 선수 정보를,
-                <br />
-                우리 팀의 게스트나 연습 상대를 구하고 싶다면
-                <br />팀 정보를 등록해주세요!
-              </S.ServiceInfoDescription>
-            </S.ServiceInfoContainer>
-          </S.RegisteringTeam>
-        </S.RegisteringTeamContainer>
+        <S.RegisteringTeam>
+          <S.Guide>팀메이트 사용 가이드</S.Guide>
+          <S.GuideContainer>
+            <S.GuideNum>1</S.GuideNum>
+            <S.GuideTitle>선수 / 팀 등록하기</S.GuideTitle>
+            <S.GuideDescription>
+              게스트로 경기에 참여하고 싶다면 선수 정보를,
+              <br />
+              우리 팀의 게스트나 연습 상대를 구하고 싶다면
+              <br />팀 정보를 등록해주세요!
+            </S.GuideDescription>
+          </S.GuideContainer>
+        </S.RegisteringTeam>
 
         <S.Matching>
-          <S.ServiceInfoContainer>
-            <S.ServiceInfoNum alignRight>2</S.ServiceInfoNum>
-            <S.ServiceInfoTitle>매칭 신청하기</S.ServiceInfoTitle>
-            <S.ServiceInfoDescription>
+          <S.GuideContainer>
+            <S.GuideNum alignRight>2</S.GuideNum>
+            <S.GuideTitle>매칭 신청하기</S.GuideTitle>
+            <S.GuideDescription>
               게스트로서 팀 경기에 참여하거나,
               <br />
               팀의 연습경기 상대를 모집할 수 있어요!
-            </S.ServiceInfoDescription>
-          </S.ServiceInfoContainer>
+            </S.GuideDescription>
+          </S.GuideContainer>
         </S.Matching>
 
         <S.Review>
-          <S.ServiceInfoContainer>
-            <S.ServiceInfoNum>3</S.ServiceInfoNum>
-            <S.ServiceInfoTitle>리뷰 등록하기</S.ServiceInfoTitle>
-            <S.ServiceInfoDescription>
+          <S.GuideContainer>
+            <S.GuideNum>3</S.GuideNum>
+            <S.GuideTitle>리뷰 등록하기</S.GuideTitle>
+            <S.GuideDescription>
               경기가 끝나면 함께한 게스트,
               <br />
               혹은 팀의 리뷰를 남겨주세요!
               <br />
               평가가 쌓일수록 매칭의 정확도가 올라갑니다!
               <br />
-            </S.ServiceInfoDescription>
-          </S.ServiceInfoContainer>
+            </S.GuideDescription>
+          </S.GuideContainer>
         </S.Review>
       </S.ServiceContainer>
     </S.PageLayout>
