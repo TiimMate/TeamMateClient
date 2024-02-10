@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import useModal from '../../../hooks/useModal';
 
@@ -9,28 +9,28 @@ import highfive from '../../../assets/highfive.png';
 import plus from '../../../assets/plus.svg';
 
 import * as S from './TeamSelectionPage.style';
+import authInstance from '../../../services/authInstance';
+import withAuth from '../../../hooks/hoc/withAuth';
 
-const TEAM_INFOS = [
-  { id: 1, name: '어쩌구 FC', logoUrl: '#' },
-  { id: 2, name: '저쩌구 FC', logoUrl: '#' },
-  { id: 3, name: '하남 FC', logoUrl: '#' },
-  { id: 4, name: '다른스타일도보고싶네', logoUrl: '#' },
-  { id: 5, name: '하남 FC', logoUrl: '#' },
-];
-const TEAMS_INFOS = [
-  { id: 1, name: '저쩌구 FC', logoUrl: '#' },
-  { id: 2, name: '어쩌구 FC', logoUrl: '#' },
-  { id: 3, name: '성남 FC', logoUrl: '#' },
-  { id: 4, name: '시간', logoUrl: '#' },
-  { id: 5, name: '성남 FC', logoUrl: '#' },
-];
 const COLOR_LIST = ['var(--blue-400, #0075ff)', '#86ff91'];
 
 function TeamSelectionPage() {
   const [sport, setSport] = useState('basketball');
+  const [teamInfo, setTeamInfo] = useState([]);
   const { isOpen, openModal, closeModal } = useModal();
 
-  const teamInfo = sport === 'basketball' ? TEAM_INFOS : TEAMS_INFOS;
+  useEffect(() => {
+    const getTeams = async () => {
+      try {
+        const response = await authInstance.get(`/teams?category=${sport}`);
+        const { result } = response.data;
+        setTeamInfo([...result]);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getTeams();
+  }, [sport]);
 
   const renderTeam = () =>
     teamInfo.map(({ id, name, logoUrl }, index) => {
@@ -68,4 +68,4 @@ function TeamSelectionPage() {
   );
 }
 
-export default TeamSelectionPage;
+export default withAuth(TeamSelectionPage);
