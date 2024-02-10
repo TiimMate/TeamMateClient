@@ -1,13 +1,14 @@
 import axios from 'axios';
 import { getCookie, removeCookie, setCookie } from '../utils/cookie';
+import { defaultInstance } from '../services/defaultInstance';
 
-const getAccessToken = () => localStorage.getItem('kakao_access_token');
-const getRefreshToken = () => getCookie('kakao_refresh_token');
+const getAccessToken = () => localStorage.getItem('access_token');
+const getRefreshToken = () => getCookie('refresh_token');
 
 const postRefreshToken = async () => {
   try {
-    const response = await axios.post(
-      `${process.env.REACT_APP_SERVER_URL}/auth/refresh`,
+    const response = await defaultInstance.post(
+      'auth/refresh',
       {},
       {
         headers: {
@@ -24,13 +25,13 @@ const postRefreshToken = async () => {
 };
 
 const setTokens = ({ accessToken, refreshToken }) => {
-  localStorage.setItem('kakao_access_token', accessToken);
-  setCookie('kakao_refresh_token', refreshToken, { path: '/' });
+  localStorage.setItem('access_token', accessToken);
+  setCookie('refresh_token', refreshToken, { path: '/' });
 };
 
 const removeTokens = () => {
-  localStorage.removeItem('kakao_access_token');
-  removeCookie('kakao_refresh_token');
+  localStorage.removeItem('access_token');
+  removeCookie('refresh_token');
 };
 
 const authInstance = axios.create({

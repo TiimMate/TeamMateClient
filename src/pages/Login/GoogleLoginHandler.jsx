@@ -1,10 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import { defaultInstance } from '../../utils/axios';
-import { setCookie } from '../../utils/cookie';
+import { defaultInstance } from '../../services/defaultInstance';
 import renderLoginButtons from './Home/Login';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/Slices/userSlices';
+import saveTokens from '../../utils/saveTokens';
+import decodePayload from '../../utils/decodePayload';
 
 export default function GoogleLoginHandler() {
   const navigate = useNavigate();
@@ -14,25 +15,10 @@ export default function GoogleLoginHandler() {
   useEffect(() => {
     const googleLogin = async () => {
       try {
-        const requestBody = { code };
-        const response = await defaultInstance.post(
-          '/auth/google',
-          requestBody,
-        );
-        console.log(response);
+        const response = await defaultInstance.post('/auth/google', { code });
 
-        const GOOGLE_ACCESS_TOKEN = response.data.result.accessToken;
-        const GOOGLE_REFRESH_TOKEN = response.data.result.refreshToken;
-        localStorage.setItem('google_access_token', GOOGLE_ACCESS_TOKEN);
-        setCookie('google_refresh_token', GOOGLE_REFRESH_TOKEN, { path: '/' });
-
-        let payload = GOOGLE_ACCESS_TOKEN.substring(
-          GOOGLE_ACCESS_TOKEN.indexOf('.') + 1,
-          GOOGLE_ACCESS_TOKEN.lastIndexOf('.'),
-        );
-        let decodedPayload = JSON.parse(
-          decodeURIComponent(escape(atob(payload))),
-        );
+        const accessToken = saveTokens(response);
+        const decodedPayload = decodePayload(accessToken);
 
         dispatch(
           login({

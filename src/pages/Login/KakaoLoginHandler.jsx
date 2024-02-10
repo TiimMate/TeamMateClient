@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import { defaultInstance } from '../../utils/axios';
-import { setCookie } from '../../utils/cookie';
+import { defaultInstance } from '../../services/defaultInstance';
 import renderLoginButtons from './Home/Login';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/Slices/userSlices';
+import saveTokens from '../../utils/saveTokens';
 import decodePayload from '../../utils/decodePayload';
 
 export default function KakaoLoginHandler() {
@@ -15,17 +15,10 @@ export default function KakaoLoginHandler() {
   useEffect(() => {
     const kakaoLogin = async () => {
       try {
-        const requestBody = { code };
-        const response = await defaultInstance.post('/auth/kakao', requestBody);
+        const response = await defaultInstance.post('/auth/kakao', { code });
 
-        console.log(response);
-
-        const KAKAO_ACCESS_TOKEN = response.data.result.accessToken;
-        const KAKAO_REFRESH_TOKEN = response.data.result.refreshToken;
-        localStorage.setItem('kakao_access_token', KAKAO_ACCESS_TOKEN);
-        setCookie('kakao_refresh_token', KAKAO_REFRESH_TOKEN, { path: '/' });
-
-        const decodedPayload = decodePayload(KAKAO_ACCESS_TOKEN);
+        const accessToken = saveTokens(response);
+        const decodedPayload = decodePayload(accessToken);
 
         dispatch(
           login({

@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import decodePayload from '../../utils/decodePayload';
 
-const token = localStorage.getItem('kakao_access_token'); // only in CSR
+const token = localStorage.getItem('access_token'); // only in CSR
 
 const initialState = token
   ? {

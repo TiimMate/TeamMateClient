@@ -35,7 +35,7 @@ export default function Login() {
 
 export const renderLoginButtons = (googleLogin, naverLogin, kakaoLogin) => {
   return (
-    <>
+    <S.Wrapper>
       <S.LoginImgContainer>img</S.LoginImgContainer>
       <S.LoginBtnsContainer>
         <S.LoginBtn onClick={googleLogin}>
@@ -48,6 +48,6 @@ export const renderLoginButtons = (googleLogin, naverLogin, kakaoLogin) => {
           <img src={kakaoLoginBtn} alt='kakaoLogin' />
         </S.LoginBtn>
       </S.LoginBtnsContainer>
-    </>
+    </S.Wrapper>
   );
 };

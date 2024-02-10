@@ -1,10 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import { defaultInstance } from '../../utils/axios';
-import { setCookie } from '../../utils/cookie';
+import { defaultInstance } from '../../services/defaultInstance';
 import renderLoginButtons from './Home/Login';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/Slices/userSlices';
+import saveTokens from '../../utils/saveTokens';
+import decodePayload from '../../utils/decodePayload';
 
 export default function NaverLoginHandler() {
   const navigate = useNavigate();
@@ -15,23 +16,13 @@ export default function NaverLoginHandler() {
   useEffect(() => {
     const naverLogin = async () => {
       try {
-        const requestBody = { code, state };
-        const response = await defaultInstance.post('/auth/naver', requestBody);
-        console.log(response);
+        const response = await defaultInstance.post('/auth/naver', {
+          code,
+          state,
+        });
 
-        const NAVER_ACCESS_TOKEN = response.data.result.accessToken;
-        const NAVER_REFRESH_TOKEN = response.data.result.refreshToken;
-        localStorage.setItem('naver_access_token', NAVER_ACCESS_TOKEN);
-        setCookie('naver_refresh_token', NAVER_REFRESH_TOKEN, { path: '/' });
-
-        // 토큰 디코딩->유저 정보 추출
-        let payload = NAVER_ACCESS_TOKEN.substring(
-          NAVER_ACCESS_TOKEN.indexOf('.') + 1,
-          NAVER_ACCESS_TOKEN.lastIndexOf('.'),
-        );
-        let decodedPayload = JSON.parse(
-          decodeURIComponent(escape(atob(payload))),
-        );
+        const accessToken = saveTokens(response);
+        const decodedPayload = decodePayload(accessToken);
 
         dispatch(
           login({

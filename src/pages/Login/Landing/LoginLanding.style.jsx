@@ -1,22 +1,11 @@
 import styled from 'styled-components';
 
-export const welcomeContainer = styled.div`
+export const Wrapper = styled.div`
+  box-sizing: border-box;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  padding-top: 75px;
-`;
-
-export const welcomeMsg = styled.div`
-  width: 188px;
-  height: 64px;
-  color: var(--blue-400, #0075ff);
-  font-family: 'Pretendard Variable';
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 32px; /* 133.333% */
-  margin-left: 23px;
+  padding: 75px 24px 30px 24px;
 `;
 
 export const welcomeBoxContainer = styled.div`
@@ -25,9 +14,21 @@ export const welcomeBoxContainer = styled.div`
   align-items: center;
 `;
 
+export const welcomeMsg = styled.div`
+  width: 158px;
+  height: 64px;
+  color: var(--Blue300, #0075ff);
+  font-family: Pretendard;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px; /* 133.333% */
+  margin-right: auto;
+`;
+
 export const welcomeImg = styled.img`
-  width: 215px;
-  height: 237px;
-  margin: 146px 0;
+  width: 13.4375rem;
+  height: 14.8125rem;
+  margin: 9.1875rem 0 9.5rem 0;
   justify-self: center;
 `;
