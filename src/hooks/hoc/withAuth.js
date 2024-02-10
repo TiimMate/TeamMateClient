@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -7,9 +7,9 @@ function withAuth(WrappedComponent) {
     const { isAuth } = useSelector((state) => state.Auth);
     const navigate = useNavigate();
 
-    if (!isAuth) navigate('/login');
+    useEffect(() => isAuth || navigate('/login'), [isAuth, navigate]);
 
-    return <WrappedComponent {...props} />;
+    return isAuth && <WrappedComponent {...props} />;
   };
 }
 
