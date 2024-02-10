@@ -8,14 +8,13 @@ import * as S from './LoginLanding.style';
 
 export default function LoginLanding() {
   const navigate = useNavigate();
-  const user = useSelector((state) => state.Auth.nickname);
+  const { nickname } = useSelector((state) => state.user);
   const goHome = () => {
     navigate('/');
   };
-  console.log(user);
   return (
     <S.welcomeContainer>
-      <S.welcomeMsg>{user} 메이트님, 환영합니다!</S.welcomeMsg>
+      <S.welcomeMsg>{nickname} 메이트님, 환영합니다!</S.welcomeMsg>
       <S.welcomeBoxContainer>
         <S.welcomeImg src={highFive} alt='highFiveImg' />
         <Button300 onClick={goHome}>홈으로 이동</Button300>

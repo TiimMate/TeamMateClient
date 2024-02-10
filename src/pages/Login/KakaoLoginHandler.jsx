@@ -4,7 +4,8 @@ import { defaultInstance } from '../../utils/axios';
 import { setCookie } from '../../utils/cookie';
 import renderLoginButtons from './Home/Login';
 import { useDispatch } from 'react-redux';
-import { loginUser } from '../../redux/Slices/AuthSlices';
+import { login } from '../../redux/Slices/userSlices';
+import decodePayload from '../../utils/decodePayload';
 
 export default function KakaoLoginHandler() {
   const navigate = useNavigate();
@@ -24,16 +25,10 @@ export default function KakaoLoginHandler() {
         localStorage.setItem('kakao_access_token', KAKAO_ACCESS_TOKEN);
         setCookie('kakao_refresh_token', KAKAO_REFRESH_TOKEN, { path: '/' });
 
-        let payload = KAKAO_ACCESS_TOKEN.substring(
-          KAKAO_ACCESS_TOKEN.indexOf('.') + 1,
-          KAKAO_ACCESS_TOKEN.lastIndexOf('.'),
-        );
-        let decodedPayload = JSON.parse(
-          decodeURIComponent(escape(atob(payload))),
-        );
+        const decodedPayload = decodePayload(KAKAO_ACCESS_TOKEN);
 
         dispatch(
-          loginUser({
+          login({
             id: decodedPayload.id,
             nickname: decodedPayload.nickname,
           }),

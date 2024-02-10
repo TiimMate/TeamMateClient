@@ -4,7 +4,7 @@ import { defaultInstance } from '../../utils/axios';
 import { setCookie } from '../../utils/cookie';
 import renderLoginButtons from './Home/Login';
 import { useDispatch } from 'react-redux';
-import { loginUser } from '../../redux/Slices/AuthSlices';
+import { login } from '../../redux/Slices/userSlices';
 
 export default function NaverLoginHandler() {
   const navigate = useNavigate();
@@ -34,7 +34,7 @@ export default function NaverLoginHandler() {
         );
 
         dispatch(
-          loginUser({
+          login({
             id: decodedPayload.id,
             nickname: decodedPayload.nickname,
           }),

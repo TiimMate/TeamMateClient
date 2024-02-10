@@ -61,7 +61,7 @@ authInstance.interceptors.response.use(
     const { code } = err.response.data;
 
     switch (code) {
-      case 'AUTH002':
+      case 'AUTH002': //access 만료
         const tokens = await postRefreshToken();
         setTokens(tokens);
         return;

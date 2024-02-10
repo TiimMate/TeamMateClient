@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 function withAuth(WrappedComponent) {
   return (props) => {
-    const { isAuth } = useSelector((state) => state.Auth);
+    const { isAuth } = useSelector((state) => state.user);
     const navigate = useNavigate();
 
     useEffect(() => {
