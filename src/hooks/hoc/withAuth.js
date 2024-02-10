@@ -7,7 +7,9 @@ function withAuth(WrappedComponent) {
     const { isAuth } = useSelector((state) => state.Auth);
     const navigate = useNavigate();
 
-    useEffect(() => isAuth || navigate('/login'), [isAuth, navigate]);
+    useEffect(() => {
+      isAuth || navigate('/login');
+    }, [isAuth, navigate]);
 
     return isAuth && <WrappedComponent {...props} />;
   };

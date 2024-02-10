@@ -67,7 +67,7 @@ export const ModalContent = styled.div`
   padding: 10px 10px 20px 10px;
 `;
 
-/** deprecated */
+/** @deprecated */
 export const ModalContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -75,7 +75,7 @@ export const ModalContentWrapper = styled.div`
   justify-content: center;
 `;
 
-/** deprecated */
+/** @deprecated */
 export const ModalButton = styled(Button300)`
   display: flex;
   justify-content: start;
@@ -101,12 +101,12 @@ export const ModalButton = styled(Button300)`
 
   box-sizing: border-box;
 `;
-/** deprecated */
+/** @deprecated */
 export const ModalButtonBlue = styled(ModalButton)`
   background: var(--blue-400, #0075ff);
   color: white;
 `;
-/** deprecated */
+/** @deprecated */
 export const ModalInput = styled.input`
   display: flex;
   align-items: center;
