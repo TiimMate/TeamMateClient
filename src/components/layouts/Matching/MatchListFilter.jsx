@@ -22,7 +22,6 @@ export default function MatchListFilter(props) {
           <S.Ul>
             <S.Li>
               <S.P
-                href='#1-1'
                 onClick={() => {
                   setDropDownRegion('지역');
                   props.setRegionFilter('전체');
@@ -33,7 +32,6 @@ export default function MatchListFilter(props) {
             </S.Li>
             <S.Li>
               <S.P
-                href='#1-1'
                 onClick={() => {
                   setDropDownRegion('서울');
                   props.setRegionFilter('서울');
@@ -44,7 +42,6 @@ export default function MatchListFilter(props) {
             </S.Li>
             <S.Li>
               <S.P
-                href='#1-1'
                 onClick={() => {
                   setDropDownRegion('부산');
                   props.setRegionFilter('부산');
@@ -55,7 +52,6 @@ export default function MatchListFilter(props) {
             </S.Li>
             <S.Li>
               <S.P
-                href='#1-1'
                 onClick={() => {
                   setDropDownRegion('제주도');
                   props.setRegionFilter('제주도');
@@ -76,7 +72,6 @@ export default function MatchListFilter(props) {
           <S.Ul>
             <S.Li>
               <S.P
-                href='#1-1'
                 onClick={() => {
                   setDropDownLevel('0~10');
                   props.setLevelFilter('0~10');
@@ -87,7 +82,6 @@ export default function MatchListFilter(props) {
             </S.Li>
             <S.Li>
               <S.P
-                href='#1-1'
                 onClick={() => {
                   setDropDownLevel('10~20');
                   props.setLevelFilter('10~20');
@@ -98,7 +92,6 @@ export default function MatchListFilter(props) {
             </S.Li>
             <S.Li>
               <S.P
-                href='#1-1'
                 onClick={() => {
                   setDropDownLevel('20~30');
                   props.setLevelFilter('20~30');
@@ -109,7 +102,6 @@ export default function MatchListFilter(props) {
             </S.Li>
             <S.Li>
               <S.P
-                href='#1-1'
                 onClick={() => {
                   setDropDownLevel('30~40');
                   props.setLevelFilter('30~40');
@@ -130,7 +122,6 @@ export default function MatchListFilter(props) {
           <S.Ul>
             <S.Li>
               <S.P
-                href='#1-1'
                 onClick={() => {
                   setDropDownGender('혼성');
                   props.setGenderFilter('혼성');
@@ -141,7 +132,6 @@ export default function MatchListFilter(props) {
             </S.Li>
             <S.Li>
               <S.P
-                href='#1-1'
                 onClick={() => {
                   setDropDownGender('남성');
                   props.setGenderFilter('남성');
@@ -152,7 +142,6 @@ export default function MatchListFilter(props) {
             </S.Li>
             <S.Li>
               <S.P
-                href='#1-1'
                 onClick={() => {
                   setDropDownGender('여성');
                   props.setGenderFilter('여성');

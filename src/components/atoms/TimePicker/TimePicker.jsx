@@ -42,10 +42,12 @@ const AMPM = [
   { ampm: '', location: 28.3 * 2 },
 ];
 
-export default function TimePicker() {
+export default function TimePicker(props) {
   const containHour = useRef(null);
   const containMinute = useRef(null);
   const containAMPM = useRef(null);
+
+  let Time = { hour: '', minute: '', ampm: '', gameTime: '' };
 
   return (
     <S.Main>
@@ -61,6 +63,8 @@ export default function TimePicker() {
                 });
                 //일단은 console에 담아뒀습니다
                 console.log(data.hour);
+                Time.hour = data.hour;
+                props.updateTime(Time);
               }}
             >
               {data.hour}
@@ -81,6 +85,8 @@ export default function TimePicker() {
                   behavior: 'smooth',
                 });
                 console.log(data.minute);
+                Time.minute = data.minute;
+                props.updateTime(Time);
               }}
             >
               {data.minute}
@@ -99,6 +105,8 @@ export default function TimePicker() {
                   behavior: 'smooth',
                 });
                 console.log(data.ampm);
+                Time.ampm = data.ampm;
+                props.updateTime(Time);
               }}
             >
               {data.ampm}

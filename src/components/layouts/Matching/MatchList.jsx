@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './MatchList.style';
 import MatchInfo from './MatchInfo';
+import axios from 'axios';
 
 const dummy = [
   {
@@ -51,16 +52,50 @@ const dummy = [
 ];
 
 export default function MatchList() {
+  const [gaemList, setGameList] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const fetchGameList = async () => {
+    try {
+      setGameList(null);
+      setError(null);
+      setLoading(true); //로딩이 시작됨
+      const response = await axios.get(
+        'https://jsonplaceholder.typicode.com/users/',
+      );
+      setGameList(response.data);
+    } catch (e) {
+      setError(e);
+    }
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchGameList();
+  }, []);
+
+  if (loading) return <div>로딩중..</div>;
+  if (error) return <div>에러 발생!!</div>;
+  if (!gaemList) return null; //users값이 유효하지 않는 경우
+
   return (
     <S.Wrapper>
-      {dummy.map((info) => (
+      {/* {dummy.map((info) => (
         <MatchInfo
           id={info.id}
           unitInfo={info.unitInfo}
           state={info.state}
           page={'apply'}
         />
-      ))}
+      ))} */}
+      <ul>
+        {gaemList.map((user) => (
+          <li key={user.id}>
+            {user.username} ({user.name})
+          </li>
+        ))}
+      </ul>
     </S.Wrapper>
   );
 }
