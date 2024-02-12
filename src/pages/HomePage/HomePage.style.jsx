@@ -88,7 +88,7 @@ export const ServiceIntroContainer = styled.div`
   align-items: center;
   background-image: url(${backgroundImg1});
   background-size: cover;
-  height: 435px;
+  aspect-ratio: 360 / 435;
 `;
 
 export const ServiceIntro = styled.div`
@@ -129,9 +129,8 @@ export const RegisteringTeam = styled.div`
   flex-direction: column;
   background-image: url(${backgroundImg2});
   background-size: cover;
+  aspect-ratio: 72 / 71;
   align-items: flex-start;
-  height: 331px;
-  padding: 12px 30px;
   gap: 12px;
   color: var(--blue-400);
   font-family: Pretendard;
@@ -144,12 +143,19 @@ export const Guide = styled.p`
   letter-spacing: -0.55px;
   text-align: right;
   margin-left: auto;
+  padding-right: 16px;
 `;
 
 export const GuideContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
+  padding: 11px 30px;
+
+  ${({ paddingTop }) =>
+    paddingTop &&
+    `
+  margin-top:40px`}
 `;
 
 export const GuideNum = styled.p`
@@ -198,8 +204,7 @@ export const Matching = styled.div`
   text-align: right;
   background-image: url(${backgroundImg3});
   background-size: cover;
-  padding: 66px 30px;
-  height: 223px;
+  aspect-ratio: 360 / 355;
 `;
 
 export const Review = styled.div`
@@ -208,7 +213,6 @@ export const Review = styled.div`
   align-items: flex-start;
   background-image: url(${backgroundImg4});
   background-size: cover;
-  padding: 44px 30px;
-  height: 563px;
+  aspect-ratio: 360 / 563;
   gap: 12px;
 `;

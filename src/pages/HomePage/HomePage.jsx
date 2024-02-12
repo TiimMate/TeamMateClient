@@ -72,7 +72,7 @@ export default function HomePage() {
         </S.RegisteringTeam>
 
         <S.Matching>
-          <S.GuideContainer>
+          <S.GuideContainer paddingTop>
             <S.GuideNum alignRight>2</S.GuideNum>
             <S.GuideTitle>매칭 신청하기</S.GuideTitle>
             <S.GuideDescription>
@@ -84,7 +84,7 @@ export default function HomePage() {
         </S.Matching>
 
         <S.Review>
-          <S.GuideContainer>
+          <S.GuideContainer paddingTop>
             <S.GuideNum>3</S.GuideNum>
             <S.GuideTitle>리뷰 등록하기</S.GuideTitle>
             <S.GuideDescription>
