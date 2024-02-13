@@ -76,7 +76,7 @@ function ContentBox() {
         <Route path='/my/community/save' element={<SavedPost />} />
         <Route path='/my/community/write' element={<WritedPost />} />
         <Route path='/my/location' element={<MyLocation />} />
-        <Route path='my/update' element={<MyUpdate />} />
+        <Route path='/my/update' element={<MyUpdate />} />
 
         <Route path='/login' element={<Login />} />
         <Route path='/auth/google/callback' element={<GoogleLoginHandler />} />

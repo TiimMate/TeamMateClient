@@ -3,29 +3,47 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Gap from '../../../components/atoms/Gap';
 import Level from '../../../components/ui/Level/Level';
 
-import {
-  formatMemberData,
-  MEMBER_RAW_DATA_BASKETBALL,
-} from '../../../utils/formatData';
+import { formatMembers } from '../../../utils/formatData';
 
 import * as S from './TeamDetailPage.style';
 import MemberRows from '../../../components/ui/MemberRows/MemberRows';
-
-const TEAM_INFO = {
-  name: '어쩌구FC',
-  skill: 78,
-  manner: 89,
-  description:
-    '안녕하세요. 저희는 서초구의 상문고등학교에서 매주 일요일에 경기를 진행하는 어쩌구FC라고 합니다.',
-};
+import { useEffect, useState } from 'react';
+import authInstance from '../../../services/authInstance';
 
 function TeamDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const isLeader = true;
+  const [teamInfo, setTeamInfo] = useState({
+    description: '',
+    isTeamLeader: false,
+    logo: null,
+    mannerLevel: 0,
+    skillLevel: 0,
+    name: '',
+    participants: {
+      leader: { nickname: '' },
+      member: [],
+    },
+  });
 
-  const members = formatMemberData(MEMBER_RAW_DATA_BASKETBALL);
+  const members = formatMembers(
+    teamInfo.participants.leader,
+    teamInfo.participants.member,
+  );
+
+  useEffect(() => {
+    const fetchTeam = async () => {
+      try {
+        const { result } = (await authInstance.get(`/teams/${id}`)).data;
+        setTeamInfo({ ...result });
+      } catch (error) {
+        console.log(error);
+        navigate('/');
+      }
+    };
+    fetchTeam();
+  }, [id, navigate]);
 
   return (
     <S.Wrapper>
@@ -34,9 +52,9 @@ function TeamDetailPage() {
       </S.TeamBanner>
 
       <S.TeamNameSection>
-        <S.TeamName>{TEAM_INFO.name}</S.TeamName>
+        <S.TeamName>{teamInfo.name}</S.TeamName>
         <Level />
-        <S.description>{TEAM_INFO.description}</S.description>
+        <S.description>{teamInfo.description}</S.description>
       </S.TeamNameSection>
       <Gap />
 
@@ -51,7 +69,7 @@ function TeamDetailPage() {
         <MemberRows members={members} />
       </S.TeamMembersSection>
 
-      {isLeader && (
+      {teamInfo.isTeamLeader && (
         <Gap height='7.19rem'>
           <S.SaveButton onClick={() => navigate(`/team/${id}/update`)}>
             수정하기
