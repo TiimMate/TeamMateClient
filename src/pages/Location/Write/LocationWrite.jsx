@@ -1,65 +1,49 @@
 import MainFunctionNavbar from '../../../components/layouts/MainFunctionNavbar';
 import ContentHeader from '../../../components/layouts/Content/ContentHeader';
 import Modal from '../../../components/ui/Modal/Modal';
-import camera from '../../../assets/btn_camera.svg';
 import * as S from './LocationWrite.style';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { useCallbackPrompt } from '../../../hooks/useCallbackPrompt';
 import { useNavigate } from 'react-router';
 import TextInput from '../../../components/layouts/TextInput';
 import TextArea from '../../../components/layouts/TextArea';
-import Gap from '../../../components/layouts/Gap';
+import Gap from '../../../components/atoms/Gap';
 import WeeklyCalendar from '../../../components/layouts/WeeklyCalendar';
 import MapContent from '../../../components/layouts/Content/MapContent';
+import ImageUploader from '../../../components/ui/ImageUploader/ImageUploader';
+import authInstance from '../../../services/authInstance';
 
 export default function LocationWrite() {
-  const fileInput = useRef();
-  const [imageList, setImageList] = useState([]);
   const [shouldConfirm, setShouldConfirm] = useState(false);
-  const [valid, setValid] = useState(true);
+  const [valid, setValid] = useState('true');
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+
+  //나도 useReducer 쓰는게 좋을까,,,,,,??
 
   const navigate = useNavigate();
 
-  // const handleDataChange = (newData) => {
-  //   setMap(newData);
-  // };
   const [showPrompt, confirmNavigation, cancelNavigation] =
     useCallbackPrompt(shouldConfirm);
-
-  const handleButtonClick = (e) => {
-    fileInput.current.click();
-  };
-
-  const handleFileChange = (e) => {
-    const newImgList = e.target.files;
-    const tempImgList = [];
-
-    for (let i = 0; i < newImgList.length; i++) {
-      tempImgList.push({
-        id: newImgList[i].name,
-        file: newImgList[i],
-        url: URL.createObjectURL(newImgList[i]),
-      });
-    }
-    setImageList(imageList.concat(tempImgList));
-  };
-
-  const addImageList = () => {
-    return imageList.map((image) => {
-      return (
-        <div key={image.url}>
-          <S.NewImage alt='preview' src={image.url}></S.NewImage>
-        </div>
-      );
-    });
-  };
 
   const handleShouldConfirm = (e) => {
     if (e.target.value) setShouldConfirm(true);
   };
 
-  const handleSubmit = () => {
-    // 서버에 저장
+  // const handleSubmit = () => {
+  //   // 서버에 저장
+  //   navigate('/location');
+  // };
+  const handleSubmit = async () => {
+    try {
+      const response = await authInstance.post('/posts/rent', {
+        title,
+        content,
+      });
+      const { result } = response.data;
+    } catch (error) {
+      console.log(error);
+    }
     navigate('/location');
   };
 
@@ -101,7 +85,12 @@ export default function LocationWrite() {
           <TextInput
             valid={valid}
             placeholder='제목을 입력해 주세요.'
-            onChange={handleShouldConfirm}
+            value={title}
+            onChange={(e) => {
+              setShouldConfirm(true);
+              setTitle(e.target.value);
+              console.log(title);
+            }}
           />
         </S.InputWrapper>
         <S.Label>내용</S.Label>
@@ -109,7 +98,11 @@ export default function LocationWrite() {
           <TextArea
             rows={6}
             placeholder='대관 안내를 적어주세요.&#13;&#10;예시) 금요일 13 : 00 ~ 17 : 00 대관 가능합니다. '
-            onChange={handleShouldConfirm}
+            onChange={(e) => {
+              setShouldConfirm(true);
+              setContent(e.target.value);
+              console.log(content);
+            }}
           />
         </S.InputWrapper>
         <S.InputWrapper>
@@ -120,19 +113,8 @@ export default function LocationWrite() {
             onChange={handleShouldConfirm}
           />
         </S.InputWrapper>
-        <S.Label>이미지</S.Label>
-        <S.Image type='button' onClick={handleButtonClick}>
-          <img src={camera} alt='camera'></img>
-        </S.Image>
-        <input
-          type='file'
-          ref={fileInput}
-          accept='.jpg,.png,.svg'
-          multiple
-          style={{ display: 'none' }}
-          onChange={handleFileChange}
-        />
-        <S.NewImageList>{addImageList()}</S.NewImageList>
+
+        <ImageUploader />
       </S.ContentBody>
 
       <Gap />

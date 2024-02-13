@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router';
+import { useCallback, useState } from 'react';
+import { useLocation } from 'react-router';
 import { useBlocker } from './useBlocker';
 
 export const useCallbackPrompt = (when) => {

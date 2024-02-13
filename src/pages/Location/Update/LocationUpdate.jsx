@@ -9,14 +9,13 @@ import useModal from '../../../hooks/useModal';
 import { useNavigate } from 'react-router';
 import TextInput from '../../../components/layouts/TextInput';
 import TextArea from '../../../components/layouts/TextArea';
-import Gap from '../../../components/layouts/Gap';
+import Gap from '../../../components/atoms/Gap';
 import WeeklyCalendar from '../../../components/layouts/WeeklyCalendar';
 import Toast from '../../../components/ui/Toast/Toast';
 import MapContent from '../../../components/layouts/Content/MapContent';
+import ImageUploader from '../../../components/ui/ImageUploader/ImageUploader';
 
 export default function LocationUpdate() {
-  const fileInput = useRef();
-  const [imageList, setImageList] = useState([]);
   const [shouldConfirm, setShouldConfirm] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const { isOpen, openModal, closeModal } = useModal();
@@ -26,34 +25,6 @@ export default function LocationUpdate() {
 
   const [showPrompt, confirmNavigation, cancelNavigation] =
     useCallbackPrompt(shouldConfirm);
-
-  const handleButtonClick = (e) => {
-    fileInput.current.click();
-  };
-
-  const handleFileChange = (e) => {
-    const newImgList = e.target.files;
-    const tempImgList = [];
-
-    for (let i = 0; i < newImgList.length; i++) {
-      tempImgList.push({
-        id: newImgList[i].name,
-        file: newImgList[i],
-        url: URL.createObjectURL(newImgList[i]),
-      });
-    }
-    setImageList(imageList.concat(tempImgList));
-  };
-
-  const addImageList = () => {
-    return imageList.map((image) => {
-      return (
-        <div key={image.url}>
-          <S.NewImage alt='preview' src={image.url}></S.NewImage>
-        </div>
-      );
-    });
-  };
 
   const handleShouldConfirm = (e) => {
     if (e.target.value) setShouldConfirm(true);
@@ -128,19 +99,8 @@ export default function LocationUpdate() {
             onChange={handleShouldConfirm}
           />
         </S.InputWrapper>
-        <S.Label>이미지</S.Label>
-        <S.Image type='button' onClick={handleButtonClick}>
-          <img src={camera} alt='camera'></img>
-        </S.Image>
-        <input
-          type='file'
-          ref={fileInput}
-          accept='.jpg,.png,.svg'
-          multiple
-          style={{ display: 'none' }}
-          onChange={handleFileChange}
-        />
-        <S.NewImageList>{addImageList()}</S.NewImageList>
+
+        <ImageUploader />
       </S.ContentBody>
 
       <Gap />
