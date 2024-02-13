@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-/** deprecated: layouts ==> atoms */
+/** @deprecated: layouts ==> atoms */
 function Gap({ children, height = '1.25rem' }) {
   return <Wrapper height={height}>{children}</Wrapper>;
 }

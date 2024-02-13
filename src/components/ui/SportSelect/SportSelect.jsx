@@ -6,7 +6,7 @@ const SPORT_OPTIONS = [
   { id: 'baseball', sport: '야구' },
 ];
 
-/** deprecated: ui/Selector/Sport로 옮겨짐 */
+/** @deprecated: ui/Selector/Sport로 옮겨짐 */
 function SportSelect({ sport, setSport, disabled = false }) {
   return (
     <S.Wrapper>

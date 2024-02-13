@@ -20,7 +20,9 @@ import MatchHistoryForHostMember from './pages/Matching/MatchHistoryForHostMembe
 
 import Login from './pages/Login/Home/Login';
 import LoginLanding from './pages/Login/Landing/LoginLanding';
-import LoginHandler from './pages/Login/LoginHandler';
+import GoogleLoginHandler from './pages/Login/GoogleLoginHandler';
+import NaverLoginHandler from './pages/Login/NaverLoginHandler';
+import KakaoLoginHandler from './pages/Login/KakaoLoginHandler';
 
 import TeamDetailPage from './pages/Team/Detail/TeamDetailPage';
 import TeamUpdatePage from './pages/Team/Update/TeamUpdatePage';
@@ -77,8 +79,10 @@ function ContentBox() {
         <Route path='my/update' element={<MyUpdate />} />
 
         <Route path='/login' element={<Login />} />
+        <Route path='/auth/google/callback' element={<GoogleLoginHandler />} />
+        <Route path='/auth/naver/callback' element={<NaverLoginHandler />} />
+        <Route path='/auth/kakao/callback' element={<KakaoLoginHandler />} />
         <Route path='/login/landing' element={<LoginLanding />} />
-        <Route path='/auth/kakao/callback' element={<LoginHandler />} />
 
         <Route path='/matching' element={<MatchingHome />} />
         <Route path='/matching/guestapply' element={<GuestApply />} />

@@ -1,6 +1,6 @@
 import UnitInfoRow from '../components/ui/UnitInfoRow/UnitInfoRow';
 
-/** deprecated ==> use MemeberRows */
+/** @deprecated ==> use MemeberRows */
 const renderMembers = (members) =>
   members.map((member) => (
     <UnitInfoRow

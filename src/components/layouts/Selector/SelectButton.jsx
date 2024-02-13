@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-/** deprecated: Selector folder 전체가 layout ==> ui */
+/** @deprecated: Selector folder 전체가 layout ==> ui */
 function SelectButton({ $selected, onClick, children }) {
   return (
     <GridContentWrapper>
