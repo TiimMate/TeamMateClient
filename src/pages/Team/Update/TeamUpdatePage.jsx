@@ -14,6 +14,7 @@ import * as S from './TeamUpdatePage.style';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import authInstance from '../../../services/authInstance';
+import withAuth from '../../../hooks/hoc/withAuth';
 
 function TeamUpdatePage() {
   const { id } = useParams();
@@ -69,16 +70,16 @@ function TeamUpdatePage() {
         break;
       }
     }
-    const body = new FormData();
+    const body = {
+      logo,
+      name,
+      description,
+      gender: sex,
+      ageGroup: age,
+      region,
+      gymName,
+    };
 
-    body.append('logo', logo);
-    body.append('name', name);
-    body.append('description', description);
-    body.append('gender', sex);
-    body.append('ageGroup', age);
-    body.append('region', region);
-    body.append('gymName', gymName);
-    for (const keyValue of body) console.log(keyValue);
     try {
       const response = await authInstance.put(`/teams/${id}`, body);
       console.log(response);
@@ -162,4 +163,4 @@ function TeamUpdatePage() {
   );
 }
 
-export default TeamUpdatePage;
+export default withAuth(TeamUpdatePage);

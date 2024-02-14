@@ -1,5 +1,5 @@
 import UnitBoardRow from '../../../../components/ui/UnitBoardRow/UnitBoardRow';
-import Banner from '../../../../components/ui/Banner';
+import Banner from '../../../../components/atoms/Banner';
 
 import * as S from './WritedPost.style';
 

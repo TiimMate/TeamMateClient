@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import ClickableRow from '../components/ClickableRow';
@@ -10,31 +10,49 @@ import Gap from '../../../components/atoms/Gap';
 import ButtonDiv from '../components/ButtonDiv';
 
 import * as S from './MyPage.style';
-
-const MY_INFO = {
-  name: '조예원',
-  age: '20대',
-  gender: '여성',
-  address: '강동구',
-  position: '센터',
-};
-
-const MY_INFO2 = {
-  name: '조예원',
-  age: '20대',
-  gender: '여성',
-  address: '강남구',
-  position: '몰라요',
-};
+import withAuth from '../../../hooks/hoc/withAuth';
+import authInstance, { removeTokens } from '../../../services/authInstance';
 
 function MyPage() {
   const navigate = useNavigate();
   const [sport, setSport] = useState('basketball');
+  const [user, setUser] = useState({
+    nickname: '',
+    skillLevel: '0',
+    mannerLevel: '0',
+    gender: '',
+    ageGroup: '',
+    region: '',
+    position: '',
+    description: '',
+  });
 
-  const myInfo = sport === 'basketball' ? MY_INFO : MY_INFO2;
+  const logout = async () => {
+    try {
+      await authInstance.post('/auth/logout');
+    } catch (error) {
+    } finally {
+      removeTokens();
+      navigate('/');
+    }
+  };
+
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const { result } = (await authInstance.get(`/users/profiles/${sport}`))
+          .data;
+        setUser(result);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchUserProfile();
+  }, [sport]);
+
   return (
     <S.Wrapper>
-      <Greeting userInfo={myInfo} />
+      <Greeting nickname={user.nickname} />
       <Gap height='3.75rem'>
         <S.H2>선수 정보</S.H2>
       </Gap>
@@ -42,17 +60,19 @@ function MyPage() {
       <SportSelector sport={sport} setSport={setSport} />
 
       <S.InfoContainer>
-        <Level />
-        <UserDetailInfo userInfo={myInfo} />
+        <Level who='나' />
+        <UserDetailInfo userInfo={user} />
       </S.InfoContainer>
 
-      <S.IntroContainer>
-        <S.Introduction>내 소개</S.Introduction>
-        <S.IntroBox>안녕하세요</S.IntroBox>
-      </S.IntroContainer>
+      {user.description && (
+        <S.IntroContainer>
+          <S.Introduction>내 소개</S.Introduction>
+          <S.IntroBox>{user.description}</S.IntroBox>
+        </S.IntroContainer>
+      )}
 
       <ButtonDiv onClick={() => navigate(`/my/update?sport=${sport}`)}>
-        수정하기
+        {user.gender ? '수정하기' : '입력하기'}
       </ButtonDiv>
       <Gap height='2.5rem' />
 
@@ -68,13 +88,13 @@ function MyPage() {
         isChevron={true}
       />
       <ClickableRow
-        onClick={() => {
-          /* logout() */
-        }}
-        title='로그아웃'
+        onClick={() => navigate('/my/location')}
+        title='대관정보'
+        isChevron={true}
       />
+      <ClickableRow onClick={logout} title='로그아웃' />
     </S.Wrapper>
   );
 }
 
-export default MyPage;
+export default withAuth(MyPage);
