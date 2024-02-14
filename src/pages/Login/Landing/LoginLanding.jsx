@@ -8,7 +8,7 @@ import * as S from './LoginLanding.style';
 export default function LoginLanding() {
   const navigate = useNavigate();
   const goHome = () => {
-    navigate('/home');
+    navigate('/');
   };
 
   return (

@@ -1,64 +1,88 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './GuestApplyDetail.style';
 import MainFunctionNavbar from '../../../components/layouts/MainFunctionNavbar';
 import UnitInfoRow from '../../../components/ui/UnitInfoRow/UnitInfoRow';
-import {
-  MEMBER_RAW_DATA_BASKETBALL,
-  formatMemberData,
-} from '../../../utils/formatData';
+
 import { useNavigate } from 'react-router-dom';
 
 import iconInfo from '../../../assets/icon_info_blue.png';
 import iconCalendar from '../../../assets/icon_calendar_blue.png';
 import iconPeople from '../../../assets/icon_people_blue.png';
 import iconCheck from '../../../assets/icon_check.png';
-
-const TEAM_INFO = {
-  name: '어쩌구FC',
-  skill: 78,
-  manner: 89,
-  description:
-    '안녕하세요. 저희는 서초구의 상문고등학교에서 매주 일요일에 경기를 진행하는 어쩌구FC라고 합니다.',
-};
-
-const MATCH_INFO = {
-  time: '1월 14일 일요일 오후 15시',
-  gender: '남녀혼성',
-  age: '20대',
-  level: '아마추어',
-};
+import axios from 'axios';
 
 export default function GuestApplyDetail() {
-  const renderMember = () =>
-    formatMemberData(MEMBER_RAW_DATA_BASKETBALL).map((member) => (
-      <UnitInfoRow
-        key={member.id}
-        unitInfo={member.unitInfo}
-        btnText={member.btnText}
-        onClickBtn={member.onClickBtn}
-      />
-    ));
-
   const navigate = useNavigate();
+
+  const [matchDetail, setmatchDetail] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  //input 값 post 전달 위함
+  const [requirements, setRequirements] = useState('없음');
+  const onChangeRequirements = (e) => {
+    setRequirements(e.target.value);
+  };
+
+  const fetchGuestDetail = async () => {
+    try {
+      setmatchDetail(null);
+      setLoading(true); //로딩이 시작됨
+      const response = await axios.get(`http://localhost:4000/guests/10`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('kakao_access_token')}`,
+        },
+      });
+      setmatchDetail(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchGuestDetail();
+  }, []);
+
+  if (loading) return <div>로딩중..</div>;
+  if (!matchDetail) return null; //matchDetial 값이 유효하지 않는 경우
+
+  const postContent = () => {
+    axios
+      .post(
+        'http://localhost:4000/guests/1/application',
+
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem(
+              'kakao_access_token',
+            )}`,
+          },
+        },
+      )
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   return (
     <S.Main>
       <MainFunctionNavbar />
       <S.TeamNameSection>
-        <S.TeamName>{TEAM_INFO.name}</S.TeamName>
+        <S.TeamName>{matchDetail.result.name}</S.TeamName>
 
         <S.statusDiv>
           <S.levelDiv>
             <S.levelSpan>팀의 실력레벨</S.levelSpan>
-            <S.levelGauge>실력레벨</S.levelGauge>
+            <S.levelGauge>Lv.{matchDetail.result.skillLevel}</S.levelGauge>
           </S.levelDiv>
           <S.levelDiv>
             <S.levelSpan>팀의 메너레벨</S.levelSpan>
-            <S.levelGauge>메너레벨</S.levelGauge>
+            <S.levelGauge>Lv.{matchDetail.result.mannerLevel}</S.levelGauge>
           </S.levelDiv>
         </S.statusDiv>
 
-        <S.description>{TEAM_INFO.description}</S.description>
+        <S.description>{matchDetail.result.description}</S.description>
       </S.TeamNameSection>
 
       <S.Gap>모임 정보</S.Gap>
@@ -66,21 +90,24 @@ export default function GuestApplyDetail() {
       <S.MatchInfo>
         <S.MatchInfoText>
           <S.Img src={iconCalendar} alt='캘린더아이콘' />
-          {MATCH_INFO.time}
+          {matchDetail.result.gusting_info.gymName}
         </S.MatchInfoText>
         <S.MatchInfoText>
           <S.Img src={iconPeople} alt='사람아이콘' />
-          {MATCH_INFO.gender} | {MATCH_INFO.age}
+          {matchDetail.result.gusting_info.gender} |
+          {matchDetail.result.gusting_info.ageGroup}
         </S.MatchInfoText>
         <S.MatchInfoText>
           <S.Img src={iconInfo} alt='인포아이콘' />
-          레벨 {MATCH_INFO.level}
+          레벨 {matchDetail.result.gusting_info.skillLevel}
         </S.MatchInfoText>
       </S.MatchInfo>
 
       <S.Gap>팀원 목록</S.Gap>
 
-      <S.TeamMembersSection>{renderMember()}</S.TeamMembersSection>
+      <S.TeamMembersSection>
+        <UnitInfoRow unitInfo={matchDetail.result.member_info.leader} />
+      </S.TeamMembersSection>
 
       <S.Gap>게스트에게 바라는 점</S.Gap>
 
@@ -89,16 +116,12 @@ export default function GuestApplyDetail() {
         <S.TextArea spellCheck='false' />
       </S.RequestPoint>
       <S.ApplyButtonSection>
-        <S.Gap>
-          <S.P>
-            <S.Img src={iconCheck} alt='체크모양 아이콘' />
-            호스트가 수락하면 호스트에게 전화번호를 공개할까요?
-          </S.P>
-        </S.Gap>
+        <S.Gap />
 
         <S.ApplyButton
           onClick={() => {
             navigate('/matching/guestapply');
+            postContent();
           }}
         >
           신청하기

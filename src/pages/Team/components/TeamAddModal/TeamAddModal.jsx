@@ -30,7 +30,7 @@ function TeamAddModal({ onClose }) {
     } else {
       return (
         <>
-          <S.ModalInput
+          <InviteInput
             type='text'
             placeholder='초대코드 입력'
             value={inviteCode}
@@ -49,6 +49,15 @@ function TeamAddModal({ onClose }) {
     <Modal title='우리 팀 추가하기' onClose={onClose}>
       <S.Container>{renderModalContent()}</S.Container>
     </Modal>
+  );
+}
+
+function InviteInput({ valid, message, ...props }) {
+  return (
+    <>
+      <S.Input $valid={valid} {...props} />
+      {!valid && <S.ErrorMsg>{message}</S.ErrorMsg>}
+    </>
   );
 }
 

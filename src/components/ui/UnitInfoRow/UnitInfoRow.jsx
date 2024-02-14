@@ -17,7 +17,7 @@ import * as S from './UnitInfoRow.style';
  * }
  * */
 function UnitInfoRow({ unitInfo, btnText, onClickBtn }) {
-  const { title, description, date, avatarUrl } = unitInfo;
+  const { nickname, description, date, avatarUrl } = unitInfo;
   const onClick = onClickBtn || ((e) => e.preventDefault());
 
   return (
@@ -27,9 +27,13 @@ function UnitInfoRow({ unitInfo, btnText, onClickBtn }) {
       </S.AvatarSection>
 
       {date ? (
-        <TextWithDate title={title} date={date} description={description} />
+        <TextWithDate
+          nickname={nickname}
+          date={date}
+          description={description}
+        />
       ) : (
-        <TextWithoutDate title={title} description={description} />
+        <TextWithoutDate nickname={nickname} description={description} />
       )}
 
       <S.BtnSection>
@@ -43,20 +47,20 @@ function UnitInfoRow({ unitInfo, btnText, onClickBtn }) {
   );
 }
 
-function TextWithDate({ title, date, description }) {
+function TextWithDate({ nickname, date, description }) {
   return (
     <S.TextSection>
-      <S.Title>{title}</S.Title>
+      <S.Title>{nickname}</S.Title>
       <S.Date>{date}</S.Date>
       <S.Description>{description}</S.Description>
     </S.TextSection>
   );
 }
 
-function TextWithoutDate({ title, description }) {
+function TextWithoutDate({ nickname, description }) {
   return (
     <S.TextSection>
-      <S.TitleWithoutDate>{title}</S.TitleWithoutDate>
+      <S.TitleWithoutDate>{nickname}</S.TitleWithoutDate>
       <S.DescriptionWithoutDate>{description}</S.DescriptionWithoutDate>
     </S.TextSection>
   );

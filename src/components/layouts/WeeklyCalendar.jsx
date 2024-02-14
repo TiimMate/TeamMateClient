@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as S from './WeeklyCalendar.style';
 import DaySlices from '../../redux/Slices/DaySlices';
 import ArrowLeft from '../../assets/icon_arrowleft.png';
@@ -20,14 +20,6 @@ const arWeek = [null, null, null, null, null, null, null];
 const arLastWeek = [null, null, null, null, null, null, null];
 const arNextWeek = [null, null, null, null, null, null, null];
 
-let SundayVaule = '';
-let MondayVaule = '';
-let TuesdayVaule = '';
-let WednesdayVaule = '';
-let ThursdayVaule = '';
-let FridayVaule = '';
-let SaturdayVaule = '';
-
 //현재 요일 기준 오른쪽 요일 날짜 객체 넣기
 let addDayNext = 0;
 for (let index = calendarMonthTodayDay; index < 7; index += 1) {
@@ -38,16 +30,9 @@ for (let index = calendarMonthTodayDay; index < 7; index += 1) {
   );
   addDayNext += 1;
 }
-for (let index = 0; index < 7; index += 1) {
-  arNextWeek[index] = new Date(
-    calendarYear,
-    calendarMonth - 1,
-    calendarToday + addDayNext,
-  );
-  addDayNext += 1;
-}
+let addDayLast = -1;
+
 //현재 요일 기준 왼쪽 요일 날짜 객체 넣기
-let addDayLast = 0;
 for (let index = calendarMonthTodayDay - 1; index >= 0; index -= 1) {
   arWeek[index] = new Date(
     calendarYear,
@@ -56,6 +41,18 @@ for (let index = calendarMonthTodayDay - 1; index >= 0; index -= 1) {
   );
   addDayLast -= 1;
 }
+
+//다음주 날짜 객체
+for (let index = 0; index < 7; index += 1) {
+  arNextWeek[index] = new Date(
+    calendarYear,
+    calendarMonth - 1,
+    calendarToday + addDayNext,
+  );
+  addDayNext += 1;
+}
+
+//저번주 날짜 객체
 for (let index = 6; index >= 0; index -= 1) {
   arLastWeek[index] = new Date(
     calendarYear,
@@ -64,6 +61,23 @@ for (let index = 6; index >= 0; index -= 1) {
   );
   addDayLast -= 1;
 }
+
+//'0000-00-00' 형식으로 날쩌 포멧팅
+const formatDate = (date) => {
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+
+  return `${year}-${month}-${day}`;
+};
+
+let SundayVaule = formatDate(arWeek[0]);
+let MondayVaule = formatDate(arWeek[1]);
+let TuesdayVaule = formatDate(arWeek[2]);
+let WednesdayVaule = formatDate(arWeek[3]);
+let ThursdayVaule = formatDate(arWeek[4]);
+let FridayVaule = formatDate(arWeek[5]);
+let SaturdayVaule = formatDate(arWeek[6]);
 
 //각 요일에 해당하는 '일'만을 빼내고 \n일을 추가하여 저장
 const SundayDate = `${arWeek[0].getDate()}\n일`;
@@ -92,7 +106,6 @@ const NextSaturdayDate = `${arNextWeek[6].getDate()}\n토`;
 
 export default function WeeklyCalendar() {
   const dispatch = useDispatch();
-  const day = useSelector((state) => state.Day.value);
 
   //클릭시 배경값 변경을 위한 요일별 useState 지정
   const [back0, setBack0] = useState('white');
@@ -123,13 +136,13 @@ export default function WeeklyCalendar() {
     setSaturday(LastSaturdayDate);
 
     //DaySlice Redux store에 넘길 값 설정
-    SundayVaule = arLastWeek[0];
-    MondayVaule = arLastWeek[1];
-    TuesdayVaule = arLastWeek[2];
-    WednesdayVaule = arLastWeek[3];
-    ThursdayVaule = arLastWeek[4];
-    FridayVaule = arLastWeek[5];
-    SaturdayVaule = arLastWeek[6];
+    SundayVaule = formatDate(arLastWeek[0]);
+    MondayVaule = formatDate(arLastWeek[1]);
+    TuesdayVaule = formatDate(arLastWeek[2]);
+    WednesdayVaule = formatDate(arLastWeek[3]);
+    ThursdayVaule = formatDate(arLastWeek[4]);
+    FridayVaule = formatDate(arLastWeek[5]);
+    SaturdayVaule = formatDate(arLastWeek[6]);
   };
 
   const CurrentWeekDaySet = () => {
@@ -143,13 +156,13 @@ export default function WeeklyCalendar() {
     setSaturday(SaturdayDate);
 
     //DaySlice Redux store에 넘길 값 설정
-    SundayVaule = arWeek[0];
-    MondayVaule = arWeek[1];
-    TuesdayVaule = arWeek[2];
-    WednesdayVaule = arWeek[3];
-    ThursdayVaule = arWeek[4];
-    FridayVaule = arWeek[5];
-    SaturdayVaule = arWeek[6];
+    SundayVaule = formatDate(arWeek[0]);
+    MondayVaule = formatDate(arWeek[1]);
+    TuesdayVaule = formatDate(arWeek[2]);
+    WednesdayVaule = formatDate(arWeek[3]);
+    ThursdayVaule = formatDate(arWeek[4]);
+    FridayVaule = formatDate(arWeek[5]);
+    SaturdayVaule = formatDate(arWeek[6]);
   };
 
   const NextWeekDaySet = () => {
@@ -163,13 +176,13 @@ export default function WeeklyCalendar() {
     setSaturday(NextSaturdayDate);
 
     //DaySlice Redux store에 넘길 값 설정
-    SundayVaule = arNextWeek[0];
-    MondayVaule = arNextWeek[1];
-    TuesdayVaule = arNextWeek[2];
-    WednesdayVaule = arNextWeek[3];
-    ThursdayVaule = arNextWeek[4];
-    FridayVaule = arNextWeek[5];
-    SaturdayVaule = arNextWeek[6];
+    SundayVaule = formatDate(arNextWeek[0]);
+    MondayVaule = formatDate(arNextWeek[1]);
+    TuesdayVaule = formatDate(arNextWeek[2]);
+    WednesdayVaule = formatDate(arNextWeek[3]);
+    ThursdayVaule = formatDate(arNextWeek[4]);
+    FridayVaule = formatDate(arNextWeek[5]);
+    SaturdayVaule = formatDate(arNextWeek[6]);
   };
 
   //각 요일별 클릭 이벤트입니다. 클릭시 해당 요일의 배경만 색을 주고, 나머지는 다른 기본값으로 변경되게 설정했습니다
@@ -241,25 +254,18 @@ export default function WeeklyCalendar() {
   useEffect(() => {
     if (calendarMonthTodayDay === 0) {
       onClick0();
-      dispatch(DaySlices.actions.change(0));
     } else if (calendarMonthTodayDay === 1) {
       onClick1();
-      dispatch(DaySlices.actions.change(1));
     } else if (calendarMonthTodayDay === 2) {
       onClick2();
-      dispatch(DaySlices.actions.change(2));
     } else if (calendarMonthTodayDay === 3) {
       onClick3();
-      dispatch(DaySlices.actions.change(3));
     } else if (calendarMonthTodayDay === 4) {
       onClick4();
-      dispatch(DaySlices.actions.change(4));
     } else if (calendarMonthTodayDay === 5) {
       onClick5();
-      dispatch(DaySlices.actions.change(5));
     } else if (calendarMonthTodayDay === 6) {
       onClick6();
-      dispatch(DaySlices.actions.change(6));
     }
   }, []);
 
@@ -286,6 +292,7 @@ export default function WeeklyCalendar() {
             onClick={() => {
               //클릭시 store에 Day값 변경
               dispatch(DaySlices.actions.change(SundayVaule));
+              console.log(SundayVaule);
               //배경 색(back값)변경
               onClick0();
             }}
@@ -299,6 +306,8 @@ export default function WeeklyCalendar() {
           <S.P
             onClick={() => {
               dispatch(DaySlices.actions.change(MondayVaule));
+              console.log(MondayVaule);
+
               onClick1();
             }}
             back={back1}
@@ -310,6 +319,8 @@ export default function WeeklyCalendar() {
           <S.P
             onClick={() => {
               dispatch(DaySlices.actions.change(TuesdayVaule));
+              console.log(TuesdayVaule);
+
               onClick2();
             }}
             back={back2}
@@ -354,6 +365,8 @@ export default function WeeklyCalendar() {
           <S.P
             onClick={() => {
               dispatch(DaySlices.actions.change(SaturdayVaule));
+              console.log(SaturdayVaule);
+
               onClick6();
             }}
             back={back6}

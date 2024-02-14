@@ -24,7 +24,8 @@ export default function MatchListFilter(props) {
               <S.P
                 onClick={() => {
                   setDropDownRegion('지역');
-                  props.setRegionFilter('전체');
+                  props.setFilter('전체');
+                  props.setFilterCate('region');
                 }}
               >
                 전체
@@ -34,7 +35,8 @@ export default function MatchListFilter(props) {
               <S.P
                 onClick={() => {
                   setDropDownRegion('서울');
-                  props.setRegionFilter('서울');
+                  props.setFilter('서울');
+                  props.setFilterCate('region');
                 }}
               >
                 서울
@@ -44,7 +46,8 @@ export default function MatchListFilter(props) {
               <S.P
                 onClick={() => {
                   setDropDownRegion('부산');
-                  props.setRegionFilter('부산');
+                  props.setFilter('부산');
+                  props.setFilterCate('region');
                 }}
               >
                 부산
@@ -54,7 +57,8 @@ export default function MatchListFilter(props) {
               <S.P
                 onClick={() => {
                   setDropDownRegion('제주도');
-                  props.setRegionFilter('제주도');
+                  props.setFilter('제주도');
+                  props.setFilterCate('region');
                 }}
               >
                 제주도
@@ -74,7 +78,8 @@ export default function MatchListFilter(props) {
               <S.P
                 onClick={() => {
                   setDropDownLevel('0~10');
-                  props.setLevelFilter('0~10');
+                  props.setFilter(0);
+                  props.setFilterCate('level');
                 }}
               >
                 0~10
@@ -84,7 +89,8 @@ export default function MatchListFilter(props) {
               <S.P
                 onClick={() => {
                   setDropDownLevel('10~20');
-                  props.setLevelFilter('10~20');
+                  props.setFilter(1);
+                  props.setFilterCate('level');
                 }}
               >
                 10~20
@@ -94,7 +100,8 @@ export default function MatchListFilter(props) {
               <S.P
                 onClick={() => {
                   setDropDownLevel('20~30');
-                  props.setLevelFilter('20~30');
+                  props.setFilter(2);
+                  props.setFilterCate('level');
                 }}
               >
                 20~30
@@ -104,7 +111,8 @@ export default function MatchListFilter(props) {
               <S.P
                 onClick={() => {
                   setDropDownLevel('30~40');
-                  props.setLevelFilter('30~40');
+                  props.setFilter(3);
+                  props.setFilterCate('level');
                 }}
               >
                 30~40
@@ -124,7 +132,8 @@ export default function MatchListFilter(props) {
               <S.P
                 onClick={() => {
                   setDropDownGender('혼성');
-                  props.setGenderFilter('혼성');
+                  props.setFilter('MX');
+                  props.setFilterCate('gender');
                 }}
               >
                 혼성
@@ -134,7 +143,8 @@ export default function MatchListFilter(props) {
               <S.P
                 onClick={() => {
                   setDropDownGender('남성');
-                  props.setGenderFilter('남성');
+                  props.setFilter('M');
+                  props.setFilterCate('gender');
                 }}
               >
                 남성
@@ -144,7 +154,8 @@ export default function MatchListFilter(props) {
               <S.P
                 onClick={() => {
                   setDropDownGender('여성');
-                  props.setGenderFilter('여성');
+                  props.setFilter('F');
+                  props.setFilterCate('gender');
                 }}
               >
                 여성

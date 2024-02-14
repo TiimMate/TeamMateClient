@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   box-sizing: border-box;
   display: flex;
+  font-family: Pretendard;
   justify-content: space-between;
   align-items: center;
   width: 100%;
@@ -30,7 +31,6 @@ export const Content = styled.div`
 
 export const TeamName = styled.p`
   color: black;
-  font-family: Pretendard;
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
@@ -38,9 +38,7 @@ export const TeamName = styled.p`
 
 export const MatchDetail = styled.p`
   color: var(--gray-300);
-  font-family: Pretendard;
   font-size: 10px;
-  font-weight: 400;
   line-height: 20px;
 `;
 
@@ -53,8 +51,6 @@ export const Button = styled.div`
   color: white;
   border-radius: 6px;
   background: var(--blue-400, #0075ff);
-
-  font-family: Pretendard;
   font-size: 12px;
   line-height: 22px;
   letter-spacing: -0.6px;

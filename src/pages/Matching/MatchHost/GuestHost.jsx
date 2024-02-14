@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import WeeklyCalendar from '../../../components/layouts/WeeklyCalendar';
 import * as S from './GuestHost.style';
 import { useNavigate } from 'react-router-dom';
@@ -16,6 +16,7 @@ import Gap from '../../../components/atoms/Gap';
 import { formatMemberData } from '../../../utils/formatData';
 import useDetectClose from '../../../hooks/UseDetectClose';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 export default function GuestHost() {
   const [teamInfo, dispatch] = useTeamInfo();
@@ -25,23 +26,22 @@ export default function GuestHost() {
   const [regionIsOpen, regionRef, regionHandler] = useDetectClose(false);
   const [dropDownRegion, setDropDownRegion] = useState('시간 선택');
 
+  const day = useSelector((state) => state.Day.value);
+
   //TimePicker에서 값을 받아오기 위한 함수
   const [time, setTime] = useState({
-    hour: '00',
-    minute: '00',
+    hour: 0,
+    minute: 0,
     ampm: 'AM',
     gameTime: 0,
   });
-  function onSetTime(clock) {
-    setTime(clock);
-  }
 
   //input 값 post 전달 위함
-  const [requirements, setRequirements] = useState(0);
+  const [requirements, setRequirements] = useState('없음');
   const onChangeRequirements = (e) => {
     setRequirements(e.target.value);
   };
-  const [recruitCount, setRecruitCount] = useState('');
+  const [recruitCount, setRecruitCount] = useState(0);
   const onChangeRecuritCount = (e) => {
     setRecruitCount(e.target.value);
   };
@@ -59,19 +59,26 @@ export default function GuestHost() {
       isLeader === 'false' && (() => dispatch({ type: 'MEMBERS', value: id })),
   });
 
-  let teamid = '';
+  let teamid = 1;
 
   const postContent = () => {
     axios
       .post(
         'http://localhost:4000/guests',
+
         {
-          teamid,
-          Time,
-          requirements,
-          recruitCount,
+          teamId: teamid,
+          gameTime: `${day} ${time.hour}:${time.minute}:00`,
+          description: requirements,
+          recruitCount: recruitCount,
         },
-        {},
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem(
+              'kakao_access_token',
+            )}`,
+          },
+        },
       )
       .catch((error) => {
         console.error(error);
@@ -135,7 +142,7 @@ export default function GuestHost() {
         <WeeklyCalendar />
 
         <S.MatchTimeSection>
-          <TimePicker updateTime={onSetTime} />
+          <TimePicker updateTime={setTime} />
           <S.P>부터</S.P>
           <S.DropdownContainer>
             <S.DropdownButton onClick={regionHandler} ref={regionRef}>
@@ -236,7 +243,7 @@ export default function GuestHost() {
           <S.HostButton
             onClick={() => {
               navigate('/matching/guestapply');
-              console.log(Time, requirements, recruitCount);
+              console.log(day);
               postContent();
             }}
           >

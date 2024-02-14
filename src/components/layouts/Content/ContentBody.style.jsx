@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   width: 100%;
 `;
+
 export const ContentBodyContainer = styled.div`
   display: flex;
   padding: 0.625rem 1.875rem 3rem 1.875rem;
@@ -14,6 +15,8 @@ export const ContentBodyContainer = styled.div`
   border-bottom: 0.0625rem solid var(--Gray200, #d9d9d9);
   background: #fff;
 `;
+
+export const Image = styled.div``;
 
 export const Contents = styled.div`
   color: var(--kakao-logo, #000);

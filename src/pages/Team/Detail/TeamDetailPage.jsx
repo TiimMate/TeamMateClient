@@ -40,6 +40,13 @@ function TeamDetailPage() {
       </S.TeamNameSection>
       <Gap />
 
+      <S.Title>팀 코드</S.Title>
+      <S.TeamCodeSection>
+        <S.TeamCode>BF123RT</S.TeamCode>
+      </S.TeamCodeSection>
+      <Gap />
+
+      <S.Title>팀원 목록</S.Title>
       <S.TeamMembersSection>
         <MemberRows members={members} />
       </S.TeamMembersSection>

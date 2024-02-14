@@ -1,96 +1,86 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  align-items: center;
   box-sizing: border-box;
-
-  display: grid;
-  place-items: center;
-
-  grid-template-columns: 33px 40px 106px 1fr 70px;
-  width: 100%;
+  display: flex;
+  font-family: Pretendard;
   height: 70px;
+  justify-content: space-between;
+  border-top: 1px solid var(--gray-100);
+  padding: 8px 20px;
+  width: 100%;
+`;
 
-  padding: 8px 21px 8px 20px;
+export const MatchInfo = styled.div`
+  align-items: center;
+  display: flex;
+  gap: 26px;
 `;
 
 export const Time = styled.div`
-  display: flex;
   align-items: center;
-
-  color: var(--kakao-logo, #000);
-  font-family: Pretendard;
+  color: black;
+  display: flex;
   font-size: 12px;
-  font-style: normal;
   font-weight: 500;
-  line-height: 22px; /* 183.333% */
+  line-height: 22px;
 `;
 
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 3px;
 `;
 
-export const TeamName = styled.p`
-  color: var(--kakao-logo, #000);
+export const ContentTitle = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+`;
 
-  /* 12md */
-  font-family: Pretendard;
-  font-size: 12px;
-  font-style: normal;
+export const TeamName = styled.h3`
+  color: black;
+  font-size: 14px;
   font-weight: 500;
-  line-height: 22px; /* 183.333% */
-  letter-spacing: -0.6px;
+  letter-spacing: -0.7px;
+  line-height: 25px;
 `;
 
-export const MatchLocation = styled.p`
-  color: var(--Blue300, #0075ff);
-
-  font-family: Pretendard;
-  font-size: 8px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px; /* 200% */
+export const LocationInfo = styled.div`
+  display: flex;
+  color: var(--blue-400, #0075ff);
+  font-size: 11px;
   letter-spacing: -0.4px;
+  line-height: 16px;
+  letter-spacing: -0.55px;
+  gap: 2px;
 `;
+
+export const LocationIcon = styled.div`
+  width: 8px;
+  height: 8px;
+`;
+
+export const LocationName = styled.p``;
 
 export const MatchDetail = styled.p`
-  color: var(--kakao-logo, #000);
-  font-family: Pretendard;
-  font-size: 8px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16px; /* 200% */
+  color: black;
+  font-size: 11px;
   letter-spacing: -0.4px;
-  color: var(--Black, var(--kakao-logo, #000));
-  font-family: Pretendard;
-  font-size: 8px;
-  font-style: normal;
-  font-weight: 400;
   line-height: 16px;
-  letter-spacing: 0px;
-`;
-export const Space = styled.div`
-  width: 100%;
-  display: flex;
 `;
 
 export const Button = styled.div`
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-
-  width: 70px;
-  height: 30px;
+  background: var(--blue-400, #0075ff);
   border-radius: 6px;
-
-  background: var(--Blue300, #0075ff);
-
   color: white;
-  font-family: Pretendard;
+  display: flex;
   font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 22px; /* 183.333% */
+  height: 30px;
+  justify-content: center;
   letter-spacing: -0.6px;
+  line-height: 22px;
+  width: 70px;
 `;

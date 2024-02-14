@@ -1,4 +1,6 @@
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import useOnLocationChange from './hooks/useOnLocationChange';
+
 import styles from './styles/App.module.css';
 import Navbar from './components/layouts/Navbar/Navbar';
 import Tapbar from './components/layouts/Tapbar/Tapbar';
@@ -18,6 +20,7 @@ import MatchHistoryForHostMember from './pages/Matching/MatchHistoryForHostMembe
 
 import Login from './pages/Login/Home/Login';
 import LoginLanding from './pages/Login/Landing/LoginLanding';
+import LoginHandler from './pages/Login/LoginHandler';
 
 import TeamDetailPage from './pages/Team/Detail/TeamDetailPage';
 import TeamUpdatePage from './pages/Team/Update/TeamUpdatePage';
@@ -38,6 +41,7 @@ import MyUpdate from './pages/MyPage/Update/MyUpdatePage';
 import SavedPost from './pages/MyPage/Community/Save/SavedPost';
 import WritedPost from './pages/MyPage/Community/Write/WritedPost';
 import GuestApplyDetail from './pages/Matching/MatchApply/GuestApplyDetail';
+import MyLocation from './pages/MyPage/Location/MyLocation';
 
 function App() {
   return (
@@ -53,6 +57,7 @@ function App() {
 
 // contents in here
 function ContentBox() {
+  useOnLocationChange(() => window.scrollTo(0, 0));
   return (
     <div className={styles.container}>
       <Routes>
@@ -68,10 +73,13 @@ function ContentBox() {
         <Route path='/my' element={<MyPage />} />
         <Route path='/my/community/save' element={<SavedPost />} />
         <Route path='/my/community/write' element={<WritedPost />} />
+        <Route path='/my/location' element={<MyLocation />} />
         <Route path='my/update' element={<MyUpdate />} />
 
         <Route path='/login' element={<Login />} />
         <Route path='/login/landing' element={<LoginLanding />} />
+        <Route path='/auth/kakao/callback' element={<LoginHandler />} />
+
         <Route path='/matching' element={<MatchingHome />} />
         <Route path='/matching/guestapply' element={<GuestApply />} />
         <Route

@@ -47,8 +47,7 @@ export default function TimePicker(props) {
   const containMinute = useRef(null);
   const containAMPM = useRef(null);
 
-  let Time = { hour: '', minute: '', ampm: '', gameTime: '' };
-
+  let Time = { hour: 0, minute: 0, ampm: '', gameTime: '' };
   return (
     <S.Main>
       <S.TimePickerContainer ref={containHour}>
@@ -61,8 +60,6 @@ export default function TimePicker(props) {
                   top: data.location,
                   behavior: 'smooth',
                 });
-                //일단은 console에 담아뒀습니다
-                console.log(data.hour);
                 Time.hour = data.hour;
                 props.updateTime(Time);
               }}
@@ -84,7 +81,6 @@ export default function TimePicker(props) {
                   top: data.location,
                   behavior: 'smooth',
                 });
-                console.log(data.minute);
                 Time.minute = data.minute;
                 props.updateTime(Time);
               }}
@@ -104,8 +100,10 @@ export default function TimePicker(props) {
                   top: data.location,
                   behavior: 'smooth',
                 });
-                console.log(data.ampm);
                 Time.ampm = data.ampm;
+                if (Time.ampm === 'pm') {
+                  Time.hour += 12;
+                }
                 props.updateTime(Time);
               }}
             >

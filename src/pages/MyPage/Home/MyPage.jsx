@@ -1,29 +1,37 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import ClickableRow from '../components/ClickableRow';
 import Greeting from '../components/Greeting/Greeting';
-import UserDetailInfo from '../../../components/layouts/UserDetailInfo/UserDetailInfo';
-import SportSelect from '../../../components/ui/SportSelect/SportSelect';
+import UserDetailInfo from '../../../components/ui/UserDetailInfo/UserDetailInfo';
+import SportSelector from '../../../components/ui/Selector/Sport/SportSelector';
 import Level from '../../../components/ui/Level/Level';
 import Gap from '../../../components/atoms/Gap';
 import ButtonDiv from '../components/ButtonDiv';
 
 import * as S from './MyPage.style';
-import { useState } from 'react';
 
 const MY_INFO = {
   name: '조예원',
   age: '20대',
   gender: '여성',
   address: '강동구',
-  position: '미드필더',
+  position: '센터',
+};
+
+const MY_INFO2 = {
+  name: '조예원',
+  age: '20대',
+  gender: '여성',
+  address: '강남구',
+  position: '몰라요',
 };
 
 function MyPage() {
   const navigate = useNavigate();
-  const [sport, setSport] = useState('2');
+  const [sport, setSport] = useState('basketball');
 
-  const myInfo = MY_INFO;
+  const myInfo = sport === 'basketball' ? MY_INFO : MY_INFO2;
   return (
     <S.Wrapper>
       <Greeting userInfo={myInfo} />
@@ -31,7 +39,7 @@ function MyPage() {
         <S.H2>선수 정보</S.H2>
       </Gap>
 
-      <SportSelect sport={sport} setSport={setSport} />
+      <SportSelector sport={sport} setSport={setSport} />
 
       <S.InfoContainer>
         <Level />
@@ -43,7 +51,9 @@ function MyPage() {
         <S.IntroBox>안녕하세요</S.IntroBox>
       </S.IntroContainer>
 
-      <ButtonDiv onClick={() => navigate('/my/update')}>수정하기</ButtonDiv>
+      <ButtonDiv onClick={() => navigate(`/my/update?sport=${sport}`)}>
+        수정하기
+      </ButtonDiv>
       <Gap height='2.5rem' />
 
       {/* #TODO: 나중에 주소 바꾸기 */}
