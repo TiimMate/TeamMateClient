@@ -23,3 +23,23 @@ export const Span = styled.span`
   line-height: 25px; /* 178.571% */
   letter-spacing: -0.7px;
 `;
+
+export const Comment = styled.h4`
+  color: var(--Blue300, #0075ff);
+  font-family: Pretendard;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 32px; /* 133.333% */
+  letter-spacing: -1.2px;
+`;
+
+export const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  width: 100%;
+  height: 7rem;
+`;

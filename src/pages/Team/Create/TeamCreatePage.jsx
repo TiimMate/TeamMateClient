@@ -65,17 +65,17 @@ function TeamCreatePage() {
         break;
       }
     }
-    const body = new FormData();
+    const body = {
+      logo,
+      name,
+      description,
+      gender: sex,
+      ageGroup: age,
+      region,
+      gymName,
+      category: sport,
+    };
 
-    body.append('logo', logo);
-    body.append('name', name);
-    body.append('description', description);
-    body.append('gender', sex);
-    body.append('ageGroup', age);
-    body.append('region', region);
-    body.append('gymName', gymName);
-    body.append('category', sport);
-    for (const keyValue of body) console.log(keyValue);
     try {
       const response = await authInstance.post('/teams', body);
       console.log(response);

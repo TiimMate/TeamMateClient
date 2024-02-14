@@ -9,6 +9,7 @@ import * as S from './TeamDetailPage.style';
 import MemberRows from '../../../components/ui/MemberRows/MemberRows';
 import { useEffect, useState } from 'react';
 import authInstance from '../../../services/authInstance';
+import withAuth from '../../../hooks/hoc/withAuth';
 
 function TeamDetailPage() {
   const { id } = useParams();
@@ -80,4 +81,4 @@ function TeamDetailPage() {
   );
 }
 
-export default TeamDetailPage;
+export default withAuth(TeamDetailPage);

@@ -1,4 +1,4 @@
-import Banner from '../../../components/ui/Banner';
+import Banner from '../../../components/atoms/Banner';
 import NotPost from '../components/NotPost';
 
 import * as S from './MyLocation.style';

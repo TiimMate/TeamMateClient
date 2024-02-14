@@ -8,7 +8,10 @@ function withAuth(WrappedComponent) {
     const navigate = useNavigate();
 
     useEffect(() => {
-      isAuth || navigate('/login');
+      if (!isAuth) {
+        alert('로그인이 필요합니다.');
+        navigate('/login');
+      }
     }, [isAuth, navigate]);
 
     return isAuth && <WrappedComponent {...props} />;
