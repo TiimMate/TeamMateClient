@@ -1,19 +1,60 @@
 import { useReducer } from 'react';
-import { MEMBER_RAW_DATA_BASKETBALL } from '../utils/formatData';
 
 const TEAM_INFO = {
+  category: '',
+
   logoUrl: '',
   name: '',
   description: '',
   gender: new Array(3).fill(false),
-  age: new Array(5).fill(false),
-  location: '',
-  gym: '',
-  members: MEMBER_RAW_DATA_BASKETBALL,
+  ageGroup: new Array(5).fill(false),
+  region: '',
+  gymName: '잠실종합운동장', // TEST
+
+  participants: {
+    leader: {
+      nickname: '',
+      height: '',
+      position: '',
+    },
+    member: [],
+  },
 };
 
 function reducer(state, action) {
   switch (action.type) {
+    case 'INIT': {
+      const {
+        name,
+        description,
+        gender,
+        ageGroup,
+        region,
+        gymName,
+        participants,
+      } = action.value;
+      const formatGender = () => {
+        if (gender === 'F') return [true, false, false];
+        if (gender === 'M') return [false, true, false];
+        return [false, false, true];
+      };
+      const formatAgeGroup = () => {
+        if (ageGroup === '-10') return [true, false, false, false, false];
+        if (ageGroup === '20-29') return [false, true, false, false, false];
+        if (ageGroup === '30-39') return [false, false, true, false, false];
+        if (ageGroup === '40-49') return [false, false, false, true, false];
+        return [false, false, false, false, true];
+      };
+
+      return {
+        ...state,
+        name,
+        description,
+        participants,
+        gender: formatGender(),
+        ageGroup: formatAgeGroup(),
+      };
+    }
     case 'LOGO':
       return {
         ...state,
@@ -35,26 +76,26 @@ function reducer(state, action) {
         gender: action.value,
       };
 
-    case 'AGE':
+    case 'AGE_GROUP':
       return {
         ...state,
-        age: action.value,
+        ageGroup: action.value,
       };
-    case 'LOCATION':
+    case 'REGION':
       return {
         ...state,
-        location: action.value,
+        region: action.value,
       };
-    case 'GYM':
+    case 'GYM_NAME':
       return {
         ...state,
-        gym: action.value,
+        gymName: action.value,
       };
 
     case 'MEMBERS':
       return {
         ...state,
-        members: {
+        member: {
           sport: state.members.sport,
           data: state.members.data.filter(
             (member) => member.id !== action.value,

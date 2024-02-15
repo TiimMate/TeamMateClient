@@ -115,18 +115,7 @@ const formatBasketballMembers = (members, options = {}) => {
   return newData;
 };
 
-/** API로 받아온 memberData를 UnitInfoRow로 format 하는 함수
- *
- * rawData: api로 받아온 그대로의 data
- * options(Not Required): unitInfo, btnText, onClickBtn을 format할 수 있는 함수를 받음
- * => { formatUnitInfo, formatBtnText, formatOnClickBtn }
- *
- * formatUnitInfo(member)
- * formatBtnText(member)
- * formatOnClickBtn(member)
- *
- * 각각 options 있으면 그걸로 적용, 없으면 default로 적용
- */
+/** @deprecated: use formatMembers */
 export const formatMemberData = (rawData, options) => {
   const { sport, data: members } = rawData;
 
@@ -140,4 +129,40 @@ export const formatMemberData = (rawData, options) => {
   }
 
   return null;
+};
+
+export const formatMembers = (leader, members, options = {}) => {
+  const { formatBtnText, formatOnClickBtn } = options;
+
+  const leaderData = {
+    id: 1, //#TODO: id 요청 받아야함
+    unitInfo: {
+      title: leader?.nickname,
+      description:
+        leader.height &&
+        leader.position &&
+        `${leader.height}cm | ${leader.position}`,
+      avatarUrl: leader?.avatarUrl,
+    },
+    btnText: formatBtnText
+      ? formatBtnText({ ...leader, isLeader: true })
+      : '팀장',
+    onClickBtn:
+      formatOnClickBtn && formatOnClickBtn({ ...leader, isLeader: true }),
+  };
+
+  const membersData = members.map((member, idx) => {
+    const { nickname, avatarUrl, height, position } = member;
+    return {
+      id: idx + 33, // #TODO: ID 요청 받아야함
+      unitInfo: {
+        title: nickname,
+        description: height && position && `${height}cm | ${position}`,
+        avatarUrl,
+      },
+      btnText: formatBtnText ? formatBtnText(member) : null,
+      onClickBtn: formatOnClickBtn && formatOnClickBtn(member),
+    };
+  });
+  return [leaderData, ...membersData];
 };
