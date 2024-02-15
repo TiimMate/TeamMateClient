@@ -2,17 +2,20 @@ import React, { useEffect, useState } from 'react';
 import * as S from './GuestApplyDetail.style';
 import MainFunctionNavbar from '../../../components/layouts/MainFunctionNavbar';
 import UnitInfoRow from '../../../components/ui/UnitInfoRow/UnitInfoRow';
+import useModal from '../../../hooks/useModal';
 
 import { useNavigate } from 'react-router-dom';
 
 import iconInfo from '../../../assets/icon_info_blue.png';
 import iconCalendar from '../../../assets/icon_calendar_blue.png';
 import iconPeople from '../../../assets/icon_people_blue.png';
-import iconCheck from '../../../assets/icon_check.png';
 import axios from 'axios';
+import MatchingModal from '../../../components/ui/MatchingModal/MatchingModal';
 
 export default function GuestApplyDetail() {
   const navigate = useNavigate();
+
+  const { isOpen, openModal, closeModal } = useModal();
 
   const [matchDetail, setmatchDetail] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -62,6 +65,7 @@ export default function GuestApplyDetail() {
       )
       .catch((error) => {
         console.error(error);
+        openModal();
       });
   };
 
@@ -127,6 +131,14 @@ export default function GuestApplyDetail() {
           신청하기
         </S.ApplyButton>
       </S.ApplyButtonSection>
+
+      <MatchingModal
+        title='선수 정보 미입력'
+        content='선수님의 정보를 입력해주세요!'
+        buttonText='선수 정보 입력화면으로 이동'
+        isOpen={isOpen}
+        onClose={closeModal}
+      />
     </S.Main>
   );
 }

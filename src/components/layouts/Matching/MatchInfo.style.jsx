@@ -73,7 +73,7 @@ export const MatchDetail = styled.p`
 
 export const Button = styled.div`
   align-items: center;
-  background: var(--blue-400, #0075ff);
+  background: ${(props) => props.background};
   border-radius: 6px;
   color: white;
   display: flex;

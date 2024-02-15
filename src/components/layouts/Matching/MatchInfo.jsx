@@ -21,6 +21,13 @@ function MatchInfo({ id, unitInfo, state, page }) {
     recruitCount,
   } = unitInfo;
 
+  let buttonColor = 'var(--blue-400, #0075ff)';
+  if (recruitCount === 0) {
+    buttonColor = 'var(--Gray200, #D9D9D9)';
+  } else {
+    buttonColor = 'var(--blue-400, #0075ff)';
+  }
+
   gameTime = new Date(gameTime);
   const gameHour = `${gameTime.getHours()}`;
   const gameMinute = `${gameTime.getMinutes()}`;
@@ -55,11 +62,15 @@ function MatchInfo({ id, unitInfo, state, page }) {
           </S.MatchDetail>
         </S.Content>
       </S.MatchInfo>
+      <S.Button onClick={openModal} background={buttonColor}>
+        {recruitCount}명 남음
+      </S.Button>
       {/* 상위 컴포넌트에서 받는 page라는 props 값에 따라서 매치 지원 버튼 모달과 리뷰 모달 중 어느것을 띄울지 정하는 코드 */}
-      <S.Button onClick={openModal}>{recruitCount}명 남음</S.Button>
       {page === 'apply' ? (
         <MatchingModal
           title='선수 정보 미입력'
+          content='선수님의 정보를 입력해주세요!'
+          buttonText='선수 정보 입력화면으로 이동'
           isOpen={isOpen}
           onClose={closeModal}
         />
