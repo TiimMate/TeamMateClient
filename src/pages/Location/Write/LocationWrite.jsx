@@ -19,8 +19,6 @@ export default function LocationWrite() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
-  //나도 useReducer 쓰는게 좋을까,,,,,,??
-
   const navigate = useNavigate();
 
   const [showPrompt, confirmNavigation, cancelNavigation] =
@@ -103,14 +101,6 @@ export default function LocationWrite() {
               setContent(e.target.value);
               console.log(content);
             }}
-          />
-        </S.InputWrapper>
-        <S.InputWrapper>
-          <S.Label>링크</S.Label>
-          <TextInput
-            valid={valid}
-            placeholder='링크를 입력해 주세요.'
-            onChange={handleShouldConfirm}
           />
         </S.InputWrapper>
 

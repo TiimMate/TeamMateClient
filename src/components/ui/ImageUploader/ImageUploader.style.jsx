@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const ImageSection = styled.section`
+  width: 100%;
+`;
+
 export const Label = styled.label`
   display: flex;
   color: var(--Gray300, #636363);
@@ -31,12 +35,22 @@ export const NewImageList = styled.div`
   justify-content: flex-start;
   align-items: center;
   width: calc(100% - 5rem);
+  flex-wrap: wrap; // 복수의 행
 `;
-
+export const NewImageBox = styled.div`
+  position: relative;
+`;
+export const DeleteImageButton = styled.button`
+  position: absolute;
+  top: 5px;
+  right: 5px;
+`;
 export const NewImage = styled.img`
+  display: block;
+
   width: 4.0625rem;
   height: 4.0625rem;
-  margin-right: 7px;
+  margin: 0 4px 4px 0;
   justify-content: center;
   align-items: center;
   border-radius: 0.375rem;

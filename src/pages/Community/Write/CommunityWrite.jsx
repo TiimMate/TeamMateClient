@@ -3,59 +3,64 @@ import ContentHeader from '../../../components/layouts/Content/ContentHeader';
 import Modal from '../../../components/ui/Modal/Modal';
 import camera from '../../../assets/btn_camera.svg';
 import * as S from './CommunityWrite.style';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useCallbackPrompt } from '../../../hooks/useCallbackPrompt';
 import { useNavigate } from 'react-router';
 import TextInput from '../../../components/layouts/TextInput';
 import TextArea from '../../../components/layouts/TextArea';
+import authInstance from '../../../services/authInstance';
+import withAuth from '../../../hooks/hoc/withAuth';
+import ImageUploader from '../../../components/ui/ImageUploader/ImageUploader';
 
-export default function CommunityWrite() {
-  const fileInput = useRef();
+function CommunityWrite() {
   const [imageList, setImageList] = useState([]);
   const [shouldConfirm, setShouldConfirm] = useState(false);
   const [valid, setValid] = useState(true);
+  const [postContents, setPostContents] = useState({
+    title: '',
+    content: '',
+    link: '',
+  });
   const navigate = useNavigate();
 
-  const [showPrompt, confirmNavigation, cancelNavigation] =
-    useCallbackPrompt(shouldConfirm);
+  useEffect(() => {
+    console.log('imageList', imageList);
+    if (imageList) setShouldConfirm(true);
 
-  const handleButtonClick = (e) => {
-    fileInput.current.click();
-  };
+    setPostContents((prevState) => {
+      return { ...prevState, link: imageList.join() };
+    });
+  }, [imageList]);
 
-  const handleFileChange = (e) => {
-    const newImgList = e.target.files;
-    const tempImgList = [];
+  const onChangeHandler = async (e) => {
+    //e.preventDefault();
+    if (e.target.value) setShouldConfirm(true);
+    const { name, value } = e.target;
 
-    for (let i = 0; i < newImgList.length; i++) {
-      tempImgList.push({
-        id: newImgList[i].name,
-        file: newImgList[i],
-        url: URL.createObjectURL(newImgList[i]),
-      });
-    }
-    setImageList(imageList.concat(tempImgList));
-  };
-
-  const addImageList = () => {
-    return imageList.map((image) => {
-      return (
-        <div key={image.url}>
-          <S.NewImage alt='preview' src={image.url}></S.NewImage>
-        </div>
-      );
+    setPostContents({
+      ...postContents,
+      [name]: value,
     });
   };
 
-  const handleShouldConfirm = (e) => {
-    if (e.target.value) setShouldConfirm(true);
+  const onSubmit = async () => {
+    const body = new FormData();
+    body.append('title', postContents.title);
+    body.append('content', postContents.content);
+    body.append('link', postContents.link);
+
+    for (const keyValue of body) console.log(keyValue);
+    try {
+      const response = await authInstance.post('/posts/community', body);
+      console.log(response);
+      navigate('/community');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const handleSubmit = () => {
-    // 필수 항목 입력 완료시 서버에 저장
-    // 현재는 라우팅(pathname변경)으로 인한 prompt-modal이슈
-    navigate('/community');
-  };
+  const [showPrompt, confirmNavigation, cancelNavigation] =
+    useCallbackPrompt(shouldConfirm);
 
   function ModalChildren() {
     const renderPromptModalContent = () => {
@@ -87,48 +92,46 @@ export default function CommunityWrite() {
         </Modal>
       )}
 
+      {showPrompt && (
+        <Modal title='작성중인 페이지를 벗어날까요?' onClose={cancelNavigation}>
+          <ModalChildren />
+        </Modal>
+      )}
       <MainFunctionNavbar />
       <ContentHeader needButton={false} title={'글 작성하기'} />
       <S.ContentBody>
         <S.Label>글 제목</S.Label>
         <S.InputWrapper>
           <TextInput
+            name='title'
             valid={valid}
             placeholder='제목을 입력해 주세요.'
-            onChange={handleShouldConfirm}
+            onChange={onChangeHandler}
           />
         </S.InputWrapper>
         <S.Label>내용</S.Label>
         <S.InputWrapper>
           <TextArea
+            name='content'
             rows={6}
             placeholder='내용을 입력해 주세요.'
-            onChange={handleShouldConfirm}
+            onChange={onChangeHandler}
           />
         </S.InputWrapper>
-        <S.InputWrapper>
-          <S.Label>링크</S.Label>
-          <TextInput
-            valid={valid}
-            placeholder='링크를 입력해 주세요.'
-            onChange={handleShouldConfirm}
-          />
-        </S.InputWrapper>
-        <S.Label>이미지</S.Label>
-        <S.Image type='button' onClick={handleButtonClick}>
-          <img src={camera} alt='camera'></img>
-        </S.Image>
-        <input
-          type='file'
-          ref={fileInput}
-          accept='.jpg,.png,.svg'
-          multiple
-          style={{ display: 'none' }}
-          onChange={handleFileChange}
-        />
-        <S.NewImageList>{addImageList()}</S.NewImageList>
-        <S.SaveButton onClick={handleSubmit}>저장하기</S.SaveButton>
+
+        <ImageUploader imageList={imageList} setImageList={setImageList} />
+
+        <S.SaveButton
+          onClick={() => {
+            setShouldConfirm(false);
+            onSubmit();
+          }}
+        >
+          저장하기
+        </S.SaveButton>
       </S.ContentBody>
     </S.Wrapper>
   );
 }
+
+export default withAuth(CommunityWrite);
