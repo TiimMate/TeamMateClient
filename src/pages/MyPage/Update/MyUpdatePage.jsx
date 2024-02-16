@@ -41,13 +41,13 @@ function MyUpdate() {
       <S.NameSection>
         <S.Label>이름(닉네임)*</S.Label>
         <S.NameInput
-          vlaue={name}
+          value={name}
           onChange={(e) => dispatch({ type: 'NAME', value: e.target.value })}
         />
 
         <S.Label>내 소개</S.Label>
         <S.TextArea
-          vlaue={description}
+          value={description}
           onChange={(e) =>
             dispatch({ type: 'DESCRIPTION', value: e.target.value })
           }

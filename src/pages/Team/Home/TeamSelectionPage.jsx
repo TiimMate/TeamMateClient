@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import useModal from '../../../hooks/useModal';
 
-import SportSelect from '../../../components/ui/Selector/Sport/SportSelector';
+import SportSelector from '../../../components/ui/Selector/Sport/SportSelector';
 import TeamAddModal from '../components/TeamAddModal/TeamAddModal';
 
 import highfive from '../../../assets/highfive.png';
@@ -52,9 +52,9 @@ function TeamSelectionPage() {
 
   return (
     <S.Wrapper>
-      {isOpen && <TeamAddModal onClose={closeModal} />}
+      {isOpen && <TeamAddModal onClose={closeModal} category={sport} />}
 
-      <SportSelect sport={sport} setSport={setSport} />
+      <SportSelector sport={sport} setSport={setSport} />
 
       <S.TeamSelectionSection>
         {renderTeam()}
