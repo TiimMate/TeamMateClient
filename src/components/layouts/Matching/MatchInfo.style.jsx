@@ -73,9 +73,24 @@ export const MatchDetail = styled.p`
 
 export const Button = styled.div`
   align-items: center;
-  background: var(--blue-400, #0075ff);
   border-radius: 6px;
-  color: white;
+  background: blue;
+  background: ${({ reviewStatus }) => {
+    switch (reviewStatus) {
+      case 'COMPLETED':
+        return 'var(--gray-200)';
+      case 'UNCOMPLETED':
+        return 'var(--blue-400, #0075ff)';
+      case 'PENDING':
+        return 'var(--blue-200)';
+      default:
+        return 'var(--blue-400, #0075ff)';
+    }
+  }};
+  color: ${
+    ({ reviewStatus }) =>
+      reviewStatus === 'PENDING' ? 'var(--blue-400)' : 'white' // PENDING 상태일 때 글자색 변경
+  };
   display: flex;
   font-size: 12px;
   height: 30px;

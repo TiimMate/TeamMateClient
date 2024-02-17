@@ -78,7 +78,11 @@ export default function MatchReviewInfo({
           </S.MatchDetail>
         </S.Content>
       </S.MatchInfo>
-      <S.Button type='button' onClick={handleReviewButtonClick}>
+      <S.Button
+        type='button'
+        onClick={handleReviewButtonClick}
+        reviewStatus={reviewStatus}
+      >
         {reviewButtonText}
       </S.Button>
 
