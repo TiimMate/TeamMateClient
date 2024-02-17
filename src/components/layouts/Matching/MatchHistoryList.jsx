@@ -41,6 +41,16 @@ const dummy = [
   },
 ];
 
+function convertToKoreanTime(utcTimeString) {
+  const utcDate = new Date(utcTimeString);
+  const koreanTime = new Date(utcDate.getTime() + 9 * 60 * 60 * 1000);
+  return koreanTime.toLocaleTimeString('ko-KR', {
+    hour12: false,
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+}
+
 export default function MatchHistoryList() {
   return (
     <S.Wrapper>
@@ -51,11 +61,7 @@ export default function MatchHistoryList() {
           unitInfo={{
             title: info.name,
             date: new Date(info.gameTime).toLocaleDateString(),
-            time: new Date(info.gameTime).toLocaleTimeString('en-US', {
-              hour12: false,
-              hour: '2-digit',
-              minute: '2-digit',
-            }),
+            time: convertToKoreanTime(info.gameTime),
             GymName: '',
             Capacity: info.memberCount,
             Region: info.region,
