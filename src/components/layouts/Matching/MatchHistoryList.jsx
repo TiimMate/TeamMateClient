@@ -13,30 +13,31 @@ const dummy = [
     memberCount: 3,
     ageGroup: '20대',
     skillLevel: 30,
+    isReviewCompleted: 'Y',
   },
   {
     type: 'guest',
     matchId: 2,
     gameTime: '2024-01-30T15:00:00.000Z',
-    gameDuration: '02:30:00',
     name: '코티스트',
     region: '서울 용산구',
     gender: '여성',
     memberCount: 3,
     ageGroup: '10대',
     skillLevel: 1,
+    isReviewCompleted: 'N',
   },
   {
     type: 'guest',
     matchId: 3,
     gameTime: '2024-01-30T15:00:00.000Z',
-    gameDuration: '02:30:00',
     name: '팀메이트',
     region: '서울 중구',
     gender: '여성',
     memberCount: 3,
     ageGroup: '10대',
     skillLevel: 1,
+    isReviewCompleted: 'TBD',
   },
 ];
 
@@ -50,7 +51,11 @@ export default function MatchHistoryList() {
           unitInfo={{
             title: info.name,
             date: new Date(info.gameTime).toLocaleDateString(),
-            time: new Date(info.gameTime).toLocaleTimeString(),
+            time: new Date(info.gameTime).toLocaleTimeString('en-US', {
+              hour12: false,
+              hour: '2-digit',
+              minute: '2-digit',
+            }),
             GymName: '',
             Capacity: info.memberCount,
             Region: info.region,
@@ -58,8 +63,6 @@ export default function MatchHistoryList() {
             level: info.skillLevel,
             gender: info.gender,
           }}
-          state={info.type === 'game' ? 1 : 0}
-          page={info.type === 'game' ? 'game' : 'guest'}
         />
       ))}
     </S.Wrapper>
