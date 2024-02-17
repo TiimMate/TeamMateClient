@@ -1,0 +1,49 @@
+import AWS from 'aws-sdk';
+
+const s3 = new AWS.S3({
+  accessKeyId: 'AKIATCKAOVMZEGH36A4M',
+  secretAccessKey: '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',
+});
+
+export async function uploadImage(file) {
+  const key = `${Date.now()}-${parseInt(Math.random() * 100)}`;
+
+  const params = {
+    Bucket: 'teammates3bucket',
+    Key: key,
+    Body: file,
+    ContentType: 'image/jpeg',
+  };
+
+  return new Promise((resolve, reject) => {
+    s3.putObject(params, function (err, data) {
+      if (err) {
+        console.log('Error uploading data: ', err);
+        reject(err);
+      } else {
+        console.log('Successfully uploaded data');
+        resolve(key); // 성공 시, 키 반환
+      }
+    });
+  });
+}
+
+export async function downloadImage(filename) {
+  const params = {
+    Bucket: 'teammates3bucket',
+    Key: filename,
+  };
+
+  return new Promise((resolve, reject) => {
+    s3.getObject(params, function (err, data) {
+      if (err) {
+        console.log('Error downloading data: ', err);
+        reject(err);
+      } else {
+        console.log('Successfully uploaded data');
+        const imageBase64 = data.Body.toString('base64');
+        resolve(imageBase64);
+      }
+    });
+  });
+}
