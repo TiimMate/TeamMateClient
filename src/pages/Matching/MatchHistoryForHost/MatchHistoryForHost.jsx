@@ -26,7 +26,7 @@ export default function MatchHistoryForHost() {
           </S.NavItem>
         ))}
       </S.Nav>
-      <S.Banner></S.Banner>
+      <S.Banner />
       <WeeklyCalendar />
       <MatchHistoryList />
     </S.PageLayout>

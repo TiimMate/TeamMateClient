@@ -26,7 +26,7 @@ export default function MatchHistoryForGuest() {
           </S.NavItem>
         ))}
       </S.Nav>
-      <S.Banner></S.Banner>
+      <S.Banner />
       <WeeklyCalendar />
       <MatchHistoryList />
     </S.PageLayout>

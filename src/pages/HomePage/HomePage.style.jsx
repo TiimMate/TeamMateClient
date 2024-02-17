@@ -54,6 +54,7 @@ export const BallImageList = styled.div`
     width: 70px;
     height: 70px;
     object-fit: cover;
+    cursor: pointer;
   }
 `;
 
