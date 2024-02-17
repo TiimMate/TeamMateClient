@@ -5,8 +5,6 @@ import camera from '../../../assets/btn_camera.svg';
 import close from '../../../assets/icon_close.svg';
 
 export default function ImageUploader({ imageList, setImageList }) {
-  console.log('imageList', imageList);
-
   const imageInput = useRef();
 
   const handleButtonClick = (e) => {
@@ -24,7 +22,6 @@ export default function ImageUploader({ imageList, setImageList }) {
         reader.onload = () => {
           tempImgList.push(reader.result);
           //setImageList((list) => list.concat(tempImgList));
-
           setImageList(imageList.concat(tempImgList));
         };
       }

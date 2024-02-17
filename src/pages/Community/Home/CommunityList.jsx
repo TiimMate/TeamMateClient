@@ -12,7 +12,12 @@ function CommunityList() {
   const navigate = useNavigate();
   const [communityList, setCommunityList] = useState([]);
   const [page, setPage] = useState(1);
-  const [lastPostId, setLastPostId] = useState();
+  //const [lastPostId, setLastPostId] = useState(null);
+  // const [postRow, setPostRow] = useState({
+  //   title: '',
+  //   createdAt: '',
+  // });
+  const [hasMorePosts, setHasMorePosts] = useState(false);
 
   let timeInterver = '';
 
@@ -20,16 +25,34 @@ function CommunityList() {
     navigate('/community/write');
   };
 
+  // useEffect(() => {
+  //   const getTeams = async () => {
+  //     try {
+  //       const response = await authInstance.get(`/teams?category=${sport}`);
+  //       const { result } = response.data;
+  //       setTeamInfo([...result]);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   getTeams();
+  // }, [sport]);
+
   const getCommunityList = async () => {
     try {
-      const response = await authInstance.get(
-        `/posts/community/?cursorId=${lastPostId}`,
-      );
+      const response = await authInstance.get('/posts/community');
+      //`/posts/community/?cursorId=${lastPostId}`
+      //'/posts/community'
+      console.log(response);
       const { result } = response.data;
+
+      console.log('result.posts', result.posts);
+      console.log('result.hasNext', result.hasNext);
+
       setCommunityList([...result.posts]);
+      setHasMorePosts(result.hasNext);
 
-      console.log(communityList);
-
+      console.log('communityList', communityList);
       //setLastPostId(communityList[communityList.length - 1]);
     } catch (error) {
       console.log(error);
@@ -38,45 +61,48 @@ function CommunityList() {
 
   useEffect(() => {
     getCommunityList();
-  }, [page]);
+  }, []);
 
   const renderPost = () =>
-    communityList.map((content, idx) => {
-      console.log(idx);
-      if (idx === communityList.length - 1) setLastPostId(content.id);
+    communityList.map(({ id, isBookmarked, title, createdAt }, idx) => {
+      const lastPostId = idx === communityList.length - 1;
+
+      console.log({ id, isBookmarked, title, createdAt }, idx);
+
       return (
         <UnitBoardRow
-          key={content.id}
-          id={content.id}
-          category={content.isBookmarked}
-          title={content.title}
-          date={content.createdAt}
+          key={id}
+          id={id}
+          category={isBookmarked}
+          title={title}
+          date={createdAt}
         />
       );
     });
 
-  function onScroll() {
-    const scrollHeight = document.documentElement.scrollHeight;
-    const scrollTop = document.documentElement.scrollTop;
-    const clientHeight = document.documentElement.clientHeight;
+  // function onScroll() {
+  //   const scrollHeight = document.documentElement.scrollHeight;
+  //   const scrollTop = document.documentElement.scrollTop;
+  //   const clientHeight = document.documentElement.clientHeight;
 
-    if (scrollTop + clientHeight >= scrollHeight) {
-      setPage(page + 1);
-    }
-  }
+  //   if (scrollTop + clientHeight >= scrollHeight && hasMorePosts) {
+  //     setPage(page + 1);
+  //     console.log(page);
+  //   }
+  // }
 
-  const handleScroll = () => {
-    clearTimeout(timeInterver);
-    timeInterver = setTimeout(onScroll, 300);
-  };
+  // const handleScroll = () => {
+  //   clearTimeout(timeInterver);
+  //   timeInterver = setTimeout(onScroll, 300);
+  // };
 
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+  // useEffect(() => {
+  //   window.addEventListener('scroll', handleScroll);
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  });
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  // });
 
   return (
     <S.Wrapper>

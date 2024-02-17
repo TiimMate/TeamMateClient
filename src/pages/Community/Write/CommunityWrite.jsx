@@ -24,7 +24,6 @@ function CommunityWrite() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log('imageList', imageList);
     if (imageList) setShouldConfirm(true);
 
     setPostContents((prevState) => {
@@ -33,7 +32,6 @@ function CommunityWrite() {
   }, [imageList]);
 
   const onChangeHandler = async (e) => {
-    //e.preventDefault();
     if (e.target.value) setShouldConfirm(true);
     const { name, value } = e.target;
 

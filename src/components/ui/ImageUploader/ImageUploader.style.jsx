@@ -42,8 +42,8 @@ export const NewImageBox = styled.div`
 `;
 export const DeleteImageButton = styled.button`
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: -16px;
+  right: 0px;
 `;
 export const NewImage = styled.img`
   display: block;

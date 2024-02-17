@@ -14,6 +14,7 @@ import ImageUploader from '../../../components/ui/ImageUploader/ImageUploader';
 import authInstance from '../../../services/authInstance';
 
 export default function LocationWrite() {
+  const [imageList, setImageList] = useState([]);
   const [shouldConfirm, setShouldConfirm] = useState(false);
   const [valid, setValid] = useState('true');
   const [title, setTitle] = useState('');
@@ -32,6 +33,7 @@ export default function LocationWrite() {
   //   // 서버에 저장
   //   navigate('/location');
   // };
+
   const handleSubmit = async () => {
     try {
       const response = await authInstance.post('/posts/rent', {
@@ -104,7 +106,7 @@ export default function LocationWrite() {
           />
         </S.InputWrapper>
 
-        <ImageUploader />
+        <ImageUploader imageList={imageList} setImageList={setImageList} />
       </S.ContentBody>
 
       <Gap />
