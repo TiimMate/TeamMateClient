@@ -9,7 +9,7 @@ const TEAM_INFO = {
   gender: new Array(3).fill(false),
   ageGroup: new Array(5).fill(false),
   region: '',
-  gymName: '잠실종합운동장', // TEST
+  gymName: '', // TEST
 
   participants: {
     leader: {
