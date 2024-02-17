@@ -24,16 +24,16 @@ function reducer(state, action) {
         position,
       } = action.value;
       const formatGender = () => {
-        if (gender === 'F') return [true, false];
-        if (gender === 'M') return [false, true];
+        if (gender === '여성') return [true, false];
+        if (gender === '남성') return [false, true];
         return [false, false];
       };
       const formatAgeGroup = () => {
-        if (ageGroup === '-10') return [true, false, false, false, false];
-        if (ageGroup === '20-29') return [false, true, false, false, false];
-        if (ageGroup === '30-39') return [false, false, true, false, false];
-        if (ageGroup === '40-49') return [false, false, false, true, false];
-        if (ageGroup === '50-') return [false, false, false, false, true];
+        if (ageGroup === '10대') return [true, false, false, false, false];
+        if (ageGroup === '20대') return [false, true, false, false, false];
+        if (ageGroup === '30대') return [false, false, true, false, false];
+        if (ageGroup === '40대') return [false, false, false, true, false];
+        if (ageGroup === '50대 이상') return [false, false, false, false, true];
         return [false, false, false, false, false];
       };
 
@@ -44,6 +44,7 @@ function reducer(state, action) {
         gender: formatGender(),
         ageGroup: formatAgeGroup(),
         region,
+        height: '180',
         position: position ? position : '',
       };
     }

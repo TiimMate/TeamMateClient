@@ -39,7 +39,7 @@ function MyUpdate() {
     e.preventDefault();
 
     // #TODO: FETCH LOGO
-    const logo = null;
+    const logo = '';
 
     let sex = '';
     for (let i = 0; i < gender.length; i++) {
@@ -86,7 +86,7 @@ function MyUpdate() {
       try {
         const { result } = (await authInstance.get(`/users/profiles/${sport}`))
           .data;
-        console.log(result);
+        console.log('result:', result);
         dispatch({ type: 'INIT', value: result });
       } catch (error) {
         console.log(error);
@@ -94,6 +94,7 @@ function MyUpdate() {
     };
     fetchMyProfile();
   }, [id, navigate, dispatch, sport]);
+  console.log(height);
 
   return (
     <S.Wrapper>

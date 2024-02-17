@@ -36,14 +36,16 @@ function reducer(state, action) {
       const formatGender = () => {
         if (gender === 'F') return [true, false, false];
         if (gender === 'M') return [false, true, false];
-        return [false, false, true];
+        if (gender === 'MX') return [false, false, true];
+        return [false, false, false];
       };
       const formatAgeGroup = () => {
         if (ageGroup === '-10') return [true, false, false, false, false];
         if (ageGroup === '20-29') return [false, true, false, false, false];
         if (ageGroup === '30-39') return [false, false, true, false, false];
         if (ageGroup === '40-49') return [false, false, false, true, false];
-        return [false, false, false, false, true];
+        if (ageGroup === '50-') return [false, false, false, false, true];
+        return [false, false, false, false, false];
       };
 
       return {

@@ -38,6 +38,7 @@ function TeamDetailPage() {
       try {
         const { result } = (await authInstance.get(`/teams/${id}`)).data;
         setTeamInfo({ ...result });
+        console.log(result);
       } catch (error) {
         console.log(error);
         navigate('/');

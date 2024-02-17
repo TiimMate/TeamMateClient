@@ -42,7 +42,7 @@ function TeamCreatePage() {
     e.preventDefault();
 
     // #TODO: FETCH LOGO
-    const logo = null;
+    const logo = '';
 
     let sex = '';
     for (let i = 0; i < gender.length; i++) {
