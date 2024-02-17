@@ -5,16 +5,15 @@ import { useNavigate, useParams } from 'react-router-dom';
 import TimePicker from '../../../components/atoms/TimePicker/TimePicker';
 
 import MemberRows from '../../../components/ui/MemberRows/MemberRows';
-import Gap from '../../../components/atoms/Gap';
 
 import { formatMembers } from '../../../utils/formatData';
 import useDetectClose from '../../../hooks/UseDetectClose';
 import { useDispatch, useSelector } from 'react-redux';
 import authInstance from '../../../services/authInstance';
-import Level from '../../../components/ui/Level/Level';
 import useModal from '../../../hooks/useModal';
 import MatchingModal from '../../../components/ui/MatchingModal/MatchingModal';
 import DaySlices from '../../../redux/Slices/DaySlices';
+import GameTimePicker from '../../../components/atoms/GameTimePicker/GameTimePicker';
 
 export default function TeamHost() {
   const { id, category } = useParams();
@@ -44,18 +43,15 @@ export default function TeamHost() {
     },
   });
 
-  const [regionIsOpen, regionRef, regionHandler] = useDetectClose(false);
-  const [dropDownRegion, setDropDownRegion] = useState('시간 선택');
-
   const day = useSelector((state) => state.Day.value);
 
   const { isOpen, openModal, closeModal } = useModal();
 
   const navi = () => {
-    navigate(`/${category}/matching/guestapply`);
+    navigate(`/${category}/matching/teamapply`);
   };
 
-  //TimePicker에서 값을 받아오기 위한 함수
+  //TimePicker에서 값을 받아오기 위해
   const [time, setTime] = useState({
     hour: 0,
     minute: 0,
@@ -63,6 +59,7 @@ export default function TeamHost() {
     gameTime: 0,
   });
 
+  const [gameTime, setGameTime] = useState('');
   //input 값 post 전달 위함
   const [requirements, setRequirements] = useState('없음');
   const onChangeRequirements = (e) => {
@@ -106,18 +103,12 @@ export default function TeamHost() {
 
   const postContent = async (e) => {
     try {
-      const response = await authInstance.post(
-        '/guests',
-
-        {
-          teamId: teamId.result[0].id,
-          gameTime: `${day} ${time.hour}:${time.minute}:00`,
-          description: requirements,
-          gameDuration: '1',
-          recruitCount: recruitCount,
-        },
-      );
-      navigate(`/${category}/matching/guestapply`);
+      const response = await authInstance.post('/games/apply', {
+        gameTime: `${day} ${time.hour}:${time.minute}:00`,
+        gameDuration: gameTime,
+        description: requirements,
+      });
+      navigate(`/${category}/matching/teamapply`);
     } catch (error) {
       openModal();
       console.error(error);
@@ -149,11 +140,21 @@ export default function TeamHost() {
 
       <S.TeamNameSection>
         <S.TeamName>{teamInfo.name}</S.TeamName>
-        <Level />
+
+        <S.LevelContainer>
+          <S.levelDiv>
+            <S.levelSpan>팀의 실력레벨</S.levelSpan>
+            <S.levelGauge>{teamInfo.skillLevel}</S.levelGauge>
+          </S.levelDiv>
+          <S.levelDiv>
+            <S.levelSpan>팀의 메너레벨</S.levelSpan>
+            <S.levelGauge>{teamInfo.mannerLevel}</S.levelGauge>
+          </S.levelDiv>
+        </S.LevelContainer>
+
         <S.description>{teamInfo.description}</S.description>
       </S.TeamNameSection>
-      <Gap />
-      <S.Title>팀원 목록</S.Title>
+      <S.Gap>팀원 목록</S.Gap>
       <S.TeamMembersSection>
         <MemberRows members={members} />
       </S.TeamMembersSection>
@@ -163,98 +164,12 @@ export default function TeamHost() {
         <WeeklyCalendar />
 
         <S.MatchTimeSection>
-          <TimePicker updateTime={setTime} />
+          <TimePicker setTime={setTime} />
           <S.P>부터</S.P>
-          <S.DropdownContainer>
-            <S.DropdownButton onClick={regionHandler} ref={regionRef}>
-              {dropDownRegion}
-            </S.DropdownButton>
-            <S.Menu isDropped={regionIsOpen}>
-              <S.Ul>
-                <S.Li>
-                  <S.P
-                    onClick={() => {
-                      setDropDownRegion('1시간');
-                      time.gameTime = 1;
-                    }}
-                  >
-                    1시간
-                  </S.P>
-                </S.Li>
-                <S.Li>
-                  <S.P
-                    onClick={() => {
-                      setDropDownRegion('1시간 30분');
-                      time.gameTime = 1.5;
-                    }}
-                  >
-                    1시간 30분
-                  </S.P>
-                </S.Li>
-                <S.Li>
-                  <S.P
-                    onClick={() => {
-                      setDropDownRegion('2시간');
-                      time.gameTime = 2;
-                    }}
-                  >
-                    2시간
-                  </S.P>
-                </S.Li>
-                <S.Li>
-                  <S.P
-                    onClick={() => {
-                      setDropDownRegion('2시간 30분');
-                      time.gameTime = 2.5;
-                    }}
-                  >
-                    2시간 30분
-                  </S.P>
-                </S.Li>
-                <S.Li>
-                  <S.P
-                    onClick={() => {
-                      setDropDownRegion('3시간');
-                      time.gameTime = 3;
-                    }}
-                  >
-                    3시간
-                  </S.P>
-                </S.Li>
-                <S.Li>
-                  <S.P
-                    onClick={() => {
-                      setDropDownRegion('3시간 30분');
-                      time.gameTime = 3.5;
-                    }}
-                  >
-                    3시간 30분
-                  </S.P>
-                </S.Li>
-                <S.Li>
-                  <S.P
-                    onClick={() => {
-                      setDropDownRegion('4시간');
-                      time.gameTime = 4;
-                    }}
-                  >
-                    4시간
-                  </S.P>
-                </S.Li>
-              </S.Ul>
-            </S.Menu>
-          </S.DropdownContainer>
+          <GameTimePicker setGameTime={setGameTime} />
         </S.MatchTimeSection>
         <S.Gap>게스트 모집</S.Gap>
         <S.GuestHostSection>
-          <S.Label>모집 인원 수*</S.Label>
-          <S.HostCountSection>
-            <S.HostCountInput
-              placeholder='0'
-              onChange={onChangeRecuritCount}
-            ></S.HostCountInput>
-            <S.HostCountP>명</S.HostCountP>
-          </S.HostCountSection>
           <S.Label>바라는 점</S.Label>
           <S.TextArea spellCheck='false' onChange={onChangeRequirements} />
         </S.GuestHostSection>

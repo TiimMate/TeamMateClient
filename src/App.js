@@ -44,6 +44,7 @@ import SavedPost from './pages/MyPage/Community/Save/SavedPost';
 import WritedPost from './pages/MyPage/Community/Write/WritedPost';
 import GuestApplyDetail from './pages/Matching/MatchApply/GuestApplyDetail';
 import MyLocation from './pages/MyPage/Location/MyLocation';
+import TeamApplyDetail from './pages/Matching/MatchApply/TeamApplyDetail';
 
 function App() {
   return (
@@ -89,6 +90,10 @@ function ContentBox() {
         <Route
           path='/:category/matching/guestapply/detail'
           element={<GuestApplyDetail />}
+        />
+        <Route
+          path='/:category/matching/teamapply/detail'
+          element={<TeamApplyDetail />}
         />
         <Route path='/:category/matching/teamapply' element={<TeamApply />} />
         <Route path='/:category/matching/guesthost' element={<GuestHost />} />

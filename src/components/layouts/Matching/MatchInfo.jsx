@@ -31,12 +31,21 @@ function MatchInfo({ id, unitInfo, state, page }) {
   }
 
   gameTime = new Date(gameTime);
-  const gameHour = `${gameTime.getHours()}`;
-  const gameMinute = `${gameTime.getMinutes()}`;
+  let gameHour = `${gameTime.getHours()}`;
+  if (gameHour < 10) {
+    gameHour = `0${gameHour}`;
+  }
+  let gameMinute = `${gameTime.getMinutes()}`;
+  if (gameMinute < 10) {
+    gameMinute = `0${gameMinute}`;
+  }
 
   const { isOpen, openModal, closeModal } = useModal();
 
   const navigate = useNavigate();
+
+  let matchType = '';
+  page == 'guests' ? (matchType = 'guest') : (matchType = 'team');
 
   return (
     <S.Container>
@@ -46,7 +55,7 @@ function MatchInfo({ id, unitInfo, state, page }) {
         </S.Time>
         <S.Content
           onClick={() => {
-            navigate(`/${category}/matching/guestapply/detail`);
+            navigate(`/${category}/matching/${matchType}apply/detail`);
           }}
         >
           <S.ContentTitle>
@@ -64,21 +73,15 @@ function MatchInfo({ id, unitInfo, state, page }) {
           </S.MatchDetail>
         </S.Content>
       </S.MatchInfo>
-      <S.Button onClick={openModal} background={buttonColor}>
-        {recruitCount}명 남음
-      </S.Button>
+      <S.Button background={buttonColor}>{recruitCount}명 남음</S.Button>
       {/* 상위 컴포넌트에서 받는 page라는 props 값에 따라서 매치 지원 버튼 모달과 리뷰 모달 중 어느것을 띄울지 정하는 코드 */}
-      {page === 'apply' ? (
-        <MatchingModal
-          title='선수 정보 미입력'
-          content='선수님의 정보를 입력해주세요!'
-          buttonText='선수 정보 입력화면으로 이동'
-          isOpen={isOpen}
-          onClose={closeModal}
-        />
-      ) : (
-        <ReviewModal isOpen={isOpen} onClose={closeModal} />
-      )}
+      <MatchingModal
+        title='선수 정보 미입력'
+        content='선수님의 정보를 입력해주세요!'
+        buttonText='선수 정보 입력화면으로 이동'
+        isOpen={isOpen}
+        onClose={closeModal}
+      />
     </S.Container>
   );
 }
