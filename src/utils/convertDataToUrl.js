@@ -12,7 +12,7 @@ export const convertSportToUrl = (sport) => {
     case '야구':
       return '/baseball';
     case '탁구':
-      return '/pingpong';
+      return '/table-tennis';
     case '볼링':
       return '/bowling';
     case '배드민턴':
