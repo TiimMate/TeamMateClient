@@ -43,6 +43,7 @@ function MyPage() {
         const { result } = (await authInstance.get(`/users/profiles/${sport}`))
           .data;
         setUser(result);
+        console.log(result);
       } catch (error) {
         console.log(error);
       }
