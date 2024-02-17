@@ -4,46 +4,108 @@ import NotPost from '../../components/NotPost';
 
 import * as S from './SavedPost.style';
 import withAuth from '../../../../hooks/hoc/withAuth';
-
-const dummy = [
-  {
-    id: 1,
-    unitBoard: {
-      category: 'notice',
-      title: '커뮤니티 이용 규칙 안내드립니다.',
-      contents: '이것은 커뮤니티 더미 데이터입니다.',
-      date: '1/26 19:50',
-      imgUrl: '../../../assets/highfive.png',
-    },
-  },
-  {
-    id: 2,
-    unitBoard: {
-      category: '',
-      title: '오늘 가스 공사 역대급 게임 했네요.',
-      contents: '이것은 커뮤니티 더미 데이터입니다.',
-      date: '1/27 21:00',
-      imgUrl: '../../../assets/highfive.png',
-    },
-  },
-  {
-    id: 3,
-    unitBoard: {
-      category: 'bookmark',
-      title:
-        '제목이 긴 게시물을 가정해 보고 싶었습니다... 이렇게 저렇게 요렇게?',
-      contents: '이것은 커뮤니티 더미 데이터입니다.',
-      date: '1/26 21:11',
-      imgUrl: '../../../assets/highfive.png',
-    },
-  },
-];
+import { useEffect, useRef, useState } from 'react';
+import authInstance from '../../../../services/authInstance';
 
 function SavedPost() {
+  const [page, setPage] = useState(1);
+
+  const [communityList, setCommunityList] = useState([]);
+  const [hasMorePosts, setHasMorePosts] = useState(false);
+  const [lastPostId, setLastPostId] = useState(null);
+
+  const [bottom, setBottom] = useState(null);
+  const bottomObserver = useRef(null);
+
+  useEffect(() => {
+    if (!bottom) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setPage(page + 1);
+        }
+      },
+      { threshold: 0.5 },
+    );
+    bottomObserver.current = observer;
+
+    observer.observe(bottom);
+    return () => {
+      observer.unobserve(bottom);
+    };
+  }, [bottom]);
+
+  const getCommunityList = async ({ lastPostId }) => {
+    try {
+      let response;
+
+      if (lastPostId == null)
+        response = await authInstance.get('/posts/bookmarks');
+      else
+        response = await authInstance.get(
+          `/posts/bookmarks?cursorId=${lastPostId}`,
+        );
+
+      console.log(response);
+      const { result } = response.data;
+
+      if (result.posts.length === 20 && result.hasNext) {
+        result.posts.forEach((item, idx) => {
+          if (idx === result.posts.length - 1) {
+            setLastPostId(item.id);
+          }
+        });
+      }
+      setCommunityList(communityList.concat([...result.posts]));
+      setHasMorePosts(result.hasNext);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getCommunityList({ lastPostId });
+    // 처음 렌더링 될때 안나오는걸 어떻게 해결할 수 있을까요,,,
+  }, []);
+
+  useEffect(() => {
+    getCommunityList({ lastPostId });
+  }, [page]);
+
+  console.log(communityList);
+
   const renderPost = () =>
-    dummy.map((post) => (
-      <UnitBoardRow id={post.id} key={post.id} unitBoard={post.unitBoard} />
-    ));
+    communityList.map(({ id, isBookmarked, title, createdAt }, idx) => {
+      console.log({ id, isBookmarked, title, createdAt }, idx, lastPostId);
+      console.log('hasMorePosts', hasMorePosts);
+      console.log('lastPostId === id', lastPostId === id);
+
+      if (lastPostId === id) {
+        return (
+          <>
+            <UnitBoardRow
+              key={id}
+              id={id}
+              category={isBookmarked}
+              title={title}
+              date={createdAt}
+            />
+            <div ref={setBottom} />
+          </>
+        );
+      } else {
+        return (
+          <UnitBoardRow
+            key={id}
+            id={id}
+            category={isBookmarked}
+            title={title}
+            date={createdAt}
+          />
+        );
+      }
+    });
 
   return (
     <S.Wrapper>
@@ -56,8 +118,7 @@ function SavedPost() {
         <S.Date>작성일시</S.Date>
       </S.HeaderContainer>
 
-      {/* {renderPost()} */}
-      <NotPost title='작성한 글이' />
+      {communityList.length ? renderPost() : <NotPost title='저장한 글이' />}
     </S.Wrapper>
   );
 }
