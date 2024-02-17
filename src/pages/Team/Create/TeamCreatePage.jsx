@@ -1,21 +1,22 @@
-import useTeamInfo from '../../../hooks/useTeamInfo';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+
+import useTeamInfo from '../../../hooks/useTeamInfo';
+import withAuth from '../../../hooks/hoc/withAuth';
+
+import authInstance from '../../../services/authInstance';
 
 import SportSelector from '../../../components/ui/Selector/Sport/SportSelector';
 import LogoUploader from '../../../components/ui/LogoUploader/LogoUploader';
 import TeamGenderSelector from '../../../components/ui/Selector/Gender/TeamGenderSelector';
 import TeamAgeSelector from '../../../components/ui/Selector/Age/TeamAgeSelector';
 import LocationSelector from '../../../components/ui/Selector/Location/LocationSelector';
+import GymSelector from '../../../components/ui/Selector/Gym/GymSelector';
 import MemberRows from '../../../components/ui/MemberRows/MemberRows';
 import Gap from '../../../components/atoms/Gap';
-import MapContent from '../../../components/layouts/Content/MapContent';
 
 import * as S from './TeamCreatePage.style';
-import authInstance from '../../../services/authInstance';
-import withAuth from '../../../hooks/hoc/withAuth';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import GymSelector from '../../../components/ui/Selector/Gym/GymSelector';
 
 // #TODO: integrity check, if  error
 function TeamCreatePage() {
@@ -47,8 +48,8 @@ function TeamCreatePage() {
     let sex = '';
     for (let i = 0; i < gender.length; i++) {
       if (gender[i]) {
-        if (i === 0) sex = 'M';
-        else if (i === 1) sex = 'F';
+        if (i === 0) sex = 'F';
+        else if (i === 1) sex = 'M';
         else sex = 'MX';
         break;
       }
@@ -77,8 +78,7 @@ function TeamCreatePage() {
     };
 
     try {
-      const response = await authInstance.post('/teams', body);
-      console.log(response);
+      await authInstance.post('/teams', body);
       navigate('/team');
     } catch (error) {
       console.log(error);

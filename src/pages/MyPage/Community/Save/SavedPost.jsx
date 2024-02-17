@@ -3,6 +3,7 @@ import Banner from '../../../../components/atoms/Banner';
 import NotPost from '../../components/NotPost';
 
 import * as S from './SavedPost.style';
+import withAuth from '../../../../hooks/hoc/withAuth';
 
 const dummy = [
   {
@@ -61,4 +62,4 @@ function SavedPost() {
   );
 }
 
-export default SavedPost;
+export default withAuth(SavedPost);

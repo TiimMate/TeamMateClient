@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 
+import authInstance from '../../../services/authInstance';
+
 import useModal from '../../../hooks/useModal';
+import withAuth from '../../../hooks/hoc/withAuth';
 
 import SportSelector from '../../../components/ui/Selector/Sport/SportSelector';
 import TeamAddModal from '../components/TeamAddModal/TeamAddModal';
@@ -9,8 +12,6 @@ import highfive from '../../../assets/highfive.png';
 import plus from '../../../assets/plus.svg';
 
 import * as S from './TeamSelectionPage.style';
-import authInstance from '../../../services/authInstance';
-import withAuth from '../../../hooks/hoc/withAuth';
 
 const COLOR_LIST = ['var(--blue-400, #0075ff)', '#86ff91'];
 

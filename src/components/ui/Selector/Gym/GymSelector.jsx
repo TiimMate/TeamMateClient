@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import styled from 'styled-components';
 import chevronDown4 from '../../../../assets/chevron-down-4 1.svg';
 import mapIcon from '../../../../assets/icon_map.svg';
@@ -9,10 +10,15 @@ function GymSelector({ gym, setGym, disabled = false }) {
   const mapRef = useRef(null);
   const [map, setMap] = useState(null);
   const [marker, setMarker] = useState(null);
+  const [isUpdated, setIsUpdated] = useState(false);
 
   useEffect(() => {
-    maps.load(() => setGymInfo(gym));
-  }, []);
+    maps.load(() => {
+      if (gym) {
+        setGymInfo(gym);
+      }
+    });
+  }, [gym]);
 
   useEffect(() => {
     if (map) map.relayout();
@@ -21,12 +27,13 @@ function GymSelector({ gym, setGym, disabled = false }) {
       marker.setMap(map);
       map.setCenter(marker.getPosition());
     }
-  }, [gym]);
+  }, [gym, isUpdated]);
 
   const setGymInfo = (address) => {
     new maps.services.Geocoder().addressSearch(address, (result, status) => {
       if (status === maps.services.Status.OK) {
         const position = new maps.LatLng(result[0].y, result[0].x);
+        setIsUpdated(!isUpdated);
         setGym(address);
 
         const container = mapRef.current;
@@ -49,7 +56,6 @@ function GymSelector({ gym, setGym, disabled = false }) {
         };
 
         setMap(new maps.Map(container, options));
-        console.log('hello');
       }
     });
   };

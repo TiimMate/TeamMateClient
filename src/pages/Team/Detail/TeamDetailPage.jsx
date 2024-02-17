@@ -22,6 +22,7 @@ function TeamDetailPage() {
     mannerLevel: 0,
     skillLevel: 0,
     name: '',
+    inviteCode: '',
     participants: {
       leader: { nickname: '' },
       member: [],
@@ -55,14 +56,14 @@ function TeamDetailPage() {
 
       <S.TeamNameSection>
         <S.TeamName>{teamInfo.name}</S.TeamName>
-        <Level />
+        <Level skill={teamInfo.skillLevel} manner={teamInfo.mannerLevel} />
         <S.description>{teamInfo.description}</S.description>
       </S.TeamNameSection>
       <Gap />
 
       <S.Title>팀 코드</S.Title>
       <S.TeamCodeSection>
-        <S.TeamCode>BF123RT</S.TeamCode>
+        <S.TeamCode>{teamInfo.inviteCode}</S.TeamCode>
       </S.TeamCodeSection>
       <Gap />
 

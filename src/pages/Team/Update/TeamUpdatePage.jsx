@@ -1,20 +1,22 @@
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+
 import useTeamInfo from '../../../hooks/useTeamInfo';
+import withAuth from '../../../hooks/hoc/withAuth';
+
+import authInstance from '../../../services/authInstance';
 
 import LogoUploader from '../../../components/ui/LogoUploader/LogoUploader';
 import TeamGenderSelector from '../../../components/ui/Selector/Gender/TeamGenderSelector';
 import TeamAgeSelector from '../../../components/ui/Selector/Age/TeamAgeSelector';
 import LocationSelector from '../../../components/ui/Selector/Location/LocationSelector';
-import MapContent from '../../../components/layouts/Content/MapContent';
+import GymSelector from '../../../components/ui/Selector/Gym/GymSelector';
 import MemberRows from '../../../components/ui/MemberRows/MemberRows';
 import Gap from '../../../components/atoms/Gap';
 
 import { formatMembers } from '../../../utils/formatData';
 
 import * as S from './TeamUpdatePage.style';
-import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import authInstance from '../../../services/authInstance';
-import withAuth from '../../../hooks/hoc/withAuth';
 
 function TeamUpdatePage() {
   const { id } = useParams();
@@ -52,8 +54,8 @@ function TeamUpdatePage() {
     let sex = '';
     for (let i = 0; i < gender.length; i++) {
       if (gender[i]) {
-        if (i === 0) sex = 'M';
-        else if (i === 1) sex = 'F';
+        if (i === 0) sex = 'F';
+        else if (i === 1) sex = 'M';
         else sex = 'MX';
         break;
       }
@@ -71,18 +73,18 @@ function TeamUpdatePage() {
       }
     }
     const body = {
-      logo,
+      logo: logo ? logo : '',
       name,
       description,
       gender: sex,
       ageGroup: age,
       region,
       gymName,
+      memberIdsToDelete,
     };
 
     try {
-      const response = await authInstance.put(`/teams/${id}`, body);
-      console.log(response);
+      await authInstance.put(`/teams/${id}`, body);
       navigate('/team');
     } catch (error) {
       console.log(error);
@@ -144,9 +146,10 @@ function TeamUpdatePage() {
           setLocation={(sel) => dispatch({ type: 'REGION', value: sel })}
         />
 
-        <S.MapWrapper>
-          <MapContent workFor='write' />
-        </S.MapWrapper>
+        <GymSelector
+          gym={gymName}
+          setGym={(sel) => dispatch({ type: 'GYM_NAME', value: sel })}
+        />
       </S.TeamDetailSection>
 
       <Gap height='3.81rem'>

@@ -55,6 +55,8 @@ function reducer(state, action) {
         participants,
         gender: formatGender(),
         ageGroup: formatAgeGroup(),
+        region,
+        gymName,
       };
     }
     case 'LOGO':
@@ -97,9 +99,9 @@ function reducer(state, action) {
     case 'MEMBERS':
       return {
         ...state,
-        member: {
-          sport: state.members.sport,
-          data: state.members.data.filter(
+        participants: {
+          leader: state.participants.leader,
+          member: state.participants.member.filter(
             (member) => member.id !== action.value,
           ),
         },

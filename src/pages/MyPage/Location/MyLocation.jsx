@@ -1,4 +1,5 @@
 import Banner from '../../../components/atoms/Banner';
+import withAuth from '../../../hooks/hoc/withAuth';
 import NotPost from '../components/NotPost';
 
 import * as S from './MyLocation.style';
@@ -21,4 +22,4 @@ function MyLocation() {
   );
 }
 
-export default MyLocation;
+export default withAuth(MyLocation);
