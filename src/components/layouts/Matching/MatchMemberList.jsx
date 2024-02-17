@@ -3,7 +3,7 @@ import * as S from './MatchMemberList.style';
 import useModal from '../../../hooks/useModal';
 import ReviewModal from '../../ui/ReviewModal';
 
-function MatchMemberList({ member }) {
+export default function MatchMemberList({ member }) {
   const { title, description, avatarUrl } = member;
   const { isOpen, openModal, closeModal } = useModal();
 
@@ -21,5 +21,3 @@ function MatchMemberList({ member }) {
     </S.Container>
   );
 }
-
-export default MatchMemberList;

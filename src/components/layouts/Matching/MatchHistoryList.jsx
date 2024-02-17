@@ -1,10 +1,10 @@
 import React from 'react';
 import * as S from './MatchList.style';
-import MatchInfo from './MatchInfo';
+import MatchReviewInfo from './MatchReviewInfo';
 
 const dummy = [
   {
-    type: 'game',
+    type: 'host',
     matchId: 3,
     gameTime: '2024-01-30T13:00:00.000Z',
     name: '우리팀이름은어쩌구',
@@ -13,7 +13,7 @@ const dummy = [
     memberCount: 3,
     ageGroup: '20대',
     skillLevel: 30,
-    isReviewCompleted: 'Y',
+    reviewStatus: 'COMPLETED',
   },
   {
     type: 'guest',
@@ -25,7 +25,7 @@ const dummy = [
     memberCount: 3,
     ageGroup: '10대',
     skillLevel: 1,
-    isReviewCompleted: 'N',
+    reviewStatus: 'UNCOMPLETED',
   },
   {
     type: 'guest',
@@ -37,40 +37,41 @@ const dummy = [
     memberCount: 3,
     ageGroup: '10대',
     skillLevel: 1,
-    isReviewCompleted: 'TBD',
+    reviewStatus: 'PENDING',
   },
 ];
-
-function convertToKoreanTime(utcTimeString) {
-  const utcDate = new Date(utcTimeString);
-  const koreanTime = new Date(utcDate.getTime() + 9 * 60 * 60 * 1000);
-  return koreanTime.toLocaleTimeString('ko-KR', {
-    hour12: false,
-    hour: '2-digit',
-    minute: '2-digit',
-  });
-}
 
 export default function MatchHistoryList() {
   return (
     <S.Wrapper>
-      {dummy.map((info, index) => (
-        <MatchInfo
-          key={index}
-          id={info.matchId}
-          unitInfo={{
-            title: info.name,
-            date: new Date(info.gameTime).toLocaleDateString(),
-            time: convertToKoreanTime(info.gameTime),
-            GymName: '',
-            Capacity: info.memberCount,
-            Region: info.region,
-            age: info.ageGroup,
-            level: info.skillLevel,
-            gender: info.gender,
-          }}
-        />
-      ))}
+      {dummy.map(
+        ({
+          type,
+          matchId,
+          name,
+          gameTime,
+          region,
+          gender,
+          memberCount,
+          ageGroup,
+          skillLevel,
+          reviewStatus,
+        }) => (
+          <MatchReviewInfo
+            key={matchId}
+            type={type}
+            matchId={matchId}
+            name={name}
+            gameTime={gameTime}
+            region={region}
+            gender={gender}
+            memberCount={memberCount}
+            ageGroup={ageGroup}
+            skillLevel={skillLevel}
+            reviewStatus={reviewStatus}
+          />
+        ),
+      )}
     </S.Wrapper>
   );
 }

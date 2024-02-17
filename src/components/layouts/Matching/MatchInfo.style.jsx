@@ -83,4 +83,5 @@ export const Button = styled.div`
   letter-spacing: -0.6px;
   line-height: 22px;
   width: 70px;
+  cursor: pointer;
 `;

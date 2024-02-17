@@ -1,29 +1,70 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import * as S from './MatchInfo.style';
 import useModal from '../../../hooks/useModal';
 import ReviewModal from '../../ui/ReviewModal';
 import { useNavigate } from 'react-router-dom';
 import mapIcon from '../../../assets/icon-map-pin.svg';
 
-export default function MatchReviewInfo({ id, unitInfo = {}, state, page }) {
-  const {
-    name,
-    gameTime,
-    region,
-    GymName,
-    memberCount,
-    ageGroup,
-    skillLevel,
-    gender,
-  } = unitInfo;
+const TYPE_TEXT = {
+  guest: '게스트',
+  host: '팀',
+};
+
+export default function MatchReviewInfo({
+  type,
+  matchId,
+  name,
+  gameTime,
+  region,
+  gender,
+  memberCount,
+  ageGroup,
+  skillLevel,
+  reviewStatus,
+}) {
   const { isOpen, openModal, closeModal } = useModal();
 
   const navigate = useNavigate();
 
+  const convertToKoreanTime = (utcTimeString) => {
+    const utcDate = new Date(utcTimeString);
+    const koreanTime = new Date(utcDate.getTime() + 9 * 60 * 60 * 1000);
+    return koreanTime.toLocaleTimeString('ko-KR', {
+      hour12: false,
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+  };
+
+  const reviewButtonText = useMemo(() => {
+    switch (reviewStatus) {
+      case 'COMPLETED':
+        return '리뷰 완료';
+
+      case 'UNCOMPLETED':
+        return '리뷰 작성';
+
+      case 'PENDING':
+        return `${convertToKoreanTime(gameTime)} 예정`;
+    }
+  }, [reviewStatus, gameTime]);
+
+  const handleReviewButtonClick = () => {
+    if (type === 'guest') {
+      if (reviewStatus === 'UNCOMPLETED') {
+        openModal();
+        return;
+      }
+    }
+
+    // host일 경우
+    // 페이지 이동
+  };
+
   return (
     <S.Container>
       <S.MatchInfo>
-        <S.Time>{gameTime}</S.Time>
+        <S.Time>{convertToKoreanTime(gameTime)}</S.Time>
         <S.Content
           onClick={() => {
             navigate('/matching/guestapply/detail');
@@ -43,10 +84,15 @@ export default function MatchReviewInfo({ id, unitInfo = {}, state, page }) {
           </S.MatchDetail>
         </S.Content>
       </S.MatchInfo>
-      {/* 상위 컴포넌트에서 받는 page라는 props 값에 따라서 매치 지원 버튼 모달과 리뷰 모달 중 어느것을 띄울지 정하는 코드 */}
-      <S.Button onClick={openModal}>리뷰작성</S.Button>
+      <S.Button type='button' onClick={handleReviewButtonClick}>
+        {reviewButtonText}
+      </S.Button>
 
-      <ReviewModal isOpen={isOpen} onClose={closeModal} />
+      <ReviewModal
+        isOpen={isOpen}
+        onClose={closeModal}
+        target={TYPE_TEXT[type]}
+      />
     </S.Container>
   );
 }
