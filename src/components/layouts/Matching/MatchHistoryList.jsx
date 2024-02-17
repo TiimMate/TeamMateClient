@@ -16,7 +16,7 @@ const dummy = [
     reviewStatus: 'COMPLETED',
   },
   {
-    type: 'guest',
+    type: 'host',
     matchId: 2,
     gameTime: '2024-01-30T15:00:00.000Z',
     name: '코티스트',
@@ -28,7 +28,7 @@ const dummy = [
     reviewStatus: 'UNCOMPLETED',
   },
   {
-    type: 'guest',
+    type: 'host',
     matchId: 3,
     gameTime: '2024-01-30T15:00:00.000Z',
     name: '팀메이트',

@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import mapIcon from '../../../assets/icon-map-pin.svg';
 
 const TYPE_TEXT = {
-  guest: '게스트',
-  host: '팀',
+  guest: '팀',
+  host: '게스트',
 };
 
 export default function MatchReviewInfo({
@@ -50,15 +50,9 @@ export default function MatchReviewInfo({
   }, [reviewStatus, gameTime]);
 
   const handleReviewButtonClick = () => {
-    if (type === 'guest') {
-      if (reviewStatus === 'UNCOMPLETED') {
-        openModal();
-        return;
-      }
+    if (reviewStatus === 'UNCOMPLETED') {
+      openModal();
     }
-
-    // host일 경우
-    // 페이지 이동
   };
 
   return (
