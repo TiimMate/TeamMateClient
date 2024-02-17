@@ -84,16 +84,15 @@ function ContentBox() {
         <Route path='/auth/kakao/callback' element={<KakaoLoginHandler />} />
         <Route path='/login/landing' element={<LoginLanding />} />
 
-        <Route path='/matching' element={<MatchingHome />} />
-        <Route path='/matching/guestapply' element={<GuestApply />} />
+        <Route path='/:category/matching' element={<MatchingHome />} />
+        <Route path='/:category/matching/guestapply' element={<GuestApply />} />
         <Route
-          path='/matching/guestapply/detail'
+          path='/:category/matching/guestapply/detail'
           element={<GuestApplyDetail />}
         />
-        <Route path='/matching/teamapply' element={<TeamApply />} />
-        <Route path='/matching/guesthost' element={<GuestHost />} />
-        <Route path='/matching/teamhost' element={<TeamHost />} />
-        <Route path='/matching/weeklycalendar' element={<WeeklyCalendar />} />
+        <Route path='/:category/matching/teamapply' element={<TeamApply />} />
+        <Route path='/:category/matching/guesthost' element={<GuestHost />} />
+        <Route path='/:category/matching/teamhost' element={<TeamHost />} />
         <Route path='/matching/history/' element={<MatchHistoryForGuest />} />
         <Route
           path='/matching/history/host'

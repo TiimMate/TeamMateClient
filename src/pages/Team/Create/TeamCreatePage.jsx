@@ -17,7 +17,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import GymSelector from '../../../components/ui/Selector/Gym/GymSelector';
 
-// #TODO: integrity check, if axios error
+// #TODO: integrity check, if  error
 function TeamCreatePage() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();

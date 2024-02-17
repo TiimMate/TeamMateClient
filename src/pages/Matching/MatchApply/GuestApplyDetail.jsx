@@ -1,86 +1,162 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './GuestApplyDetail.style';
 import MainFunctionNavbar from '../../../components/layouts/MainFunctionNavbar';
-import UnitInfoRow from '../../../components/ui/UnitInfoRow/UnitInfoRow';
-import {
-  MEMBER_RAW_DATA_BASKETBALL,
-  formatMemberData,
-} from '../../../utils/formatData';
-import { useNavigate } from 'react-router-dom';
+import useModal from '../../../hooks/useModal';
 
+import { useNavigate, useParams } from 'react-router-dom';
+
+import mapPin from '../../../assets/map-pin2 1.svg';
 import iconInfo from '../../../assets/icon_info_blue.png';
 import iconCalendar from '../../../assets/icon_calendar_blue.png';
 import iconPeople from '../../../assets/icon_people_blue.png';
-import iconCheck from '../../../assets/icon_check.png';
+import MatchingModal from '../../../components/ui/MatchingModal/MatchingModal';
+import authInstance from '../../../services/authInstance';
+import { formatMembers } from '../../../utils/formatData';
+import MemberRows from '../../../components/ui/MemberRows/MemberRows';
 
-const TEAM_INFO = {
-  name: '어쩌구FC',
-  skill: 78,
-  manner: 89,
-  description:
-    '안녕하세요. 저희는 서초구의 상문고등학교에서 매주 일요일에 경기를 진행하는 어쩌구FC라고 합니다.',
-};
-
-const MATCH_INFO = {
-  time: '1월 14일 일요일 오후 15시',
-  gender: '남녀혼성',
-  age: '20대',
-  level: '아마추어',
-};
+//TODO 이미 게스트글에 신청한 유저 거르기
 
 export default function GuestApplyDetail() {
-  const renderMember = () =>
-    formatMemberData(MEMBER_RAW_DATA_BASKETBALL).map((member) => (
-      <UnitInfoRow
-        key={member.id}
-        unitInfo={member.unitInfo}
-        btnText={member.btnText}
-        onClickBtn={member.onClickBtn}
-      />
-    ));
-
+  const category = useParams();
   const navigate = useNavigate();
+
+  const { isOpen, openModal, closeModal } = useModal();
+
+  const [matchDetail, setmatchDetail] = useState({
+    isSuccess: true,
+    code: 2000,
+    message: 'success!',
+    result: {
+      name: 'team1',
+      skillLevel: 1,
+      mannerLevel: 1,
+      description: 'team1',
+      status: '모집 완료',
+      gusting_info: {
+        gameTime: '2024-01-30T15:00:00.000Z',
+        gameDuration: '02:00:00',
+        gender: '여성',
+        ageGroup: '10대',
+        gymName: 'gym1',
+        skillLevel: '1',
+      },
+      member_info: {
+        leader: {
+          nickname: 'user1',
+          height: 160,
+          position: 'position1',
+        },
+        member: [
+          {
+            nickname: 'user2',
+            height: 180,
+            position: 'position1',
+          },
+          {
+            nickname: 'user3',
+            height: 120,
+            position: 'position1',
+          },
+        ],
+      },
+    },
+  });
+  const [loading, setLoading] = useState(false);
+
+  //선수 정보 입력 화면
+  const navi = () => {
+    navigate('/my/update');
+  };
+
+  //input 값 post 전달 위함
+  const [requirements, setRequirements] = useState('없음');
+  const onChangeRequirements = (e) => {
+    setRequirements(e.target.value);
+  };
+
+  const fetchGuestDetail = async () => {
+    try {
+      setLoading(true); //로딩이 시작됨
+      const response = await authInstance.get(`/guests/5`);
+      setmatchDetail(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+    setLoading(false);
+  };
+
+  const members = formatMembers(
+    matchDetail.result.member_info.leader,
+    matchDetail.result.member_info.member,
+  );
+
+  useEffect(() => {
+    fetchGuestDetail();
+  }, []);
+
+  if (loading) return <div>로딩중..</div>;
+  if (!matchDetail) return null; //matchDetial 값이 유효하지 않는 경우
+
+  const postContent = async (e) => {
+    try {
+      const response = await authInstance.post('/guests/5/application');
+      navigate(`/${category}/matching/guestapply`);
+    } catch (error) {
+      console.log(error);
+      openModal();
+    }
+  };
 
   return (
     <S.Main>
       <MainFunctionNavbar />
       <S.TeamNameSection>
-        <S.TeamName>{TEAM_INFO.name}</S.TeamName>
+        <S.TeamName>{matchDetail.result.name}</S.TeamName>
 
         <S.statusDiv>
           <S.levelDiv>
             <S.levelSpan>팀의 실력레벨</S.levelSpan>
-            <S.levelGauge>실력레벨</S.levelGauge>
+            <S.levelGauge>Lv.{matchDetail.result.skillLevel}</S.levelGauge>
           </S.levelDiv>
           <S.levelDiv>
             <S.levelSpan>팀의 메너레벨</S.levelSpan>
-            <S.levelGauge>메너레벨</S.levelGauge>
+            <S.levelGauge>Lv.{matchDetail.result.mannerLevel}</S.levelGauge>
           </S.levelDiv>
         </S.statusDiv>
 
-        <S.description>{TEAM_INFO.description}</S.description>
+        <S.description>{matchDetail.result.description}</S.description>
       </S.TeamNameSection>
 
       <S.Gap>모임 정보</S.Gap>
 
       <S.MatchInfo>
         <S.MatchInfoText>
-          <S.Img src={iconCalendar} alt='캘린더아이콘' />
-          {MATCH_INFO.time}
+          <S.Img src={mapPin} alt='인포아이콘' />
+          {matchDetail.result.gusting_info.gymName}
         </S.MatchInfoText>
+
+        <S.MatchInfoText>
+          <S.Img src={iconCalendar} alt='캘린더아이콘' />
+          {matchDetail.result.gusting_info.gameTime}
+        </S.MatchInfoText>
+
         <S.MatchInfoText>
           <S.Img src={iconPeople} alt='사람아이콘' />
-          {MATCH_INFO.gender} | {MATCH_INFO.age}
+          {matchDetail.result.gusting_info.gender} |
+          {matchDetail.result.gusting_info.ageGroup}
         </S.MatchInfoText>
+
         <S.MatchInfoText>
           <S.Img src={iconInfo} alt='인포아이콘' />
-          레벨 {MATCH_INFO.level}
+          레벨 {matchDetail.result.gusting_info.skillLevel}
         </S.MatchInfoText>
       </S.MatchInfo>
 
       <S.Gap>팀원 목록</S.Gap>
 
-      <S.TeamMembersSection>{renderMember()}</S.TeamMembersSection>
+      <S.TeamMembersSection>
+        <MemberRows members={members} />
+      </S.TeamMembersSection>
 
       <S.Gap>게스트에게 바라는 점</S.Gap>
 
@@ -89,21 +165,25 @@ export default function GuestApplyDetail() {
         <S.TextArea spellCheck='false' />
       </S.RequestPoint>
       <S.ApplyButtonSection>
-        <S.Gap>
-          <S.P>
-            <S.Img src={iconCheck} alt='체크모양 아이콘' />
-            호스트가 수락하면 호스트에게 전화번호를 공개할까요?
-          </S.P>
-        </S.Gap>
+        <S.Gap />
 
         <S.ApplyButton
           onClick={() => {
-            navigate('/matching/guestapply');
+            postContent();
           }}
         >
           신청하기
         </S.ApplyButton>
       </S.ApplyButtonSection>
+
+      <MatchingModal
+        title='선수 정보 미입력'
+        content='선수님의 정보를 입력해주세요!'
+        buttonText='선수 정보 입력화면으로 이동'
+        isOpen={isOpen}
+        onClose={closeModal}
+        navi={navi}
+      />
     </S.Main>
   );
 }
