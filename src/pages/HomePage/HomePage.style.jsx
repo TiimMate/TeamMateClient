@@ -36,11 +36,13 @@ export const MainImage = styled.div`
   justify-content: center;
   gap: 20px 30px;
   margin-top: 20px;
+  align-self: center;
 `;
 
 export const BallContainer = styled.div`
   display: flex;
   justify-content: center;
+  margin: 0 auto;
 `;
 
 export const BallImageList = styled.div`
@@ -87,8 +89,10 @@ export const ServiceIntroContainer = styled.div`
   justify-content: center;
   align-items: center;
   background-image: url(${backgroundImg1});
+  background-repeat: no-repeat;
   background-size: cover;
-  aspect-ratio: 360 / 435;
+  background-position: center;
+  height: 431px;
 `;
 
 export const ServiceIntro = styled.div`
@@ -128,8 +132,10 @@ export const RegisteringTeam = styled.div`
   display: flex;
   flex-direction: column;
   background-image: url(${backgroundImg2});
+  background-repeat: no-repeat;
   background-size: cover;
-  aspect-ratio: 72 / 71;
+  background-position: center;
+  height: 355px;
   align-items: flex-start;
   gap: 12px;
   color: var(--blue-400);
@@ -151,6 +157,9 @@ export const GuideContainer = styled.div`
   flex-direction: column;
   gap: 12px;
   padding: 11px 30px;
+  width: 360px;
+  box-sizing: border-box;
+  margin: 0 auto;
 
   ${({ paddingTop }) =>
     paddingTop &&
@@ -203,8 +212,10 @@ export const Matching = styled.div`
   align-items: flex-start;
   text-align: right;
   background-image: url(${backgroundImg3});
+  background-repeat: no-repeat;
   background-size: cover;
-  aspect-ratio: 360 / 355;
+  background-position: center;
+  height: 355px;
 `;
 
 export const Review = styled.div`
@@ -212,7 +223,10 @@ export const Review = styled.div`
   flex-direction: column;
   align-items: flex-start;
   background-image: url(${backgroundImg4});
+
+  background-repeat: no-repeat;
   background-size: cover;
-  aspect-ratio: 360 / 563;
+  background-position: center;
+  height: 563px;
   gap: 12px;
 `;
