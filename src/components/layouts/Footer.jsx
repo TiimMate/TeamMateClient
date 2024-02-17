@@ -2,16 +2,11 @@ import React from 'react';
 import * as S from './Footer.style';
 import Logo from '../../assets/Logo24_.png';
 import Instagram from '../../assets/icon-sns-instagram.svg';
-import Twitter from '../../assets/icon-sns-twitter.svg';
 
 const SNS_ITEM_LIST = [
   {
-    label: '@WeTeammate',
+    label: 'official_teammate',
     src: Instagram,
-  },
-  {
-    label: '@WeTeammate',
-    src: Twitter,
   },
 ];
 
