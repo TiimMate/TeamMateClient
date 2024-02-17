@@ -12,9 +12,11 @@ import ButtonDiv from '../components/ButtonDiv';
 import * as S from './MyPage.style';
 import withAuth from '../../../hooks/hoc/withAuth';
 import authInstance, { removeTokens } from '../../../services/authInstance';
+import { useSelector } from 'react-redux';
 
 function MyPage() {
   const navigate = useNavigate();
+  const { id } = useSelector((state) => state.user);
   const [sport, setSport] = useState('basketball');
   const [user, setUser] = useState({
     nickname: '',
@@ -40,10 +42,10 @@ function MyPage() {
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const { result } = (await authInstance.get(`/users/profiles/${sport}`))
-          .data;
+        const { result } = (
+          await authInstance.get(`/users/${id}/profiles/${sport}`)
+        ).data;
         setUser(result);
-        console.log(result);
       } catch (error) {
         console.log(error);
       }

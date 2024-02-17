@@ -3,7 +3,7 @@ import SelectButton from '../SelectButton';
 
 function TeamAgeSelector({ selected, setSelected }) {
   const toggleSpot = (index) => {
-    const newSpots = [...selected];
+    const newSpots = new Array(selected.length).fill(false);
     newSpots[index] = !selected[index];
     setSelected(newSpots);
   };

@@ -84,8 +84,9 @@ function MyUpdate() {
   useEffect(() => {
     const fetchMyProfile = async () => {
       try {
-        const { result } = (await authInstance.get(`/users/profiles/${sport}`))
-          .data;
+        const { result } = (
+          await authInstance.get(`/users/${id}/profiles/${sport}`)
+        ).data;
         console.log('result:', result);
         dispatch({ type: 'INIT', value: result });
       } catch (error) {
@@ -94,7 +95,6 @@ function MyUpdate() {
     };
     fetchMyProfile();
   }, [id, navigate, dispatch, sport]);
-  console.log(height);
 
   return (
     <S.Wrapper>

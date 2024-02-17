@@ -2,6 +2,7 @@ import UnitBoardRow from '../../../../components/ui/UnitBoardRow/UnitBoardRow';
 import Banner from '../../../../components/atoms/Banner';
 
 import * as S from './WritedPost.style';
+import withAuth from '../../../../hooks/hoc/withAuth';
 
 const dummy = [
   {
@@ -59,4 +60,4 @@ function WritedPost() {
   );
 }
 
-export default WritedPost;
+export default withAuth(WritedPost);

@@ -14,12 +14,31 @@ function UserDetailInfo({ userInfo: { gender, ageGroup, region, position } }) {
         </S.Comment>
       </S.Container>
     );
+
+  const formattedGender = gender === 'F' ? '여성' : '남성';
+  const formattedAgeGroup = () => {
+    switch (ageGroup) {
+      case '-10':
+        return '10대';
+      case '20-29':
+        return '20대';
+      case '30-39':
+        return '30대';
+      case '40-49':
+        return '40대';
+      case '50-':
+        return '50대 이상';
+      default:
+        return null;
+    }
+  };
+
   return (
     <>
       <S.InfoRow>
         <S.Icon src={User1} />
         <S.Span>
-          {gender} | {ageGroup}
+          {formattedGender} | {formattedAgeGroup()}
         </S.Span>
       </S.InfoRow>
       <S.InfoRow>
