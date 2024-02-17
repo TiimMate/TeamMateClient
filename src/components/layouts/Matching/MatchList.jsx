@@ -32,16 +32,19 @@ export default function MatchList(props) {
     try {
       setGameList(null);
       setLoading(true); //로딩이 시작됨
-      const response = await authInstance.get(`/guests${filterQuery}`, {
-        params: {
-          date: day,
-          category: 'basketball',
-          cursorId: 20,
-          gender: props.filter,
-          level: props.filter,
-          region: props.filter,
+      const response = await authInstance.get(
+        `/${props.matchType}${filterQuery}`,
+        {
+          params: {
+            date: day,
+            category: 'basketball',
+            cursorId: 20,
+            gender: props.filter,
+            level: props.filter,
+            region: props.filter,
+          },
         },
-      });
+      );
       setGameList(response.data);
     } catch (error) {
       console.error(error);
@@ -54,18 +57,13 @@ export default function MatchList(props) {
   }, [props.filter, day]);
 
   if (loading) return <div>로딩중..</div>;
-  if (gameList.result.guests.length === 0) return null; //users값이 유효하지 않는 경우
+  if (gameList.result.length === 0) return null; //users값이 유효하지 않는 경우
 
   return (
     <S.Wrapper>
       {gameList &&
         Object.entries(gameList.result.guests).map((info) => (
-          <MatchInfo
-            //id={info.id}
-            unitInfo={info[1]}
-            //state={info.state}
-            page='apply'
-          />
+          <MatchInfo unitInfo={info[1]} page={props.matchType} />
         ))}
     </S.Wrapper>
   );

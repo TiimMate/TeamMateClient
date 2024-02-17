@@ -83,7 +83,7 @@ export default function GuestApply() {
         }}
         text='게스트 '
       />
-      <MatchList filter={filter} filterCate={filterCate} />
+      <MatchList filter={filter} filterCate={filterCate} matchType='guests' />
       <MatchingModal
         title='팀 정보 미입력'
         content='선수님의 팀 정보를 입력해주세요!'

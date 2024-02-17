@@ -10,12 +10,16 @@ export const Main = styled.div`
 
   background: white;
 `;
+
 export const TimePickerContainer = styled.div`
   box-sizing: border-box;
 
   display: flex;
   justify-content: center;
   align-items: center;
+
+  border-top: 1px solid var(--Gray200, #d9d9d9);
+  border-bottom: 1px solid var(--Gray200, #d9d9d9);
 
   width: 40px;
   height: 85px;
