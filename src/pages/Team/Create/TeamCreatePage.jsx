@@ -15,6 +15,7 @@ import authInstance from '../../../services/authInstance';
 import withAuth from '../../../hooks/hoc/withAuth';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import GymSelector from '../../../components/ui/Selector/Gym/GymSelector';
 
 // #TODO: integrity check, if axios error
 function TeamCreatePage() {
@@ -133,9 +134,11 @@ function TeamCreatePage() {
           location={region}
           setLocation={(sel) => dispatch({ type: 'REGION', value: sel })}
         />
-        <S.MapWrapper>
-          <MapContent workFor='write' />
-        </S.MapWrapper>
+
+        <GymSelector
+          gym={gymName}
+          setGym={(sel) => dispatch({ type: 'GYM_NAME', value: sel })}
+        />
       </S.TeamDetailSection>
 
       <Gap height='3.81rem'>
