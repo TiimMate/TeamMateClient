@@ -4,7 +4,7 @@ import User1 from '../../../assets/users1.svg';
 import MapPin from '../../../assets/map-pin2 1.svg';
 import Info1 from '../../../assets/info1.svg';
 
-/** deprecated: layouts ==> ui */
+/** @deprecated: layouts ==> ui */
 function UserDetailInfo({ userInfo: { gender, age, address, position } }) {
   return (
     <>

@@ -20,7 +20,7 @@ function Modal({ title, titleAlign = 'left', children, onClose }) {
   );
 }
 
-/** deprecated */
+/** @deprecated */
 export const { ModalContentWrapper, ModalButton, ModalButtonBlue, ModalInput } =
   S;
 

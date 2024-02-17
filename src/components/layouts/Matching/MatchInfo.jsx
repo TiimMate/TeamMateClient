@@ -6,10 +6,12 @@ import useModal from '../../../hooks/useModal';
 
 import ReviewModal from '../../ui/ReviewModal';
 import MatchingModal from '../../ui/MatchingModal/MatchingModal';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import mapIcon from '../../../assets/icon-map-pin.svg';
 
 function MatchInfo({ id, unitInfo, state, page }) {
+  const { category } = useParams();
+
   let {
     gameTime,
     teamName,
@@ -44,7 +46,7 @@ function MatchInfo({ id, unitInfo, state, page }) {
         </S.Time>
         <S.Content
           onClick={() => {
-            navigate('/matching/guestapply/detail');
+            navigate(`/${category}/matching/guestapply/detail`);
           }}
         >
           <S.ContentTitle>

@@ -123,3 +123,9 @@ export const SaveButton = styled(Button300)`
 
   white-space: nowrap;
 `;
+
+export const MapWrapper = styled.div`
+  padding: 0 1% 0 1%;
+  width: 100%;
+  box-sizing: border-box;
+`;

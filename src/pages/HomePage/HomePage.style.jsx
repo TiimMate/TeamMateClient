@@ -1,4 +1,8 @@
 import styled from 'styled-components';
+import backgroundImg1 from '../../assets/background-1.png';
+import backgroundImg2 from '../../assets/background-2.png';
+import backgroundImg3 from '../../assets/background-3.png';
+import backgroundImg4 from '../../assets/background-4.png';
 
 export const PageLayout = styled.div`
   display: flex;
@@ -72,7 +76,143 @@ export const ImageInfo = styled.div`
   font-size: 16px;
 `;
 
-export const ServiceInfo = styled.div`
+// 서비스 소개 페이지
+export const ServiceContainer = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+export const ServiceIntroContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(${backgroundImg1});
+  background-size: cover;
+  aspect-ratio: 360 / 435;
+`;
+
+export const ServiceIntro = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  text-align: center;
+  color: var(--blue-400);
+  font-family: Pretendard;
+`;
+
+export const ServiceIntroTitle = styled.h2`
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 36px;
+  letter-spacing: -1.4px;
+`;
+
+export const ServiceIntroDescription = styled.p`
+  font-family: Pretendard;
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: -0.9px;
+
+  span {
+    padding: 1px 4px;
+    color: white;
+    font-family: Pretendard;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: -0.9px;
+    background: var(--blue-400);
+  }
+`;
+
+export const RegisteringTeam = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-image: url(${backgroundImg2});
+  background-size: cover;
+  aspect-ratio: 72 / 71;
+  align-items: flex-start;
+  gap: 12px;
+  color: var(--blue-400);
+  font-family: Pretendard;
+`;
+
+export const Guide = styled.p`
+  display: flex;
+  font-size: 11px;
+  line-height: 20px;
+  letter-spacing: -0.55px;
+  text-align: right;
+  margin-left: auto;
+  padding-right: 16px;
+`;
+
+export const GuideContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 11px 30px;
+
+  ${({ paddingTop }) =>
+    paddingTop &&
+    `
+  margin-top:40px`}
+`;
+
+export const GuideNum = styled.p`
+  justify-content: center;
+  display: flex;
+  width: 18px;
+  height: 18px;
+  align-items: center;
+  border-radius: 50%;
+  color: white;
+  background: var(--blue-300);
+  font-family: Pretendard;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: -0.6px;
+
+  ${({ alignRight }) =>
+    alignRight &&
+    `
+  text-right: right;
+  margin-left:auto`}
+`;
+
+export const GuideTitle = styled.h2`
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 36px;
+  letter-spacing: -1.4px;
+  color: var(--blue-400);
+  font-family: Pretendard;
+`;
+
+export const GuideDescription = styled.p`
+  font-family: Pretendard;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.8px;
+  color: var(--blue-400);
+`;
+
+export const Matching = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  text-align: right;
+  background-image: url(${backgroundImg3});
+  background-size: cover;
+  aspect-ratio: 360 / 355;
+`;
+
+export const Review = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-image: url(${backgroundImg4});
+  background-size: cover;
+  aspect-ratio: 360 / 563;
+  gap: 12px;
 `;

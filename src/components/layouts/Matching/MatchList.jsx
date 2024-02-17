@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './MatchList.style';
 import MatchInfo from './MatchInfo';
-import axios from 'axios';
 import { useSelector } from 'react-redux';
+import authInstance from '../../../services/authInstance';
 
 export default function MatchList(props) {
   let filterQuery = '';
@@ -18,25 +18,30 @@ export default function MatchList(props) {
 
   const day = useSelector((state) => state.Day.value);
 
-  const [gameList, setGameList] = useState(null);
+  const [gameList, setGameList] = useState({
+    isSuccess: true,
+    code: 2000,
+    message: 'success!',
+    result: {
+      guests: [],
+    },
+  });
   const [loading, setLoading] = useState(false);
 
   const fetchGameList = async () => {
     try {
       setGameList(null);
       setLoading(true); //로딩이 시작됨
-      const response = await axios.get(
-        `http://localhost:4000/guests${filterQuery}`,
-        {
-          params: {
-            date: day,
-            category: 'basketball',
-            gender: props.filter,
-            level: props.filter,
-            region: props.filter,
-          },
+      const response = await authInstance.get(`/guests${filterQuery}`, {
+        params: {
+          date: day,
+          category: 'basketball',
+          cursorId: 20,
+          gender: props.filter,
+          level: props.filter,
+          region: props.filter,
         },
-      );
+      });
       setGameList(response.data);
     } catch (error) {
       console.error(error);
@@ -49,12 +54,12 @@ export default function MatchList(props) {
   }, [props.filter, day]);
 
   if (loading) return <div>로딩중..</div>;
-  if (!gameList) return null; //users값이 유효하지 않는 경우
+  if (gameList.result.guests.length === 0) return null; //users값이 유효하지 않는 경우
 
   return (
     <S.Wrapper>
       {gameList &&
-        Object.entries(gameList.result.guestings).map((info) => (
+        Object.entries(gameList.result.guests).map((info) => (
           <MatchInfo
             //id={info.id}
             unitInfo={info[1]}

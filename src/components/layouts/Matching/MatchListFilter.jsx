@@ -25,7 +25,7 @@ export default function MatchListFilter(props) {
                 onClick={() => {
                   setDropDownRegion('지역');
                   props.setFilter('전체');
-                  props.setFilterCate('region');
+                  props.setFilterCate('');
                 }}
               >
                 전체
@@ -35,22 +35,22 @@ export default function MatchListFilter(props) {
               <S.P
                 onClick={() => {
                   setDropDownRegion('서울');
-                  props.setFilter('서울');
+                  props.setFilter('서울특별시');
                   props.setFilterCate('region');
                 }}
               >
-                서울
+                서울특별시
               </S.P>
             </S.Li>
             <S.Li>
               <S.P
                 onClick={() => {
                   setDropDownRegion('부산');
-                  props.setFilter('부산');
+                  props.setFilter('부산광역시');
                   props.setFilterCate('region');
                 }}
               >
-                부산
+                부산광역시
               </S.P>
             </S.Li>
             <S.Li>
@@ -111,7 +111,7 @@ export default function MatchListFilter(props) {
               <S.P
                 onClick={() => {
                   setDropDownLevel('30~40');
-                  props.setFilter(3);
+                  props.setFilter(99);
                   props.setFilterCate('level');
                 }}
               >

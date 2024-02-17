@@ -20,7 +20,9 @@ import MatchHistoryForHostMember from './pages/Matching/MatchHistoryForHostMembe
 
 import Login from './pages/Login/Home/Login';
 import LoginLanding from './pages/Login/Landing/LoginLanding';
-import LoginHandler from './pages/Login/LoginHandler';
+import GoogleLoginHandler from './pages/Login/GoogleLoginHandler';
+import NaverLoginHandler from './pages/Login/NaverLoginHandler';
+import KakaoLoginHandler from './pages/Login/KakaoLoginHandler';
 
 import TeamDetailPage from './pages/Team/Detail/TeamDetailPage';
 import TeamUpdatePage from './pages/Team/Update/TeamUpdatePage';
@@ -74,22 +76,23 @@ function ContentBox() {
         <Route path='/my/community/save' element={<SavedPost />} />
         <Route path='/my/community/write' element={<WritedPost />} />
         <Route path='/my/location' element={<MyLocation />} />
-        <Route path='my/update' element={<MyUpdate />} />
+        <Route path='/my/update' element={<MyUpdate />} />
 
         <Route path='/login' element={<Login />} />
+        <Route path='/auth/google/callback' element={<GoogleLoginHandler />} />
+        <Route path='/auth/naver/callback' element={<NaverLoginHandler />} />
+        <Route path='/auth/kakao/callback' element={<KakaoLoginHandler />} />
         <Route path='/login/landing' element={<LoginLanding />} />
-        <Route path='/auth/kakao/callback' element={<LoginHandler />} />
 
-        <Route path='/matching' element={<MatchingHome />} />
-        <Route path='/matching/guestapply' element={<GuestApply />} />
+        <Route path='/:category/matching' element={<MatchingHome />} />
+        <Route path='/:category/matching/guestapply' element={<GuestApply />} />
         <Route
-          path='/matching/guestapply/detail'
+          path='/:category/matching/guestapply/detail'
           element={<GuestApplyDetail />}
         />
-        <Route path='/matching/teamapply' element={<TeamApply />} />
-        <Route path='/matching/guesthost' element={<GuestHost />} />
-        <Route path='/matching/teamhost' element={<TeamHost />} />
-        <Route path='/matching/weeklycalendar' element={<WeeklyCalendar />} />
+        <Route path='/:category/matching/teamapply' element={<TeamApply />} />
+        <Route path='/:category/matching/guesthost' element={<GuestHost />} />
+        <Route path='/:category/matching/teamhost' element={<TeamHost />} />
         <Route path='/matching/history/' element={<MatchHistoryForGuest />} />
         <Route
           path='/matching/history/host'
