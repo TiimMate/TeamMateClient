@@ -1,108 +1,120 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+
 import NewPost from '../../../components/layouts/NewPostButton';
 import UnitBoardRow from '../../../components/ui/UnitBoardRow/UnitBoardRow';
 import * as S from './CommunityList.style';
 import MainFunctionNavbar from '../../../components/layouts/MainFunctionNavbar';
-import { communitycontents } from '../../../utils/postData';
 import { useNavigate } from 'react-router-dom';
 import authInstance from '../../../services/authInstance';
 import withAuth from '../../../hooks/hoc/withAuth';
+//import useIntersectionObserver from '../../../hooks/useIntersectionObserver';
 
 function CommunityList() {
   const navigate = useNavigate();
-  const [communityList, setCommunityList] = useState([]);
   const [page, setPage] = useState(1);
-  //const [lastPostId, setLastPostId] = useState(null);
-  // const [postRow, setPostRow] = useState({
-  //   title: '',
-  //   createdAt: '',
-  // });
+
+  const [communityList, setCommunityList] = useState([]);
   const [hasMorePosts, setHasMorePosts] = useState(false);
+  const [lastPostId, setLastPostId] = useState(null);
+  //const { bottomObserver } = useIntersectionObserver({ setPage, page });
+  //let timeInterver = '';
 
-  let timeInterver = '';
+  const [bottom, setBottom] = useState(null);
+  const bottomObserver = useRef(null);
 
-  const handleNewPost = () => {
-    navigate('/community/write');
-  };
+  useEffect(() => {
+    if (!bottom) return;
+    console.log('발견!!');
 
-  // useEffect(() => {
-  //   const getTeams = async () => {
-  //     try {
-  //       const response = await authInstance.get(`/teams?category=${sport}`);
-  //       const { result } = response.data;
-  //       setTeamInfo([...result]);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   getTeams();
-  // }, [sport]);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          console.log('발견!!');
+          setPage(page + 1);
+        }
+      },
+      { threshold: 0.5 },
+    );
+    bottomObserver.current = observer;
 
-  const getCommunityList = async () => {
+    observer.observe(bottom);
+    return () => {
+      observer.unobserve(bottom);
+    };
+  }, [bottom]);
+
+  const getCommunityList = async ({ lastPostId }) => {
     try {
-      const response = await authInstance.get('/posts/community');
-      //`/posts/community/?cursorId=${lastPostId}`
-      //'/posts/community'
+      let response;
+
+      if (lastPostId == null)
+        response = await authInstance.get('/posts/community');
+      else
+        response = await authInstance.get(
+          `/posts/community/?cursorId=${lastPostId}`,
+        );
+
       console.log(response);
       const { result } = response.data;
 
-      console.log('result.posts', result.posts);
-      console.log('result.hasNext', result.hasNext);
-
-      setCommunityList([...result.posts]);
+      if (result.posts.length === 20 && result.hasNext) {
+        result.posts.forEach((item, idx) => {
+          if (idx === result.posts.length - 1) {
+            setLastPostId(item.id);
+          }
+        });
+      }
+      setCommunityList(communityList.concat([...result.posts]));
       setHasMorePosts(result.hasNext);
-
-      console.log('communityList', communityList);
-      //setLastPostId(communityList[communityList.length - 1]);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    getCommunityList();
+    getCommunityList({ lastPostId });
+    // 처음 렌더링 될때 안나오는걸 어떻게 해결할 수 있을까요,,,
   }, []);
+
+  useEffect(() => {
+    getCommunityList({ lastPostId });
+  }, [page]);
 
   const renderPost = () =>
     communityList.map(({ id, isBookmarked, title, createdAt }, idx) => {
-      const lastPostId = idx === communityList.length - 1;
+      console.log({ id, isBookmarked, title, createdAt }, idx, lastPostId);
+      console.log('hasMorePosts', hasMorePosts);
+      console.log('lastPostId === id', lastPostId === id);
 
-      console.log({ id, isBookmarked, title, createdAt }, idx);
-
-      return (
-        <UnitBoardRow
-          key={id}
-          id={id}
-          category={isBookmarked}
-          title={title}
-          date={createdAt}
-        />
-      );
+      if (lastPostId === id) {
+        return (
+          <>
+            <UnitBoardRow
+              key={id}
+              id={id}
+              category={isBookmarked}
+              title={title}
+              date={createdAt}
+            />
+            <div ref={setBottom} />
+          </>
+        );
+      } else {
+        return (
+          <UnitBoardRow
+            key={id}
+            id={id}
+            category={isBookmarked}
+            title={title}
+            date={createdAt}
+          />
+        );
+      }
     });
 
-  // function onScroll() {
-  //   const scrollHeight = document.documentElement.scrollHeight;
-  //   const scrollTop = document.documentElement.scrollTop;
-  //   const clientHeight = document.documentElement.clientHeight;
-
-  //   if (scrollTop + clientHeight >= scrollHeight && hasMorePosts) {
-  //     setPage(page + 1);
-  //     console.log(page);
-  //   }
-  // }
-
-  // const handleScroll = () => {
-  //   clearTimeout(timeInterver);
-  //   timeInterver = setTimeout(onScroll, 300);
-  // };
-
-  // useEffect(() => {
-  //   window.addEventListener('scroll', handleScroll);
-
-  //   return () => {
-  //     window.removeEventListener('scroll', handleScroll);
-  //   };
-  // });
+  const handleNewPost = () => {
+    navigate('/community/write');
+  };
 
   return (
     <S.Wrapper>
