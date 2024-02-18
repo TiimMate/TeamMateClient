@@ -7,7 +7,6 @@ import TimePicker from '../../../components/atoms/TimePicker/TimePicker';
 import MemberRows from '../../../components/ui/MemberRows/MemberRows';
 
 import { formatMembers } from '../../../utils/formatData';
-import useDetectClose from '../../../hooks/UseDetectClose';
 import { useDispatch, useSelector } from 'react-redux';
 import authInstance from '../../../services/authInstance';
 import useModal from '../../../hooks/useModal';
@@ -103,9 +102,9 @@ export default function TeamHost() {
 
   const postContent = async (e) => {
     try {
-      const response = await authInstance.post('/games/apply', {
+      const response = await authInstance.post(`/games`, {
         gameTime: `${day} ${time.hour}:${time.minute}:00`,
-        gameDuration: gameTime,
+        gameDuration: `${gameTime}:00`,
         description: requirements,
       });
       navigate(`/${category}/matching/teamapply`);

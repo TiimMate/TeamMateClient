@@ -3,6 +3,7 @@ import * as S from './MatchList.style';
 import MatchInfo from './MatchInfo';
 import { useSelector } from 'react-redux';
 import authInstance from '../../../services/authInstance';
+import { useParams } from 'react-router-dom';
 
 export default function MatchList(props) {
   let filterQuery = '';
@@ -16,6 +17,7 @@ export default function MatchList(props) {
     filterQuery = '/level';
   }
 
+  const { category } = useParams();
   const day = useSelector((state) => state.Day.value);
 
   const [gameList, setGameList] = useState({
@@ -24,6 +26,7 @@ export default function MatchList(props) {
     message: 'success!',
     result: {
       guests: [],
+      games: [],
     },
   });
   const [loading, setLoading] = useState(false);
@@ -37,8 +40,8 @@ export default function MatchList(props) {
         {
           params: {
             date: day,
-            category: 'basketball',
-            cursorId: 20,
+            category: category,
+            cursorId: 100,
             gender: props.filter,
             level: props.filter,
             region: props.filter,
@@ -61,10 +64,13 @@ export default function MatchList(props) {
 
   return (
     <S.Wrapper>
-      {gameList &&
-        Object.entries(gameList.result.guests).map((info) => (
-          <MatchInfo unitInfo={info[1]} page={props.matchType} />
-        ))}
+      {props.matchType == 'guests'
+        ? Object.entries(gameList.result.guests).map((info) => (
+            <MatchInfo unitInfo={info[1]} page={props.matchType} />
+          ))
+        : Object.entries(gameList.result.games).map((info) => (
+            <MatchInfo unitInfo={info[1]} page={props.matchType} />
+          ))}
     </S.Wrapper>
   );
 }

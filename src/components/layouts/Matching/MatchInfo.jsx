@@ -8,11 +8,16 @@ import ReviewModal from '../../ui/ReviewModal';
 import MatchingModal from '../../ui/MatchingModal/MatchingModal';
 import { useNavigate, useParams } from 'react-router-dom';
 import mapIcon from '../../../assets/icon-map-pin.svg';
+import { useDispatch } from 'react-redux';
+import CategorySlices from '../../../redux/Slices/CategorySlices';
 
 function MatchInfo({ id, unitInfo, state, page }) {
   const { category } = useParams();
+  const dispatch = useDispatch();
 
   let {
+    guestId,
+    gameId,
     gameTime,
     teamName,
     teamRegion,
@@ -31,7 +36,9 @@ function MatchInfo({ id, unitInfo, state, page }) {
   }
 
   gameTime = new Date(gameTime);
-  let gameHour = `${gameTime.getHours()}`;
+
+  gameTime = new Date(gameTime);
+  let gameHour = `${gameTime.getHours() * 1 - 9}`;
   if (gameHour < 10) {
     gameHour = `0${gameHour}`;
   }
@@ -44,8 +51,14 @@ function MatchInfo({ id, unitInfo, state, page }) {
 
   const navigate = useNavigate();
 
+  dispatch(CategorySlices.actions.change(0));
+
   let matchType = '';
   page == 'guests' ? (matchType = 'guest') : (matchType = 'team');
+
+  page == 'guests'
+    ? dispatch(CategorySlices.actions.change(guestId))
+    : dispatch(CategorySlices.actions.change(gameId));
 
   return (
     <S.Container>
@@ -56,6 +69,9 @@ function MatchInfo({ id, unitInfo, state, page }) {
         <S.Content
           onClick={() => {
             navigate(`/${category}/matching/${matchType}apply/detail`);
+            page == 'guests'
+              ? dispatch(CategorySlices.actions.change(guestId))
+              : dispatch(CategorySlices.actions.change(gameId));
           }}
         >
           <S.ContentTitle>

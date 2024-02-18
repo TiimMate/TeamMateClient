@@ -39,10 +39,6 @@ export default function GuestApply() {
   let today = new Date();
   today = formatDate(today);
 
-  useEffect(() => {
-    dispatch(DaySlices.actions.change(today));
-  }, []);
-
   const [isTeamed, setIsTeamed] = useState({
     isSuccess: true,
     code: 2000,
@@ -64,6 +60,7 @@ export default function GuestApply() {
   };
   useEffect(() => {
     checkTeam();
+    dispatch(DaySlices.actions.change(today));
   }, []);
 
   return (
