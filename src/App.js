@@ -103,10 +103,10 @@ function ContentBox() {
           path='/matching/history/host'
           element={<MatchHistoryForHost />}
         />
-        <Route
+        {/* <Route
           path='/matching/history/host/member'
           element={<MatchHistoryForHostMember />}
-        />
+        /> */}
         <Route path='/location' element={<LocationList />} />
         <Route path='/location/write' element={<LocationWrite />} />
         <Route path='/location/:id/detail' element={<LocationDetail />} />

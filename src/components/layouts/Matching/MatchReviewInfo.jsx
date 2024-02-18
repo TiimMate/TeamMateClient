@@ -59,11 +59,7 @@ export default function MatchReviewInfo({
     <S.Container>
       <S.MatchInfo>
         <S.Time>{convertToKoreanTime(gameTime)}</S.Time>
-        <S.Content
-          onClick={() => {
-            navigate('/matching/guestapply/detail');
-          }}
-        >
+        <S.Content>
           <S.ContentTitle>
             <S.TeamName>{name}</S.TeamName>
             <S.LocationInfo>
