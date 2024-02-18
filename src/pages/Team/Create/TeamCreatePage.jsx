@@ -44,9 +44,7 @@ function TeamCreatePage() {
   const onClickSaveBtn = async (e) => {
     e.preventDefault();
 
-    // #TODO: FETCH LOGO
     const logo = await uploadImage(srcImg);
-    console.log(logo);
 
     let sex = '';
     for (let i = 0; i < gender.length; i++) {
@@ -57,6 +55,7 @@ function TeamCreatePage() {
         break;
       }
     }
+    console.log(sex);
 
     let age = '';
     for (let i = 0; i < ageGroup.length; i++) {
@@ -65,12 +64,12 @@ function TeamCreatePage() {
         else if (i === 1) age = '20-29';
         else if (i === 2) age = '30-39';
         else if (i === 3) age = '40-49';
-        else sex = '50-';
+        else age = '50-';
         break;
       }
     }
     const body = {
-      logo,
+      logo: logo || '',
       name,
       description,
       gender: sex,

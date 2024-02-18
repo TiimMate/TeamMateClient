@@ -61,7 +61,10 @@ export default function TimePicker(props) {
                   top: data.location,
                   behavior: 'smooth',
                 });
-                Time.hour = data.hour;
+                Time.hour = data.hour * 1 + 9;
+                if (Time.ampm === 'pm') {
+                  Time.hour += 12;
+                }
                 props.setTime(Time);
               }}
             >
@@ -83,6 +86,9 @@ export default function TimePicker(props) {
                   behavior: 'smooth',
                 });
                 Time.minute = data.minute;
+                if (Time.ampm === 'pm') {
+                  Time.hour += 12;
+                }
                 props.setTime(Time);
               }}
             >

@@ -13,6 +13,7 @@ import MatchingModal from '../../../components/ui/MatchingModal/MatchingModal';
 import authInstance from '../../../services/authInstance';
 import { formatMembers } from '../../../utils/formatData';
 import MemberRows from '../../../components/ui/MemberRows/MemberRows';
+import { useSelector } from 'react-redux';
 
 //TODO 이미 게스트글에 신청한 유저 거르기
 
@@ -21,6 +22,8 @@ export default function GuestApplyDetail() {
   const navigate = useNavigate();
 
   const { isOpen, openModal, closeModal } = useModal();
+
+  const guestId = useSelector((state) => state.Category.value);
 
   const [matchDetail, setmatchDetail] = useState({
     isSuccess: true,
@@ -77,7 +80,7 @@ export default function GuestApplyDetail() {
   const fetchGuestDetail = async () => {
     try {
       setLoading(true); //로딩이 시작됨
-      const response = await authInstance.get(`/guests/5`);
+      const response = await authInstance.get(`/guests/${guestId}`);
       setmatchDetail(response.data);
     } catch (error) {
       console.error(error);
@@ -116,6 +119,15 @@ export default function GuestApplyDetail() {
   const minute = GameTime[14] + GameTime[15];
   const gameTimeFormat = `${year}년 ${month}월 ${day}일 ${hour}시 ${minute}분`;
 
+  const gameHour =
+    matchDetail.result.gusting_info.gameDuration[0] +
+    matchDetail.result.gusting_info.gameDuration[1];
+  const gameMinute =
+    matchDetail.result.gusting_info.gameDuration[3] +
+    matchDetail.result.gusting_info.gameDuration[4];
+
+  const gameDuration = `${gameHour}시간 ${gameMinute}분 운동`;
+
   return (
     <S.Main>
       <MainFunctionNavbar />
@@ -133,7 +145,7 @@ export default function GuestApplyDetail() {
           </S.levelDiv>
         </S.statusDiv>
 
-        <S.description>{matchDetail.result.description}</S.description>
+        <S.description>{matchDetail.result.teamDescription}</S.description>
       </S.TeamNameSection>
 
       <S.Gap>모임 정보</S.Gap>
@@ -146,7 +158,11 @@ export default function GuestApplyDetail() {
 
         <S.MatchInfoText>
           <S.Img src={iconCalendar} alt='캘린더아이콘' />
-          {gameTimeFormat} - {matchDetail.result.gusting_info.gameDuration}
+          {gameTimeFormat}
+        </S.MatchInfoText>
+        <S.MatchInfoText>
+          <S.Img src={iconCalendar} alt='캘린더아이콘' />
+          {gameDuration}
         </S.MatchInfoText>
 
         <S.MatchInfoText>
@@ -171,7 +187,9 @@ export default function GuestApplyDetail() {
 
       <S.RequestPoint>
         <S.Label>바라는 점</S.Label>
-        <S.TextArea spellCheck='false' />
+        <S.TextArea spellCheck='false'>
+          {matchDetail.result.gusting_info.guestDescription}
+        </S.TextArea>
       </S.RequestPoint>
       <S.ApplyButtonSection>
         <S.Gap />

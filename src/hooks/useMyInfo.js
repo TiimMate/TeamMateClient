@@ -46,7 +46,7 @@ function reducer(state, action) {
         gender: formatGender(),
         ageGroup: formatAgeGroup(),
         region,
-        height: height.toString(),
+        height: height ? height.toString() : '',
         position: position ? position : '',
       };
     }
