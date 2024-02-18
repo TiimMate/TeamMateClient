@@ -153,16 +153,6 @@ export const RequestPoint = styled.div`
   padding: 1.5rem 8.33%;
 `;
 
-export const P = styled.p`
-  color: var(--Gray300, #636363);
-  font-family: 'Pretendard Variable';
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 20px; /* 166.667% */
-  letter-spacing: -0.6px;
-`;
-
 export const Label = styled.label`
   border: none;
   margin-bottom: 0.31rem;

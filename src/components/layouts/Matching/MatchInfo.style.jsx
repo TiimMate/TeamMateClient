@@ -74,7 +74,6 @@ export const MatchDetail = styled.p`
 export const Button = styled.div`
   align-items: center;
   border-radius: 6px;
-  background: blue;
   background: ${({ reviewStatus }) => {
     switch (reviewStatus) {
       case 'COMPLETED':

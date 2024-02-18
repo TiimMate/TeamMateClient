@@ -1,19 +1,24 @@
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+
 import useTeamInfo from '../../../hooks/useTeamInfo';
+import withAuth from '../../../hooks/hoc/withAuth';
+
+import authInstance from '../../../services/authInstance';
 
 import LogoUploader from '../../../components/ui/LogoUploader/LogoUploader';
 import TeamGenderSelector from '../../../components/ui/Selector/Gender/TeamGenderSelector';
 import TeamAgeSelector from '../../../components/ui/Selector/Age/TeamAgeSelector';
 import LocationSelector from '../../../components/ui/Selector/Location/LocationSelector';
-import MapContent from '../../../components/layouts/Content/MapContent';
+import GymSelector from '../../../components/ui/Selector/Gym/GymSelector';
 import MemberRows from '../../../components/ui/MemberRows/MemberRows';
 import Gap from '../../../components/atoms/Gap';
 
 import { formatMembers } from '../../../utils/formatData';
 
 import * as S from './TeamUpdatePage.style';
-import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import authInstance from '../../../services/authInstance';
+import useSrcImg from '../../../hooks/useSrcImg';
+import { uploadImage } from '../../../services/imageApi';
 
 function TeamUpdatePage() {
   const { id } = useParams();
@@ -21,7 +26,7 @@ function TeamUpdatePage() {
 
   const [teamInfo, dispatch] = useTeamInfo();
   const {
-    logoUrl,
+    logo,
     name,
     description,
     gender,
@@ -31,6 +36,7 @@ function TeamUpdatePage() {
     participants: { leader, member },
   } = teamInfo;
   const [memberIdsToDelete, setMemberIdsToDelete] = useState([]);
+  const [img, setImg] = useSrcImg(logo);
 
   const formattedMembers = formatMembers(leader, member, {
     formatBtnText: ({ isLeader }) => (!isLeader ? '삭제하기' : '팀장'),
@@ -46,13 +52,13 @@ function TeamUpdatePage() {
     e.preventDefault();
 
     // #TODO: FETCH LOGO
-    const logo = null;
+    const logo = await uploadImage(img);
 
     let sex = '';
     for (let i = 0; i < gender.length; i++) {
       if (gender[i]) {
-        if (i === 0) sex = 'M';
-        else if (i === 1) sex = 'F';
+        if (i === 0) sex = 'F';
+        else if (i === 1) sex = 'M';
         else sex = 'MX';
         break;
       }
@@ -69,19 +75,19 @@ function TeamUpdatePage() {
         break;
       }
     }
-    const body = new FormData();
+    const body = {
+      logo: logo ? logo : '',
+      name,
+      description,
+      gender: sex,
+      ageGroup: age,
+      region,
+      gymName,
+      memberIdsToDelete,
+    };
 
-    body.append('logo', logo);
-    body.append('name', name);
-    body.append('description', description);
-    body.append('gender', sex);
-    body.append('ageGroup', age);
-    body.append('region', region);
-    body.append('gymName', gymName);
-    for (const keyValue of body) console.log(keyValue);
     try {
-      const response = await authInstance.put(`/teams/${id}`, body);
-      console.log(response);
+      await authInstance.put(`/teams/${id}`, body);
       navigate('/team');
     } catch (error) {
       console.log(error);
@@ -101,12 +107,10 @@ function TeamUpdatePage() {
     };
     fetchTeam();
   }, [id, navigate, dispatch]);
+
   return (
     <S.Wrapper>
-      <LogoUploader
-        url={logoUrl}
-        setUrl={(url) => dispatch({ type: 'LOGO', value: url })}
-      />
+      <LogoUploader url={img} setUrl={setImg} />
       <Gap />
 
       <S.TeamNameSection>
@@ -143,9 +147,10 @@ function TeamUpdatePage() {
           setLocation={(sel) => dispatch({ type: 'REGION', value: sel })}
         />
 
-        <S.MapWrapper>
-          <MapContent workFor='write' />
-        </S.MapWrapper>
+        <GymSelector
+          gym={gymName}
+          setGym={(sel) => dispatch({ type: 'GYM_NAME', value: sel })}
+        />
       </S.TeamDetailSection>
 
       <Gap height='3.81rem'>
@@ -162,4 +167,4 @@ function TeamUpdatePage() {
   );
 }
 
-export default TeamUpdatePage;
+export default withAuth(TeamUpdatePage);

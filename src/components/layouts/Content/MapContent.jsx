@@ -4,7 +4,7 @@ import arrowIcon from '../../../assets/chevron-down-4 1.svg';
 import mapIcon from '../../../assets/icon_map.svg';
 const { kakao } = window;
 
-export default function MapContent({ workFor }) {
+export default function MapContent({ setLoc, workFor }) {
   const mapRef = useRef(null);
   const [map, setMap] = useState(null);
   const [marker, setMarker] = useState(null);
@@ -17,6 +17,7 @@ export default function MapContent({ workFor }) {
         center: new window.kakao.maps.LatLng(37.566387, 126.977917),
         level: 3,
       };
+
       setMap(new window.kakao.maps.Map(container, options));
       setMarker(new window.kakao.maps.Marker());
     });
@@ -33,6 +34,7 @@ export default function MapContent({ workFor }) {
               result[0].x,
             );
             setSearchResult(addrData.address);
+            setLoc && setLoc(addrData.address);
             map.panTo(currentPos);
             marker.setMap(null);
             marker.setPosition(currentPos);

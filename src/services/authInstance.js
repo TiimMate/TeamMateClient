@@ -32,7 +32,7 @@ const setTokens = ({ accessToken, refreshToken }) => {
   setCookie('refresh_token', refreshToken, { path: '/' });
 };
 
-const removeTokens = () => {
+export const removeTokens = () => {
   localStorage.removeItem('access_token');
   removeCookie('refresh_token');
 };
@@ -63,12 +63,20 @@ authInstance.interceptors.response.use(
     if (err.response.status !== 401) return Promise.reject(err);
 
     const { code } = err.response.data;
-
     switch (code) {
       case 'AUTH002': //access 만료
-        const tokens = await postRefreshToken();
-        setTokens(tokens);
-        return;
+        try {
+          const tokens = await postRefreshToken();
+          setTokens(tokens);
+
+          return authInstance(err.config);
+        } catch (error) {
+          console.dir(err);
+          removeTokens();
+          alert('로그인이 필요합니다.');
+          window.location.replace('/login');
+          return;
+        }
 
       default: // AUTH001 ~ 006
         console.dir(err);

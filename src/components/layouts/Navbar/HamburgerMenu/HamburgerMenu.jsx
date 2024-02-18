@@ -17,7 +17,7 @@ const SPORTS = [
   '배드민턴',
   '테니스',
 ];
-const CATEGORIES = ['게스트', '연습경기', '커뮤니티', '대관정보'];
+const CATEGORIES = ['게스트', '연습경기', '대관정보', '커뮤니티'];
 
 function HamburgerMenu({ setToggle }) {
   const navigate = useNavigate();
@@ -30,8 +30,13 @@ function HamburgerMenu({ setToggle }) {
     const categoryUrl = convertCategoryToUrl(e.target.textContent);
 
     if (!!sportUrl && !!categoryUrl) {
-      navigate(sportUrl + categoryUrl);
+      if (categoryUrl === '/community' || categoryUrl === '/location') {
+        navigate(categoryUrl);
+      } else {
+        navigate(sportUrl + categoryUrl);
+      }
       setToggle(false);
+      return;
     }
   };
 

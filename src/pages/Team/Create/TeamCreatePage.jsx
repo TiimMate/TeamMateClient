@@ -1,53 +1,58 @@
-import useTeamInfo from '../../../hooks/useTeamInfo';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+
+import useTeamInfo from '../../../hooks/useTeamInfo';
+import withAuth from '../../../hooks/hoc/withAuth';
+
+import authInstance from '../../../services/authInstance';
 
 import SportSelector from '../../../components/ui/Selector/Sport/SportSelector';
 import LogoUploader from '../../../components/ui/LogoUploader/LogoUploader';
 import TeamGenderSelector from '../../../components/ui/Selector/Gender/TeamGenderSelector';
 import TeamAgeSelector from '../../../components/ui/Selector/Age/TeamAgeSelector';
 import LocationSelector from '../../../components/ui/Selector/Location/LocationSelector';
+import GymSelector from '../../../components/ui/Selector/Gym/GymSelector';
 import MemberRows from '../../../components/ui/MemberRows/MemberRows';
 import Gap from '../../../components/atoms/Gap';
-import MapContent from '../../../components/layouts/Content/MapContent';
 
 import * as S from './TeamCreatePage.style';
-import authInstance from '../../../services/authInstance';
-import withAuth from '../../../hooks/hoc/withAuth';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { uploadImage } from '../../../services/imageApi';
 
-// #TODO: integrity check, if axios error
+// #TODO: integrity check, if  error
 function TeamCreatePage() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [teamInfo, dispatch] = useTeamInfo();
   const [sport, setSport] = useState(searchParams.get('category'));
   const { id, nickname } = useSelector((state) => state.user);
-  const { logoUrl, name, description, gender, ageGroup, region, gymName } =
+  const { srcImg, name, description, gender, ageGroup, region, gymName } =
     teamInfo;
 
-  const formattedMembers = [
+  const [members, setMembers] = useState([
     {
       id,
       unitInfo: {
         title: nickname,
         description: '정보를 입력해주세요.', // #TODO: FETCH DATA
+        avatarUrl: null,
       },
       btnText: '팀장',
     },
-  ];
+  ]);
 
   const onClickSaveBtn = async (e) => {
     e.preventDefault();
 
     // #TODO: FETCH LOGO
-    const logo = null;
+    const logo = await uploadImage(srcImg);
+    console.log(logo);
 
     let sex = '';
     for (let i = 0; i < gender.length; i++) {
       if (gender[i]) {
-        if (i === 0) sex = 'M';
-        else if (i === 1) sex = 'F';
+        if (i === 0) sex = 'F';
+        else if (i === 1) sex = 'M';
         else sex = 'MX';
         break;
       }
@@ -64,39 +69,61 @@ function TeamCreatePage() {
         break;
       }
     }
-    const body = new FormData();
+    const body = {
+      logo,
+      name,
+      description,
+      gender: sex,
+      ageGroup: age,
+      region,
+      gymName,
+      category: sport,
+    };
 
-    body.append('logo', logo);
-    body.append('name', name);
-    body.append('description', description);
-    body.append('gender', sex);
-    body.append('ageGroup', age);
-    body.append('region', region);
-    body.append('gymName', gymName);
-    body.append('category', sport);
-    for (const keyValue of body) console.log(keyValue);
     try {
-      const response = await authInstance.post('/teams', body);
-      console.log(response);
+      await authInstance.post('/teams', body);
       navigate('/team');
     } catch (error) {
-      console.log(error);
+      if (error.response.status === 400)
+        alert('필요한 정보를 모두 입력해주세요.');
+      else alert('서버 오류. 잠시 후 다시 시도해주세요.');
     }
   };
 
-  // #TODO: sport integrity check // kakao map 충돌 문제 해결
+  // #TODO: sport integrity check
   useEffect(() => {
-    if (!sport) {
-      navigate('/');
-    }
-  }, [sport, navigate]);
+    const fetchMe = async () => {
+      try {
+        const { avatarUrl, nickname, height, position } = (
+          await authInstance.get(`/users/${id}/profiles/${sport}`)
+        ).data.result;
+        console.log(height, position);
+        setMembers([
+          {
+            id,
+            unitInfo: {
+              title: nickname,
+              avatarUrl,
+              description:
+                position && height ? `${height}cm|${position}` : null,
+            },
+            btnText: '팀장',
+          },
+        ]);
+      } catch (error) {
+        alert('서버 오류. 다시 접속 바랍니다.');
+        navigate('/');
+      }
+    };
+    fetchMe();
+  }, [id, sport, navigate]);
 
   return (
     <S.Wrapper>
       <SportSelector sport={sport} setSport={setSport} disabled={true} />
       <LogoUploader
-        url={logoUrl}
-        setUrl={(url) => dispatch({ type: 'LOGO', value: url })}
+        url={srcImg}
+        setUrl={(url) => dispatch({ type: 'SRC_IMG', value: url })}
       />
       <Gap />
 
@@ -133,16 +160,18 @@ function TeamCreatePage() {
           location={region}
           setLocation={(sel) => dispatch({ type: 'REGION', value: sel })}
         />
-        <S.MapWrapper>
-          <MapContent workFor='write' />
-        </S.MapWrapper>
+
+        <GymSelector
+          gym={gymName}
+          setGym={(sel) => dispatch({ type: 'GYM_NAME', value: sel })}
+        />
       </S.TeamDetailSection>
 
       <Gap height='3.81rem'>
         <S.Title>팀원 목록</S.Title>
       </Gap>
       <S.TeamMembersSection>
-        <MemberRows members={formattedMembers} />
+        <MemberRows members={members} />
       </S.TeamMembersSection>
 
       <Gap height='7.19rem'>

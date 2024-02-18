@@ -9,6 +9,8 @@ import * as S from './TeamDetailPage.style';
 import MemberRows from '../../../components/ui/MemberRows/MemberRows';
 import { useEffect, useState } from 'react';
 import authInstance from '../../../services/authInstance';
+import withAuth from '../../../hooks/hoc/withAuth';
+import { downloadImage } from '../../../services/imageApi';
 
 function TeamDetailPage() {
   const { id } = useParams();
@@ -21,6 +23,7 @@ function TeamDetailPage() {
     mannerLevel: 0,
     skillLevel: 0,
     name: '',
+    inviteCode: '',
     participants: {
       leader: { nickname: '' },
       member: [],
@@ -36,7 +39,8 @@ function TeamDetailPage() {
     const fetchTeam = async () => {
       try {
         const { result } = (await authInstance.get(`/teams/${id}`)).data;
-        setTeamInfo({ ...result });
+        const image = await downloadImage(result.logo);
+        setTeamInfo({ ...result, logoUrl: image?.Body });
       } catch (error) {
         console.log(error);
         navigate('/');
@@ -48,19 +52,19 @@ function TeamDetailPage() {
   return (
     <S.Wrapper>
       <S.TeamBanner>
-        <S.TeamLogo />
+        <S.TeamLogo $logoUrl={teamInfo.logoUrl} />
       </S.TeamBanner>
 
       <S.TeamNameSection>
         <S.TeamName>{teamInfo.name}</S.TeamName>
-        <Level />
+        <Level skill={teamInfo.skillLevel} manner={teamInfo.mannerLevel} />
         <S.description>{teamInfo.description}</S.description>
       </S.TeamNameSection>
       <Gap />
 
       <S.Title>팀 코드</S.Title>
       <S.TeamCodeSection>
-        <S.TeamCode>BF123RT</S.TeamCode>
+        <S.TeamCode>{teamInfo.inviteCode}</S.TeamCode>
       </S.TeamCodeSection>
       <Gap />
 
@@ -80,4 +84,4 @@ function TeamDetailPage() {
   );
 }
 
-export default TeamDetailPage;
+export default withAuth(TeamDetailPage);

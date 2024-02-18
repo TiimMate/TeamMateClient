@@ -7,13 +7,13 @@ const token = localStorage.getItem('access_token'); // only in CSR
 const initialState = token
   ? {
       isAuth: true,
-      ...decodePayload(token),
+      nickname: decodePayload(token).nickname,
+      id: decodePayload(token).id,
     }
   : {
       isAuth: false,
     };
 
-console.log(initialState);
 export const userSlices = createSlice({
   name: 'user',
   initialState,
