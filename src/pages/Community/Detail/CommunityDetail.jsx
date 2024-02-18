@@ -8,9 +8,9 @@ import NewComment from '../../../components/layouts/Comment/NewComment';
 import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import authInstance from '../../../services/authInstance';
-//import useSrcImg from '';
 import { downloadImage } from '../../../services/imageApi';
 import withAuth from '../../../hooks/hoc/withAuth';
+import Paging from '../../../components/ui/Paging/Paging';
 
 function CommunityDetail() {
   const { id } = useParams();
@@ -29,7 +29,11 @@ function CommunityDetail() {
     ],
     commentHasNext: false,
   });
+  const [currentPageComments, setCurrentPageComments] = useState(
+    communityDetail.comments,
+  );
   const [firstCommentId, setFirstCommentId] = useState(1);
+  const [page, setPage] = useState(1);
 
   const fetchPostDetail = async () => {
     // api명세서 변경 : imageUrls->link
@@ -101,6 +105,11 @@ function CommunityDetail() {
       <ContentBody menu='community' content={communityDetail.post} />
       <CommentHeader postId={id} commentCount={communityDetail.commentCount} />
       {renderComment()}
+      <Paging
+        page={page}
+        count={communityDetail.commentCount}
+        setPage={setPage}
+      />
       <NewComment postId={id} fetchPostDetail={fetchPostDetail} />
     </S.Wrapper>
   );
