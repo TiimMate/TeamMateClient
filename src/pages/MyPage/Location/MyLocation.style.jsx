@@ -45,6 +45,7 @@ export const Title = styled.div`
 
 export const Date = styled.div`
   margin-left: auto;
+  margin-right: 7%;
   color: var(--kakao-logo, #000);
   font-family: 'Pretendard';
   font-size: 9px;

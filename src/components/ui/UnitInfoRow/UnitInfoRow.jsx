@@ -1,3 +1,4 @@
+import useSrcImg from '../../../hooks/useSrcImg';
 import * as S from './UnitInfoRow.style';
 
 /**
@@ -18,12 +19,13 @@ import * as S from './UnitInfoRow.style';
  * */
 function UnitInfoRow({ unitInfo, btnText, onClickBtn }) {
   const { title, description, date, avatarUrl } = unitInfo;
+  const [img] = useSrcImg(avatarUrl);
   const onClick = onClickBtn || ((e) => e.preventDefault());
 
   return (
     <S.Wrapper>
       <S.AvatarSection>
-        <S.Avatar $logoUrl={avatarUrl} />
+        <S.Avatar $logoUrl={img} />
       </S.AvatarSection>
 
       {date ? (

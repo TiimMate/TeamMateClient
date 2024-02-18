@@ -8,6 +8,7 @@ const initialState = token
   ? {
       isAuth: true,
       nickname: decodePayload(token).nickname,
+      id: decodePayload(token).id,
     }
   : {
       isAuth: false,

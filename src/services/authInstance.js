@@ -32,7 +32,7 @@ const setTokens = ({ accessToken, refreshToken }) => {
   setCookie('refresh_token', refreshToken, { path: '/' });
 };
 
-const removeTokens = () => {
+export const removeTokens = () => {
   localStorage.removeItem('access_token');
   removeCookie('refresh_token');
 };
