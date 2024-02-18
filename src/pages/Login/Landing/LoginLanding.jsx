@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import highFive from '../../../assets/highfive.png';
+import handclap from '../../../assets/img_handclap.svg';
 import Button300 from '../../../components/atoms/Button300';
 import * as S from './LoginLanding.style';
 
@@ -14,10 +14,9 @@ export default function LoginLanding() {
   };
   return (
     <S.Wrapper>
-      {' '}
       <S.welcomeBoxContainer>
         <S.welcomeMsg>{nickname} 메이트님, 환영합니다!</S.welcomeMsg>
-        <S.welcomeImg src={highFive} alt='highFiveImg' />
+        <S.welcomeImg src={handclap} alt='handClapImg' />
         <Button300 onClick={goHome}>홈으로 이동</Button300>
       </S.welcomeBoxContainer>
     </S.Wrapper>
