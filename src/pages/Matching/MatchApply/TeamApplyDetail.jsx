@@ -14,9 +14,7 @@ import authInstance from '../../../services/authInstance';
 import { formatMembers } from '../../../utils/formatData';
 import MemberRows from '../../../components/ui/MemberRows/MemberRows';
 
-//TODO 이미 게스트글에 신청한 유저 거르기
-
-export default function GuestApplyDetail() {
+export default function TeamApplyDetail() {
   const category = useParams();
   const navigate = useNavigate();
 
@@ -77,7 +75,7 @@ export default function GuestApplyDetail() {
   const fetchGuestDetail = async () => {
     try {
       setLoading(true); //로딩이 시작됨
-      const response = await authInstance.get(`/guests/5`);
+      const response = await authInstance.get(`/games/5`);
       setmatchDetail(response.data);
     } catch (error) {
       console.error(error);
@@ -99,8 +97,8 @@ export default function GuestApplyDetail() {
 
   const postContent = async (e) => {
     try {
-      const response = await authInstance.post('/guests/5/application');
-      navigate(`/${category}/matching/guestapply`);
+      const response = await authInstance.post('/games/5/application');
+      navigate(`/${category}/matching/teamapply`);
     } catch (error) {
       console.log(error);
       openModal();
@@ -167,7 +165,7 @@ export default function GuestApplyDetail() {
         <MemberRows members={members} />
       </S.TeamMembersSection>
 
-      <S.Gap>게스트에게 바라는 점</S.Gap>
+      <S.Gap>팀에게 바라는 점</S.Gap>
 
       <S.RequestPoint>
         <S.Label>바라는 점</S.Label>
@@ -186,9 +184,9 @@ export default function GuestApplyDetail() {
       </S.ApplyButtonSection>
 
       <MatchingModal
-        title='선수 정보 미입력'
-        content='선수님의 정보를 입력해주세요!'
-        buttonText='선수 정보 입력화면으로 이동'
+        title='팀 정보 미입력'
+        content='팀 정보를 등록해주세요!'
+        buttonText='팀 등록화면으로 이동'
         isOpen={isOpen}
         onClose={closeModal}
         navi={navi}

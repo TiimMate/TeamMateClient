@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import styled from 'styled-components';
 import chevronDown4 from '../../../../assets/chevron-down-4 1.svg';
 import mapIcon from '../../../../assets/icon_map.svg';

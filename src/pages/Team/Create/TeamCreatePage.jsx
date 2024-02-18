@@ -8,7 +8,6 @@ import TeamAgeSelector from '../../../components/ui/Selector/Age/TeamAgeSelector
 import LocationSelector from '../../../components/ui/Selector/Location/LocationSelector';
 import MemberRows from '../../../components/ui/MemberRows/MemberRows';
 import Gap from '../../../components/atoms/Gap';
-import MapContent from '../../../components/layouts/Content/MapContent';
 
 import * as S from './TeamCreatePage.style';
 import authInstance from '../../../services/authInstance';
@@ -16,15 +15,16 @@ import withAuth from '../../../hooks/hoc/withAuth';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import GymSelector from '../../../components/ui/Selector/Gym/GymSelector';
+import { uploadImage } from '../../../services/imageApi';
 
-// #TODO: integrity check, if axios error
+// #TODO: integrity check, if  error
 function TeamCreatePage() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [teamInfo, dispatch] = useTeamInfo();
   const [sport, setSport] = useState(searchParams.get('category'));
   const { id, nickname } = useSelector((state) => state.user);
-  const { logoUrl, name, description, gender, ageGroup, region, gymName } =
+  const { srcImg, name, description, gender, ageGroup, region, gymName } =
     teamInfo;
 
   const formattedMembers = [
@@ -42,7 +42,8 @@ function TeamCreatePage() {
     e.preventDefault();
 
     // #TODO: FETCH LOGO
-    const logo = null;
+    const logo = await uploadImage(srcImg);
+    console.log(logo);
 
     let sex = '';
     for (let i = 0; i < gender.length; i++) {
@@ -96,8 +97,8 @@ function TeamCreatePage() {
     <S.Wrapper>
       <SportSelector sport={sport} setSport={setSport} disabled={true} />
       <LogoUploader
-        url={logoUrl}
-        setUrl={(url) => dispatch({ type: 'LOGO', value: url })}
+        url={srcImg}
+        setUrl={(url) => dispatch({ type: 'SRC_IMG', value: url })}
       />
       <Gap />
 

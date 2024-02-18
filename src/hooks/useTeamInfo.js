@@ -3,7 +3,7 @@ import { useReducer } from 'react';
 const TEAM_INFO = {
   category: '',
 
-  logoUrl: '',
+  srcImg: '',
   name: '',
   description: '',
   gender: new Array(3).fill(false),
@@ -55,10 +55,10 @@ function reducer(state, action) {
         ageGroup: formatAgeGroup(),
       };
     }
-    case 'LOGO':
+    case 'SRC_IMG':
       return {
         ...state,
-        logoUrl: action.value,
+        srcImg: action.value,
       };
     case 'NAME':
       return {
