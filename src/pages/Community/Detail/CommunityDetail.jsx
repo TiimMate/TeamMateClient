@@ -30,16 +30,22 @@ export default function CommunityDetail() {
   });
 
   useEffect(() => {
-    const fetchTeam = async () => {
+    const fetchPostDetail = async () => {
       try {
         const { result } = (await authInstance.get(`/posts/${id}`)).data;
-        console.log('get result', result);
 
-        if (result && result.imageUrls && result.imageUrls.length > 0) {
+        if (result.post.imageUrls.length === 0) {
+          setCommunityDetail({
+            ...result,
+            post: { ...result.post, imageUrls: [] },
+          });
+        } else {
           const images = await Promise.all(
-            result.imageUrls.map(async (image) => {
+            result.post.imageUrls.map(async (image) => {
               try {
-                const downloadedImage = await downloadImage(image.url);
+                const downloadedImage = await downloadImage(
+                  image.url.toString(),
+                );
                 return downloadedImage.Body;
               } catch (error) {
                 console.error('Error downloading image:', error);
@@ -47,15 +53,16 @@ export default function CommunityDetail() {
               }
             }),
           );
-          setCommunityDetail({ ...result, imageUrls: images });
-        } else {
-          setCommunityDetail({ ...result, imageUrls: [] });
+          setCommunityDetail({
+            ...result,
+            post: { ...result.post, imageUrls: images },
+          });
         }
       } catch (error) {
         console.log(error);
       }
     };
-    fetchTeam();
+    fetchPostDetail();
   }, [id]);
 
   const renderComment = () =>

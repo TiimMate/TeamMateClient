@@ -3,7 +3,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
 import { useState, useEffect, useRef } from 'react';
 import MapContent from './MapContent';
-import useSrcImg from '../../../hooks/useSrcImg';
+import { useSrcImgList } from '../../../hooks/useSrcImg';
 
 export default function ContentBody({ menu, content }) {
   const [currentIndex, setCurrentIndex] = useState();
@@ -12,21 +12,37 @@ export default function ContentBody({ menu, content }) {
     setCurrentIndex(index);
   }
 
-  const contentImages = useSrcImg(content.imageUrls); // contentImages가 Promise가 아닌 실제 이미지 배열을 반환하도록 수정하였습니다.
+  const imageData = content.imageUrls.length === 0 ? '' : content.imageUrls;
+  const contentImages = useSrcImgList(imageData);
   console.log('contentImages', contentImages);
 
   const renderSlides = () => {
-    return contentImages.map((image) => {
-      console.log(image.url);
-      return (
-        image && (
-          <div key={image.url}>
+    return contentImages
+      .filter((image) => image !== null && typeof image !== 'function') // null 및 함수 필터링
+      .map((image, index) => {
+        if (!image || typeof image !== 'object') return null; // 이미지가 아닌 경우 null 반환
+        console.log(image.url);
+        return (
+          <div key={index}>
             <img src={image.url} alt={image.url} />
           </div>
-        )
-      );
-    });
+        );
+      });
   };
+
+  // const renderSlides = () => {
+  //   if (!contentImages || contentImages === undefined) return null;
+  //   return contentImages.map((image) => {
+  //     console.log(image.url);
+  //     return (
+  //       image && (
+  //         <div key={image.url}>
+  //           <img src={image.url} alt={image.url} />
+  //         </div>
+  //       )
+  //     );
+  //   });
+  // };
 
   // useEffect(() => {
   //   kakao.maps.load(() => {

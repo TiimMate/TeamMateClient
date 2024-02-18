@@ -1,4 +1,4 @@
-import useSrcImg from '../../../hooks/useSrcImg';
+import { useSrcImg } from '../../../hooks/useSrcImg';
 import * as S from './UnitInfoRow.style';
 
 /**

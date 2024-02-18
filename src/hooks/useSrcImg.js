@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { downloadImage } from '../services/imageApi';
 
-function useSrcImg(filename) {
+export function useSrcImg(filename) {
   const [img, setImg] = useState(null);
 
   useEffect(() => {
@@ -17,4 +17,29 @@ function useSrcImg(filename) {
   return [img, setImg];
 }
 
-export default useSrcImg;
+export function useSrcImgList(filenameList) {
+  const [imgList, setImgList] = useState([]);
+
+  useEffect(() => {
+    const getImgs = async () => {
+      const images = await Promise.all(
+        filenameList.map(async (filename) => {
+          try {
+            const src = await downloadImage(filename);
+            return src.Body;
+          } catch (error) {
+            console.error('Error downloading image:', error);
+            return null;
+          }
+        }),
+      );
+      setImgList(images.filter(Boolean)); // Remove null values from the array
+    };
+
+    if (filenameList && filenameList.length > 0) {
+      getImgs();
+    }
+  }, [filenameList]);
+
+  return [imgList, setImgList];
+}

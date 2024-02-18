@@ -16,7 +16,7 @@ import * as S from './MyUpdatePage.style';
 import withAuth from '../../../hooks/hoc/withAuth';
 import authInstance from '../../../services/authInstance';
 import { useSelector } from 'react-redux';
-import useSrcImg from '../../../hooks/useSrcImg';
+import { useSrcImg } from '../../../hooks/useSrcImg';
 import { uploadImage } from '../../../services/imageApi';
 
 function MyUpdate() {
