@@ -3,6 +3,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
 import { useState, useEffect, useRef } from 'react';
 import MapContent from './MapContent';
+import useSrcImg from '../../../hooks/useSrcImg';
 
 export default function ContentBody({ menu, content }) {
   const [currentIndex, setCurrentIndex] = useState();
@@ -11,13 +12,21 @@ export default function ContentBody({ menu, content }) {
     setCurrentIndex(index);
   }
 
-  const contentImages = content.imgUrl;
-  const renderSlides = () =>
-    contentImages.map((image) => (
-      <div key={image.alt}>
-        <img src={image.url} alt={image.alt} />
-      </div>
-    ));
+  const contentImages = useSrcImg(content.imageUrls); // contentImages가 Promise가 아닌 실제 이미지 배열을 반환하도록 수정하였습니다.
+  console.log('contentImages', contentImages);
+
+  const renderSlides = () => {
+    return contentImages.map((image) => {
+      console.log(image.url);
+      return (
+        image && (
+          <div key={image.url}>
+            <img src={image.url} alt={image.url} />
+          </div>
+        )
+      );
+    });
+  };
 
   // useEffect(() => {
   //   kakao.maps.load(() => {
@@ -42,7 +51,7 @@ export default function ContentBody({ menu, content }) {
             infiniteLoop={true}
             showThumbs={false}
             showDots={false}
-            selectedItem={contentImages[currentIndex]}
+            selectedItem={contentImages ? contentImages[currentIndex] : null}
             onChange={handleChange}
           >
             {renderSlides()}
@@ -51,7 +60,7 @@ export default function ContentBody({ menu, content }) {
 
         {menu === 'location' ? <MapContent workFor={'detail'} /> : null}
 
-        <S.Contents>{content.contents}</S.Contents>
+        <S.Contents>{content.contnet}</S.Contents>
       </S.ContentBodyContainer>
     </S.Wrapper>
   );

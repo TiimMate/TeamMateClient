@@ -12,6 +12,8 @@ export default function ContentHeader({
   title,
   bookmark,
 }) {
+  console.log('title', title);
+
   const [isMe, setIsMe] = useState(true);
   const navigate = useNavigate();
 
