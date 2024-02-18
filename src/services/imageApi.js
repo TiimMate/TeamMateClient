@@ -40,9 +40,9 @@ export async function downloadImage(filename) {
         console.log('Error downloading data: ', err);
         reject(err);
       } else {
-        console.log('Successfully uploaded data');
-        const imageBase64 = data.Body.toString('base64');
-        resolve(imageBase64);
+        console.log('Successfully downloaded data');
+
+        resolve(data);
       }
     });
   });
