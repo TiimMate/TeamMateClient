@@ -4,6 +4,7 @@ import noBookmark from '../../../assets/icon_no_bookmark.svg';
 import yesBookmark from '../../../assets/icon_yes_bookmark.svg';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useCallback, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 export default function ContentHeader({
   needButton,
@@ -12,9 +13,8 @@ export default function ContentHeader({
   title,
   bookmark,
 }) {
-  console.log('title', title);
-
   const [isMe, setIsMe] = useState(true);
+  const { nickname } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
   const handleIconButton = () => {
@@ -43,7 +43,7 @@ export default function ContentHeader({
         return bookmark === true ? (
           <>
             <img src={yesBookmark} alt='yesBookmark' />
-            <S.IconGuide>글 저장하기</S.IconGuide>
+            <S.IconGuide>저장 완료!</S.IconGuide>
           </>
         ) : (
           <>

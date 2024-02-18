@@ -26,6 +26,7 @@ export function useSrcImgList(filenameList) {
         filenameList.map(async (filename) => {
           try {
             const src = await downloadImage(filename);
+            console.log(src);
             return src.Body;
           } catch (error) {
             console.error('Error downloading image:', error);
@@ -33,7 +34,7 @@ export function useSrcImgList(filenameList) {
           }
         }),
       );
-      setImgList(images.filter(Boolean)); // Remove null values from the array
+      setImgList(images.filter(Boolean));
     };
 
     if (filenameList && filenameList.length > 0) {

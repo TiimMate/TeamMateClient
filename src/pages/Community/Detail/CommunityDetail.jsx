@@ -10,12 +10,13 @@ import { useEffect, useState } from 'react';
 import authInstance from '../../../services/authInstance';
 //import useSrcImg from '';
 import { downloadImage } from '../../../services/imageApi';
+import withAuth from '../../../hooks/hoc/withAuth';
 
-export default function CommunityDetail() {
+function CommunityDetail() {
   const { id } = useParams();
 
   const [communityDetail, setCommunityDetail] = useState({
-    post: { title: '', content: '', link: '', imageUrls: [{ url: '' }] },
+    post: { title: '', content: '', link: '' },
     isBookmarked: false,
     commentCount: 0,
     comments: [
@@ -28,42 +29,53 @@ export default function CommunityDetail() {
     ],
     commentHasNext: false,
   });
+  const [firstCommentId, setFirstCommentId] = useState(1);
+
+  const fetchPostDetail = async () => {
+    // api명세서 변경 : imageUrls->link
+    try {
+      const { result } = (await authInstance.get(`/posts/${id}`)).data;
+
+      console.log('result', result);
+      setCommunityDetail({
+        ...result,
+        post: { ...result.post },
+        comments: [...result.comments],
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchMoreComments = async () => {
+    try {
+      const { result } = (
+        await authInstance.get(
+          `/posts/${id}/comments?cursorId=${firstCommentId}`,
+        )
+      ).data;
+
+      console.log('result', result);
+
+      if (result.comments.length > 0) {
+        setCommunityDetail((prevDetail) => ({
+          ...prevDetail,
+          comments: [...prevDetail.comments, ...result.comments],
+        }));
+        setFirstCommentId(1);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    const fetchPostDetail = async () => {
-      try {
-        const { result } = (await authInstance.get(`/posts/${id}`)).data;
-
-        if (result.post.imageUrls.length === 0) {
-          setCommunityDetail({
-            ...result,
-            post: { ...result.post, imageUrls: [] },
-          });
-        } else {
-          const images = await Promise.all(
-            result.post.imageUrls.map(async (image) => {
-              try {
-                const downloadedImage = await downloadImage(
-                  image.url.toString(),
-                );
-                return downloadedImage.Body;
-              } catch (error) {
-                console.error('Error downloading image:', error);
-                return null;
-              }
-            }),
-          );
-          setCommunityDetail({
-            ...result,
-            post: { ...result.post, imageUrls: images },
-          });
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
     fetchPostDetail();
   }, [id]);
+
+  useEffect(() => {
+    fetchMoreComments();
+  }, [firstCommentId]);
 
   const renderComment = () =>
     communityDetail.comments.map((comment) => (
@@ -75,6 +87,7 @@ export default function CommunityDetail() {
         createdAt={comment.createdAt}
       />
     ));
+
   return (
     <S.Wrapper>
       <MainFunctionNavbar />
@@ -86,9 +99,11 @@ export default function CommunityDetail() {
         bookmark={communityDetail.isBookmarked}
       />
       <ContentBody menu='community' content={communityDetail.post} />
-      <CommentHeader postId={id} />
+      <CommentHeader postId={id} commentCount={communityDetail.commentCount} />
       {renderComment()}
-      <NewComment />
+      <NewComment postId={id} fetchPostDetail={fetchPostDetail} />
     </S.Wrapper>
   );
 }
+
+export default withAuth(CommunityDetail);

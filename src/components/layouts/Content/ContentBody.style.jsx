@@ -16,7 +16,11 @@ export const ContentBodyContainer = styled.div`
   background: #fff;
 `;
 
-export const Image = styled.div``;
+export const ImageBox = styled.div``;
+export const ImageContainer = styled.div`
+  width: 100%;
+`;
+export const Image = styled.img``;
 
 export const Contents = styled.div`
   color: var(--kakao-logo, #000);

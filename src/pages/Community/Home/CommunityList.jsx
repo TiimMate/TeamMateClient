@@ -65,7 +65,7 @@ function CommunityList() {
     if (hasMorePosts) {
       getCommunityList({ lastPostId });
     }
-  }, [page, hasMorePosts]);
+  }, [page, hasMorePosts, lastPostId]);
 
   const handleNewPost = () => {
     navigate('/community/write');
@@ -89,7 +89,7 @@ function CommunityList() {
           date={createdAt}
         />
       ))}
-      {loading && <div>Loading...</div>}
+      {loading && <S.Loading>Loading...</S.Loading>}
       <div ref={setBottom}></div>
     </S.Wrapper>
   );

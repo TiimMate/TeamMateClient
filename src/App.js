@@ -115,6 +115,7 @@ function ContentBox() {
         <Route path='/community' element={<CommunityList />} />
         <Route path='/community/write' element={<CommunityWrite />} />
         <Route path='/community/:id/detail' element={<CommunityDetail />} />
+        <Route path='/community/:id/update' element={<CommunityDetail />} />
       </Routes>
       <Footer />
     </div>
