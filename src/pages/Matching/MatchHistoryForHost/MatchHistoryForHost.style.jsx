@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import bannerImg from '../../../assets/banner-soccer.png';
 
 export const PageLayout = styled.div`
   display: flex;
@@ -25,6 +26,9 @@ export const NavItem = styled.a`
 `;
 
 export const Banner = styled.div`
-  background: var(--Blue400, #2e69ff);
+  background-image: url(${bannerImg});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   height: 160px;
 `;

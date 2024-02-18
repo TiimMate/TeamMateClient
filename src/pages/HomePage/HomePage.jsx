@@ -1,16 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import * as S from './HomePage.style';
 
 const sportsData = {
-  '/assets/img-ball/img-ball-basketball.png': '농구',
-  '/assets/img-ball/img-ball-baseball.png': '야구',
-  '/assets/img-ball/img-ball-tennis.png': '테니스',
-  '/assets/img-ball/img-ball-soccer.png': '축구',
-  '/assets/img-ball/img-ball-futsal.png': '풋살',
-  '/assets/img-ball/img-ball-volleyball.png': '배구',
-  '/assets/img-ball/img-ball-bowling.png': '볼링',
-  '/assets/img-ball/img-ball-badminton.png': '배드민턴',
-  '/assets/img-ball/img-ball-pingpong.png': '탁구',
+  basketball: '농구',
+  baseball: '야구',
+  tennis: '테니스',
+  soccer: '축구',
+  futsal: '풋살',
+  volleyball: '배구',
+  bowling: '볼링',
+  badminton: '배드민턴',
+  pingpong: '탁구',
 };
 
 export default function HomePage() {
@@ -25,10 +26,15 @@ export default function HomePage() {
         <S.MainImage>
           <S.BallContainer>
             <S.BallImageList>
-              {Object.keys(sportsData).map((imageUrl, index) => (
+              {Object.entries(sportsData).map(([key, sport], index) => (
                 <div key={index}>
-                  <img src={imageUrl} alt={`Image ${index + 1}`}></img>
-                  <S.BallName>{sportsData[imageUrl]}</S.BallName>
+                  <Link to={`/guests/${key}/application`}>
+                    <img
+                      src={`/assets/img-ball/img-ball-${key}.png`}
+                      alt={`Image ${index + 1}`}
+                    />
+                  </Link>
+                  <S.BallName>{sport}</S.BallName>
                 </div>
               ))}
             </S.BallImageList>
