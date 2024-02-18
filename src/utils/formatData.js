@@ -142,7 +142,7 @@ export const formatMembers = (leader, members, options = {}) => {
         leader.height &&
         leader.position &&
         `${leader.height}cm | ${leader.position}`,
-      avatarUrl: leader?.avatarUrl,
+      avatarUrl: leader?.avatarUrl, // #Todo: src Img로 가져오기
     },
     btnText: formatBtnText
       ? formatBtnText({ ...leader, isLeader: true })

@@ -16,6 +16,8 @@ import * as S from './MyUpdatePage.style';
 import withAuth from '../../../hooks/hoc/withAuth';
 import authInstance from '../../../services/authInstance';
 import { useSelector } from 'react-redux';
+import useSrcImg from '../../../hooks/useSrcImg';
+import { uploadImage } from '../../../services/imageApi';
 
 function MyUpdate() {
   const { id } = useSelector((state) => state.user);
@@ -25,7 +27,7 @@ function MyUpdate() {
   const [sport, setSport] = useState(searchParams.get('sport'));
   const [myInfo, dispatch] = useMyInfo();
   const {
-    logoUrl,
+    avatarUrl,
     nickname,
     description,
     gender,
@@ -34,12 +36,13 @@ function MyUpdate() {
     height,
     position,
   } = myInfo;
+  const [img, setImg] = useSrcImg(avatarUrl);
 
   const onClickSaveBtn = async (e) => {
     e.preventDefault();
 
     // #TODO: FETCH LOGO
-    const logo = '';
+    const avatarUrl = await uploadImage(img);
 
     let sex = '';
     for (let i = 0; i < gender.length; i++) {
@@ -62,7 +65,7 @@ function MyUpdate() {
       }
     }
     const body = {
-      logo,
+      avatarUrl,
       nickname,
       description,
       gender: sex,
@@ -71,6 +74,7 @@ function MyUpdate() {
       height: Number(height),
       position,
     };
+    console.log(body);
 
     try {
       const response = await authInstance.put(`/users/profiles/${sport}`, body);
@@ -100,10 +104,7 @@ function MyUpdate() {
     <S.Wrapper>
       <SportSelector sport={sport} setSport={setSport} disabled={true} />
       <Gap />
-      <LogoUploader
-        url={logoUrl}
-        setUrl={(url) => dispatch({ type: 'LOGO', value: url })}
-      />
+      <LogoUploader url={img} setUrl={setImg} />
 
       <S.NameSection>
         <S.Label>이름(닉네임)*</S.Label>

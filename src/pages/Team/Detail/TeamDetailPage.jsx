@@ -10,6 +10,7 @@ import MemberRows from '../../../components/ui/MemberRows/MemberRows';
 import { useEffect, useState } from 'react';
 import authInstance from '../../../services/authInstance';
 import withAuth from '../../../hooks/hoc/withAuth';
+import { downloadImage } from '../../../services/imageApi';
 
 function TeamDetailPage() {
   const { id } = useParams();
@@ -38,8 +39,8 @@ function TeamDetailPage() {
     const fetchTeam = async () => {
       try {
         const { result } = (await authInstance.get(`/teams/${id}`)).data;
-        setTeamInfo({ ...result });
-        console.log(result);
+        const image = await downloadImage(result.logo);
+        setTeamInfo({ ...result, logoUrl: image?.Body });
       } catch (error) {
         console.log(error);
         navigate('/');
@@ -51,7 +52,7 @@ function TeamDetailPage() {
   return (
     <S.Wrapper>
       <S.TeamBanner>
-        <S.TeamLogo />
+        <S.TeamLogo $logoUrl={teamInfo.logoUrl} />
       </S.TeamBanner>
 
       <S.TeamNameSection>

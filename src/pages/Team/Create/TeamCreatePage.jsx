@@ -29,16 +29,17 @@ function TeamCreatePage() {
   const { srcImg, name, description, gender, ageGroup, region, gymName } =
     teamInfo;
 
-  const formattedMembers = [
+  const [members, setMembers] = useState([
     {
       id,
       unitInfo: {
         title: nickname,
         description: '정보를 입력해주세요.', // #TODO: FETCH DATA
+        avatarUrl: null,
       },
       btnText: '팀장',
     },
-  ];
+  ]);
 
   const onClickSaveBtn = async (e) => {
     e.preventDefault();
@@ -83,16 +84,39 @@ function TeamCreatePage() {
       await authInstance.post('/teams', body);
       navigate('/team');
     } catch (error) {
-      console.log(error);
+      if (error.response.status === 400)
+        alert('필요한 정보를 모두 입력해주세요.');
+      else alert('서버 오류. 잠시 후 다시 시도해주세요.');
     }
   };
 
-  // #TODO: sport integrity check // kakao map 충돌 문제 해결
+  // #TODO: sport integrity check
   useEffect(() => {
-    if (!sport) {
-      navigate('/');
-    }
-  }, [sport, navigate]);
+    const fetchMe = async () => {
+      try {
+        const { avatarUrl, nickname, height, position } = (
+          await authInstance.get(`/users/${id}/profiles/${sport}`)
+        ).data.result;
+        console.log(height, position);
+        setMembers([
+          {
+            id,
+            unitInfo: {
+              title: nickname,
+              avatarUrl,
+              description:
+                position && height ? `${height}cm|${position}` : null,
+            },
+            btnText: '팀장',
+          },
+        ]);
+      } catch (error) {
+        alert('서버 오류. 다시 접속 바랍니다.');
+        navigate('/');
+      }
+    };
+    fetchMe();
+  }, [id, sport, navigate]);
 
   return (
     <S.Wrapper>
@@ -147,7 +171,7 @@ function TeamCreatePage() {
         <S.Title>팀원 목록</S.Title>
       </Gap>
       <S.TeamMembersSection>
-        <MemberRows members={formattedMembers} />
+        <MemberRows members={members} />
       </S.TeamMembersSection>
 
       <Gap height='7.19rem'>

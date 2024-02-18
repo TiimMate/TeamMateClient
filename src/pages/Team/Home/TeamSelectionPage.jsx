@@ -12,6 +12,7 @@ import highfive from '../../../assets/highfive.png';
 import plus from '../../../assets/plus.svg';
 
 import * as S from './TeamSelectionPage.style';
+import { downloadImage } from '../../../services/imageApi';
 
 const COLOR_LIST = ['var(--blue-400, #0075ff)', '#86ff91'];
 
@@ -25,7 +26,17 @@ function TeamSelectionPage() {
       try {
         const response = await authInstance.get(`/teams?category=${sport}`);
         const { result } = response.data;
-        setTeamInfo([...result]);
+        const imagesPromises = result.map((data) => {
+          return data.logo && downloadImage(data.logo);
+        });
+
+        const images = await Promise.all(imagesPromises);
+
+        setTeamInfo(
+          result.map((data, idx) => {
+            return { ...data, logoUrl: images[idx]?.Body };
+          }),
+        );
       } catch (error) {
         console.log(error);
       }

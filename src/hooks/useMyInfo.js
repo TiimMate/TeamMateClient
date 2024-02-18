@@ -1,7 +1,7 @@
 import { useReducer } from 'react';
 
 const MY_INFO = {
-  logoUrl: '',
+  avatarUrl: '',
   nickname: '',
   description: '',
   gender: new Array(2).fill(false),
@@ -22,6 +22,7 @@ function reducer(state, action) {
         region,
         height,
         position,
+        avatarUrl,
       } = action.value;
       const formatGender = () => {
         if (gender === 'F') return [true, false];
@@ -39,6 +40,7 @@ function reducer(state, action) {
 
       return {
         ...state,
+        avatarUrl,
         nickname,
         description: description ? description : '',
         gender: formatGender(),
@@ -51,7 +53,7 @@ function reducer(state, action) {
     case 'LOGO':
       return {
         ...state,
-        logoUrl: action.value,
+        avatarUrl: action.value,
       };
     case 'NICKNAME':
       return {

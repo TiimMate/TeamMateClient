@@ -13,6 +13,7 @@ import * as S from './MyPage.style';
 import withAuth from '../../../hooks/hoc/withAuth';
 import authInstance, { removeTokens } from '../../../services/authInstance';
 import { useSelector } from 'react-redux';
+import useSrcImg from '../../../hooks/useSrcImg';
 
 function MyPage() {
   const navigate = useNavigate();
@@ -27,7 +28,10 @@ function MyPage() {
     region: '',
     position: '',
     description: '',
+    avatarUrl: '',
   });
+  const [img] = useSrcImg(user.avatarUrl);
+  console.log(user.avatarUrl);
 
   const logout = async () => {
     try {
@@ -46,6 +50,7 @@ function MyPage() {
           await authInstance.get(`/users/${id}/profiles/${sport}`)
         ).data;
         setUser(result);
+        console.log(user);
       } catch (error) {
         console.log(error);
       }
@@ -55,7 +60,7 @@ function MyPage() {
 
   return (
     <S.Wrapper>
-      <Greeting nickname={user.nickname} />
+      <Greeting src={img} nickname={user.nickname} />
       <Gap height='3.75rem'>
         <S.H2>선수 정보</S.H2>
       </Gap>

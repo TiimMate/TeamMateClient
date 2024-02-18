@@ -17,6 +17,8 @@ import Gap from '../../../components/atoms/Gap';
 import { formatMembers } from '../../../utils/formatData';
 
 import * as S from './TeamUpdatePage.style';
+import useSrcImg from '../../../hooks/useSrcImg';
+import { uploadImage } from '../../../services/imageApi';
 
 function TeamUpdatePage() {
   const { id } = useParams();
@@ -24,7 +26,7 @@ function TeamUpdatePage() {
 
   const [teamInfo, dispatch] = useTeamInfo();
   const {
-    logoUrl,
+    logo,
     name,
     description,
     gender,
@@ -34,6 +36,7 @@ function TeamUpdatePage() {
     participants: { leader, member },
   } = teamInfo;
   const [memberIdsToDelete, setMemberIdsToDelete] = useState([]);
+  const [img, setImg] = useSrcImg(logo);
 
   const formattedMembers = formatMembers(leader, member, {
     formatBtnText: ({ isLeader }) => (!isLeader ? '삭제하기' : '팀장'),
@@ -49,7 +52,7 @@ function TeamUpdatePage() {
     e.preventDefault();
 
     // #TODO: FETCH LOGO
-    const logo = null;
+    const logo = await uploadImage(img);
 
     let sex = '';
     for (let i = 0; i < gender.length; i++) {
@@ -104,12 +107,10 @@ function TeamUpdatePage() {
     };
     fetchTeam();
   }, [id, navigate, dispatch]);
+
   return (
     <S.Wrapper>
-      <LogoUploader
-        url={logoUrl}
-        setUrl={(url) => dispatch({ type: 'LOGO', value: url })}
-      />
+      <LogoUploader url={img} setUrl={setImg} />
       <Gap />
 
       <S.TeamNameSection>

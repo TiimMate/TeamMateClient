@@ -3,8 +3,8 @@ import { useReducer } from 'react';
 const TEAM_INFO = {
   category: '',
 
-  srcImg: '',
   name: '',
+  logo: '',
   description: '',
   gender: new Array(3).fill(false),
   ageGroup: new Array(5).fill(false),
@@ -25,6 +25,7 @@ function reducer(state, action) {
   switch (action.type) {
     case 'INIT': {
       const {
+        logo,
         name,
         description,
         gender,
@@ -51,6 +52,7 @@ function reducer(state, action) {
       return {
         ...state,
         name,
+        logo,
         description,
         participants,
         gender: formatGender(),
