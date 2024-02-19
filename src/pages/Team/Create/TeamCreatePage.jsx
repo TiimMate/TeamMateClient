@@ -43,6 +43,9 @@ function TeamCreatePage() {
 
   const onClickSaveBtn = async (e) => {
     e.preventDefault();
+    if (!name || !gender || !ageGroup || !region || !gymName) {
+      return alert('필요한 정보를 모두 입력해주세요.');
+    }
 
     const logo = await uploadImage(srcImg);
 
@@ -55,7 +58,6 @@ function TeamCreatePage() {
         break;
       }
     }
-    console.log(sex);
 
     let age = '';
     for (let i = 0; i < ageGroup.length; i++) {
@@ -89,14 +91,12 @@ function TeamCreatePage() {
     }
   };
 
-  // #TODO: sport integrity check
   useEffect(() => {
     const fetchMe = async () => {
       try {
         const { avatarUrl, nickname, height, position } = (
           await authInstance.get(`/users/${id}/profiles/${sport}`)
         ).data.result;
-        console.log(height, position);
         setMembers([
           {
             id,

@@ -37,9 +37,7 @@ function TeamSelectionPage() {
             return { ...data, logoUrl: images[idx]?.Body };
           }),
         );
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     };
     getTeams();
   }, [sport]);

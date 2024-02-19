@@ -74,14 +74,12 @@ function MyUpdate() {
       height: Number(height),
       position,
     };
-    console.log(body);
 
     try {
-      const response = await authInstance.put(`/users/profiles/${sport}`, body);
-      console.log(response);
+      await authInstance.put(`/users/profiles/${sport}`, body);
       navigate('/my');
     } catch (error) {
-      console.log(error);
+      alert('서버 오류. 다시 시도해주세요.');
     }
   };
 
@@ -91,11 +89,8 @@ function MyUpdate() {
         const { result } = (
           await authInstance.get(`/users/${id}/profiles/${sport}`)
         ).data;
-        console.log('result:', result);
         dispatch({ type: 'INIT', value: result });
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     };
     fetchMyProfile();
   }, [id, navigate, dispatch, sport]);

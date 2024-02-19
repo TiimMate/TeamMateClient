@@ -18,7 +18,7 @@ export const levelSpan = styled.span`
 
   color: var(--kakao-logo, #000);
   font-family: 'Pretendard Variable';
-  font-size: 12px;
+  font-size: 10px;
   font-style: normal;
   font-weight: 400;
   line-height: 20px; /* 166.667% */

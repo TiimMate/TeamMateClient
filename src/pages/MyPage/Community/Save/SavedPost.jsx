@@ -47,7 +47,6 @@ function SavedPost() {
           `/posts/bookmarks?cursorId=${lastPostId}`,
         );
 
-      console.log(response);
       const { result } = response.data;
 
       if (result.posts.length === 20 && result.hasNext) {
@@ -59,9 +58,7 @@ function SavedPost() {
       }
       setCommunityList(communityList.concat([...result.posts]));
       setHasMorePosts(result.hasNext);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -73,14 +70,8 @@ function SavedPost() {
     getCommunityList({ lastPostId });
   }, [page]);
 
-  console.log(communityList);
-
   const renderPost = () =>
     communityList.map(({ id, isBookmarked, title, createdAt }, idx) => {
-      console.log({ id, isBookmarked, title, createdAt }, idx, lastPostId);
-      console.log('hasMorePosts', hasMorePosts);
-      console.log('lastPostId === id', lastPostId === id);
-
       if (lastPostId === id) {
         return (
           <>
