@@ -88,7 +88,7 @@ export default function MatchReviewInfo({
         target={TYPE_TEXT[type]}
         type={type}
         teamMatchId={matchId}
-        guestMatchId={matchId} //수정필요 (게스트매치아이디값 확인 필요)
+        guestMatchId={matchId} //수정필요 (백앤드 게스트매치아이디값 확인 필요)
       />
     </S.Container>
   );

@@ -31,7 +31,7 @@ const ReviewModal = ({
 
   const handleSubmitButtonClick = async () => {
     if (target === 'guest') {
-      // await createGuestReview(revieweeId); // 수정필요 (아이디값 확인 필요))
+      // await createGuestReview(revieweeId); // 수정필요 (백앤드 아이디값 확인 필요))
     } else {
       await createTeamReview({
         teamMatchId,
