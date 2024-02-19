@@ -14,7 +14,7 @@ export default function ContentHeader({
   title,
   bookmark,
 }) {
-  const [isMe, setIsMe] = useState(false);
+  const [isMe, setIsMe] = useState(true);
   const [icon, setIcon] = useState('');
   // const { nickname } = useSelector((state) => state.user);
   const navigate = useNavigate();

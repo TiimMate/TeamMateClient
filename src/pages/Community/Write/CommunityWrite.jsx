@@ -6,8 +6,8 @@ import * as S from './CommunityWrite.style';
 import { useEffect, useRef, useState } from 'react';
 import { useCallbackPrompt } from '../../../hooks/useCallbackPrompt';
 import { useNavigate } from 'react-router';
-import TextInput from '../../../components/layouts/TextInput';
-import TextArea from '../../../components/layouts/TextArea';
+import TextInput from '../../../components/layouts/TextInput/TextInput';
+import TextArea from '../../../components/layouts/TextArea/TextArea';
 import authInstance from '../../../services/authInstance';
 import withAuth from '../../../hooks/hoc/withAuth';
 import ImageUploader from '../../../components/ui/ImageUploader/ImageUploader';
@@ -118,6 +118,7 @@ function CommunityWrite() {
           <TextArea
             name='content'
             rows={6}
+            value=''
             placeholder='내용을 입력해 주세요.'
             onChange={onChangeHandler}
           />
