@@ -24,7 +24,7 @@ function MyUpdate() {
   const navigate = useNavigate();
 
   const [searchParams] = useSearchParams();
-  const [sport, setSport] = useState(searchParams.get('sport'));
+  const [sport, setSport] = useState(searchParams.get('category'));
   const [myInfo, dispatch] = useMyInfo();
   const {
     avatarUrl,

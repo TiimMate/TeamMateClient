@@ -20,7 +20,6 @@ const postRefreshToken = async () => {
     const { accessToken, refreshToken } = await response.data.result;
     return { accessToken, refreshToken };
   } catch (err) {
-    console.log(err);
     removeTokens();
     alert('로그인이 필요합니다.');
     window.location.replace('/login');

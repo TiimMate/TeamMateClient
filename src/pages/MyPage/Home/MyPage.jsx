@@ -79,7 +79,7 @@ function MyPage() {
         </S.IntroContainer>
       )}
 
-      <ButtonDiv onClick={() => navigate(`/my/update?sport=${sport}`)}>
+      <ButtonDiv onClick={() => navigate(`/my/update?category=${sport}`)}>
         {user.gender ? '수정하기' : '입력하기'}
       </ButtonDiv>
       <Gap height='2.5rem' />
