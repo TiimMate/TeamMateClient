@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { downloadImage } from '../services/imageApi';
 
-export function useSrcImg(filename) {
+export default function useSrcImg(filename) {
   const [img, setImg] = useState(null);
 
   useEffect(() => {
