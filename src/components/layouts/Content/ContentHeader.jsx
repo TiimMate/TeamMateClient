@@ -2,8 +2,10 @@ import * as S from './ContentHeader.style';
 import pencil from '../../../assets/icon_pencil_gray.svg';
 import noBookmark from '../../../assets/icon_no_bookmark.svg';
 import yesBookmark from '../../../assets/icon_yes_bookmark.svg';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useCallback, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import authInstance from '../../../services/authInstance';
 
 export default function ContentHeader({
   needButton,
@@ -12,21 +14,40 @@ export default function ContentHeader({
   title,
   bookmark,
 }) {
-  const [isMe, setIsMe] = useState(true);
+  // const { nickname } = useSelector((state) => state.user);
+  const [isMe, setIsMe] = useState(false);
+  const [icon, setIcon] = useState('');
+  const [isBookmarked, setIsBookmarked] = useState(bookmark);
+
   const navigate = useNavigate();
 
-  const handleIconButton = () => {
-    if (postCategory === 'location') {
-      navigate(`/location/${postId}/update`);
+  const handleIconButton = async () => {
+    // api 통신 결과 해당 postId에 대해 작성자 본인여부에 따라 수정or북마크
+
+    if (icon === 'revise') {
+      navigate(`/${postCategory}/${postId}/update`);
     }
-    if (postCategory === 'community') {
-      // api 통신 결과 해당 postId에 대해 작성자 본인여부에 따라 수정or북마크,
-      // 사용자북마크여부에 따라 true, false 값 변경
+    if (icon === 'bookmark') {
+      try {
+        const response = await authInstance.post(`/posts/${postId}/bookmark`);
+        setIsBookmarked(!isBookmarked);
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
+  useEffect(() => {
+    renderIconButton();
+  }, [isBookmarked]);
+
+  useEffect(() => {
+    if (isMe === true) setIcon('revise');
+    if (isMe === false) setIcon('bookmark');
+  }, [isMe]);
+
   const renderIconButton = (postCategory, bookmark) => {
-    // 작성자 본인일 경우
     if (isMe === true) {
       return (
         <>
@@ -35,13 +56,12 @@ export default function ContentHeader({
         </>
       );
     }
-    // 작성자 본인이 아닐 경우
     if (isMe === false) {
       if (postCategory === 'community')
-        return bookmark === true ? (
+        return isBookmarked ? (
           <>
             <img src={yesBookmark} alt='yesBookmark' />
-            <S.IconGuide>글 저장하기</S.IconGuide>
+            <S.IconGuide>저장 완료!</S.IconGuide>
           </>
         ) : (
           <>

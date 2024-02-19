@@ -2,18 +2,22 @@ import MainFunctionNavbar from '../../../components/layouts/MainFunctionNavbar';
 import ContentHeader from '../../../components/layouts/Content/ContentHeader';
 import Modal from '../../../components/ui/Modal/Modal';
 import camera from '../../../assets/btn_camera.svg';
-import * as S from './CommunityWrite.style';
+import * as S from './CommunityUpdate.style';
 import { useEffect, useRef, useState } from 'react';
 import { useCallbackPrompt } from '../../../hooks/useCallbackPrompt';
 import { useNavigate } from 'react-router';
+import { useParams } from 'react-router';
 import TextInput from '../../../components/layouts/TextInput/TextInput';
 import TextArea from '../../../components/layouts/TextArea/TextArea';
 import authInstance from '../../../services/authInstance';
 import withAuth from '../../../hooks/hoc/withAuth';
 import ImageUploader from '../../../components/ui/ImageUploader/ImageUploader';
 import { uploadImage } from '../../../services/imageApi';
+import { useSrcImgList } from '../../../hooks/useSrcImg';
 
-function CommunityWrite() {
+function CommunityUpdate() {
+  const { id } = useParams();
+
   const [shouldConfirm, setShouldConfirm] = useState(false);
   const [valid, setValid] = useState(true);
   const [postContents, setPostContents] = useState({
@@ -22,7 +26,36 @@ function CommunityWrite() {
     link: '',
   });
   const [imageList, setImageList] = useState([]);
+  const [initialValue, setInitialValue] = useState({
+    title: '',
+    content: '',
+    link: [],
+  });
   const navigate = useNavigate();
+  const [imageListFromUrl, setImageListFromUrl] = useSrcImgList(
+    initialValue.link,
+  );
+
+  const fetchPostDetail = async () => {
+    try {
+      const { result } = (await authInstance.get(`/posts/${id}`)).data;
+
+      console.log('post result', result);
+
+      setInitialValue({
+        title: result.post.title,
+        content: result.post.contnet,
+        link: result.post.link.split(','),
+      });
+      console.log('initialValue', initialValue);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchPostDetail();
+  }, [id]);
 
   useEffect(() => {
     if (imageList.length > 0) setShouldConfirm(true);
@@ -51,16 +84,9 @@ function CommunityWrite() {
 
     const linkString = uploadedImages.join(','); // 이미지 파일명(key) 배열을 문자열로 변환
 
-    try {
-      const response = await authInstance.post('/posts/community', {
-        ...postContents,
-        link: linkString,
-      });
-      console.log(response);
-      navigate('/community');
-    } catch (error) {
-      console.log(error);
-    }
+    // put 요청
+
+    navigate(`/community/${id}/detail`);
   };
 
   const [showPrompt, confirmNavigation, cancelNavigation] =
@@ -102,13 +128,14 @@ function CommunityWrite() {
         </Modal>
       )}
       <MainFunctionNavbar />
-      <ContentHeader needButton={false} title={'글 작성하기'} />
+      <ContentHeader needButton={false} title={'글 수정하기'} />
       <S.ContentBody>
         <S.Label>글 제목</S.Label>
         <S.InputWrapper>
           <TextInput
             name='title'
             valid={valid}
+            value={initialValue.title}
             placeholder='제목을 입력해 주세요.'
             onChange={onChangeHandler}
           />
@@ -117,14 +144,17 @@ function CommunityWrite() {
         <S.InputWrapper>
           <TextArea
             name='content'
+            value={initialValue.content}
             rows={6}
             placeholder='내용을 입력해 주세요.'
             onChange={onChangeHandler}
-            value={postContents.content}
-          />
+          ></TextArea>
         </S.InputWrapper>
 
-        <ImageUploader imageList={imageList} setImageList={setImageList} />
+        <ImageUploader
+          imageList={imageListFromUrl}
+          setImageList={setImageList}
+        />
 
         <S.SaveButton
           onClick={() => {
@@ -139,4 +169,4 @@ function CommunityWrite() {
   );
 }
 
-export default withAuth(CommunityWrite);
+export default withAuth(CommunityUpdate);

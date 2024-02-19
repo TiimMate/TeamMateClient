@@ -13,7 +13,7 @@ import * as S from './MyPage.style';
 import withAuth from '../../../hooks/hoc/withAuth';
 import authInstance, { removeTokens } from '../../../services/authInstance';
 import { useSelector } from 'react-redux';
-import useSrcImg from '../../../hooks/useSrcImg';
+import { useSrcImg } from '../../../hooks/useSrcImg';
 
 function MyPage() {
   const navigate = useNavigate();

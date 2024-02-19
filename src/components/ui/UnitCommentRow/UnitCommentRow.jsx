@@ -1,13 +1,13 @@
 import * as S from './UnitCommentRow.style';
 
-export default function UnitCommentRow({ unitComment }) {
+export default function UnitCommentRow({ nickname, content, createdAt }) {
   return (
     <S.Wrapper>
       <S.UserComment>
-        <S.UserName>{unitComment.user}</S.UserName>
-        <S.Comment>{unitComment.comment}</S.Comment>
+        <S.UserName>{nickname}</S.UserName>
+        <S.Comment>{content}</S.Comment>
       </S.UserComment>
-      <S.Date>{unitComment.date}</S.Date>
+      <S.Date>{createdAt}</S.Date>
     </S.Wrapper>
   );
 }

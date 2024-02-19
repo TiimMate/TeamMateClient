@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { downloadImage } from '../services/imageApi';
 
-function useSrcImg(filename) {
+export function useSrcImg(filename) {
   const [img, setImg] = useState(null);
 
   useEffect(() => {
@@ -25,6 +25,7 @@ export function useSrcImgList(filenameList) {
         filenameList.map(async (filename) => {
           try {
             const src = await downloadImage(filename);
+
             return src.Body;
           } catch (error) {
             console.error('Error downloading image:', error);

@@ -16,7 +16,20 @@ export const ContentBodyContainer = styled.div`
   background: #fff;
 `;
 
-export const Image = styled.div``;
+export const ImageBox = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+`;
+export const ImageContainer = styled.div`
+  width: 100%;
+  overflow: hidden;
+`;
+export const Image = styled.img`
+  width: 100%;
+  object-fit: cover;
+`;
 
 export const Contents = styled.div`
   color: var(--kakao-logo, #000);
