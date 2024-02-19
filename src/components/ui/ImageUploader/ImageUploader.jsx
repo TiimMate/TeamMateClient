@@ -1,6 +1,5 @@
 import * as S from './ImageUploader.style';
-import React, { useDebugValue, useEffect } from 'react';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import camera from '../../../assets/btn_camera.svg';
 import close from '../../../assets/icon_close.svg';
 

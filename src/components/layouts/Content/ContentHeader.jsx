@@ -14,40 +14,39 @@ export default function ContentHeader({
   title,
   bookmark,
 }) {
-  // const { nickname } = useSelector((state) => state.user);
   const [isMe, setIsMe] = useState(false);
   const [icon, setIcon] = useState('');
   const [isBookmarked, setIsBookmarked] = useState(bookmark);
 
   const navigate = useNavigate();
 
-  const handleIconButton = async () => {
-    // api 통신 결과 해당 postId에 대해 작성자 본인여부에 따라 수정or북마크
-
-    if (icon === 'revise') {
-      navigate(`/${postCategory}/${postId}/update`);
-    }
-    if (icon === 'bookmark') {
-      try {
-        const response = await authInstance.post(`/posts/${postId}/bookmark`);
-        setIsBookmarked(!isBookmarked);
-        console.log(response);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  };
-
   useEffect(() => {
     renderIconButton();
-  }, [isBookmarked]);
+    setIsBookmarked(bookmark);
+  }, [bookmark]);
 
   useEffect(() => {
     if (isMe === true) setIcon('revise');
     if (isMe === false) setIcon('bookmark');
   }, [isMe]);
 
-  const renderIconButton = (postCategory, bookmark) => {
+  const handleIconButton = async () => {
+    // api 통신 결과 해당 postId에 대해 작성자 본인여부에 따라 수정or북마크
+    if (icon === 'revise') {
+      navigate(`/${postCategory}/${postId}/update`);
+    }
+    if (icon === 'bookmark') {
+      try {
+        const response = await authInstance.post(`/posts/${postId}/bookmark`);
+        console.log(response);
+        setIsBookmarked(!isBookmarked);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  const renderIconButton = (postCategory) => {
     if (isMe === true) {
       return (
         <>
@@ -57,18 +56,17 @@ export default function ContentHeader({
       );
     }
     if (isMe === false) {
-      if (postCategory === 'community')
-        return isBookmarked ? (
-          <>
-            <img src={yesBookmark} alt='yesBookmark' />
-            <S.IconGuide>저장 완료!</S.IconGuide>
-          </>
-        ) : (
-          <>
-            <img src={noBookmark} alt='noBookmark' />
-            <S.IconGuide>글 저장하기</S.IconGuide>
-          </>
-        );
+      return isBookmarked ? (
+        <>
+          <img src={yesBookmark} alt='yesBookmark' />
+          <S.IconGuide>저장 완료!</S.IconGuide>
+        </>
+      ) : (
+        <>
+          <img src={noBookmark} alt='noBookmark' />
+          <S.IconGuide>글 저장하기</S.IconGuide>
+        </>
+      );
     }
   };
 

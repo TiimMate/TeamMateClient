@@ -1,9 +1,8 @@
 import MainFunctionNavbar from '../../../components/layouts/MainFunctionNavbar';
 import ContentHeader from '../../../components/layouts/Content/ContentHeader';
 import Modal from '../../../components/ui/Modal/Modal';
-import camera from '../../../assets/btn_camera.svg';
 import * as S from './CommunityUpdate.style';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useCallbackPrompt } from '../../../hooks/useCallbackPrompt';
 import { useNavigate } from 'react-router';
 import { useParams } from 'react-router';
