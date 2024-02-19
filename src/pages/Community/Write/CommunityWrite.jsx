@@ -118,9 +118,9 @@ function CommunityWrite() {
           <TextArea
             name='content'
             rows={6}
-            value=''
             placeholder='내용을 입력해 주세요.'
             onChange={onChangeHandler}
+            value={postContents.content}
           />
         </S.InputWrapper>
 

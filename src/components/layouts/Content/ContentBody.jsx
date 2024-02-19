@@ -1,7 +1,7 @@
 import * as S from './ContentBody.style';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import MapContent from './MapContent';
 import { useSrcImgList } from '../../../hooks/useSrcImg';
 
@@ -14,18 +14,15 @@ export default function ContentBody({ menu, content }) {
   }
 
   const contentImages = useSrcImgList(imageData);
-  console.log(imageData);
 
   useEffect(() => {
     setImageData(content.link.split(','));
   }, [content.link]);
 
   const renderSlides = () => {
-    return contentImages.map((image, index) => {
-      if (!image || typeof image !== 'object') return null;
+    return contentImages[0].map((image, index) => {
+      if (!image || typeof image === 'function') return null;
       console.log(image);
-      //let image_src = 'data:image/webp;base64,' + image;
-
       return (
         <S.ImageContainer key={index}>
           <S.Image src={image} alt={index} />
@@ -44,7 +41,9 @@ export default function ContentBody({ menu, content }) {
             infiniteLoop={true}
             showThumbs={false}
             showDots={false}
-            selectedItem={contentImages ? contentImages[currentIndex] : null}
+            selectedItem={
+              contentImages[0] ? contentImages[0][currentIndex] : null
+            }
             onChange={handleChange}
           >
             {renderSlides()}
