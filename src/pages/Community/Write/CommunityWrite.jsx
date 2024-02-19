@@ -51,11 +51,6 @@ function CommunityWrite() {
 
     const linkString = uploadedImages.join(','); // 이미지 파일명(key) 배열을 문자열로 변환
 
-    // const body = new FormData();
-    // body.append('title', postContents.title);
-    // body.append('content', postContents.content);
-    // body.append('link', postContents.link);
-    //for (const keyValue of body) console.log(keyValue);
     try {
       const response = await authInstance.post('/posts/community', {
         ...postContents,

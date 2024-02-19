@@ -7,7 +7,7 @@ import { useSrcImgList } from '../../../hooks/useSrcImg';
 
 export default function ContentBody({ menu, content }) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [imageData, setImageData] = useState();
+  const [imageData, setImageData] = useState([]);
 
   function handleChange(index) {
     setCurrentIndex(index);

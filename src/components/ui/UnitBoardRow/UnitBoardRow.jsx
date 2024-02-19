@@ -6,11 +6,6 @@ import noBookmark from '../../../assets/icon_no_bookmark.svg';
 
 const UnitBoardRow = forwardRef(({ id, category, title, date }, ref) => {
   const renderIcon = (category) => {
-    //   if (category === 'notice') return <img src={notice} alt='notice' />;
-    //   if (category === 'bookmark')
-    //     return <img src={yesBookmark} alt='bookmark' />;
-    //   if (category === '') return <img src={noBookmark} alt='' />;
-
     if (category === true) return <img src={yesBookmark} alt='bookmark' />;
     if (category === false) return <img src={noBookmark} alt='' />;
   };

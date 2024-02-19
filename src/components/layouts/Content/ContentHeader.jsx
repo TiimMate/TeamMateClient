@@ -2,31 +2,42 @@ import * as S from './ContentHeader.style';
 import pencil from '../../../assets/icon_pencil_gray.svg';
 import noBookmark from '../../../assets/icon_no_bookmark.svg';
 import yesBookmark from '../../../assets/icon_yes_bookmark.svg';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useCallback, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import authInstance from '../../../services/authInstance';
 
 export default function ContentHeader({
+  needButton,
   postCategory,
   postId,
   title,
   bookmark,
 }) {
-  const [isMe, setIsMe] = useState(true);
+  const [isMe, setIsMe] = useState(false);
   const [icon, setIcon] = useState('');
-  const { nickname } = useSelector((state) => state.user);
+  // const { nickname } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
-  const handleIconButton = () => {
+  const handleIconButton = async () => {
+    // api 통신 결과 해당 postId에 대해 작성자 본인여부에 따라 수정or북마크,
+    // 사용자북마크여부에 따라 true, false 값 변경
     if (icon === 'revise') {
       navigate(`/${postCategory}/${postId}/update`);
     }
     if (icon === 'bookmark') {
-      navigate(`/${postCategory}/${postId}/update`);
+      try {
+        const response = await authInstance.post(`/posts/${postId}/bookmark`);
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
     }
-    // api 통신 결과 해당 postId에 대해 작성자 본인여부에 따라 수정or북마크,
-    // 사용자북마크여부에 따라 true, false 값 변경
   };
+
+  useEffect(() => {
+    console.log('bookmark 여부', bookmark);
+  }, [bookmark]);
 
   useEffect(() => {
     if (isMe === true) setIcon('revise');
@@ -61,10 +72,11 @@ export default function ContentHeader({
   return (
     <S.ContentHeader>
       <S.Title>{title}</S.Title>
-
-      <S.IconButton onClick={() => handleIconButton()}>
-        {renderIconButton(postCategory, bookmark)}
-      </S.IconButton>
+      {needButton && (
+        <S.IconButton onClick={() => handleIconButton()}>
+          {renderIconButton(postCategory, bookmark)}
+        </S.IconButton>
+      )}
     </S.ContentHeader>
   );
 }
