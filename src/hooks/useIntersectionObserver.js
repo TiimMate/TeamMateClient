@@ -1,29 +1,30 @@
 // import React, { useEffect, useState, useRef } from 'react';
 
-// export default function useIntersectionObserver({ setPage, page }) {
+// export default function useIntersectionObserver({
+//   loading,
+//   hasMorePosts,
+//   setPage,
+// }) {
 //   const [bottom, setBottom] = useState(null);
 //   const bottomObserver = useRef(null);
 
 //   useEffect(() => {
-//     if (!bottom) return;
-
 //     const observer = new IntersectionObserver(
 //       (entries) => {
-//         if (entries[0].isIntersecting) {
-//           console.log('발견!!');
-//           setPage(page + 1);
+//         if (entries[0].isIntersecting && !loading && hasMorePosts) {
+//           setPage((prevpage) => prevpage + 1);
 //         }
 //       },
-//       { threshold: 0.25 },
+//       { threshold: 0.5 },
 //     );
-//     //, rootMargin: '200px'
 //     bottomObserver.current = observer;
 
-//     observer.observe(bottom);
+//     if (bottom) observer.observe(bottom);
+
 //     return () => {
-//       observer.unobserve(bottom);
+//       if (bottom) observer.unobserve(bottom);
 //     };
-//   }, []);
+//   }, [bottom, loading, hasMorePosts, setPage]);
 
 //   return { bottomObserver };
 // }

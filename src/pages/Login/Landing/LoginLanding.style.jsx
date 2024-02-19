@@ -27,8 +27,8 @@ export const welcomeMsg = styled.div`
 `;
 
 export const welcomeImg = styled.img`
-  width: 13.4375rem;
-  height: 14.8125rem;
-  margin: 9.1875rem 0 9.5rem 0;
+  width: 19.8125rem;
+  height: 24.375rem;
+  margin: 1.875rem 0 7.25rem 0;
   justify-self: center;
 `;

@@ -17,7 +17,7 @@ import Gap from '../../../components/atoms/Gap';
 import { formatMembers } from '../../../utils/formatData';
 
 import * as S from './TeamUpdatePage.style';
-import useSrcImg from '../../../hooks/useSrcImg';
+import { useSrcImg } from '../../../hooks/useSrcImg';
 import { uploadImage } from '../../../services/imageApi';
 
 function TeamUpdatePage() {

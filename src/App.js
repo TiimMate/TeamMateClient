@@ -37,6 +37,7 @@ import LocationUpdate from './pages/Location/Update/LocationUpdate';
 import CommunityList from './pages/Community/Home/CommunityList';
 import CommunityWrite from './pages/Community/Write/CommunityWrite';
 import CommunityDetail from './pages/Community/Detail/CommunityDetail';
+import CommunityUpdate from './pages/Community/Update/CommunityUpdate';
 
 import MyPage from './pages/MyPage/Home/MyPage';
 import MyUpdate from './pages/MyPage/Update/MyUpdatePage';
@@ -86,11 +87,14 @@ function ContentBox() {
         <Route path='/login/landing' element={<LoginLanding />} />
 
         <Route path='/:category/matching' element={<MatchingHome />} />
+
         <Route path='/:category/matching/guestapply' element={<GuestApply />} />
+
         <Route
           path='/:category/matching/guestapply/detail'
           element={<GuestApplyDetail />}
         />
+
         <Route
           path='/:category/matching/teamapply/detail'
           element={<TeamApplyDetail />}
@@ -103,10 +107,10 @@ function ContentBox() {
           path='/matching/history/host'
           element={<MatchHistoryForHost />}
         />
-        <Route
+        {/* <Route
           path='/matching/history/host/member'
           element={<MatchHistoryForHostMember />}
-        />
+        /> */}
         <Route path='/location' element={<LocationList />} />
         <Route path='/location/write' element={<LocationWrite />} />
         <Route path='/location/:id/detail' element={<LocationDetail />} />
@@ -115,6 +119,7 @@ function ContentBox() {
         <Route path='/community' element={<CommunityList />} />
         <Route path='/community/write' element={<CommunityWrite />} />
         <Route path='/community/:id/detail' element={<CommunityDetail />} />
+        <Route path='/community/:id/update' element={<CommunityUpdate />} />
       </Routes>
       <Footer />
     </div>

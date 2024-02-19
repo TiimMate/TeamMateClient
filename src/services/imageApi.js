@@ -31,7 +31,7 @@ export async function downloadImage(filename) {
     Bucket: 'teammates3bucket',
     Key: filename,
   };
-
+  //console.log('typeof_params_key', typeof params.Key);
   return new Promise((resolve, reject) => {
     s3.getObject(params, function (err, data) {
       if (err) {

@@ -11,7 +11,7 @@ const sportsData = {
   volleyball: '배구',
   bowling: '볼링',
   badminton: '배드민턴',
-  pingpong: '탁구',
+  'table-tennis': '탁구',
 };
 
 export default function HomePage() {
@@ -28,7 +28,7 @@ export default function HomePage() {
             <S.BallImageList>
               {Object.entries(sportsData).map(([key, sport], index) => (
                 <div key={index}>
-                  <Link to={`/guests/${key}/application`}>
+                  <Link to={`/${key}/matching/guestapply`}>
                     <img
                       src={`/assets/img-ball/img-ball-${key}.png`}
                       alt={`Image ${index + 1}`}
@@ -43,6 +43,7 @@ export default function HomePage() {
         <S.ImageInfo>클릭하면 각 종목 페이지로 이동합니다.</S.ImageInfo>
       </S.Container>
 
+      {/* 서비스 소개 섹션 */}
       <S.ServiceContainer>
         <S.ServiceIntroContainer>
           <S.ServiceIntro>

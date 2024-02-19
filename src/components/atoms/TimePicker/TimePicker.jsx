@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import * as S from './TimePicker.style';
+import { TrustedAdvisor } from 'aws-sdk';
 
 const Hour = [
   { hour: '', location: 0 },

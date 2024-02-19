@@ -46,7 +46,7 @@ function Tapbar() {
         />
         <S.Blank />
         <LogoWithDescription
-          onClick={() => navigate('/matching')}
+          onClick={() => navigate('/matching/history')}
           selected={selected === 2}
           icon={selected === 2 ? BoardBlue : BoardGray}
           description='매칭내역'
