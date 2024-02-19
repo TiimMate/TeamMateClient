@@ -5,17 +5,43 @@ import Modal from '../Modal/Modal';
 import Rating from '../Rating';
 import * as S from './ReviewModal.style';
 import Button130 from '../../atoms/Button130';
+import {
+  createGuestReview,
+  createTeamReview,
+} from '../../../services/reviewService';
 
-const ReviewModal = ({ isOpen, target, onClose }) => {
-  const [guestScore, setGuestScore] = useState(0);
-  const [sportsmanshipScore, setSportsmanshipScore] = useState(0);
+const ReviewModal = ({
+  isOpen,
+  target,
+  onClose,
+  type,
+  teamMatchId,
+  guestMatchId,
+}) => {
+  const [skillScore, setSkillScore] = useState(0);
+  const [mannerScore, setMannerScore] = useState(0);
 
-  const handleGuestRatingChange = (score) => {
-    setGuestScore(score);
+  const handleSkillScoreChange = (score) => {
+    setSkillScore(score);
   };
 
-  const handleSportsmanshipRatingChange = (score) => {
-    setSportsmanshipScore(score);
+  const handleMannerScoreChange = (score) => {
+    setMannerScore(score);
+  };
+
+  const handleSubmitButtonClick = async () => {
+    if (target === 'guest') {
+      // await createGuestReview(revieweeId); // 수정필요 (아이디값 확인 필요))
+    } else {
+      await createTeamReview({
+        teamMatchId,
+        guestMatchId,
+        skillScore,
+        mannerScore,
+      });
+    }
+
+    onClose();
   };
 
   if (!isOpen) {
@@ -34,16 +60,19 @@ const ReviewModal = ({ isOpen, target, onClose }) => {
           <S.RatingGroup>
             <Rating
               label={`${target}의 실력은 어떤가요?`}
-              score={guestScore}
-              onChange={handleGuestRatingChange}
+              score={skillScore}
+              onChange={handleSkillScoreChange}
             />
             <Rating
               label='스포츠맨쉽을 보여줬나요?'
-              score={sportsmanshipScore}
-              onChange={handleSportsmanshipRatingChange}
+              score={mannerScore}
+              onChange={handleMannerScoreChange}
             />
           </S.RatingGroup>
-          <Button130 disabled={guestScore === 0 || sportsmanshipScore === 0}>
+          <Button130
+            disabled={skillScore === 0 || mannerScore === 0}
+            onClick={handleSubmitButtonClick}
+          >
             작성 완료
           </Button130>
         </S.ReviewLayout>

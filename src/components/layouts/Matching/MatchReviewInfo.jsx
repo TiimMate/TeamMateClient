@@ -86,6 +86,9 @@ export default function MatchReviewInfo({
         isOpen={isOpen}
         onClose={closeModal}
         target={TYPE_TEXT[type]}
+        type={type}
+        teamMatchId={matchId}
+        guestMatchId={matchId} //수정필요 (게스트매치아이디값 확인 필요)
       />
     </S.Container>
   );
