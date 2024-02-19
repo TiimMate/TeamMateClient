@@ -18,7 +18,7 @@ import { useSelector } from 'react-redux';
 //TODO 이미 게스트글에 신청한 유저 거르기
 
 export default function GuestApplyDetail() {
-  const category = useParams();
+  const { category } = useParams();
   const navigate = useNavigate();
 
   const { isOpen, openModal, closeModal } = useModal();
@@ -68,7 +68,7 @@ export default function GuestApplyDetail() {
 
   //선수 정보 입력 화면
   const navi = () => {
-    navigate('/my/update');
+    navigate(`/my/update?category=${category}`);
   };
 
   //input 값 post 전달 위함
@@ -102,7 +102,9 @@ export default function GuestApplyDetail() {
 
   const postContent = async (e) => {
     try {
-      const response = await authInstance.post('/guests/5/application');
+      const response = await authInstance.post(
+        `/guests/${guestId}/application`,
+      );
       navigate(`/${category}/matching/guestapply`);
     } catch (error) {
       console.log(error);
