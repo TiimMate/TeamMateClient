@@ -14,20 +14,23 @@ export default function ContentHeader({
   title,
   bookmark,
 }) {
-  const [isMe, setIsMe] = useState(true);
-  const [icon, setIcon] = useState('');
   // const { nickname } = useSelector((state) => state.user);
+  const [isMe, setIsMe] = useState(false);
+  const [icon, setIcon] = useState('');
+  const [isBookmarked, setIsBookmarked] = useState(bookmark);
+
   const navigate = useNavigate();
 
   const handleIconButton = async () => {
-    // api 통신 결과 해당 postId에 대해 작성자 본인여부에 따라 수정or북마크,
-    // 사용자북마크여부에 따라 true, false 값 변경
+    // api 통신 결과 해당 postId에 대해 작성자 본인여부에 따라 수정or북마크
+
     if (icon === 'revise') {
       navigate(`/${postCategory}/${postId}/update`);
     }
     if (icon === 'bookmark') {
       try {
         const response = await authInstance.post(`/posts/${postId}/bookmark`);
+        setIsBookmarked(!isBookmarked);
         console.log(response);
       } catch (error) {
         console.log(error);
@@ -36,8 +39,8 @@ export default function ContentHeader({
   };
 
   useEffect(() => {
-    console.log('bookmark 여부', bookmark);
-  }, [bookmark]);
+    renderIconButton();
+  }, [isBookmarked]);
 
   useEffect(() => {
     if (isMe === true) setIcon('revise');
@@ -55,7 +58,7 @@ export default function ContentHeader({
     }
     if (isMe === false) {
       if (postCategory === 'community')
-        return bookmark === true ? (
+        return isBookmarked ? (
           <>
             <img src={yesBookmark} alt='yesBookmark' />
             <S.IconGuide>저장 완료!</S.IconGuide>

@@ -84,7 +84,7 @@ function CommunityList() {
         <UnitBoardRow
           key={id}
           id={id}
-          category={isBookmarked}
+          bookmark={isBookmarked}
           title={title}
           date={createdAt}
         />
