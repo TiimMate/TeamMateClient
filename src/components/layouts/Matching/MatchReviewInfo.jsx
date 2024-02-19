@@ -59,11 +59,7 @@ export default function MatchReviewInfo({
     <S.Container>
       <S.MatchInfo>
         <S.Time>{convertToKoreanTime(gameTime)}</S.Time>
-        <S.Content
-          onClick={() => {
-            navigate('/matching/guestapply/detail');
-          }}
-        >
+        <S.Content>
           <S.ContentTitle>
             <S.TeamName>{name}</S.TeamName>
             <S.LocationInfo>
@@ -90,6 +86,9 @@ export default function MatchReviewInfo({
         isOpen={isOpen}
         onClose={closeModal}
         target={TYPE_TEXT[type]}
+        type={type}
+        teamMatchId={matchId}
+        guestMatchId={matchId} //수정필요 (백앤드 게스트매치아이디값 확인 필요)
       />
     </S.Container>
   );

@@ -41,10 +41,10 @@ const dummy = [
   },
 ];
 
-export default function MatchHistoryList() {
+export default function MatchHistoryList({ matchingList }) {
   return (
     <S.Wrapper>
-      {dummy.map(
+      {matchingList.map(
         ({
           type,
           matchId,

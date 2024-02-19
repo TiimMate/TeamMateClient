@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './MatchHistoryForHost.style';
 import WeeklyCalendar from '../../../components/layouts/WeeklyCalendar';
 import MatchHistoryList from '../../../components/layouts/Matching/MatchHistoryList';
+import { getHostingMatchingList } from '../../../services/matchingService';
 
 const NAV_ITEM_LIST = [
   {
@@ -17,6 +18,17 @@ const NAV_ITEM_LIST = [
 ];
 
 export default function MatchHistoryForHost() {
+  const [selectedDate, setSelectedDate] = useState(
+    String(new Date('2023-02-18')),
+  );
+  const [matchingList, setMatchingList] = useState([]);
+
+  useEffect(() => {
+    getHostingMatchingList({ date: selectedDate }).then(({ result }) => {
+      setMatchingList(result);
+    });
+  }, [selectedDate]);
+
   return (
     <S.PageLayout>
       <S.Nav>
@@ -27,8 +39,8 @@ export default function MatchHistoryForHost() {
         ))}
       </S.Nav>
       <S.Banner />
-      <WeeklyCalendar />
-      <MatchHistoryList />
+      <WeeklyCalendar /> {/* 수정필요 */}
+      <MatchHistoryList matchingList={matchingList} />
     </S.PageLayout>
   );
 }
