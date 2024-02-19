@@ -108,7 +108,6 @@ function CommunityDetail() {
     <S.Wrapper>
       <MainFunctionNavbar />
       <ContentHeader
-        needButton={true}
         postCategory='community'
         postId={id}
         title={communityDetail.post.title}
