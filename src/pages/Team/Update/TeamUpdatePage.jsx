@@ -50,8 +50,10 @@ function TeamUpdatePage() {
 
   const onClickSaveBtn = async (e) => {
     e.preventDefault();
+    if (!name || !gender || !ageGroup || !region || !gymName) {
+      return alert('필요한 정보를 모두 입력해주세요.');
+    }
 
-    // #TODO: FETCH LOGO
     const logo = await uploadImage(img);
 
     let sex = '';
@@ -89,19 +91,15 @@ function TeamUpdatePage() {
     try {
       await authInstance.put(`/teams/${id}`, body);
       navigate('/team');
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
     const fetchTeam = async () => {
       try {
         const { result } = (await authInstance.get(`/teams/${id}`)).data;
-        console.log(result);
         dispatch({ type: 'INIT', value: result });
       } catch (error) {
-        console.log(error);
         navigate('/');
       }
     };

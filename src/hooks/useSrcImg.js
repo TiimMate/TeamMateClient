@@ -7,7 +7,6 @@ export function useSrcImg(filename) {
   useEffect(() => {
     const getImg = async () => {
       const src = await downloadImage(filename);
-      console.log(src);
       setImg(src.Body);
     };
     if (filename) {
@@ -26,7 +25,7 @@ export function useSrcImgList(filenameList) {
         filenameList.map(async (filename) => {
           try {
             const src = await downloadImage(filename);
-            console.log(src);
+
             return src.Body;
           } catch (error) {
             console.error('Error downloading image:', error);

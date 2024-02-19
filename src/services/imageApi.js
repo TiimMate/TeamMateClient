@@ -18,10 +18,8 @@ export async function uploadImage(file) {
   return new Promise((resolve, reject) => {
     s3.putObject(params, function (err, data) {
       if (err) {
-        console.log('Error uploading data: ', err);
         reject(err);
       } else {
-        console.log('Successfully uploaded data');
         resolve(key); // 성공 시, 키 반환
       }
     });
@@ -37,11 +35,8 @@ export async function downloadImage(filename) {
   return new Promise((resolve, reject) => {
     s3.getObject(params, function (err, data) {
       if (err) {
-        console.log('Error downloading data: ', err);
         reject(err);
       } else {
-        console.log('Successfully downloaded data');
-
         resolve(data);
       }
     });

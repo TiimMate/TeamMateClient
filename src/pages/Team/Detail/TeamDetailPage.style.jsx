@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import Banner from '../../../components/ui/Banner';
+import bannerImg from '../../../assets/banner-basketball.png';
 import CircleLogo from '../../../components/atoms/CircleLogo';
 import Button300 from '../../../components/atoms/Button300';
 
@@ -10,7 +10,21 @@ export const Wrapper = styled.div`
   box-sizing: border-box;
 `;
 
-export const TeamBanner = styled(Banner)``;
+export const TeamBanner = styled.div`
+  position: relative;
+
+  width: 100%;
+
+  background-size: cover;
+  background-position: center;
+  background-color: #0075ff;
+  background-image: url(${bannerImg});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 160px;
+`;
+
 export const TeamLogo = styled(CircleLogo)`
   position: absolute;
   top: 100%;

@@ -42,8 +42,7 @@ function TeamDetailPage() {
         const image = await downloadImage(result.logo);
         setTeamInfo({ ...result, logoUrl: image?.Body });
       } catch (error) {
-        console.log(error);
-        navigate('/');
+        alert('error');
       }
     };
     fetchTeam();

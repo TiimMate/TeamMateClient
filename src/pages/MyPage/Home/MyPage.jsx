@@ -31,7 +31,6 @@ function MyPage() {
     avatarUrl: '',
   });
   const [img] = useSrcImg(user.avatarUrl);
-  console.log(user.avatarUrl);
 
   const logout = async () => {
     try {
@@ -50,13 +49,10 @@ function MyPage() {
           await authInstance.get(`/users/${id}/profiles/${sport}`)
         ).data;
         setUser(result);
-        console.log(user);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     };
     fetchUserProfile();
-  }, [sport]);
+  }, [id, sport]);
 
   return (
     <S.Wrapper>
@@ -95,11 +91,11 @@ function MyPage() {
         title='저장한 글'
         isChevron={true}
       />
-      <ClickableRow
+      {/* <ClickableRow
         onClick={() => navigate('/my/location')}
         title='대관정보'
         isChevron={true}
-      />
+      /> */}
       <ClickableRow onClick={logout} title='로그아웃' />
     </S.Wrapper>
   );
