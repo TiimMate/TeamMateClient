@@ -5,6 +5,7 @@ import * as S from './Login.style';
 import googleLoginBtn from '../../../assets/btn_google_login.svg';
 import naverLoginBtn from '../../../assets/btn_naver_login.svg';
 import kakaoLoginBtn from '../../../assets/btn_kakao_login.svg';
+import logoIcon from '../../../assets/icon_logo.svg';
 
 const KAKAO_CLIENT_ID = process.env.REACT_APP_KAKAO_REST_API_KEY;
 const KAKAO_REDIRECT_URI = process.env.REACT_APP_KAKAO_REDIRECT_URL;
@@ -36,7 +37,7 @@ export default function Login() {
 export const renderLoginButtons = (googleLogin, naverLogin, kakaoLogin) => {
   return (
     <S.Wrapper>
-      <S.LoginImgContainer>img</S.LoginImgContainer>
+      <S.LogoImg src={logoIcon} alt='logoIcon' />
       <S.LoginBtnsContainer>
         <S.LoginBtn onClick={googleLogin}>
           <img src={googleLoginBtn} alt='googleLogin' />

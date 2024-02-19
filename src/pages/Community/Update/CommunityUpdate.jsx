@@ -2,7 +2,7 @@ import MainFunctionNavbar from '../../../components/layouts/MainFunctionNavbar';
 import ContentHeader from '../../../components/layouts/Content/ContentHeader';
 import Modal from '../../../components/ui/Modal/Modal';
 import camera from '../../../assets/btn_camera.svg';
-import * as S from './CommunityWrite.style';
+import * as S from './CommunityUpdate.style';
 import { useEffect, useRef, useState } from 'react';
 import { useCallbackPrompt } from '../../../hooks/useCallbackPrompt';
 import { useNavigate } from 'react-router';
@@ -13,7 +13,7 @@ import withAuth from '../../../hooks/hoc/withAuth';
 import ImageUploader from '../../../components/ui/ImageUploader/ImageUploader';
 import { uploadImage } from '../../../services/imageApi';
 
-function CommunityWrite() {
+function CommunityUpdate() {
   const [shouldConfirm, setShouldConfirm] = useState(false);
   const [valid, setValid] = useState(true);
   const [postContents, setPostContents] = useState({
@@ -143,4 +143,4 @@ function CommunityWrite() {
   );
 }
 
-export default withAuth(CommunityWrite);
+export default withAuth(CommunityUpdate);

@@ -37,6 +37,7 @@ import LocationUpdate from './pages/Location/Update/LocationUpdate';
 import CommunityList from './pages/Community/Home/CommunityList';
 import CommunityWrite from './pages/Community/Write/CommunityWrite';
 import CommunityDetail from './pages/Community/Detail/CommunityDetail';
+import CommunityUpdate from './pages/Community/Update/CommunityUpdate';
 
 import MyPage from './pages/MyPage/Home/MyPage';
 import MyUpdate from './pages/MyPage/Update/MyUpdatePage';
@@ -115,6 +116,7 @@ function ContentBox() {
         <Route path='/community' element={<CommunityList />} />
         <Route path='/community/write' element={<CommunityWrite />} />
         <Route path='/community/:id/detail' element={<CommunityDetail />} />
+        <Route path='/community/:id/update' element={<CommunityUpdate />} />
       </Routes>
       <Footer />
     </div>

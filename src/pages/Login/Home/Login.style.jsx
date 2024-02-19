@@ -6,20 +6,20 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justicy-content: center;
-  gap: 59px;
-  padding: 60px 0 256px 0;
 `;
 
-export const LoginImgContainer = styled.div`
-  width: 220px;
-  height: 220px;
+export const LogoImg = styled.img`
+  width: 86px;
+  height: 73.391px;
+  margin: 133px 0 132px 0;
 `;
 
 export const LoginBtnsContainer = styled.div`
   display: grid;
   grid-gap: 10px;
+  margin-bottom: 257px;
 `;
 
-export const LoginBtn = styled.div`
+export const LoginBtn = styled.button`
   margin: 0;
 `;
