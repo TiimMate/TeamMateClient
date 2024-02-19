@@ -39,7 +39,6 @@ export const ItemContainer = styled.ul`
 export const Item = styled.li`
   height: 28.3px;
   width: 30px;
-
   color: var(--Neutral-Black, #061119);
   text-align: center;
   font-family: 'Pretendard';

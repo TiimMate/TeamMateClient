@@ -3,6 +3,8 @@ import * as S from './MatchHistoryForGuest.style';
 import WeeklyCalendar from '../../../components/layouts/WeeklyCalendar';
 import MatchHistoryList from '../../../components/layouts/Matching/MatchHistoryList';
 import { getGuestingMatchingList } from '../../../services/matchingService';
+import authInstance from '../../../services/authInstance';
+import { useSelector } from 'react-redux';
 
 const NAV_ITEM_LIST = [
   {
@@ -21,11 +23,26 @@ export default function MatchHistoryForGuest() {
   const [selectedDate, setSelectedDate] = useState(String('2023-02-18'));
   const [matchingList, setMatchingList] = useState([]);
 
+  const day = useSelector((state) => state.Day.value);
+
+  const fetchGameList = async () => {
+    try {
+      const response = await authInstance.get(`/matchings/hosting`, {
+        params: {
+          date: day,
+        },
+      });
+      //setMatchingList(response.data); matching list 포맷만 맞추면 될거 같아요!
+    } catch (error) {
+      console.error(error);
+    }
+  };
   useEffect(() => {
     getGuestingMatchingList({ date: selectedDate }).then(({ result }) => {
       setMatchingList(result);
+      fetchGameList();
     });
-  }, [selectedDate]);
+  }, [selectedDate, day]);
 
   return (
     <S.PageLayout>
