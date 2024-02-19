@@ -1,9 +1,8 @@
 import MainFunctionNavbar from '../../../components/layouts/MainFunctionNavbar';
 import ContentHeader from '../../../components/layouts/Content/ContentHeader';
 import Modal from '../../../components/ui/Modal/Modal';
-import camera from '../../../assets/btn_camera.svg';
 import * as S from './CommunityWrite.style';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useCallbackPrompt } from '../../../hooks/useCallbackPrompt';
 import { useNavigate } from 'react-router';
 import TextInput from '../../../components/layouts/TextInput/TextInput';
@@ -16,12 +15,12 @@ import { uploadImage } from '../../../services/imageApi';
 function CommunityWrite() {
   const [shouldConfirm, setShouldConfirm] = useState(false);
   const [valid, setValid] = useState(true);
+  const [imageList, setImageList] = useState([]);
   const [postContents, setPostContents] = useState({
     title: '',
     content: '',
     link: '',
   });
-  const [imageList, setImageList] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {

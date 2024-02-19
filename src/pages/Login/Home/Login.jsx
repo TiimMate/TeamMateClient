@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import * as S from './Login.style';
 
 import googleLoginBtn from '../../../assets/btn_google_login.svg';

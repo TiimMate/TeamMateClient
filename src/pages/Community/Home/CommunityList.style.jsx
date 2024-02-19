@@ -39,8 +39,6 @@ export const Date = styled.div`
   line-height: normal;
 `;
 
-export const PostList = styled.div``;
-
 export const Loading = styled.p`
   font-family: 'Pretendard';
   font-size: 13px;
