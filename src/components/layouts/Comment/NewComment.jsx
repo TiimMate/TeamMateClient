@@ -1,5 +1,5 @@
 import * as S from './NewComment.style';
-import TextArea from '../TextArea';
+import TextArea from '../TextArea/TextArea';
 import authInstance from '../../../services/authInstance';
 import { useState, useEffect } from 'react';
 

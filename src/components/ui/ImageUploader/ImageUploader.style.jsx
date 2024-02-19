@@ -34,7 +34,7 @@ export const NewImageList = styled.div`
   margin-bottom: 1.875rem;
   justify-content: flex-start;
   align-items: center;
-  width: calc(100% - 5rem);
+  width: 100%;
   flex-wrap: wrap; // 복수의 행
 `;
 export const NewImageBox = styled.div`

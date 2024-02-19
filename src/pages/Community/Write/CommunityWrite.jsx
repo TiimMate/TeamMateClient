@@ -6,8 +6,8 @@ import * as S from './CommunityWrite.style';
 import { useEffect, useRef, useState } from 'react';
 import { useCallbackPrompt } from '../../../hooks/useCallbackPrompt';
 import { useNavigate } from 'react-router';
-import TextInput from '../../../components/layouts/TextInput';
-import TextArea from '../../../components/layouts/TextArea';
+import TextInput from '../../../components/layouts/TextInput/TextInput';
+import TextArea from '../../../components/layouts/TextArea/TextArea';
 import authInstance from '../../../services/authInstance';
 import withAuth from '../../../hooks/hoc/withAuth';
 import ImageUploader from '../../../components/ui/ImageUploader/ImageUploader';
@@ -51,11 +51,6 @@ function CommunityWrite() {
 
     const linkString = uploadedImages.join(','); // 이미지 파일명(key) 배열을 문자열로 변환
 
-    // const body = new FormData();
-    // body.append('title', postContents.title);
-    // body.append('content', postContents.content);
-    // body.append('link', postContents.link);
-    //for (const keyValue of body) console.log(keyValue);
     try {
       const response = await authInstance.post('/posts/community', {
         ...postContents,
@@ -125,6 +120,7 @@ function CommunityWrite() {
             rows={6}
             placeholder='내용을 입력해 주세요.'
             onChange={onChangeHandler}
+            value={postContents.content}
           />
         </S.InputWrapper>
 
