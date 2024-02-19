@@ -8,9 +8,8 @@ import NewComment from '../../../components/layouts/Comment/NewComment';
 import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import authInstance from '../../../services/authInstance';
-import { downloadImage } from '../../../services/imageApi';
 import withAuth from '../../../hooks/hoc/withAuth';
-import Paging from '../../../components/ui/Paging/Paging';
+import Pagination from '../../../components/ui/Pagination/Pagination';
 
 function CommunityDetail() {
   const { id } = useParams();
@@ -29,18 +28,20 @@ function CommunityDetail() {
     ],
     commentHasNext: false,
   });
-  const [currentPageComments, setCurrentPageComments] = useState(
-    communityDetail.comments,
-  );
+
   const [firstCommentId, setFirstCommentId] = useState(1);
+  const [hasMoreComments, setHasMoreComments] = useState(true);
+
+  const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
+  const offset = (page - 1) * limit;
 
   const fetchPostDetail = async () => {
     // api명세서 변경 : imageUrls->link
     try {
       const { result } = (await authInstance.get(`/posts/${id}`)).data;
 
-      console.log('result', result);
+      console.log('post result', result);
       setCommunityDetail({
         ...result,
         post: { ...result.post },
@@ -59,14 +60,16 @@ function CommunityDetail() {
         )
       ).data;
 
-      console.log('result', result);
+      console.log('comment result', result);
 
       if (result.comments.length > 0) {
         setCommunityDetail((prevDetail) => ({
           ...prevDetail,
           comments: [...prevDetail.comments, ...result.comments],
         }));
-        setFirstCommentId(1);
+        setFirstCommentId(result.comments[result.comments.length - 1].id);
+      } else {
+        setHasMoreComments(false);
       }
     } catch (error) {
       console.log(error);
@@ -78,19 +81,28 @@ function CommunityDetail() {
   }, [id]);
 
   useEffect(() => {
-    fetchMoreComments();
-  }, [firstCommentId]);
+    if (communityDetail.comments.length > 0) {
+      setFirstCommentId(communityDetail.comments[0].id);
+    }
+  }, [communityDetail]);
 
-  const renderComment = () =>
-    communityDetail.comments.map((comment) => (
-      <UnitCommentRow
-        key={comment.id}
-        id={comment.id}
-        nickname={comment.nickname}
-        content={comment.content}
-        createdAt={comment.createdAt}
-      />
-    ));
+  const handlePageChange = (newPage) => {
+    setPage(newPage);
+    if (newPage % 2 === 0) fetchMoreComments();
+  };
+
+  const renderComments = () =>
+    communityDetail.comments
+      .slice(offset, offset + limit)
+      .map((comment) => (
+        <UnitCommentRow
+          key={comment.id}
+          id={comment.id}
+          nickname={comment.nickname}
+          content={comment.content}
+          createdAt={comment.createdAt}
+        />
+      ));
 
   return (
     <S.Wrapper>
@@ -104,11 +116,12 @@ function CommunityDetail() {
       />
       <ContentBody menu='community' content={communityDetail.post} />
       <CommentHeader postId={id} commentCount={communityDetail.commentCount} />
-      {renderComment()}
-      <Paging
+      {renderComments()}
+      <Pagination
+        total={communityDetail.commentCount}
+        limit={limit}
         page={page}
-        count={communityDetail.commentCount}
-        setPage={setPage}
+        setPage={handlePageChange}
       />
       <NewComment postId={id} fetchPostDetail={fetchPostDetail} />
     </S.Wrapper>

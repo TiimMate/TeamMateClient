@@ -19,8 +19,6 @@ export default function NewComment({ postId, fetchPostDetail }) {
     }
   };
 
-  //useEffect(()=>{},[])
-
   return (
     <S.Wrapper>
       <S.NewCommentContainer>

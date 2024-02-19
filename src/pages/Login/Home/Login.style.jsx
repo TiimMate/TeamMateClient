@@ -20,6 +20,6 @@ export const LoginBtnsContainer = styled.div`
   margin-bottom: 257px;
 `;
 
-export const LoginBtn = styled.div`
+export const LoginBtn = styled.button`
   margin: 0;
 `;

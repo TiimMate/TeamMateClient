@@ -24,6 +24,7 @@ export default function ContentBody({ menu, content }) {
     return contentImages.map((image, index) => {
       if (!image || typeof image !== 'object') return null;
       console.log(image);
+      //let image_src = 'data:image/webp;base64,' + image;
 
       return (
         <S.ImageContainer key={index}>
