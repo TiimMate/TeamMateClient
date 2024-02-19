@@ -16,7 +16,7 @@ import MemberRows from '../../../components/ui/MemberRows/MemberRows';
 import { useSelector } from 'react-redux';
 
 export default function TeamApplyDetail() {
-  const category = useParams();
+  const { category } = useParams();
   const navigate = useNavigate();
 
   const { isOpen, openModal, closeModal } = useModal();
@@ -33,7 +33,7 @@ export default function TeamApplyDetail() {
       mannerLevel: 1,
       description: 'team1',
       status: '모집 완료',
-      gusting_info: {
+      game_info: {
         gameTime: '2024-01-30T15:00:00.000Z',
         gameDuration: '02:00:00',
         gender: '여성',
@@ -66,7 +66,7 @@ export default function TeamApplyDetail() {
 
   //선수 정보 입력 화면
   const navi = () => {
-    navigate('/my/update');
+    navigate(`/team/create?category=${category}`);
   };
 
   //input 값 post 전달 위함
@@ -100,7 +100,9 @@ export default function TeamApplyDetail() {
 
   const postContent = async (e) => {
     try {
-      const response = await authInstance.post('/games/5/application');
+      const response = await authInstance.post(`/games/${gameId}/application`, {
+        teamId: '1',
+      });
       navigate(`/${category}/matching/teamapply`);
     } catch (error) {
       console.log(error);
@@ -109,7 +111,7 @@ export default function TeamApplyDetail() {
   };
 
   //gameTime format
-  const GameTime = matchDetail.result.gusting_info.gameTime;
+  const GameTime = matchDetail.result.game_info.gameTime;
   const year = GameTime[0] + GameTime[1] + GameTime[2] + GameTime[3];
   const month = GameTime[5] + GameTime[6];
   const day = GameTime[8] + GameTime[9];
@@ -118,11 +120,11 @@ export default function TeamApplyDetail() {
   const gameTimeFormat = `${year}년 ${month}월 ${day}일 ${hour}시 ${minute}분`;
 
   const gameHour =
-    matchDetail.result.gusting_info.gameDuration[0] +
-    matchDetail.result.gusting_info.gameDuration[1];
+    matchDetail.result.game_info.gameDuration[0] +
+    matchDetail.result.game_info.gameDuration[1];
   const gameMinute =
-    matchDetail.result.gusting_info.gameDuration[3] +
-    matchDetail.result.gusting_info.gameDuration[4];
+    matchDetail.result.game_info.gameDuration[3] +
+    matchDetail.result.game_info.gameDuration[4];
 
   const gameDuration = `${gameHour}시간 ${gameMinute}분 운동`;
 
@@ -151,7 +153,7 @@ export default function TeamApplyDetail() {
       <S.MatchInfo>
         <S.MatchInfoText>
           <S.Img src={mapPin} alt='인포아이콘' />
-          {matchDetail.result.gusting_info.gymName}
+          {matchDetail.result.game_info.gymName}
         </S.MatchInfoText>
 
         <S.MatchInfoText>
@@ -165,13 +167,13 @@ export default function TeamApplyDetail() {
 
         <S.MatchInfoText>
           <S.Img src={iconPeople} alt='사람아이콘' />
-          {matchDetail.result.gusting_info.gender} |
-          {matchDetail.result.gusting_info.ageGroup}
+          {matchDetail.result.game_info.gender} |
+          {matchDetail.result.game_info.ageGroup}
         </S.MatchInfoText>
 
         <S.MatchInfoText>
           <S.Img src={iconInfo} alt='인포아이콘' />
-          레벨 {matchDetail.result.gusting_info.skillLevel}
+          레벨 {matchDetail.result.game_info.skillLevel}
         </S.MatchInfoText>
       </S.MatchInfo>
 
@@ -186,7 +188,7 @@ export default function TeamApplyDetail() {
       <S.RequestPoint>
         <S.Label>바라는 점</S.Label>
         <S.TextArea spellCheck='false'>
-          {matchDetail.result.gusting_info.guestDescription}
+          {matchDetail.result.game_info.guestDescription}
         </S.TextArea>
       </S.RequestPoint>
       <S.ApplyButtonSection>
