@@ -35,33 +35,191 @@ export default function MatchListFilter(props) {
               <S.P
                 onClick={() => {
                   setDropDownRegion('서울');
-                  props.setFilter('서울특별시');
+                  props.setFilter('서울');
                   props.setFilterCate('region');
                 }}
               >
-                서울특별시
+                서울
               </S.P>
             </S.Li>
+
+            <S.Li>
+              <S.P
+                onClick={() => {
+                  setDropDownRegion('경기');
+                  props.setFilter('경기');
+                  props.setFilterCate('region');
+                }}
+              >
+                경기
+              </S.P>
+            </S.Li>
+
+            <S.Li>
+              <S.P
+                onClick={() => {
+                  setDropDownRegion('인천');
+                  props.setFilter('인천');
+                  props.setFilterCate('region');
+                }}
+              >
+                인천
+              </S.P>
+            </S.Li>
+
+            <S.Li>
+              <S.P
+                onClick={() => {
+                  setDropDownRegion('강원');
+                  props.setFilter('강원');
+                  props.setFilterCate('region');
+                }}
+              >
+                강원
+              </S.P>
+            </S.Li>
+
+            <S.Li>
+              <S.P
+                onClick={() => {
+                  setDropDownRegion('대전');
+                  props.setFilter('대전');
+                  props.setFilterCate('region');
+                }}
+              >
+                대전
+              </S.P>
+            </S.Li>
+
+            <S.Li>
+              <S.P
+                onClick={() => {
+                  setDropDownRegion('충북');
+                  props.setFilter('충북');
+                  props.setFilterCate('region');
+                }}
+              >
+                충북
+              </S.P>
+            </S.Li>
+
+            <S.Li>
+              <S.P
+                onClick={() => {
+                  setDropDownRegion('충남');
+                  props.setFilter('충남');
+                  props.setFilterCate('region');
+                }}
+              >
+                충남
+              </S.P>
+            </S.Li>
+
             <S.Li>
               <S.P
                 onClick={() => {
                   setDropDownRegion('부산');
-                  props.setFilter('부산광역시');
+                  props.setFilter('부산');
                   props.setFilterCate('region');
                 }}
               >
-                부산광역시
+                부산
               </S.P>
             </S.Li>
+
             <S.Li>
               <S.P
                 onClick={() => {
-                  setDropDownRegion('제주도');
-                  props.setFilter('제주도');
+                  setDropDownRegion('울산');
+                  props.setFilter('울산');
                   props.setFilterCate('region');
                 }}
               >
-                제주도
+                울산
+              </S.P>
+            </S.Li>
+
+            <S.Li>
+              <S.P
+                onClick={() => {
+                  setDropDownRegion('대구');
+                  props.setFilter('대구');
+                  props.setFilterCate('region');
+                }}
+              >
+                대구
+              </S.P>
+            </S.Li>
+
+            <S.Li>
+              <S.P
+                onClick={() => {
+                  setDropDownRegion('경북');
+                  props.setFilter('경북');
+                  props.setFilterCate('region');
+                }}
+              >
+                경북
+              </S.P>
+            </S.Li>
+
+            <S.Li>
+              <S.P
+                onClick={() => {
+                  setDropDownRegion('경남');
+                  props.setFilter('경남');
+                  props.setFilterCate('region');
+                }}
+              >
+                경남
+              </S.P>
+            </S.Li>
+
+            <S.Li>
+              <S.P
+                onClick={() => {
+                  setDropDownRegion('광주');
+                  props.setFilter('광주');
+                  props.setFilterCate('region');
+                }}
+              >
+                광주
+              </S.P>
+            </S.Li>
+
+            <S.Li>
+              <S.P
+                onClick={() => {
+                  setDropDownRegion('전북');
+                  props.setFilter('전북');
+                  props.setFilterCate('region');
+                }}
+              >
+                전북
+              </S.P>
+            </S.Li>
+
+            <S.Li>
+              <S.P
+                onClick={() => {
+                  setDropDownRegion('전남');
+                  props.setFilter('전남');
+                  props.setFilterCate('region');
+                }}
+              >
+                전남
+              </S.P>
+            </S.Li>
+
+            <S.Li>
+              <S.P
+                onClick={() => {
+                  setDropDownRegion('제주');
+                  props.setFilter('제주');
+                  props.setFilterCate('region');
+                }}
+              >
+                제주
               </S.P>
             </S.Li>
           </S.Ul>

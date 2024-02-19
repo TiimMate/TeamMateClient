@@ -87,11 +87,14 @@ function ContentBox() {
         <Route path='/login/landing' element={<LoginLanding />} />
 
         <Route path='/:category/matching' element={<MatchingHome />} />
+
         <Route path='/:category/matching/guestapply' element={<GuestApply />} />
+
         <Route
           path='/:category/matching/guestapply/detail'
           element={<GuestApplyDetail />}
         />
+
         <Route
           path='/:category/matching/teamapply/detail'
           element={<TeamApplyDetail />}
