@@ -39,7 +39,7 @@ export default function MatchHistoryForHost() {
         ))}
       </S.Nav>
       <S.Banner />
-      <WeeklyCalendar /> {/* 수정필요 */}
+      <WeeklyCalendar setSelectedDate={setSelectedDate} /> {/* 수정필요 OK */}
       <MatchHistoryList matchingList={matchingList} />
     </S.PageLayout>
   );

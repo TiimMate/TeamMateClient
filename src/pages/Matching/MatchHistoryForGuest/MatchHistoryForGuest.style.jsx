@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import bannerImg from '../../../assets/banner-soccer.png';
+import teammateBanner from '../../../assets/banner-teammate.png';
 
 export const PageLayout = styled.div`
   display: flex;
@@ -25,7 +25,7 @@ export const NavItem = styled.a`
 `;
 
 export const Banner = styled.div`
-  background-image: url(${bannerImg});
+  background-image: url(${teammateBanner});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
