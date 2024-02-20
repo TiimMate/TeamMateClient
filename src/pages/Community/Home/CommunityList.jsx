@@ -75,11 +75,13 @@ function CommunityList() {
     <S.Wrapper>
       <MainFunctionNavbar />
       <NewPost onClick={handleNewPost} />
+
       <S.HeaderContainer>
         <S.Category>구분</S.Category>
         <S.Title>제목</S.Title>
         <S.Date>작성일시</S.Date>
       </S.HeaderContainer>
+
       {communityList.map(({ id, isBookmarked, title, createdAt }) => (
         <UnitBoardRow
           key={id}

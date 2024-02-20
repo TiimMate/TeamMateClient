@@ -46,7 +46,6 @@ export default function MapContent({ setLoc, workFor }) {
   };
 
   const renderSearchLocation = () => {
-    // 저장된 위치 정보 불러오기
     if (workFor === 'detail') {
       return (
         <>
@@ -58,7 +57,6 @@ export default function MapContent({ setLoc, workFor }) {
         </>
       );
     }
-    // 새로운 위치 정보 등록
     if (workFor === 'write') {
       return (
         <>

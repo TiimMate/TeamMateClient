@@ -32,3 +32,8 @@ export const Title = styled.div`
 export const ApplyButton = styled(Button70)`
   margin-left: auto;
 `;
+
+export const ClosedButton = styled(Button70)`
+  background: var(--Gray300, #636363);
+  margin-left: auto;
+`;

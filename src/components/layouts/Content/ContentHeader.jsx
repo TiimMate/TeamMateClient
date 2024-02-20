@@ -4,7 +4,6 @@ import noBookmark from '../../../assets/icon_no_bookmark.svg';
 import yesBookmark from '../../../assets/icon_yes_bookmark.svg';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import authInstance from '../../../services/authInstance';
 
 export default function ContentHeader({
@@ -38,7 +37,6 @@ export default function ContentHeader({
     if (icon === 'bookmark') {
       try {
         const response = await authInstance.post(`/posts/${postId}/bookmark`);
-        console.log(response);
         setIsBookmarked(!isBookmarked);
       } catch (error) {
         console.log(error);

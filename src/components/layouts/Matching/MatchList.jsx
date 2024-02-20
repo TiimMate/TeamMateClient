@@ -20,6 +20,7 @@ export default function MatchList(props) {
   const { category } = useParams();
   const day = useSelector((state) => state.Day.value);
 
+  console.log(day);
   const [gameList, setGameList] = useState({
     isSuccess: true,
     code: 2000,

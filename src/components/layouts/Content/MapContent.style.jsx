@@ -14,7 +14,6 @@ export const GymName = styled.div`
   line-height: 20px; /* 166.667% */
   letter-spacing: -0.6px;
 `;
-
 export const SearchGym = styled.button`
   display: flex;
   align-items: center;
@@ -28,7 +27,6 @@ export const SearchGym = styled.button`
   border: 1px solid var(--Gray200, #d9d9d9);
   background: #fff;
 `;
-
 export const SearchMessage = styled.div`
   display: flex;
   gap: 4px;
@@ -41,7 +39,6 @@ export const SearchMessage = styled.div`
   line-height: 150%; /* 18px */
   letter-spacing: -0.6px;
 `;
-
 export const Map = styled.div`
   margin-top: 20px;
   width: 100%;

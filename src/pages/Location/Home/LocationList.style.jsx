@@ -28,3 +28,10 @@ export const Status = styled.div`
   font-weight: 400;
   line-height: normal;
 `;
+
+export const Loading = styled.p`
+  font-family: 'Pretendard';
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+`;

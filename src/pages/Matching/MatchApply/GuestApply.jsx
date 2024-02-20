@@ -28,7 +28,7 @@ export default function GuestApply() {
     navigate(`/team/create?category=${category}`);
   };
 
-  //'0000-00-00' 형식으로 날쩌 포멧팅
+  //'0000-00-00' 형식으로 날짜 포멧팅
   const formatDate = (date) => {
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
