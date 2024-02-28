@@ -4,8 +4,7 @@ import Modal from '../../../components/ui/Modal/Modal';
 import * as S from './CommunityUpdate.style';
 import { useEffect, useState } from 'react';
 import { useCallbackPrompt } from '../../../hooks/useCallbackPrompt';
-import { useNavigate } from 'react-router';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import TextInput from '../../../components/layouts/TextInput/TextInput';
 import TextArea from '../../../components/layouts/TextArea/TextArea';
 import authInstance from '../../../services/authInstance';
@@ -19,6 +18,8 @@ function CommunityUpdate() {
 
   const [shouldConfirm, setShouldConfirm] = useState(false);
   const [valid, setValid] = useState(true);
+  const navigate = useNavigate();
+
   const [postContents, setPostContents] = useState({
     title: '',
     content: '',
@@ -30,7 +31,6 @@ function CommunityUpdate() {
     content: '',
     link: [],
   });
-  const navigate = useNavigate();
   const [imageListFromUrl, setImageListFromUrl] = useSrcImgList(
     initialValue.link,
   );
@@ -43,10 +43,9 @@ function CommunityUpdate() {
 
       setInitialValue({
         title: result.post.title,
-        content: result.post.contnet,
+        content: result.post.content,
         link: result.post.link.split(','),
       });
-      console.log('initialValue', initialValue);
     } catch (error) {
       console.log(error);
     }

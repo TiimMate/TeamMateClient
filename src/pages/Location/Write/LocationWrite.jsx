@@ -17,6 +17,7 @@ import { uploadImage } from '../../../services/imageApi';
 import { useDispatch } from 'react-redux';
 import DaySlices from '../../../redux/Slices/DaySlices';
 import { useSelector } from 'react-redux';
+import GymSelector from '../../../components/ui/Selector/Gym/GymSelector';
 
 function LocationWrite() {
   const [shouldConfirm, setShouldConfirm] = useState(false);
@@ -28,11 +29,13 @@ function LocationWrite() {
     link: '',
     rentDate: '',
     rentPlace: '',
+    rentMapValue: '',
   });
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const day = useSelector((state) => state.Day.value);
+  console.log('day', day);
 
   //'0000-00-00' 형식으로 날쩌 포멧팅
   const formatDate = (date) => {
@@ -75,12 +78,15 @@ function LocationWrite() {
 
     try {
       console.log(day);
-      const body = { ...postContents, link: linkString, rentDate: day };
+      const body = {
+        ...postContents,
+        link: linkString,
+        rentDate: day,
+      };
 
       console.log(body);
       const response = await authInstance.post('/posts/rent', body);
-      const { result } = response.data;
-      console.log(result);
+      console.log(response);
     } catch (error) {
       console.log(error);
     }
@@ -151,6 +157,7 @@ function LocationWrite() {
         needButton={false}
         title={'대관 일자 설정하기'}
       ></ContentHeader>
+
       <WeeklyCalendar />
 
       <Gap />
@@ -160,7 +167,15 @@ function LocationWrite() {
       ></ContentHeader>
       <S.ContentBody>
         <S.InputWrapper>
-          <MapContent workFor={'write'} />
+          <GymSelector
+            gym={postContents.rentPlace}
+            setGym={(sel) => {
+              setPostContents((prevState) => {
+                return { ...prevState, rentPlace: sel };
+              });
+            }}
+          />
+          {/* <MapContent workFor={'write'} /> */}
         </S.InputWrapper>
       </S.ContentBody>
 

@@ -3,6 +3,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
 import { useState, useEffect } from 'react';
 import MapContent from './MapContent';
+import GymSelector from '../../ui/Selector/Gym/GymSelector';
 import { useSrcImgList } from '../../../hooks/useSrcImg';
 
 export default function ContentBody({ menu, content }) {
@@ -16,7 +17,7 @@ export default function ContentBody({ menu, content }) {
   const contentImages = useSrcImgList(imageData);
 
   useEffect(() => {
-    setImageData(content.link.split(','));
+    if (!!content.link) setImageData(content.link.split(','));
   }, [content.link]);
 
   const renderSlides = () => {
@@ -50,9 +51,8 @@ export default function ContentBody({ menu, content }) {
           </Carousel>
         </S.ImageBox>
 
-        {menu === 'location' ? <MapContent workFor={'detail'} /> : null}
-
-        <S.Contents>{content.contnet}</S.Contents>
+        {menu === 'location' ? <GymSelector gym={content.rentPlace} /> : null}
+        <S.Contents>{content.content}</S.Contents>
       </S.ContentBodyContainer>
     </S.Wrapper>
   );

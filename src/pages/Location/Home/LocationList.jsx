@@ -10,82 +10,47 @@ import Gap from '../../../components/atoms/Gap';
 import authInstance from '../../../services/authInstance';
 import { useDispatch } from 'react-redux';
 import DaySlices from '../../../redux/Slices/DaySlices';
+import { useSelector } from 'react-redux';
+import withAuth from '../../../hooks/hoc/withAuth';
 
-export default function LocationList() {
+function LocationList() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
   const [page, setPage] = useState(1);
   const [locationList, setLocationList] = useState([]);
-  //const [date, setDate] = useState(null);
   const [loading, setLoading] = useState(false);
   const [hasMorePosts, setHasMorePosts] = useState(true);
   const [lastPostId, setLastPostId] = useState(null);
-  const [bottom, setBottom] = useState(null);
-  const bottomObserver = useRef(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && !loading && hasMorePosts) {
-          setPage((prevPage) => prevPage + 1);
-        }
-      },
-      { threshold: 0.5 },
-    );
-    bottomObserver.current = observer;
+  const day = useSelector((state) => state.Day.value);
 
-    if (bottom) observer.observe(bottom);
+  const fetchLocationList = async ({ lastPostId }) => {
+    try {
+      // setLocationList([]);
+      setLoading(true); //로딩이 시작됨
+      const response = await authInstance.get('/posts/rent', {
+        params: {
+          date: day,
+          cursorId: lastPostId,
+        },
+      });
+      console.log('response', response);
 
-    return () => {
-      if (bottom) observer.unobserve(bottom);
-    };
-  }, [bottom, loading, hasMorePosts]);
+      const { result } = response.data;
+      console.log('get /posts/rent result', result);
+      console.log(result.posts);
 
-  //'0000-00-00' 형식으로 날짜 포멧팅
-  const formatDate = (date) => {
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-
-    return `${year}-${month}-${day}`;
-  };
-  let today = new Date();
-  today = formatDate(today);
-
-  useEffect(() => {
-    const getLocationList = async ({ lastPostId }) => {
-      setLoading(true);
-      try {
-        let response;
-        if (lastPostId == null)
-          response = await authInstance.get(`/posts/rent/?date=${today}`);
-        else
-          response = await authInstance.get(
-            `/posts/rent/?date=${today}&?cursorId=${lastPostId}`,
-          );
-
-        const { result } = response.data;
-        console.log(result);
-
-        if (result.posts.length > 0) {
-          setLocationList((prevList) => [...prevList, ...result.posts]);
-          setLastPostId(result.posts[result.posts.length - 1].id);
-        } else {
-          setHasMorePosts(false);
-        }
-      } catch (error) {
-        console.error('Error fetching location list:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (hasMorePosts) {
-      getLocationList({ lastPostId });
-      dispatch(DaySlices.actions.change(today));
+      setLocationList(result.posts);
+    } catch (error) {
+      console.error(error);
     }
-  }, []);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    console.log(day);
+
+    fetchLocationList({ lastPostId });
+  }, [day, lastPostId]);
 
   const handleNewPost = () => {
     navigate('/location/write');
@@ -103,11 +68,18 @@ export default function LocationList() {
         <S.Status>상태</S.Status>
       </S.HeaderContainer>
 
-      {locationList.map(({ id, title, content, status }) => (
-        <UnitSpaceInfoRow key={id} id={id} title={title} status={status} />
+      {locationList.map(({ id, isBookmarked, title, content, status }) => (
+        <UnitSpaceInfoRow
+          key={id}
+          id={id}
+          isBookmarked={isBookmarked}
+          title={title}
+          status={status}
+        />
       ))}
       {loading && <S.Loading>Loading...</S.Loading>}
-      <div ref={setBottom}></div>
     </S.Wrapper>
   );
 }
+
+export default withAuth(LocationList);

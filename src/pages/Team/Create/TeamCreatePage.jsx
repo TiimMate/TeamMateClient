@@ -165,7 +165,6 @@ function TeamCreatePage() {
           setGym={(sel) => dispatch({ type: 'GYM_NAME', value: sel })}
         />
       </S.TeamDetailSection>
-
       <Gap height='3.81rem'>
         <S.Title>팀원 목록</S.Title>
       </Gap>

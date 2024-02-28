@@ -49,6 +49,7 @@ export default function MatchList(props) {
           },
         },
       );
+      console.log('get `/${props.matchType}${filterQuery}` response', response);
       setGameList(response.data);
     } catch (error) {
       console.error(error);
