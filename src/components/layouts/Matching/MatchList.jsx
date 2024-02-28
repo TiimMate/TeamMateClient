@@ -20,6 +20,7 @@ export default function MatchList(props) {
   const { category } = useParams();
   const day = useSelector((state) => state.Day.value);
 
+  console.log(day);
   const [gameList, setGameList] = useState({
     isSuccess: true,
     code: 2000,
@@ -48,6 +49,7 @@ export default function MatchList(props) {
           },
         },
       );
+      console.log('get `/${props.matchType}${filterQuery}` response', response);
       setGameList(response.data);
     } catch (error) {
       console.error(error);

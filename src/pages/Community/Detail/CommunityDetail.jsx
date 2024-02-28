@@ -37,7 +37,6 @@ function CommunityDetail() {
   const offset = (page - 1) * limit;
 
   const fetchPostDetail = async () => {
-    // api명세서 변경 : imageUrls->link
     try {
       const { result } = (await authInstance.get(`/posts/${id}`)).data;
 

@@ -2,7 +2,7 @@ import MainFunctionNavbar from '../../../components/layouts/MainFunctionNavbar';
 import ContentHeader from '../../../components/layouts/Content/ContentHeader';
 import Modal from '../../../components/ui/Modal/Modal';
 import * as S from './LocationWrite.style';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useCallbackPrompt } from '../../../hooks/useCallbackPrompt';
 import { useNavigate } from 'react-router';
 import TextInput from '../../../components/layouts/TextInput/TextInput';
@@ -10,42 +10,91 @@ import TextArea from '../../../components/layouts/TextArea/TextArea';
 import Gap from '../../../components/atoms/Gap';
 import WeeklyCalendar from '../../../components/layouts/WeeklyCalendar';
 import MapContent from '../../../components/layouts/Content/MapContent';
-import ImageUploader from '../../../components/ui/ImageUploader/ImageUploader';
 import authInstance from '../../../services/authInstance';
+import withAuth from '../../../hooks/hoc/withAuth';
+import ImageUploader from '../../../components/ui/ImageUploader/ImageUploader';
+import { uploadImage } from '../../../services/imageApi';
+import { useDispatch } from 'react-redux';
+import DaySlices from '../../../redux/Slices/DaySlices';
+import { useSelector } from 'react-redux';
+import GymSelector from '../../../components/ui/Selector/Gym/GymSelector';
 
-export default function LocationWrite() {
-  const [imageList, setImageList] = useState([]);
+function LocationWrite() {
   const [shouldConfirm, setShouldConfirm] = useState(false);
   const [valid, setValid] = useState('true');
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+  const [imageList, setImageList] = useState([]);
+  const [postContents, setPostContents] = useState({
+    title: '',
+    content: '',
+    link: '',
+    rentDate: '',
+    rentPlace: '',
+    rentMapValue: '',
+  });
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const day = useSelector((state) => state.Day.value);
+  console.log('day', day);
 
-  const [showPrompt, confirmNavigation, cancelNavigation] =
-    useCallbackPrompt(shouldConfirm);
+  //'0000-00-00' 형식으로 날쩌 포멧팅
+  const formatDate = (date) => {
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
 
-  const handleShouldConfirm = (e) => {
+    return `${year}-${month}-${day}`;
+  };
+  let today = new Date();
+  today = formatDate(today);
+
+  useEffect(() => {
+    if (imageList.length > 0) setShouldConfirm(true);
+
+    setPostContents((prevState) => {
+      return { ...prevState, link: imageList.join() };
+    });
+    dispatch(DaySlices.actions.change(today));
+  }, [imageList]);
+
+  const onChangeHandler = async (e) => {
     if (e.target.value) setShouldConfirm(true);
+    const { name, value } = e.target;
+
+    setPostContents({
+      ...postContents,
+      [name]: value,
+    });
   };
 
-  // const handleSubmit = () => {
-  //   // 서버에 저장
-  //   navigate('/location');
-  // };
+  const onSubmit = async () => {
+    const uploadPromises = imageList.map(async (file) => {
+      const uploadedImage = await uploadImage(file); // 이미지 업로드
+      return uploadedImage;
+    });
+    const uploadedImages = await Promise.all(uploadPromises);
 
-  const handleSubmit = async () => {
+    const linkString = uploadedImages.join(','); // 이미지 파일명(key) 배열을 문자열로 변환
+
     try {
-      const response = await authInstance.post('/posts/rent', {
-        title,
-        content,
-      });
-      const { result } = response.data;
+      console.log(day);
+      const body = {
+        ...postContents,
+        link: linkString,
+        rentDate: day,
+      };
+
+      console.log(body);
+      const response = await authInstance.post('/posts/rent', body);
+      console.log(response);
     } catch (error) {
       console.log(error);
     }
     navigate('/location');
   };
+
+  const [showPrompt, confirmNavigation, cancelNavigation] =
+    useCallbackPrompt(shouldConfirm);
 
   function ModalChildren() {
     const renderPromptModalContent = () => {
@@ -83,26 +132,20 @@ export default function LocationWrite() {
         <S.Label>글 제목</S.Label>
         <S.InputWrapper>
           <TextInput
+            name='title'
             valid={valid}
             placeholder='제목을 입력해 주세요.'
-            value={title}
-            onChange={(e) => {
-              setShouldConfirm(true);
-              setTitle(e.target.value);
-              console.log(title);
-            }}
+            onChange={onChangeHandler}
           />
         </S.InputWrapper>
         <S.Label>내용</S.Label>
         <S.InputWrapper>
           <TextArea
+            name='content'
             rows={6}
             placeholder='대관 안내를 적어주세요.&#13;&#10;예시) 금요일 13 : 00 ~ 17 : 00 대관 가능합니다. '
-            onChange={(e) => {
-              setShouldConfirm(true);
-              setContent(e.target.value);
-              console.log(content);
-            }}
+            onChange={onChangeHandler}
+            value={postContents.content}
           />
         </S.InputWrapper>
 
@@ -114,6 +157,7 @@ export default function LocationWrite() {
         needButton={false}
         title={'대관 일자 설정하기'}
       ></ContentHeader>
+
       <WeeklyCalendar />
 
       <Gap />
@@ -123,13 +167,30 @@ export default function LocationWrite() {
       ></ContentHeader>
       <S.ContentBody>
         <S.InputWrapper>
-          <MapContent workFor={'write'} />
+          <GymSelector
+            gym={postContents.rentPlace}
+            setGym={(sel) => {
+              setPostContents((prevState) => {
+                return { ...prevState, rentPlace: sel };
+              });
+            }}
+          />
+          {/* <MapContent workFor={'write'} /> */}
         </S.InputWrapper>
       </S.ContentBody>
 
       <S.ButtonWrapper>
-        <S.SaveButton onClick={handleSubmit}>저장하기</S.SaveButton>
+        <S.SaveButton
+          onClick={() => {
+            setShouldConfirm(false);
+            onSubmit();
+          }}
+        >
+          저장하기
+        </S.SaveButton>
       </S.ButtonWrapper>
     </S.Wrapper>
   );
 }
+
+export default withAuth(LocationWrite);

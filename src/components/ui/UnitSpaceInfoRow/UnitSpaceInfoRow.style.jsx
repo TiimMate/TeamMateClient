@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Button70 from '../../atoms/Button70';
 import { Link } from 'react-router-dom';
 
-export const Wrapper = styled(Link)`
+export const Wrapper = styled.div`
   box-sizing: border-box;
   display: flex;
   justify-content: flex-start;
@@ -14,7 +14,7 @@ export const Wrapper = styled(Link)`
   height: 4.375rem;
 `;
 
-export const Title = styled.div`
+export const Title = styled(Link)`
   margin-right: 0 auto;
   width: 62%;
   color: var(--kakao-logo, #000);
@@ -30,5 +30,10 @@ export const Title = styled.div`
 `;
 
 export const ApplyButton = styled(Button70)`
+  margin-left: auto;
+`;
+
+export const ClosedButton = styled(Button70)`
+  background: var(--Gray300, #636363);
   margin-left: auto;
 `;

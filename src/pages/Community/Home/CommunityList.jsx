@@ -35,35 +35,38 @@ function CommunityList() {
     };
   }, [bottom, loading, hasMorePosts]);
 
-  useEffect(() => {
-    const getCommunityList = async ({ lastPostId }) => {
+  const fetchCommunityList = async ({ lastPostId }) => {
+    try {
       setLoading(true);
-      try {
-        let response;
-        if (lastPostId == null)
-          response = await authInstance.get('/posts/community');
-        else
-          response = await authInstance.get(
-            `/posts/community/?cursorId=${lastPostId}`,
-          );
-        const { result } = response.data;
-        console.log(result);
+      const response = await authInstance.get('/posts/community', {
+        params: {
+          cursorId: lastPostId,
+        },
+      });
 
-        if (result.posts.length > 0) {
-          setCommunityList((prevList) => [...prevList, ...result.posts]);
-          setLastPostId(result.posts[result.posts.length - 1].id);
-        } else {
-          setHasMorePosts(false);
-        }
-      } catch (error) {
-        console.error('Error fetching community list:', error);
-      } finally {
-        setLoading(false);
+      console.log('response', response);
+
+      const { result } = response.data;
+      console.log('get /posts/community result', result);
+      console.log('result.posts', result.posts);
+
+      if (result.posts.length > 0) {
+        setCommunityList((prevList) => [...prevList, ...result.posts]);
+        setLastPostId(result.posts[result.posts.length - 1].id);
+      } else {
+        setHasMorePosts(false);
       }
-    };
+    } catch (error) {
+      console.error('Error fetching community list:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     if (hasMorePosts) {
-      getCommunityList({ lastPostId });
+      fetchCommunityList({ lastPostId });
+      console.log('hasMorePosts');
     }
   }, [page, hasMorePosts, lastPostId]);
 
@@ -75,11 +78,13 @@ function CommunityList() {
     <S.Wrapper>
       <MainFunctionNavbar />
       <NewPost onClick={handleNewPost} />
+
       <S.HeaderContainer>
         <S.Category>구분</S.Category>
         <S.Title>제목</S.Title>
         <S.Date>작성일시</S.Date>
       </S.HeaderContainer>
+
       {communityList.map(({ id, isBookmarked, title, createdAt }) => (
         <UnitBoardRow
           key={id}

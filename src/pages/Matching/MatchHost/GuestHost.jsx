@@ -95,6 +95,7 @@ export default function GuestHost() {
           category: category,
         },
       });
+
       setTeamId(response.data);
     } catch (error) {
       console.log(error);
@@ -110,6 +111,7 @@ export default function GuestHost() {
         gameDuration: gameTime,
         recruitCount: recruitCount,
       });
+
       navigate(`/${category}/matching/guestapply`);
     } catch (error) {
       openModal();
@@ -122,6 +124,7 @@ export default function GuestHost() {
       const { result } = (
         await authInstance.get(`/teams/${teamId.result[0].id}}`)
       ).data;
+
       setTeamInfo({ ...result });
     } catch (error) {
       console.log(error);
