@@ -34,9 +34,7 @@ function GymSelector({ gym, setGym, disabled = false }) {
       if (status === maps.services.Status.OK) {
         const position = new maps.LatLng(result[0].y, result[0].x);
         setIsUpdated(!isUpdated);
-        console.log('setGym');
         setGym(address);
-        console.log('setGym address', address, gym);
 
         const container = mapRef.current;
         const options = {

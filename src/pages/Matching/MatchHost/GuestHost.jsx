@@ -95,7 +95,6 @@ export default function GuestHost() {
           category: category,
         },
       });
-      console.log('get /teams/params-category result', response);
 
       setTeamId(response.data);
     } catch (error) {
@@ -112,7 +111,6 @@ export default function GuestHost() {
         gameDuration: gameTime,
         recruitCount: recruitCount,
       });
-      console.log("post /guests' result", response);
 
       navigate(`/${category}/matching/guestapply`);
     } catch (error) {
@@ -126,7 +124,6 @@ export default function GuestHost() {
       const { result } = (
         await authInstance.get(`/teams/${teamId.result[0].id}}`)
       ).data;
-      console.log('get /teams/${teamId.result[0].id} result', result);
 
       setTeamInfo({ ...result });
     } catch (error) {
