@@ -6,15 +6,15 @@
 
 ## ⚽ 프로젝트 소개
 
+개발 기간 : 2024. 01 ~ 2024. 02<br/>
 게스트-호스트 간의 연결을 쉽게 하는, 모든 운동을 위한 팀 매칭 서비스
-개발기간 : 2024.01 ~ 2024.02
-
+<br/>
 - 지역, 레벨, 성별 등 나에게 맞는 매칭을 필터링할 수 있습니다.
 - 경기 후 상호 리뷰를 통해 실력을 평가하고 게스트의 실력을 확인할 수 있습니다.
 - 팀 등록을 통해 팀원과 모임 정보를 관리할 수 있습니다.
-- 대관이 가능한 운동 시설을 공유하고 자유롭게 소통할 수 있습니다.
+- 대관이 가능한 운동 시설 정보를 공유하고 자유롭게 소통할 수 있습니다.
 
-<br>
+<br/>
 
 ## 👨‍👨‍👧‍👧 팀원 구성
 <table style="font-weight : bold">
@@ -48,7 +48,7 @@
       </tr>
   </table>
 
-<br>
+<br/>
 
 ## 🖥️ 화면 구성
 |**로그인/초기 화면**|**홈/마이 페이지**|**대관 정보/커뮤니티**|
@@ -62,7 +62,7 @@
 
 
 
-<br>
+<br/>
 
 ## 🛠️ 기술 스택
 <img src="https://img.shields.io/badge/react-20232a.svg?style=for-the-badge&logo=react&logoColor=61DAFB" /> <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
@@ -77,13 +77,13 @@ https://library.gabia.com/contents/8492/
 - **REDUX**
 https://ko.redux.js.org/tutorials/quick-start
 
-<br>
+<br/>
 
 ## 📝 컨벤션
 [협업 규칙 ⬇️](https://free-geology-d77.notion.site/e62b8227f4a8421d939fa70bf0fb8a47?pvs=4)
 
 
-<br>
+<br/>
 
 ## 📁 폴더 구조
 
